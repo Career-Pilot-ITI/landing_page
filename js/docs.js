@@ -288,7 +288,7 @@ if (typeof window !== 'undefined') {
     });
 
     if (type === 'apk') {
-      const driveUrl = config.apkUrl || 'https://drive.google.com/file/d/1s3bEHNOvOh9IGUMnAgCO8QuruOPtWEDV/view?usp=sharing';
+      const driveUrl = config.apkUrl || 'https://drive.google.com/file/d/1UaDY4iH1V7P2FbzhyFoJamS35vxfknQp/view?usp=sharing';
       if (qrImage) qrImage.src = 'assets/qr-apk-download.svg';
       if (qrTitle) qrTitle.textContent = 'Download APK via Google Drive';
       if (qrDesc) qrDesc.textContent = 'Scan with your phone camera or click below to download the signed Android release from Google Drive.';
@@ -331,7 +331,7 @@ if (typeof window !== 'undefined') {
       ? window.location.origin
       : (config.productionUrl || 'https://career-pilot-indol.vercel.app');
     const url = currentQrType === 'apk' 
-      ? (config.apkUrl || 'https://drive.google.com/file/d/1s3bEHNOvOh9IGUMnAgCO8QuruOPtWEDV/view?usp=sharing')
+      ? (config.apkUrl || 'https://drive.google.com/file/d/1UaDY4iH1V7P2FbzhyFoJamS35vxfknQp/view?usp=sharing')
       : (origin + '/emulator.html');
     navigator.clipboard?.writeText(url).then(() => {
       showToast('Link copied to clipboard: ' + url);
