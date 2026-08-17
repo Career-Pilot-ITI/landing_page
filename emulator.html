@@ -267,76 +267,132 @@
 
               <!-- SCREEN 2: MOCK INTERVIEW SETUP & LIVE SIMULATOR -->
               <div class="app-screen" data-screen="interview">
-                <div class="app-header">
-                  <div class="app-header-title">
-                    <button class="app-btn-secondary" style="width:auto;padding:4px 8px;border-radius:6px;" data-jump-screen="dashboard">←</button>
-                    <b>Practice Interview</b>
-                  </div>
-                  <span class="app-coin-badge" style="color:var(--app-teal);border-color:var(--app-teal);background:rgba(45,212,191,0.1);">2 Coins/min</span>
-                </div>
-
-                <!-- Track & Duration Chips -->
-                <div style="display:flex;gap:6px;margin-bottom:12px;">
-                  <span style="padding:4px 10px;border-radius:8px;background:var(--app-card-hover);font-size:10px;font-weight:700;border:1px solid var(--app-border);">Software Engineering</span>
-                  <span style="padding:4px 10px;border-radius:8px;background:rgba(99,102,241,0.12);color:#818cf8;font-size:10px;font-weight:700;">3 Questions · ~20.0 min</span>
-                </div>
-
-                <b style="font-size:15px;display:block;margin-bottom:2px;">Ready to practice?</b>
-                <small style="font-size:11px;color:var(--app-muted);display:block;margin-bottom:10px;">Before we begin, a few quick tips:</small>
-
-                <!-- 4 Real Guidelines Box -->
-                <div class="app-card" style="padding:10px;font-size:10px;line-height:1.4;display:grid;gap:8px;margin-bottom:12px;">
-                  <div style="display:flex;gap:8px;align-items:flex-start;">
-                    <span style="width:16px;height:16px;border-radius:4px;background:var(--app-card-hover);display:grid;place-items:center;font-weight:800;font-size:9px;flex-shrink:0;">1</span>
-                    <span>Find a quiet space with minimal background noise</span>
-                  </div>
-                  <div style="display:flex;gap:8px;align-items:flex-start;">
-                    <span style="width:16px;height:16px;border-radius:4px;background:var(--app-card-hover);display:grid;place-items:center;font-weight:800;font-size:9px;flex-shrink:0;">2</span>
-                    <span>Speak clearly and at a natural pace</span>
-                  </div>
-                  <div style="display:flex;gap:8px;align-items:flex-start;">
-                    <span style="width:16px;height:16px;border-radius:4px;background:var(--app-card-hover);display:grid;place-items:center;font-weight:800;font-size:9px;flex-shrink:0;">3</span>
-                    <span>Take time to gather your thoughts before answering</span>
-                  </div>
-                  <div style="display:flex;gap:8px;align-items:flex-start;">
-                    <span style="width:16px;height:16px;border-radius:4px;background:var(--app-card-hover);display:grid;place-items:center;font-weight:800;font-size:9px;flex-shrink:0;">4</span>
-                    <span>The AI will wait for you to finish before responding</span>
-                  </div>
-                </div>
-
-                <!-- Interview Type Cards -->
-                <span style="font-size:10px;font-weight:800;color:var(--app-muted);text-transform:uppercase;display:block;margin-bottom:6px;">Interview Type</span>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
-                  <div class="app-card" style="padding:10px;margin:0;border:2px solid var(--app-primary);background:rgba(255,122,69,0.06);cursor:pointer;">
-                    <svg style="width:18px;height:18px;color:var(--app-primary);margin-bottom:4px;"><use href="#i-mic"/></svg>
-                    <b style="font-size:11px;display:block;">Audio Only</b>
-                    <small style="font-size:9px;color:var(--app-muted);">Voice responses</small>
-                  </div>
-                  <div class="app-card" style="padding:10px;margin:0;cursor:pointer;">
-                    <svg style="width:18px;height:18px;color:var(--app-muted);margin-bottom:4px;"><use href="#i-video"/></svg>
-                    <b style="font-size:11px;display:block;">Video</b>
-                    <small style="font-size:9px;color:var(--app-muted);">Camera + voice</small>
-                  </div>
-                </div>
-
-                <!-- Microphone Access Toggle -->
-                <div class="app-card" style="display:flex;justify-content:space-between;align-items:center;padding:10px;margin-bottom:14px;">
-                  <div style="display:flex;gap:8px;align-items:center;">
-                    <div style="width:28px;height:28px;border-radius:8px;background:rgba(255,122,69,0.15);display:grid;place-items:center;color:var(--app-primary);">
-                      <svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-mic"/></svg>
+                <!-- 2A: Setup View -->
+                <div id="emuInterviewSetup">
+                  <div class="app-header">
+                    <div class="app-header-title">
+                      <button class="app-btn-secondary" style="width:auto;padding:4px 8px;border-radius:6px;" data-jump-screen="dashboard">←</button>
+                      <b>Practice Interview</b>
                     </div>
-                    <div>
-                      <b style="font-size:11px;display:block;">Microphone Access</b>
-                      <small style="font-size:9px;color:var(--app-green);font-weight:700;">Required & Ready</small>
+                    <span class="app-coin-badge" style="color:var(--app-teal);border-color:var(--app-teal);background:rgba(0,191,165,0.1);">2 Coins/min</span>
+                  </div>
+
+                  <!-- Track & Duration Chips -->
+                  <div style="display:flex;gap:6px;margin-bottom:12px;">
+                    <span style="padding:4px 10px;border-radius:8px;background:var(--app-card-hover);font-size:10px;font-weight:700;border:1px solid var(--app-border);">Software Engineering</span>
+                    <span style="padding:4px 10px;border-radius:8px;background:rgba(99,102,241,0.12);color:#6366f1;font-size:10px;font-weight:700;">3 Questions · ~20 min</span>
+                  </div>
+
+                  <b style="font-size:14px;display:block;margin-bottom:2px;color:var(--app-text);">Ready to practice?</b>
+                  <small style="font-size:11px;color:var(--app-muted);display:block;margin-bottom:10px;">Before we begin, a few quick tips:</small>
+
+                  <!-- 4 Real Guidelines Box -->
+                  <div class="app-card" style="padding:10px;font-size:10px;line-height:1.4;display:grid;gap:8px;margin-bottom:12px;">
+                    <div style="display:flex;gap:8px;align-items:flex-start;">
+                      <span style="width:16px;height:16px;border-radius:4px;background:var(--app-card-hover);display:grid;place-items:center;font-weight:800;font-size:9px;flex-shrink:0;">1</span>
+                      <span>Find a quiet space with minimal background noise</span>
+                    </div>
+                    <div style="display:flex;gap:8px;align-items:flex-start;">
+                      <span style="width:16px;height:16px;border-radius:4px;background:var(--app-card-hover);display:grid;place-items:center;font-weight:800;font-size:9px;flex-shrink:0;">2</span>
+                      <span>Speak clearly and at a natural pace</span>
+                    </div>
+                    <div style="display:flex;gap:8px;align-items:flex-start;">
+                      <span style="width:16px;height:16px;border-radius:4px;background:var(--app-card-hover);display:grid;place-items:center;font-weight:800;font-size:9px;flex-shrink:0;">3</span>
+                      <span>Take time to gather your thoughts before answering</span>
+                    </div>
+                    <div style="display:flex;gap:8px;align-items:flex-start;">
+                      <span style="width:16px;height:16px;border-radius:4px;background:var(--app-card-hover);display:grid;place-items:center;font-weight:800;font-size:9px;flex-shrink:0;">4</span>
+                      <span>The AI will wait for you to finish before responding</span>
                     </div>
                   </div>
-                  <input type="checkbox" checked style="accent-color:var(--app-primary);" />
+
+                  <!-- Interview Type Cards -->
+                  <span style="font-size:10px;font-weight:800;color:var(--app-muted);text-transform:uppercase;display:block;margin-bottom:6px;">Interview Type</span>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
+                    <div class="app-card emu-type-card active" data-type="audio" style="padding:10px;margin:0;border:2px solid var(--app-primary);background:rgba(255,122,69,0.06);cursor:pointer;">
+                      <svg style="width:18px;height:18px;color:var(--app-primary);margin-bottom:4px;"><use href="#i-mic"/></svg>
+                      <b style="font-size:11px;display:block;">Audio Only</b>
+                      <small style="font-size:9px;color:var(--app-muted);">Voice responses</small>
+                    </div>
+                    <div class="app-card emu-type-card" data-type="video" style="padding:10px;margin:0;cursor:pointer;">
+                      <svg style="width:18px;height:18px;color:var(--app-muted);margin-bottom:4px;"><use href="#i-video"/></svg>
+                      <b style="font-size:11px;display:block;">Video</b>
+                      <small style="font-size:9px;color:var(--app-muted);">Camera + voice</small>
+                    </div>
+                  </div>
+
+                  <!-- Microphone Access Toggle -->
+                  <div class="app-card" style="display:flex;justify-content:space-between;align-items:center;padding:10px;margin-bottom:14px;">
+                    <div style="display:flex;gap:8px;align-items:center;">
+                      <div style="width:28px;height:28px;border-radius:8px;background:rgba(255,122,69,0.15);display:grid;place-items:center;color:var(--app-primary);">
+                        <svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-mic"/></svg>
+                      </div>
+                      <div>
+                        <b style="font-size:11px;display:block;">Microphone Access</b>
+                        <small style="font-size:9px;color:var(--app-green);font-weight:700;">Required & Ready</small>
+                      </div>
+                    </div>
+                    <input type="checkbox" checked style="accent-color:var(--app-primary);" />
+                  </div>
+
+                  <button class="app-btn app-btn-primary" id="btnLaunchInterviewLive" style="margin-bottom:8px;">
+                    <svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-play"/></svg>
+                    <span>Begin Interview</span>
+                  </button>
                 </div>
 
-                <button class="app-btn app-btn-primary btn-sim-record" style="margin-bottom:8px;">
-                  <svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-play"/></svg>
-                  <span>Begin Interview</span>
-                </button>
+                <!-- 2B: Live Interview Session View -->
+                <div id="emuInterviewLive" style="display:none;">
+                  <div class="app-header">
+                    <div class="app-header-title">
+                      <button class="app-btn-secondary" style="width:auto;padding:4px 8px;border-radius:6px;" id="btnQuitInterview">←</button>
+                      <div>
+                        <b>Question 1 of 3</b>
+                        <small style="color:var(--app-primary);font-weight:700;">Kotlin State & Compose</small>
+                      </div>
+                    </div>
+                    <span class="app-coin-badge" style="color:var(--app-primary);border-color:var(--app-primary);">01:45</span>
+                  </div>
+
+                  <!-- Simulated Camera Box -->
+                  <div class="sim-camera-box">
+                    <div class="camera-mesh"></div>
+                    <div class="face-hud-box">
+                      <div class="hud-corner hud-tl"></div>
+                      <div class="hud-corner hud-tr"></div>
+                      <div class="hud-corner hud-bl"></div>
+                      <div class="hud-corner hud-br"></div>
+                      <span>Gaze: 94% (Focused)</span>
+                    </div>
+                    <div class="camera-badge">
+                      <span class="camera-badge-dot"></span>
+                      <span>MediaPipe 30 FPS</span>
+                    </div>
+                  </div>
+
+                  <!-- Question Card -->
+                  <div class="app-card">
+                    <p style="font-size:11.5px;line-height:1.45;margin:0 0 10px;font-weight:600;color:var(--app-text);">
+                      "Explain how Kotlin StateFlow differs from SharedFlow in Jetpack Compose state management, and how you handle configuration changes."
+                    </p>
+                    
+                    <!-- Waveform -->
+                    <div style="display:flex;align-items:center;gap:3px;height:24px;padding:0 8px;background:rgba(0,0,0,0.15);border-radius:6px;margin-bottom:10px;">
+                      <div class="audio-bar sim-wave-bar animating" style="height:10px;"></div>
+                      <div class="audio-bar sim-wave-bar animating" style="height:16px;"></div>
+                      <div class="audio-bar sim-wave-bar animating" style="height:12px;"></div>
+                      <div class="audio-bar sim-wave-bar animating" style="height:18px;"></div>
+                      <div class="audio-bar sim-wave-bar animating" style="height:14px;"></div>
+                      <div class="audio-bar sim-wave-bar animating" style="height:8px;"></div>
+                      <span style="font-size:9px;color:var(--app-green);font-weight:700;margin-left:auto;">● Speech Active</span>
+                    </div>
+
+                    <button class="app-btn app-btn-primary" id="btnSubmitLiveAnswer">
+                      <svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-check"/></svg>
+                      <span>Submit Answer & See Score</span>
+                    </button>
+                  </div>
+                </div>
               </div>
 
               <!-- SCREEN 3: ATS JOB MATCH -->
@@ -351,7 +407,7 @@
                   </div>
                 </div>
 
-                <b style="font-size:16px;display:block;margin-bottom:2px;">Compare CV to Job</b>
+                <b style="font-size:15px;display:block;margin-bottom:2px;color:var(--app-text);">Compare CV to Job</b>
                 <small style="font-size:11px;color:var(--app-muted);display:block;margin-bottom:12px;">Paste a job posting link and we'll score your CV against it.</small>
 
                 <!-- Job Posting Input -->
@@ -359,7 +415,7 @@
                   <span style="font-size:9px;font-weight:800;color:var(--app-muted);text-transform:uppercase;display:block;margin-bottom:4px;">Job Posting Link</span>
                   <div style="display:flex;align-items:center;gap:6px;background:var(--app-card-hover);padding:8px 10px;border-radius:8px;border:1px solid var(--app-border);">
                     <svg style="width:12px;height:12px;color:var(--app-muted);"><use href="#i-arrow"/></svg>
-                    <span style="font-size:10px;color:var(--app-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">https://www.linkedin.com/jobs/view/3910248...</span>
+                    <span style="font-size:10px;color:var(--app-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">https://www.linkedin.com/jobs/view/3910248...</span>
                   </div>
                   <small style="font-size:9px;color:var(--app-muted);display:block;margin-top:6px;">Supports LinkedIn, Indeed, Wuzzuf, Glassdoor, and direct URLs.</small>
                 </div>
@@ -377,16 +433,36 @@
                 </div>
 
                 <!-- Fast LinkedIn Share Callout -->
-                <div style="background:rgba(0,196,180,0.1);border:1px solid rgba(0,196,180,0.25);border-radius:12px;padding:10px;display:flex;gap:8px;align-items:center;margin-bottom:14px;">
+                <div style="background:rgba(0,196,180,0.1);border:1px solid rgba(0,196,180,0.25);border-radius:12px;padding:10px;display:flex;gap:8px;align-items:center;margin-bottom:12px;">
                   <span style="font-size:16px;">✨</span>
                   <p style="font-size:10px;margin:0;line-height:1.4;color:var(--app-text);"><b>Faster:</b> In LinkedIn or any job app, tap <b>Share → CareerPilot</b>. The link is captured automatically.</p>
                 </div>
 
                 <!-- Compare Now Button -->
-                <button class="app-btn app-btn-teal btn-emu-optimize-bullet" style="margin-bottom:8px;">
+                <button class="app-btn app-btn-teal btn-emu-optimize-bullet" style="margin-bottom:10px;">
                   <svg style="width:12px;height:12px;fill:currentColor;"><use href="#i-target"/></svg>
                   <span>Compare Now</span>
                 </button>
+
+                <!-- Dynamic ATS Match Result Card -->
+                <div id="emuAtsResultCard" class="app-card" style="display:none;background:rgba(0,191,165,0.06);border-color:rgba(0,191,165,0.3);">
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                    <div>
+                      <b style="font-size:12px;color:var(--app-text);">Semantic Job Fit</b>
+                      <small style="display:block;color:var(--app-green);font-weight:700;">Top 8% Candidate Match</small>
+                    </div>
+                    <strong style="font-size:24px;color:var(--app-primary);">88%</strong>
+                  </div>
+                  <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px;">
+                    <span style="font-size:9px;padding:2px 6px;border-radius:4px;background:rgba(34,197,94,0.15);color:#22c55e;font-weight:700;">✓ Kotlin</span>
+                    <span style="font-size:9px;padding:2px 6px;border-radius:4px;background:rgba(34,197,94,0.15);color:#22c55e;font-weight:700;">✓ Compose</span>
+                    <span style="font-size:9px;padding:2px 6px;border-radius:4px;background:rgba(34,197,94,0.15);color:#22c55e;font-weight:700;">✓ Coroutines</span>
+                    <span style="font-size:9px;padding:2px 6px;border-radius:4px;background:rgba(239,68,68,0.15);color:#ef4444;font-weight:700;">✕ Ktor Client</span>
+                  </div>
+                  <small style="font-size:9px;color:var(--app-muted);display:block;line-height:1.4;">
+                    <b>AI Bullet Recommendation:</b> Refactored with Google X-Y-Z formula for Senior Mobile role.
+                  </small>
+                </div>
               </div>
 
               <!-- SCREEN 4: CHALLENGE ARENA -->
@@ -406,7 +482,7 @@
                 </div>
 
                 <!-- Enter Code Pill Card -->
-                <div class="app-card" style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;margin-bottom:12px;cursor:pointer;background:rgba(255,122,69,0.06);border-color:rgba(255,122,69,0.2);">
+                <div class="app-card" style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;margin-bottom:12px;cursor:pointer;background:rgba(255,122,69,0.06);border-color:rgba(255,122,69,0.2);" data-jump-screen="interview">
                   <div style="display:flex;gap:8px;align-items:center;">
                     <span style="font-size:14px;">🔑</span>
                     <b style="font-size:11px;color:var(--app-primary);">Enter Code</b>
@@ -419,7 +495,7 @@
                 <!-- Real Public Challenge Cards from Screenshot -->
                 <div style="display:grid;gap:8px;margin-bottom:10px;">
                   <!-- Challenge 1 -->
-                  <div class="app-card" style="border-left:3px solid var(--app-primary);padding:10px;margin:0;">
+                  <div class="app-card" style="border-left:3px solid var(--app-primary);padding:10px;margin:0;cursor:pointer;" data-jump-screen="interview">
                     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px;">
                       <b style="font-size:12px;">Android Development</b>
                       <span style="padding:2px 6px;border-radius:6px;background:rgba(255,122,69,0.12);color:var(--app-primary);font-size:8px;font-weight:800;">Mid-level</span>
@@ -432,7 +508,7 @@
                   </div>
 
                   <!-- Challenge 2 -->
-                  <div class="app-card" style="border-left:3px solid #ef4444;padding:10px;margin:0;">
+                  <div class="app-card" style="border-left:3px solid #ef4444;padding:10px;margin:0;cursor:pointer;" data-jump-screen="interview">
                     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px;">
                       <b style="font-size:12px;">Java Core</b>
                       <span style="padding:2px 6px;border-radius:6px;background:rgba(239,68,68,0.12);color:#ef4444;font-size:8px;font-weight:800;">Senior</span>
@@ -445,7 +521,7 @@
                   </div>
 
                   <!-- Challenge 3 -->
-                  <div class="app-card" style="border-left:3px solid var(--app-primary);padding:10px;margin:0;">
+                  <div class="app-card" style="border-left:3px solid var(--app-primary);padding:10px;margin:0;cursor:pointer;" data-jump-screen="interview">
                     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px;">
                       <b style="font-size:12px;">Kotlin Multiplatform</b>
                       <span style="padding:2px 6px;border-radius:6px;background:rgba(255,122,69,0.12);color:var(--app-primary);font-size:8px;font-weight:800;">Mid-level</span>

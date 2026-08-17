@@ -104,43 +104,59 @@ if (typeof window !== 'undefined') {
     phone.querySelector('.hw-vol-down')?.addEventListener('click', () => adjustVolume(-10));
 
     // 5. In-App Mock Interview Simulation
-    const btnStartSim = phone.querySelector('.btn-sim-record');
-    const audioWaves = phone.querySelectorAll('.sim-wave-bar');
+    const setupView = phone.querySelector('#emuInterviewSetup');
+    const liveView = phone.querySelector('#emuInterviewLive');
+    const btnLaunchLive = phone.querySelector('#btnLaunchInterviewLive');
+    const btnQuitLive = phone.querySelector('#btnQuitInterview');
+    const btnSubmitLiveAnswer = phone.querySelector('#btnSubmitLiveAnswer');
     const interviewModal = phone.querySelector('.interview-result-modal');
 
-    btnStartSim?.addEventListener('click', () => {
-      if (!state.isRecording) {
-        state.isRecording = true;
-        btnStartSim.innerHTML = '<span class="camera-badge-dot"></span> Listening... (Tap to Finish)';
-        btnStartSim.style.background = '#EF4444';
-        audioWaves.forEach(w => w.classList.add('animating'));
-      } else {
-        state.isRecording = false;
-        btnStartSim.innerHTML = '<svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-mic"/></svg> Start Speaking';
-        btnStartSim.style.background = '';
-        audioWaves.forEach(w => w.classList.remove('animating'));
-        if (interviewModal) interviewModal.classList.add('active');
-      }
+    btnLaunchLive?.addEventListener('click', () => {
+      if (setupView) setupView.style.display = 'none';
+      if (liveView) liveView.style.display = 'block';
+    });
+
+    btnQuitLive?.addEventListener('click', () => {
+      if (liveView) liveView.style.display = 'none';
+      if (setupView) setupView.style.display = 'block';
+    });
+
+    btnSubmitLiveAnswer?.addEventListener('click', () => {
+      if (interviewModal) interviewModal.classList.add('active');
     });
 
     phone.querySelector('.btn-close-interview-modal')?.addEventListener('click', () => {
       if (interviewModal) interviewModal.classList.remove('active');
+      if (liveView) liveView.style.display = 'none';
+      if (setupView) setupView.style.display = 'block';
     });
 
-    // 6. ATS Bullet Optimization Simulation
+    // Interview Type selector
+    phone.querySelectorAll('.emu-type-card').forEach(card => {
+      card.addEventListener('click', () => {
+        phone.querySelectorAll('.emu-type-card').forEach(c => {
+          c.classList.remove('active');
+          c.style.borderColor = 'var(--app-border)';
+          c.style.background = 'var(--app-card)';
+        });
+        card.classList.add('active');
+        card.style.borderColor = 'var(--app-primary)';
+        card.style.background = 'rgba(255,122,69,0.06)';
+      });
+    });
+
+    // 6. ATS Match Simulation
     const btnOptBullet = phone.querySelector('.btn-emu-optimize-bullet');
-    const optTarget = phone.querySelector('.emu-opt-bullet-text');
+    const atsResultCard = phone.querySelector('#emuAtsResultCard');
     btnOptBullet?.addEventListener('click', () => {
-      if (!optTarget) return;
-      optTarget.style.opacity = '0.3';
       btnOptBullet.disabled = true;
-      btnOptBullet.textContent = 'Rewriting with X-Y-Z...';
+      btnOptBullet.innerHTML = '<span class="camera-badge-dot"></span> Analyzing CV with pgvector...';
       setTimeout(() => {
-        optTarget.style.opacity = '1';
-        optTarget.innerHTML = '<b>Engineered 14+ Jetpack Compose screens</b> adopting Clean Architecture + MVI, reducing UI state latency by 35% with Ktor async pipelines.';
+        if (atsResultCard) atsResultCard.style.display = 'block';
         btnOptBullet.disabled = false;
-        btnOptBullet.textContent = 'Optimized with AI ✨';
-      }, 700);
+        btnOptBullet.innerHTML = '<svg style="width:12px;height:12px;fill:currentColor;"><use href="#i-target"/></svg><span>Scan Another Job</span>';
+        showEmuToast(phone, 'ATS Match Score: 88% (Top 8% Fit)');
+      }, 600);
     });
 
     // 7. Coin Purchase Simulation
@@ -148,11 +164,11 @@ if (typeof window !== 'undefined') {
     const updateCoins = (amount) => {
       state.coins += amount;
       coinCounters.forEach(c => {
-        c.textContent = `${state.coins} Coins`;
-        c.style.transform = 'scale(1.2)';
+        c.textContent = `${state.coins}`;
+        c.style.transform = 'scale(1.25)';
         setTimeout(() => c.style.transform = 'scale(1)', 200);
       });
-      showEmuToast(phone, `Added +${amount} Coins! New Balance: ${state.coins}`);
+      showEmuToast(phone, `Added +${amount} Coins! Balance: ${state.coins}`);
     };
 
     phone.querySelectorAll('[data-buy-coins]').forEach(btn => {
