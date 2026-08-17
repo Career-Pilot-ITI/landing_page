@@ -513,6 +513,101 @@ html[data-theme="midnight"], html[data-theme="pulse"] {
   color: var(--app-text);
 }
 
+/* Additional In-App Screen Components */
+.emu-quiz-opt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--app-card);
+  border: 1px solid var(--app-border);
+  border-radius: 12px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 600;
+  transition: all 0.15s ease;
+  color: var(--app-text);
+}
+.emu-quiz-opt:hover {
+  background: var(--app-card-hover);
+  border-color: var(--app-primary);
+}
+.emu-quiz-opt.correct {
+  background: rgba(34, 197, 94, 0.12);
+  border-color: #22c55e;
+  color: #16a34a;
+}
+.emu-quiz-opt-badge {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: var(--app-card-hover);
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 10px;
+  flex-shrink: 0;
+}
+.emu-quiz-opt.correct .emu-quiz-opt-badge {
+  background: #22c55e;
+  color: #fff;
+}
+
+.emu-rank-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: var(--app-card);
+  border: 1px solid var(--app-border);
+  margin-bottom: 6px;
+}
+.emu-rank-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--app-card-hover);
+  display: grid;
+  place-items: center;
+  font-size: 10px;
+  font-weight: 800;
+}
+.emu-rank-1 .emu-rank-num { background: #fef08a; color: #854d0e; }
+.emu-rank-2 .emu-rank-num { background: #e2e8f0; color: #475569; }
+.emu-rank-3 .emu-rank-num { background: #fed7aa; color: #9a3412; }
+
+.emu-input {
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--app-border);
+  background: var(--app-card-hover);
+  color: var(--app-text);
+  font-size: 11px;
+  font-family: inherit;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  outline: none;
+}
+.emu-input:focus { border-color: var(--app-primary); }
+
+.emu-track-chip {
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--app-border);
+  background: var(--app-card);
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.15s;
+}
+.emu-track-chip.active {
+  border-color: var(--app-primary);
+  background: rgba(255, 122, 69, 0.1);
+  color: var(--app-primary);
+}
+
 /* Volume HUD */
 .volume-hud {
   position: absolute;

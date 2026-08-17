@@ -44,19 +44,42 @@ if (typeof window !== 'undefined') {
     setInterval(updateTime, 1000);
     updateTime();
 
-    // 2. Screen Navigation Router
+    // 2. Screen Navigation Router with Sub-Screen Tab Mapping
+    const tabMap = {
+      'dashboard': 'dashboard',
+      'interview': 'interview',
+      'live-interview': 'interview',
+      'feedback': 'interview',
+      'ats': 'dashboard',
+      'ats-result': 'dashboard',
+      'challenges': 'challenges',
+      'leaderboard': 'challenges',
+      'lessons': 'dashboard',
+      'quiz': 'dashboard',
+      'reports': 'dashboard',
+      'onboarding': 'dashboard',
+      'auth': 'wallet',
+      'wallet': 'wallet'
+    };
+
     const switchScreen = (screenName) => {
       state.activeScreen = screenName;
       phone.querySelectorAll('.app-screen').forEach(scr => scr.classList.remove('active'));
       phone.querySelectorAll('.nav-tab-item').forEach(tab => tab.classList.remove('active'));
 
       const targetScreen = phone.querySelector(`[data-screen="${screenName}"]`);
-      const targetTab = phone.querySelector(`[data-nav-target="${screenName}"]`);
+      const parentTabKey = tabMap[screenName] || screenName;
+      const targetTab = phone.querySelector(`[data-nav-target="${parentTabKey}"]`);
 
-      if (targetScreen) targetScreen.classList.add('active');
+      if (targetScreen) {
+        targetScreen.classList.add('active');
+        // Scroll to top of screen container on transition
+        const container = phone.querySelector('.app-screen-container');
+        if (container) container.scrollTop = 0;
+      }
       if (targetTab) targetTab.classList.add('active');
 
-      // Sync external control panel buttons if present
+      // Sync external control panel buttons
       document.querySelectorAll('[data-emu-screen]').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.emuScreen === screenName);
       });
@@ -67,7 +90,10 @@ if (typeof window !== 'undefined') {
     });
 
     phone.querySelectorAll('[data-jump-screen]').forEach(btn => {
-      btn.addEventListener('click', () => switchScreen(btn.dataset.jumpScreen));
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        switchScreen(btn.dataset.jumpScreen);
+      });
     });
 
     // 3. Hardware Lock / Power Button
@@ -225,14 +251,36 @@ if (typeof window !== 'undefined') {
 
   // External Screen Switcher helper
   window.setEmulatorScreen = (screenName) => {
+    const tabMap = {
+      'dashboard': 'dashboard',
+      'interview': 'interview',
+      'live-interview': 'interview',
+      'feedback': 'interview',
+      'ats': 'dashboard',
+      'ats-result': 'dashboard',
+      'challenges': 'challenges',
+      'leaderboard': 'challenges',
+      'lessons': 'dashboard',
+      'quiz': 'dashboard',
+      'reports': 'dashboard',
+      'onboarding': 'dashboard',
+      'auth': 'wallet',
+      'wallet': 'wallet'
+    };
+
     document.querySelectorAll('.phone-emulator').forEach(phone => {
       phone.querySelectorAll('.app-screen').forEach(scr => scr.classList.remove('active'));
       phone.querySelectorAll('.nav-tab-item').forEach(tab => tab.classList.remove('active'));
 
       const targetScreen = phone.querySelector(`[data-screen="${screenName}"]`);
-      const targetTab = phone.querySelector(`[data-nav-target="${screenName}"]`);
+      const parentTabKey = tabMap[screenName] || screenName;
+      const targetTab = phone.querySelector(`[data-nav-target="${parentTabKey}"]`);
 
-      if (targetScreen) targetScreen.classList.add('active');
+      if (targetScreen) {
+        targetScreen.classList.add('active');
+        const container = phone.querySelector('.app-screen-container');
+        if (container) container.scrollTop = 0;
+      }
       if (targetTab) targetTab.classList.add('active');
 
       document.querySelectorAll('[data-emu-screen]').forEach(btn => {
