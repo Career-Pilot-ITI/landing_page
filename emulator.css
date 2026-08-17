@@ -549,4 +549,48 @@ html[data-theme="cloud"] {
 @media (max-width: 900px) {
   .emulator-page-container { grid-template-columns: 1fr; }
   .phone-emulator { transform: scale(0.92); }
+  .emulator-sidebar { gap: 16px; }
+}
+
+@media (max-width: 600px) {
+  .phone-emulator {
+    transform: scale(0.82);
+    transform-origin: top center;
+    margin-bottom: -40px;
+  }
+  .emulator-sidebar { gap: 12px; }
+  .emulator-control-panel { padding: 18px; }
+}
+
+@media (max-width: 420px) {
+  .phone-emulator {
+    transform: scale(0.72);
+    transform-origin: top center;
+    margin-bottom: -80px;
+  }
+  .hw-btn { display: none; }
+  .dynamic-island { width: 72px; height: 18px; top: 6px; }
+  .dynamic-island span:not(.island-dot) { font-size: 7px; }
+  .dynamic-island .island-dot { width: 5px; height: 5px; }
+  .app-screen-container { padding: 10px; padding-bottom: 64px; }
+  .app-header { margin-bottom: 10px; }
+  .app-header-title img { width: 22px; height: 22px; }
+  .app-header-title b { font-size: 12px; }
+  .app-card { padding: 10px; margin-bottom: 8px; border-radius: 12px; }
+  .app-tile-grid { gap: 6px; margin-bottom: 8px; }
+  .app-tile { padding: 8px; border-radius: 10px; }
+  .app-tile svg { width: 16px; height: 16px; }
+  .app-tile b { font-size: 10px; }
+  .app-tile small { font-size: 8px; }
+  .hero-readiness { padding: 12px; }
+  .hero-readiness strong { font-size: 24px; }
+  .readiness-ring { width: 42px; height: 42px; font-size: 11px; }
+  .phone-bottom-nav { height: 52px; }
+  .nav-tab-item { font-size: 8px; padding: 4px 6px; }
+  .nav-tab-item svg { width: 15px; height: 15px; }
+  .home-indicator { width: 100px; }
+  .sim-camera-box { height: 90px; }
+  .face-hud-box { width: 56px; height: 72px; }
+  .app-btn { padding: 8px; font-size: 10px; }
+  .lock-time { font-size: 36px; }
 }

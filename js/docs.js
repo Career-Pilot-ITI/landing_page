@@ -11,6 +11,7 @@ if (typeof window !== 'undefined') {
   const themePopover = document.getElementById('themePopover');
   const mobileToggle = document.getElementById('mobileSidebarToggle');
   const sidebar = document.getElementById('docSidebar');
+  const sidebarBackdrop = document.getElementById('sidebarBackdrop');
   const toast = document.getElementById('docToast');
   const searchBar = document.getElementById('docSearchBar');
   const searchModal = document.getElementById('searchModal');
@@ -63,6 +64,12 @@ if (typeof window !== 'undefined') {
   // Mobile sidebar drawer
   mobileToggle?.addEventListener('click', () => {
     sidebar?.classList.toggle('open');
+    sidebarBackdrop?.classList.toggle('open');
+  });
+
+  sidebarBackdrop?.addEventListener('click', () => {
+    sidebar?.classList.remove('open');
+    sidebarBackdrop?.classList.remove('open');
   });
 
   // Category collapsing
@@ -204,6 +211,7 @@ if (typeof window !== 'undefined') {
       item.addEventListener('click', () => {
         closeSearch();
         sidebar?.classList.remove('open');
+        sidebarBackdrop?.classList.remove('open');
       });
     });
   };
@@ -234,6 +242,7 @@ if (typeof window !== 'undefined') {
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
       sidebar?.classList.remove('open');
+      sidebarBackdrop?.classList.remove('open');
     });
   });
 

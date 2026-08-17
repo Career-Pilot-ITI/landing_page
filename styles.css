@@ -605,6 +605,134 @@ footer { border-top: 1px solid var(--line); padding: 34px 0; }
   .reveal { opacity: 1; transform: none; }
 }
 
+/* === ENHANCED RESPONSIVE BREAKPOINTS === */
+
+/* Large tablets & small desktops */
+@media (max-width: 1024px) {
+  .hero-grid { gap: 36px; }
+  .hero-visual { min-height: 480px; }
+  .phone { width: 260px; height: 540px; }
+  .architecture-map { grid-template-columns: repeat(2,1fr); }
+  .architecture-map .arch-line { display: none; }
+  .coin-packs { grid-template-columns: repeat(4,1fr); }
+  .coin-packs > div:first-child { grid-column: auto; }
+  .rag-strip { gap: 8px; }
+  .rag-strip > div { min-width: 100px; padding: 10px 12px; }
+  .calculator-panel { gap: 24px; }
+  .demo-stage { gap: 36px; padding: 28px; }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+  .announcement-bar { flex-wrap: wrap; justify-content: center; font-size: 11px; gap: 4px; }
+  .announcement-bar span:first-child { white-space: normal; }
+  .hero-visual { min-height: 420px; }
+  .phone { width: 240px; height: 500px; border-radius: 38px; }
+  .phone::before { border-radius: 34px; }
+  .phone-island { width: 76px; height: 22px; }
+  .phone-screen { border-radius: 30px; }
+  .orbit-tag { font-size: 10px; padding: 6px 9px; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .problem-grid { grid-template-columns: 1fr; }
+  .feature-grid { grid-template-columns: repeat(2,1fr); }
+  .tech-grid { grid-template-columns: repeat(3,1fr); }
+  .team-grid { grid-template-columns: 1fr; }
+  .download-grid { grid-template-columns: 1fr; }
+  .coin-packs { grid-template-columns: 1fr 1fr; }
+  .coin-packs > div:first-child { grid-column: 1/-1; }
+  .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
+  .price-card.popular { transform: none; }
+  .platform-grid { grid-template-columns: 1fr; }
+  .faq-grid { grid-template-columns: 1fr; gap: 32px; }
+  .demo-stage { grid-template-columns: 1fr; }
+  .demo-phone { margin: 0 auto; }
+  .challenge-showcase { grid-template-columns: 1fr; }
+  .challenge-copy, .challenge-visual { grid-column: 1; grid-row: auto; }
+  .architecture-shell { grid-template-columns: 1fr; }
+  .architecture-map { grid-template-columns: 1fr; padding: 20px; }
+  .rag-strip { grid-template-columns: repeat(5,1fr); gap: 6px; }
+  .rag-strip > div { min-width: 0; padding: 8px; text-align: center; }
+  .rag-strip > b { display: none; }
+  .rag-strip span { font-size: 10px; }
+  .rag-strip small { font-size: 7px; }
+  .calculator-panel { grid-template-columns: 1fr; }
+  .final-card { grid-template-columns: 1fr; text-align: center; justify-items: center; gap: 18px; }
+  .final-card > img { width: 64px; }
+  .final-actions { width: 100%; flex-direction: column; }
+  .demo-dialog { grid-template-columns: 1fr; padding: 20px 16px; }
+  .modal-phone { width: 260px; height: 540px; }
+  .qr-inline-card { flex-direction: column; text-align: center; }
+  .qr-inline-info { align-items: center; }
+  .footer-wrap { justify-content: center; text-align: center; }
+  .supervisor-card { flex-direction: column; text-align: center; }
+  .supervisor-card small { margin-left: 0; }
+  .playground-shell { padding: 20px; }
+  .playground-tab-btn { padding: 8px 12px; font-size: 11px; }
+  .simulator-grid { grid-template-columns: 1fr; }
+  .ats-scanner-grid { grid-template-columns: 1fr; }
+  .challenge-visual[style*="1fr 1fr"] { grid-template-columns: 1fr !important; }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .container { width: min(100% - 20px, var(--container)); }
+  .section-pad { padding: 60px 0; }
+  h1 { font-size: 36px; letter-spacing: -.04em; }
+  h2 { font-size: 28px; }
+  .hero-copy h1 { font-size: clamp(32px, 8vw, 44px); }
+  .hero-lead { font-size: 14px; line-height: 1.55; }
+  .hero-actions .btn, .hero-actions .text-link { width: 100%; justify-content: center; }
+  .hero-visual { min-height: 380px; }
+  .phone { width: 220px; height: 460px; border-radius: 34px; padding: 8px; }
+  .phone::before { border-radius: 28px; }
+  .phone-island { width: 68px; height: 20px; top: 12px; }
+  .phone-screen { border-radius: 26px; }
+  .readiness-card { padding: 12px; }
+  .readiness-card strong { font-size: 24px; }
+  .phone-grid { gap: 7px; }
+  .phone-grid div { min-height: 85px; padding: 10px; }
+  .phone-grid svg { width: 18px; height: 18px; margin-bottom: 6px; }
+  .phone-grid b { font-size: 10px; }
+  .orbit-tag { font-size: 9px; padding: 5px 8px; }
+  .orbit-1 { right: 0; top: 30px; }
+  .orbit-2 { left: 0; top: 100px; }
+  .orbit-3 { right: 0; bottom: 100px; }
+  .orbit-4 { left: 0; bottom: 50px; }
+  .stats-grid div { padding: 18px 16px; }
+  .stats-grid strong { font-size: 24px; }
+  .problem-grid, .feature-grid, .tech-grid, .team-grid, .download-grid { grid-template-columns: 1fr; }
+  .card { min-height: 0; padding: 20px; }
+  .feature-card { min-height: 0; padding: 18px; }
+  .mission-panel { padding: 24px; }
+  .mission-panel h3 { font-size: 22px; }
+  .mission-points { gap: 6px; }
+  .mission-points span { font-size: 10px; padding: 6px 9px; }
+  .coin-packs { grid-template-columns: 1fr; }
+  .pricing-grid { max-width: 100%; }
+  .challenge-tabs { gap: 4px; }
+  .challenge-tabs button { padding: 7px 10px; font-size: 10px; }
+  .rag-strip { grid-template-columns: repeat(5, 80px); overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .playground-nav { gap: 6px; }
+  .playground-tab-btn { padding: 7px 10px; font-size: 10px; }
+  .track-chips { gap: 4px; }
+  .track-chip { padding: 4px 8px; font-size: 10px; }
+  .telemetry-card { padding: 16px; }
+  .access-explorer { padding: 20px; }
+  .access-explorer-header { flex-direction: column; align-items: flex-start; }
+  .segmented { width: 100%; }
+  .segmented button { flex: 1; padding: 7px 8px; font-size: 11px; }
+  .faq-list details { padding: 0 14px; }
+  .faq-list summary { padding: 14px 0; font-size: 11px; }
+  .faq-list summary span { font-size: 16px; }
+  .toast { bottom: 16px; font-size: 10px; padding: 10px 14px; max-width: calc(100% - 20px); }
+  .btn-lg { min-height: 48px; padding: 0 18px; font-size: 13px; border-radius: 14px; }
+  .section-heading { grid-template-columns: 1fr; gap: 6px; }
+  .section-no { padding: 0; font-size: 11px; }
+  .contact-form-card { padding: 24px; }
+  .form-row { grid-template-columns: 1fr; }
+  .form-control { font-size: 16px; }
+}
+
 /* Career Pilot Interactive Playground & Modern SaaS Enhancements */
 .announcement-bar {
   background: linear-gradient(90deg, rgba(255,122,69,0.12), rgba(45,212,191,0.12), rgba(255,122,69,0.12));
