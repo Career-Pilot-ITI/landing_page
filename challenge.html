@@ -109,7 +109,7 @@
     .challenge-actions .btn {
       width: 100%;
       justify-content: center;
-      padding: 16px 20px;
+      padding: 15px 20px;
       font-size: 1.05rem;
       text-decoration: none;
     }
@@ -129,6 +129,7 @@
     <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 4h8v4a4 4 0 0 1-8 0zM10 16h4M12 12v4M8 6H4v2a4 4 0 0 0 4 4M16 6h4v2a4 4 0 0 1-4 4M8 20h8"/></symbol>
     <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
     <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m10 8 6 4-6 4z"/></symbol>
   </svg>
 
   <!-- HEADER -->
@@ -173,14 +174,18 @@
       </div>
 
       <div class="challenge-actions">
-        <a class="btn btn-primary apk-link" id="downloadApkBtn" href="https://drive.google.com/file/d/1s3bEHNOvOh9IGUMnAgCO8QuruOPtWEDV/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-          <svg style="width:20px;height:20px;fill:currentColor;"><use href="#i-download"/></svg>
+        <a class="btn btn-primary" id="openAppBtn" href="careerpilot://challenge">
+          <svg style="width:18px;height:18px;fill:currentColor;"><use href="#i-play"/></svg>
+          Open Challenge in App
+        </a>
+        <a class="btn btn-ghost apk-link" id="downloadApkBtn" href="https://drive.google.com/file/d/1s3bEHNOvOh9IGUMnAgCO8QuruOPtWEDV/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+          <svg style="width:18px;height:18px;fill:currentColor;"><use href="#i-download"/></svg>
           Download Android App (APK)
         </a>
       </div>
 
       <p class="app-redirect-notice" id="redirectNotice">
-        Download and install Career Pilot on your device to participate in this interview challenge.
+        Opening in Career Pilot App... If you don't have the app installed, tap Download APK above.
       </p>
     </div>
   </main>
@@ -216,6 +221,7 @@
         }
       }
 
+      const effectiveId = challengeId || code;
       const effectiveCode = code || challengeId;
       const codeContainer = document.getElementById('codeContainer');
       const codeValue = document.getElementById('codeValue');
@@ -233,6 +239,30 @@
             setTimeout(() => { copyBtn.textContent = 'Copy'; }, 2000);
           });
         });
+      }
+
+      // 3. App Scheme & Deep Link Navigation
+      let queryPart = '';
+      if (effectiveId && effectiveCode && effectiveId !== effectiveCode) {
+        queryPart = `?id=${encodeURIComponent(effectiveId)}&code=${encodeURIComponent(effectiveCode)}`;
+      } else if (effectiveId) {
+        queryPart = `?id=${encodeURIComponent(effectiveId)}`;
+      }
+
+      const customSchemeUrl = `careerpilot://challenge${queryPart}`;
+      const openAppBtn = document.getElementById('openAppBtn');
+
+      if (openAppBtn) {
+        openAppBtn.href = customSchemeUrl;
+      }
+
+      // 4. Auto-launch Attempt on Mobile Page Load
+      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      if (isMobile && (effectiveId || effectiveCode)) {
+        // Attempt to launch installed app via custom scheme
+        setTimeout(function() {
+          window.location.href = customSchemeUrl;
+        }, 300);
       }
     })();
   </script>
