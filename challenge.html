@@ -104,18 +104,20 @@
     .challenge-actions {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 14px;
     }
     .challenge-actions .btn {
       width: 100%;
       justify-content: center;
       padding: 14px 20px;
       font-size: 1rem;
+      text-decoration: none;
     }
     .app-redirect-notice {
       margin-top: 20px;
       font-size: 0.85rem;
       color: var(--muted);
+      line-height: 1.5;
     }
   </style>
 </head>
@@ -174,20 +176,22 @@
         <a class="btn btn-primary" id="openAppBtn" href="careerpilot://challenge">
           Open in Career Pilot App
         </a>
-        <a class="btn btn-ghost apk-link" href="https://drive.google.com/file/d/1s3bEHNOvOh9IGUMnAgCO8QuruOPtWEDV/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+        <a class="btn btn-ghost apk-link" id="downloadApkBtn" href="https://drive.google.com/file/d/1s3bEHNOvOh9IGUMnAgCO8QuruOPtWEDV/view?usp=sharing" target="_blank" rel="noopener noreferrer">
           <svg style="width:18px;height:18px;fill:currentColor;"><use href="#i-download"/></svg>
           Download Android App (APK)
         </a>
       </div>
 
       <p class="app-redirect-notice" id="redirectNotice">
-        Opening in Career Pilot... If the app is not installed, click the Download APK button above.
+        Tap "Open in Career Pilot App" to start immediately. If you don't have the app installed, download the APK above.
       </p>
     </div>
   </main>
 
   <script>
     (function() {
+      const DRIVE_APK_URL = "https://drive.google.com/file/d/1s3bEHNOvOh9IGUMnAgCO8QuruOPtWEDV/view?usp=sharing";
+
       // 1. Theme Management
       const themeBtn = document.getElementById('themeButton');
       const themes = ['cloud', 'pulse', 'midnight'];
@@ -217,6 +221,7 @@
         }
       }
 
+      const effectiveId = challengeId || code;
       const effectiveCode = code || challengeId;
       const codeContainer = document.getElementById('codeContainer');
       const codeValue = document.getElementById('codeValue');
@@ -236,28 +241,39 @@
         });
       }
 
-      // 3. Deep Link App URL Builder
-      let appSchemeUrl = 'careerpilot://challenge';
-      if (challengeId && code) {
-        appSchemeUrl = `careerpilot://challenge?id=${encodeURIComponent(challengeId)}&code=${encodeURIComponent(code)}`;
-      } else if (challengeId) {
-        appSchemeUrl = `careerpilot://challenge?id=${encodeURIComponent(challengeId)}`;
-      } else if (code) {
-        appSchemeUrl = `careerpilot://challenge?id=${encodeURIComponent(code)}`;
+      // 3. Deep Link & Intent URI Builders
+      let queryPart = '';
+      if (effectiveId && effectiveCode && effectiveId !== effectiveCode) {
+        queryPart = `?id=${encodeURIComponent(effectiveId)}&code=${encodeURIComponent(effectiveCode)}`;
+      } else if (effectiveId) {
+        queryPart = `?id=${encodeURIComponent(effectiveId)}`;
       }
+
+      const customSchemeUrl = `careerpilot://challenge${queryPart}`;
+      // Android Chrome intent URI format with fallback
+      const androidIntentUrl = `intent://challenge${queryPart}#Intent;scheme=careerpilot;package=com.iti.careerpilot;S.browser_fallback_url=${encodeURIComponent(DRIVE_APK_URL)};end`;
 
       const openAppBtn = document.getElementById('openAppBtn');
       if (openAppBtn) {
-        openAppBtn.href = appSchemeUrl;
-      }
+        const isAndroid = /Android/i.test(navigator.userAgent);
+        openAppBtn.href = isAndroid ? androidIntentUrl : customSchemeUrl;
 
-      // 4. Automatic App Launch Attempt
-      // If accessed on mobile, attempt to open custom scheme
-      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-      if (isMobile && (challengeId || code)) {
-        setTimeout(() => {
-          window.location.href = appSchemeUrl;
-        }, 400);
+        openAppBtn.addEventListener('click', function(e) {
+          if (isAndroid) {
+            // Let the Intent URL trigger Android Package Manager
+            window.location.href = androidIntentUrl;
+          } else {
+            window.location.href = customSchemeUrl;
+          }
+
+          // Fallback if app is not installed (page stays active)
+          const startTime = Date.now();
+          setTimeout(function() {
+            if (Date.now() - startTime < 2000 && !document.hidden) {
+              window.location.href = DRIVE_APK_URL;
+            }
+          }, 1200);
+        });
       }
     })();
   </script>
