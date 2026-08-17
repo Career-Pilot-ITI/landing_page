@@ -26,13 +26,13 @@ All Download APK buttons are already connected to that path. If the file is not 
 
 ## Add the recorded demo
 
-Place the recorded portrait MP4 here:
+The recorded walkthrough is included here:
 
 `assets/demo/career-pilot-demo.mp4`
 
-The inline emulator and modal demo player automatically detect the video and switch from the placeholder state to the player.
+The demo is web-optimized as H.264/AAC MP4 (720x1280, fast-start) and stored as a normal Git binary instead of a Git LFS pointer. This keeps the file small enough for normal Git/Vercel deployment and prevents the player from receiving a text LFS pointer instead of real video bytes.
 
-Recommended encoding: H.264 MP4, portrait 720x1280 or 1080x1920.
+The inline and modal players validate real media metadata before showing the video. A plain HTTP 200 response is not treated as proof that the file is playable.
 
 ## Included Pages & Portals
 
@@ -60,7 +60,7 @@ The selected theme persists in `localStorage`.
 
 ## Content / links configuration
 
-Edit `config.js` to change the APK, documentation, presentation, or demo-video paths without touching the main HTML.
+Edit `js/config.js` to change the APK, documentation, presentation, or demo-video paths without touching the main HTML.
 
 ## Main interactive pieces
 

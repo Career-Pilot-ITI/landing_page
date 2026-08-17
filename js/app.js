@@ -210,60 +210,110 @@ if (typeof window !== 'undefined') {
   const demoModal = document.getElementById('demoModal');
   const modalVideo = document.getElementById('modalDemoVideo');
   const inlineVideo = document.getElementById('inlineDemoVideo');
+  const demoVideoUrl = config.demoVideoUrl || 'assets/demo/career-pilot-demo.mp4';
+
+  const getVideoPlaceholder = (video) => video?.closest('.demo-placeholder')?.querySelector('.video-empty');
+
+  const showPlayableVideo = (video) => {
+    if (!video) return;
+    const duration = Number(video.duration);
+    if (!Number.isFinite(duration) || duration <= 0) return;
+
+    video.style.display = 'block';
+    video.removeAttribute('aria-busy');
+    const placeholder = getVideoPlaceholder(video);
+    if (placeholder) placeholder.style.display = 'none';
+  };
+
+  const showVideoError = (video, message = 'Demo video is unavailable. Please refresh and try again.') => {
+    if (!video) return;
+    video.style.display = 'none';
+    video.removeAttribute('aria-busy');
+    const placeholder = getVideoPlaceholder(video);
+    if (!placeholder) return;
+
+    placeholder.style.display = 'flex';
+    const status = placeholder.querySelector('span');
+    if (status) status.textContent = message;
+  };
+
+  const initialiseDemoVideo = (video) => {
+    if (!video) return;
+
+    const source = video.querySelector('source');
+    if (source && source.getAttribute('src') !== demoVideoUrl) {
+      source.setAttribute('src', demoVideoUrl);
+    } else if (!source && video.getAttribute('src') !== demoVideoUrl) {
+      video.setAttribute('src', demoVideoUrl);
+    }
+
+    video.setAttribute('aria-busy', 'true');
+
+    const validateMetadata = () => {
+      const duration = Number(video.duration);
+      if (video.readyState >= HTMLMediaElement.HAVE_METADATA && Number.isFinite(duration) && duration > 0) {
+        showPlayableVideo(video);
+      }
+    };
+
+    video.addEventListener('loadedmetadata', validateMetadata);
+    video.addEventListener('canplay', validateMetadata);
+    video.addEventListener('play', () => showPlayableVideo(video));
+    video.addEventListener('error', () => {
+      // A Git LFS pointer can return HTTP 200 but it is not valid MP4 media.
+      // Trust the browser media parser instead of a HEAD request.
+      showVideoError(video);
+    });
+
+    video.load();
+    validateMetadata();
+  };
+
+  initialiseDemoVideo(inlineVideo);
+  initialiseDemoVideo(modalVideo);
 
   const openDemo = () => {
+    if (!demoModal) return;
+
     demoModal.classList.add('open');
     demoModal.setAttribute('aria-hidden', 'false');
     body.style.overflow = 'hidden';
-    if (inlineVideo && !inlineVideo.paused) {
-      inlineVideo.pause();
-    }
+
+    if (inlineVideo && !inlineVideo.paused) inlineVideo.pause();
+
     if (modalVideo) {
-      modalVideo.play().catch(() => {});
+      if (inlineVideo && Number.isFinite(inlineVideo.currentTime) && modalVideo.readyState >= HTMLMediaElement.HAVE_METADATA) {
+        modalVideo.currentTime = Math.min(inlineVideo.currentTime, Math.max((modalVideo.duration || 0) - 0.1, 0));
+      }
+
+      modalVideo.play().then(() => showPlayableVideo(modalVideo)).catch(() => {
+        if (modalVideo.readyState >= HTMLMediaElement.HAVE_METADATA && Number.isFinite(modalVideo.duration) && modalVideo.duration > 0) {
+          showPlayableVideo(modalVideo);
+        }
+      });
     }
   };
 
   const closeDemo = () => {
+    if (!demoModal) return;
+
     demoModal.classList.remove('open');
     demoModal.setAttribute('aria-hidden', 'true');
     body.style.overflow = '';
-    modalVideo?.pause();
+
+    if (modalVideo) {
+      modalVideo.pause();
+      if (inlineVideo && modalVideo.readyState >= HTMLMediaElement.HAVE_METADATA) {
+        inlineVideo.currentTime = modalVideo.currentTime;
+      }
+    }
   };
 
   document.querySelectorAll('[data-open-demo]').forEach(btn => btn.addEventListener('click', openDemo));
   document.querySelectorAll('[data-close-demo]').forEach(btn => btn.addEventListener('click', closeDemo));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && demoModal.classList.contains('open')) closeDemo(); });
-
-  const activateVideoUI = () => {
-    document.querySelectorAll('.demo-placeholder video').forEach(v => {
-      v.style.display = 'block';
-    });
-    document.querySelectorAll('.video-empty').forEach(x => {
-      x.style.display = 'none';
-    });
-  };
-
-  const verifyVideo = async () => {
-    // 1. Check video element ready states & event listeners
-    const videos = document.querySelectorAll('.demo-placeholder video');
-    videos.forEach(v => {
-      if (v.readyState >= 1) {
-        activateVideoUI();
-      }
-      v.addEventListener('loadeddata', activateVideoUI, { once: true });
-      v.addEventListener('canplay', activateVideoUI, { once: true });
-      v.addEventListener('play', activateVideoUI);
-    });
-
-    // 2. Proactive network check
-    try {
-      const res = await fetch(config.demoVideoUrl || 'assets/demo/career-pilot-demo.mp4', { method: 'HEAD', cache: 'no-store' });
-      if (res.ok) activateVideoUI();
-    } catch (_) {
-      // In local file:// or CORS-restricted environments, readyState/loadeddata handles it
-    }
-  };
-  verifyVideo();
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && demoModal?.classList.contains('open')) closeDemo();
+  });
 
   const apkUrl = config.apkUrl || 'https://drive.google.com/file/d/1UaDY4iH1V7P2FbzhyFoJamS35vxfknQp/view?usp=sharing';
   document.querySelectorAll('.apk-link').forEach(link => {

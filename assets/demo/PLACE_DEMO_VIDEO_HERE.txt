@@ -1,5 +1,5 @@
-Place your recorded product demo here using exactly this filename:
+The Career Pilot demo video is already included as:
 career-pilot-demo.mp4
 
-The emulator section will automatically switch from the placeholder state to the video player when the file exists.
-Recommended: H.264 MP4, portrait 1080x1920 or 720x1280.
+Current web build: H.264/AAC MP4, portrait 720x1280, fast-start enabled.
+If you replace it later, keep the same filename or update js/config.js -> demoVideoUrl.
