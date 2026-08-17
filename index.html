@@ -117,17 +117,81 @@
           <div class="orbit-tag orbit-4"><svg><use href="#i-chart"/></svg> Reports</div>
           <div class="phone hero-phone">
             <div class="phone-island"></div>
-            <div class="phone-screen dashboard-screen">
-              <div class="phone-status"><span>9:41</span><span>● ●</span></div>
-              <div class="mini-brand"><img src="assets/career-pilot-icon.png" alt=""/><div><small>Welcome back</small><b>Career Pilot</b></div></div>
-              <div class="readiness-card"><span>Career readiness</span><strong>84%</strong><div class="meter"><i></i></div><small>+12% from your last session</small></div>
-              <div class="phone-grid">
-                <div><svg><use href="#i-mic"/></svg><b>Practice</b><small>Voice interview</small></div>
-                <div><svg><use href="#i-target"/></svg><b>ATS</b><small>Job match</small></div>
-                <div><svg><use href="#i-trophy"/></svg><b>Challenge</b><small>Compete & screen</small></div>
-                <div><svg><use href="#i-chart"/></svg><b>Reports</b><small>Track growth</small></div>
+            <div class="phone-screen dashboard-screen" style="padding:12px;display:flex;flex-direction:column;gap:8px;font-size:11px;">
+              <div class="phone-status" style="margin-bottom:2px;"><span>09:41</span><span style="display:flex;align-items:center;gap:4px;"><span>5G</span><span>100%</span></span></div>
+              
+              <!-- Greeting & Coin Balance -->
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div>
+                  <small style="color:var(--muted);font-size:9px;">Good evening 👋</small>
+                  <b style="font-size:13px;display:block;color:var(--text);">Hossam Ahmed</b>
+                </div>
+                <div style="display:flex;align-items:center;gap:4px;background:rgba(255,122,69,0.15);padding:2px 8px;border-radius:12px;color:var(--primary);font-weight:800;font-size:10px;">
+                  <span>🪙</span> 250
+                </div>
               </div>
-              <div class="phone-footer"><span></span><span></span><span></span><span></span></div>
+
+              <!-- Upgrade Plan Card -->
+              <div style="background:linear-gradient(135deg, #6366f1 0%, #38bdf8 100%);border-radius:10px;padding:8px 10px;color:#fff;display:flex;justify-content:space-between;align-items:center;">
+                <div>
+                  <span style="font-size:7px;font-weight:800;letter-spacing:0.5px;opacity:0.9;">FREE PLAN</span>
+                  <b style="display:block;font-size:10px;">Upgrade for ATS & Quizzes</b>
+                </div>
+                <span style="background:#fff;color:#0f172a;border-radius:12px;font-size:8px;font-weight:800;padding:3px 8px;">Upgrade</span>
+              </div>
+
+              <!-- Circular Overall Score Donut -->
+              <div style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px 10px;display:flex;align-items:center;gap:10px;">
+                <div style="width:40px;height:40px;border-radius:50%;background:conic-gradient(var(--primary) 0% 85%, var(--line) 85% 100%);display:grid;place-items:center;flex-shrink:0;">
+                  <div style="width:30px;height:30px;border-radius:50%;background:var(--surface);display:grid;place-items:center;font-weight:800;font-size:11px;color:var(--text);">85</div>
+                </div>
+                <div style="flex:1;">
+                  <span style="font-size:7px;font-weight:800;text-transform:uppercase;color:var(--muted);letter-spacing:0.5px;">OVERALL SCORE</span>
+                  <b style="font-size:11px;display:block;color:var(--text);">Excellent Work</b>
+                  <small style="color:#22c55e;font-weight:700;font-size:8px;">▲ +7 from last session</small>
+                </div>
+              </div>
+
+              <!-- Practice Interview Card -->
+              <div style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 10px;display:flex;justify-content:space-between;align-items:center;">
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <div style="width:26px;height:26px;border-radius:8px;background:rgba(255,122,69,0.15);display:grid;place-items:center;color:var(--primary);">
+                    <svg style="width:12px;height:12px;fill:currentColor;"><use href="#i-mic"/></svg>
+                  </div>
+                  <div>
+                    <span style="font-size:7px;font-weight:800;color:var(--muted);text-transform:uppercase;">ANDROID</span>
+                    <b style="font-size:10px;display:block;">Practice Interview</b>
+                  </div>
+                </div>
+                <div style="width:20px;height:20px;border-radius:50%;background:var(--primary);display:grid;place-items:center;color:#fff;">
+                  <svg style="width:10px;height:10px;fill:currentColor;"><use href="#i-arrow"/></svg>
+                </div>
+              </div>
+
+              <!-- ATS Job Match Card -->
+              <div style="background:rgba(0,196,180,0.08);border:1px solid rgba(0,196,180,0.25);border-radius:10px;padding:8px 10px;display:flex;justify-content:space-between;align-items:center;">
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <div style="width:26px;height:26px;border-radius:8px;background:rgba(0,196,180,0.2);display:grid;place-items:center;color:#00bfa5;">
+                    <svg style="width:12px;height:12px;fill:currentColor;"><use href="#i-target"/></svg>
+                  </div>
+                  <div>
+                    <div style="display:flex;align-items:center;gap:4px;">
+                      <b style="font-size:10px;">ATS Job Match</b>
+                      <span style="padding:1px 4px;border-radius:3px;background:#00bfa5;color:#fff;font-size:7px;font-weight:800;">🔒 PLUS</span>
+                    </div>
+                    <small style="font-size:8px;color:var(--muted);">Paste a job link · See CV score</small>
+                  </div>
+                </div>
+                <svg style="width:10px;height:10px;color:#00bfa5;"><use href="#i-arrow"/></svg>
+              </div>
+
+              <!-- Phone Bottom Nav Bar -->
+              <div class="phone-footer" style="margin-top:auto;padding-top:4px;display:flex;justify-content:space-around;color:var(--muted);font-size:8px;border-top:1px solid var(--line);">
+                <span style="color:var(--primary);font-weight:800;"><svg style="width:12px;height:12px;display:block;margin:0 auto;fill:currentColor;"><use href="#i-home"/></svg>Home</span>
+                <span><svg style="width:12px;height:12px;display:block;margin:0 auto;fill:currentColor;"><use href="#i-trophy"/></svg>Arena</span>
+                <span><svg style="width:12px;height:12px;display:block;margin:0 auto;fill:currentColor;"><use href="#i-chart"/></svg>Reports</span>
+                <span><svg style="width:12px;height:12px;display:block;margin:0 auto;fill:currentColor;"><use href="#i-users"/></svg>Profile</span>
+              </div>
             </div>
           </div>
           <div class="hero-glow"></div>

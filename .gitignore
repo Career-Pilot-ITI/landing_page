@@ -6,3 +6,5 @@ scratch/
 .system_generated/
 .DS_Store
 *.log
+Android screens/
+iOS screens/

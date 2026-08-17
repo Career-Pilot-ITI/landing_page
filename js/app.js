@@ -582,6 +582,61 @@ if (typeof window !== 'undefined') {
     if (!detail.open) return;
     document.querySelectorAll('details').forEach(other => { if (other !== detail) other.open = false; });
   }));
+
+  // App Screenshot Gallery Filter & Lightbox
+  const filterBtns = document.querySelectorAll('.gallery-filter-btn');
+  const galleryCards = document.querySelectorAll('.gallery-card');
+  const lightbox = document.getElementById('screenshotLightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  const lightboxClose = document.getElementById('lightboxClose');
+  const lightboxBackdrop = document.getElementById('lightboxBackdrop');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+
+      galleryCards.forEach(card => {
+        if (filter === 'all' || card.dataset.category?.includes(filter)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  const openLightbox = (imgSrc, title) => {
+    if (!lightbox || !lightboxImg) return;
+    lightboxImg.src = imgSrc;
+    if (lightboxCaption) lightboxCaption.textContent = title || 'Career Pilot Native Interface';
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeLightbox = () => {
+    if (!lightbox) return;
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+
+  galleryCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const imgSrc = card.dataset.img;
+      const title = card.dataset.title;
+      if (imgSrc) openLightbox(imgSrc, title);
+    });
+  });
+
+  lightboxClose?.addEventListener('click', closeLightbox);
+  lightboxBackdrop?.addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && lightbox?.classList.contains('open')) closeLightbox();
+  });
 })();
 }
 

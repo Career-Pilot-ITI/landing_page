@@ -210,8 +210,18 @@ if (typeof window !== 'undefined') {
   // External Screen Switcher helper
   window.setEmulatorScreen = (screenName) => {
     document.querySelectorAll('.phone-emulator').forEach(phone => {
-      const tab = phone.querySelector(`[data-nav-target="${screenName}"]`);
-      if (tab) tab.click();
+      phone.querySelectorAll('.app-screen').forEach(scr => scr.classList.remove('active'));
+      phone.querySelectorAll('.nav-tab-item').forEach(tab => tab.classList.remove('active'));
+
+      const targetScreen = phone.querySelector(`[data-screen="${screenName}"]`);
+      const targetTab = phone.querySelector(`[data-nav-target="${screenName}"]`);
+
+      if (targetScreen) targetScreen.classList.add('active');
+      if (targetTab) targetTab.classList.add('active');
+
+      document.querySelectorAll('[data-emu-screen]').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.emuScreen === screenName);
+      });
     });
   };
 

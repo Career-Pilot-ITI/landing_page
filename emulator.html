@@ -153,171 +153,240 @@
               <div class="app-screen active" data-screen="dashboard">
                 <div class="app-header">
                   <div class="app-header-title">
-                    <img src="assets/career-pilot-icon.png" alt="" />
                     <div>
-                      <b>Hazem Abdelraouf</b>
-                      <small>Android Native Track</small>
+                      <small style="color:var(--app-muted);font-size:11px;">Good evening 👋</small>
+                      <b style="font-size:15px;display:block;color:var(--app-text);">Hossam Ahmed</b>
                     </div>
                   </div>
-                  <div class="app-coin-badge" data-jump-screen="wallet">
-                    <svg style="width:12px;height:12px;fill:currentColor;"><use href="#i-wallet"/></svg>
-                    <span class="emu-coin-val">120 Coins</span>
+                  <div class="app-coin-badge gold-coin-pill" data-jump-screen="wallet" title="Virtual Coins Balance">
+                    <span style="font-size:12px;">🪙</span>
+                    <span class="emu-coin-val">250</span>
                   </div>
                 </div>
 
-                <!-- Readiness Card -->
-                <div class="app-card hero-readiness">
+                <!-- Upgrade Plan Banner Card -->
+                <div class="app-banner-card" style="background:linear-gradient(135deg, #6366f1 0%, #38bdf8 100%);border-radius:14px;padding:12px 14px;color:#ffffff;display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;box-shadow:0 4px 14px rgba(99,102,241,0.25);">
                   <div>
-                    <span>Career Readiness</span>
-                    <strong style="display:block;margin:4px 0;">84%</strong>
-                    <small style="color:var(--app-green);font-weight:700;">+12% vs last week</small>
+                    <span style="font-size:9px;font-weight:800;letter-spacing:0.5px;opacity:0.9;">FREE PLAN</span>
+                    <b style="display:block;font-size:12px;margin-top:2px;">Upgrade to unlock ATS & Quizzes</b>
                   </div>
-                  <div class="readiness-ring">84%</div>
+                  <button class="app-btn-upgrade" style="background:#ffffff;color:#0f172a;border-radius:18px;font-size:10px;font-weight:800;padding:5px 12px;border:0;cursor:pointer;" data-jump-screen="wallet">Upgrade</button>
                 </div>
 
-                <!-- Active CV Status -->
-                <div class="app-card">
-                  <div class="app-card-title">
-                    <span>Active CV Knowledge</span>
-                    <span style="color:var(--app-teal);">Vectorized</span>
+                <!-- Circular Overall Score Donut -->
+                <div class="app-card" style="display:flex;align-items:center;gap:12px;cursor:pointer;padding:12px;" data-jump-screen="interview">
+                  <div class="score-donut" style="position:relative;width:56px;height:56px;flex-shrink:0;border-radius:50%;background:conic-gradient(var(--app-primary) 0% 85%, var(--app-border) 85% 100%);display:grid;place-items:center;">
+                    <div style="width:44px;height:44px;border-radius:50%;background:var(--app-card);display:grid;place-items:center;font-weight:800;font-size:15px;color:var(--app-text);">85</div>
                   </div>
-                  <div style="display:flex;align-items:center;gap:10px;">
-                    <svg style="width:24px;height:24px;color:var(--app-primary);"><use href="#i-file"/></svg>
-                    <div>
-                      <b style="font-size:12px;display:block;">Hazem_Android_CV.pdf</b>
-                      <small style="font-size:10px;color:var(--app-muted);">768-dim embeddings in pgvector</small>
+                  <div style="flex:1;">
+                    <span style="font-size:9px;font-weight:800;text-transform:uppercase;color:var(--app-muted);letter-spacing:0.5px;">OVERALL SCORE</span>
+                    <b style="font-size:14px;display:block;color:var(--app-text);margin:2px 0;">Excellent Work</b>
+                    <small style="color:var(--app-green);font-weight:700;font-size:10px;">▲ +7 from last session</small>
+                  </div>
+                  <svg style="width:14px;height:14px;color:var(--app-muted);"><use href="#i-arrow"/></svg>
+                </div>
+
+                <!-- Interviews Section Header -->
+                <div style="display:flex;justify-content:space-between;align-items:center;margin:10px 0 6px;">
+                  <b style="font-size:13px;color:var(--app-text);">Interviews</b>
+                  <span style="font-size:10px;font-weight:700;color:var(--app-primary);cursor:pointer;" data-jump-screen="interview">See all</span>
+                </div>
+
+                <!-- Practice Interview Card -->
+                <div class="app-card" style="padding:0;overflow:hidden;margin-bottom:10px;">
+                  <div style="padding:12px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;" data-jump-screen="interview">
+                    <div style="display:flex;gap:10px;align-items:center;">
+                      <div style="width:34px;height:34px;border-radius:10px;background:rgba(255,122,69,0.15);display:grid;place-items:center;color:var(--app-primary);">
+                        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-mic"/></svg>
+                      </div>
+                      <div>
+                        <span style="font-size:9px;font-weight:800;color:var(--app-muted);text-transform:uppercase;">ANDROID</span>
+                        <b style="font-size:13px;display:block;color:var(--app-text);">Practice Interview</b>
+                      </div>
+                    </div>
+                    <div style="width:26px;height:26px;border-radius:50%;background:var(--app-primary);display:grid;place-items:center;color:#fff;">
+                      <svg style="width:12px;height:12px;fill:currentColor;"><use href="#i-arrow"/></svg>
                     </div>
                   </div>
-                </div>
-
-                <!-- Feature Quick Grid -->
-                <div class="app-tile-grid">
-                  <div class="app-tile" data-jump-screen="interview">
-                    <svg><use href="#i-mic"/></svg>
-                    <b>AI Interview</b>
-                    <small>Voice & Vision</small>
-                  </div>
-                  <div class="app-tile" data-jump-screen="ats">
-                    <svg><use href="#i-target"/></svg>
-                    <b>ATS Workspace</b>
-                    <small>Job Gap Match</small>
-                  </div>
-                  <div class="app-tile" data-jump-screen="challenges">
-                    <svg><use href="#i-trophy"/></svg>
-                    <b>Challenges</b>
-                    <small>Live Sprints</small>
-                  </div>
-                  <div class="app-tile" data-jump-screen="wallet">
-                    <svg><use href="#i-wallet"/></svg>
-                    <b>Coin Store</b>
-                    <small>Top-Up Packs</small>
+                  <div style="border-top:1px solid var(--app-border);padding:6px 12px;text-align:center;font-size:10px;font-weight:700;color:var(--app-primary);background:var(--app-card-hover);cursor:pointer;" data-jump-screen="lessons">
+                    See lessons
                   </div>
                 </div>
 
-                <!-- Recent Activity -->
-                <div class="app-card" style="margin-bottom:0;">
-                  <div class="app-card-title">Recent Session</div>
-                  <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;">
-                    <div><b>Compose MVI Practice</b><small style="display:block;color:var(--app-muted);">Today · 14 min session</small></div>
-                    <strong style="color:var(--app-primary);font-size:14px;">94/100</strong>
+                <!-- ATS Job Match Card -->
+                <div class="app-card" style="background:rgba(0,196,180,0.08);border-color:rgba(0,196,180,0.25);display:flex;justify-content:space-between;align-items:center;cursor:pointer;padding:12px;margin-bottom:10px;" data-jump-screen="ats">
+                  <div style="display:flex;gap:10px;align-items:center;">
+                    <div style="width:34px;height:34px;border-radius:10px;background:rgba(0,196,180,0.18);display:grid;place-items:center;color:#00bfa5;">
+                      <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-target"/></svg>
+                    </div>
+                    <div>
+                      <div style="display:flex;align-items:center;gap:6px;">
+                        <b style="font-size:12px;color:var(--app-text);">ATS Job Match</b>
+                        <span style="padding:1px 5px;border-radius:4px;background:#00bfa5;color:#fff;font-size:8px;font-weight:800;">🔒 PLUS</span>
+                      </div>
+                      <small style="font-size:10px;color:var(--app-muted);">Paste a job link · See how your CV scores</small>
+                    </div>
+                  </div>
+                  <svg style="width:12px;height:12px;color:#00bfa5;"><use href="#i-arrow"/></svg>
+                </div>
+
+                <!-- Recommended For You Carousel Cards -->
+                <div style="display:flex;justify-content:space-between;align-items:center;margin:10px 0 6px;">
+                  <b style="font-size:13px;color:var(--app-text);">Recommended For You</b>
+                  <span style="font-size:10px;font-weight:700;color:var(--app-primary);cursor:pointer;" data-jump-screen="interview">See all</span>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;">
+                  <div class="app-card" style="padding:10px;margin:0;cursor:pointer;" data-jump-screen="interview">
+                    <div style="width:26px;height:26px;border-radius:8px;background:rgba(255,122,69,0.15);display:grid;place-items:center;color:var(--app-primary);margin-bottom:6px;">
+                      <svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-mic"/></svg>
+                    </div>
+                    <b style="font-size:11px;display:block;line-height:1.2;">Senior Android Engineer</b>
+                    <span style="display:inline-block;padding:2px 6px;border-radius:6px;background:rgba(255,122,69,0.12);color:var(--app-primary);font-size:8px;font-weight:700;margin:4px 0;">Kotlin & Compose</span>
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px;">
+                      <small style="font-size:9px;color:var(--app-muted);">~60 min</small>
+                      <div style="width:18px;height:18px;border-radius:50%;background:var(--app-primary);display:grid;place-items:center;color:#fff;">
+                        <svg style="width:8px;height:8px;fill:currentColor;"><use href="#i-arrow"/></svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="app-card" style="padding:10px;margin:0;cursor:pointer;" data-jump-screen="interview">
+                    <div style="width:26px;height:26px;border-radius:8px;background:rgba(56,189,248,0.15);display:grid;place-items:center;color:#0284c7;margin-bottom:6px;">
+                      <svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-code"/></svg>
+                    </div>
+                    <b style="font-size:11px;display:block;line-height:1.2;">iOS Developer</b>
+                    <span style="display:inline-block;padding:2px 6px;border-radius:6px;background:rgba(56,189,248,0.12);color:#0284c7;font-size:8px;font-weight:700;margin:4px 0;">Swift & SwiftUI</span>
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px;">
+                      <small style="font-size:9px;color:var(--app-muted);">~40 min</small>
+                      <div style="width:18px;height:18px;border-radius:50%;background:#0284c7;display:grid;place-items:center;color:#fff;">
+                        <svg style="width:8px;height:8px;fill:currentColor;"><use href="#i-arrow"/></svg>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <!-- SCREEN 2: MOCK INTERVIEW ROOM -->
+              <!-- SCREEN 2: MOCK INTERVIEW SETUP & LIVE SIMULATOR -->
               <div class="app-screen" data-screen="interview">
                 <div class="app-header">
                   <div class="app-header-title">
                     <button class="app-btn-secondary" style="width:auto;padding:4px 8px;border-radius:6px;" data-jump-screen="dashboard">←</button>
-                    <b>Mock Interview</b>
+                    <b>Practice Interview</b>
                   </div>
                   <span class="app-coin-badge" style="color:var(--app-teal);border-color:var(--app-teal);background:rgba(45,212,191,0.1);">2 Coins/min</span>
                 </div>
 
-                <!-- Simulated Camera Box -->
-                <div class="sim-camera-box">
-                  <div class="camera-mesh"></div>
-                  <div class="face-hud-box">
-                    <div class="hud-corner hud-tl"></div>
-                    <div class="hud-corner hud-tr"></div>
-                    <div class="hud-corner hud-bl"></div>
-                    <div class="hud-corner hud-br"></div>
-                    <span>Gaze: 94%</span>
+                <!-- Track & Duration Chips -->
+                <div style="display:flex;gap:6px;margin-bottom:12px;">
+                  <span style="padding:4px 10px;border-radius:8px;background:var(--app-card-hover);font-size:10px;font-weight:700;border:1px solid var(--app-border);">Software Engineering</span>
+                  <span style="padding:4px 10px;border-radius:8px;background:rgba(99,102,241,0.12);color:#818cf8;font-size:10px;font-weight:700;">3 Questions · ~20.0 min</span>
+                </div>
+
+                <b style="font-size:15px;display:block;margin-bottom:2px;">Ready to practice?</b>
+                <small style="font-size:11px;color:var(--app-muted);display:block;margin-bottom:10px;">Before we begin, a few quick tips:</small>
+
+                <!-- 4 Real Guidelines Box -->
+                <div class="app-card" style="padding:10px;font-size:10px;line-height:1.4;display:grid;gap:8px;margin-bottom:12px;">
+                  <div style="display:flex;gap:8px;align-items:flex-start;">
+                    <span style="width:16px;height:16px;border-radius:4px;background:var(--app-card-hover);display:grid;place-items:center;font-weight:800;font-size:9px;flex-shrink:0;">1</span>
+                    <span>Find a quiet space with minimal background noise</span>
                   </div>
-                  <div class="camera-badge">
-                    <span class="camera-badge-dot"></span>
-                    <span>MediaPipe 30 FPS</span>
+                  <div style="display:flex;gap:8px;align-items:flex-start;">
+                    <span style="width:16px;height:16px;border-radius:4px;background:var(--app-card-hover);display:grid;place-items:center;font-weight:800;font-size:9px;flex-shrink:0;">2</span>
+                    <span>Speak clearly and at a natural pace</span>
+                  </div>
+                  <div style="display:flex;gap:8px;align-items:flex-start;">
+                    <span style="width:16px;height:16px;border-radius:4px;background:var(--app-card-hover);display:grid;place-items:center;font-weight:800;font-size:9px;flex-shrink:0;">3</span>
+                    <span>Take time to gather your thoughts before answering</span>
+                  </div>
+                  <div style="display:flex;gap:8px;align-items:flex-start;">
+                    <span style="width:16px;height:16px;border-radius:4px;background:var(--app-card-hover);display:grid;place-items:center;font-weight:800;font-size:9px;flex-shrink:0;">4</span>
+                    <span>The AI will wait for you to finish before responding</span>
                   </div>
                 </div>
 
-                <!-- Question Prompt Card -->
-                <div class="app-card">
-                  <div class="app-card-title">
-                    <span style="color:var(--app-primary);">Kotlin · Compose · MVI</span>
-                    <span>02:00</span>
+                <!-- Interview Type Cards -->
+                <span style="font-size:10px;font-weight:800;color:var(--app-muted);text-transform:uppercase;display:block;margin-bottom:6px;">Interview Type</span>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
+                  <div class="app-card" style="padding:10px;margin:0;border:2px solid var(--app-primary);background:rgba(255,122,69,0.06);cursor:pointer;">
+                    <svg style="width:18px;height:18px;color:var(--app-primary);margin-bottom:4px;"><use href="#i-mic"/></svg>
+                    <b style="font-size:11px;display:block;">Audio Only</b>
+                    <small style="font-size:9px;color:var(--app-muted);">Voice responses</small>
                   </div>
-                  <p style="font-size:12px;line-height:1.5;margin:0 0 10px;font-weight:600;">Explain how Kotlin StateFlow differs from SharedFlow in Compose state management.</p>
-                  
-                  <!-- Waveform -->
-                  <div style="display:flex;align-items:center;gap:3px;height:24px;padding:0 8px;background:rgba(0,0,0,0.2);border-radius:6px;margin-bottom:10px;">
-                    <div class="audio-bar sim-wave-bar" style="height:8px;"></div>
-                    <div class="audio-bar sim-wave-bar" style="height:14px;"></div>
-                    <div class="audio-bar sim-wave-bar" style="height:10px;"></div>
-                    <div class="audio-bar sim-wave-bar" style="height:18px;"></div>
-                    <div class="audio-bar sim-wave-bar" style="height:12px;"></div>
-                    <div class="audio-bar sim-wave-bar" style="height:16px;"></div>
-                    <span style="font-size:9px;color:var(--app-muted);margin-left:auto;">Speech Active</span>
+                  <div class="app-card" style="padding:10px;margin:0;cursor:pointer;">
+                    <svg style="width:18px;height:18px;color:var(--app-muted);margin-bottom:4px;"><use href="#i-video"/></svg>
+                    <b style="font-size:11px;display:block;">Video</b>
+                    <small style="font-size:9px;color:var(--app-muted);">Camera + voice</small>
                   </div>
-
-                  <button class="app-btn app-btn-primary btn-sim-record">
-                    <svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-mic"/></svg>
-                    <span>Start Speaking (Simulate)</span>
-                  </button>
                 </div>
+
+                <!-- Microphone Access Toggle -->
+                <div class="app-card" style="display:flex;justify-content:space-between;align-items:center;padding:10px;margin-bottom:14px;">
+                  <div style="display:flex;gap:8px;align-items:center;">
+                    <div style="width:28px;height:28px;border-radius:8px;background:rgba(255,122,69,0.15);display:grid;place-items:center;color:var(--app-primary);">
+                      <svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-mic"/></svg>
+                    </div>
+                    <div>
+                      <b style="font-size:11px;display:block;">Microphone Access</b>
+                      <small style="font-size:9px;color:var(--app-green);font-weight:700;">Required & Ready</small>
+                    </div>
+                  </div>
+                  <input type="checkbox" checked style="accent-color:var(--app-primary);" />
+                </div>
+
+                <button class="app-btn app-btn-primary btn-sim-record" style="margin-bottom:8px;">
+                  <svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-play"/></svg>
+                  <span>Begin Interview</span>
+                </button>
               </div>
 
-              <!-- SCREEN 3: ATS WORKSPACE -->
+              <!-- SCREEN 3: ATS JOB MATCH -->
               <div class="app-screen" data-screen="ats">
                 <div class="app-header">
                   <div class="app-header-title">
                     <button class="app-btn-secondary" style="width:auto;padding:4px 8px;border-radius:6px;" data-jump-screen="dashboard">←</button>
-                    <b>ATS Fit Workspace</b>
-                  </div>
-                  <span style="font-size:10px;font-weight:700;color:var(--app-muted);">Role: Senior Android</span>
-                </div>
-
-                <!-- Match Score Gauge -->
-                <div class="app-card hero-readiness" style="text-align:center;justify-content:center;flex-direction:column;gap:6px;padding:16px;">
-                  <span style="font-size:10px;font-weight:800;text-transform:uppercase;color:var(--app-muted);">Semantic Job Match</span>
-                  <strong style="font-size:36px;color:var(--app-primary);">88%</strong>
-                  <small style="color:var(--app-teal);font-weight:700;">Top 8% Candidate Fit</small>
-                </div>
-
-                <!-- Skills Match Chips -->
-                <div class="app-card">
-                  <div class="app-card-title">Extracted Skills</div>
-                  <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px;">
-                    <span class="skill-pill skill-match" style="font-size:10px;padding:3px 8px;">✓ Kotlin</span>
-                    <span class="skill-pill skill-match" style="font-size:10px;padding:3px 8px;">✓ Compose</span>
-                    <span class="skill-pill skill-match" style="font-size:10px;padding:3px 8px;">✓ Coroutines</span>
-                    <span class="skill-pill skill-missing" style="font-size:10px;padding:3px 8px;">✕ Ktor Client</span>
+                    <div style="display:flex;align-items:center;gap:4px;">
+                      <span style="color:#00bfa5;font-size:12px;">◎</span>
+                      <b style="font-size:11px;color:#00bfa5;text-transform:uppercase;letter-spacing:0.5px;">ATS JOB MATCH</b>
+                    </div>
                   </div>
                 </div>
 
-                <!-- AI Bullet Rewriter -->
-                <div class="app-card">
-                  <div class="app-card-title">AI Bullet Refactor (X-Y-Z)</div>
-                  <div class="bullet-comparison" style="padding:10px;font-size:11px;margin-bottom:10px;">
-                    <b>Before:</b>
-                    <p style="margin:0 0 6px;color:var(--app-muted);">Built android app UI and connected APIs.</p>
-                    <b>Optimized (Google Formula):</b>
-                    <p class="emu-opt-bullet-text" style="margin:0;font-weight:600;">Engineered 14+ Jetpack Compose screens adopting Clean Architecture + MVI, reducing UI latency by 35%.</p>
+                <b style="font-size:16px;display:block;margin-bottom:2px;">Compare CV to Job</b>
+                <small style="font-size:11px;color:var(--app-muted);display:block;margin-bottom:12px;">Paste a job posting link and we'll score your CV against it.</small>
+
+                <!-- Job Posting Input -->
+                <div class="app-card" style="padding:10px;margin-bottom:10px;">
+                  <span style="font-size:9px;font-weight:800;color:var(--app-muted);text-transform:uppercase;display:block;margin-bottom:4px;">Job Posting Link</span>
+                  <div style="display:flex;align-items:center;gap:6px;background:var(--app-card-hover);padding:8px 10px;border-radius:8px;border:1px solid var(--app-border);">
+                    <svg style="width:12px;height:12px;color:var(--app-muted);"><use href="#i-arrow"/></svg>
+                    <span style="font-size:10px;color:var(--app-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">https://www.linkedin.com/jobs/view/3910248...</span>
                   </div>
-                  <button class="app-btn app-btn-teal btn-emu-optimize-bullet">
-                    <svg style="width:12px;height:12px;fill:currentColor;"><use href="#i-wand"/></svg>
-                    <span>Refactor with AI</span>
-                  </button>
+                  <small style="font-size:9px;color:var(--app-muted);display:block;margin-top:6px;">Supports LinkedIn, Indeed, Wuzzuf, Glassdoor, and direct URLs.</small>
                 </div>
+
+                <!-- CV On File Card -->
+                <div class="app-card" style="padding:10px;margin-bottom:10px;">
+                  <span style="font-size:9px;font-weight:800;color:var(--app-muted);text-transform:uppercase;display:block;margin-bottom:4px;">CV on File</span>
+                  <div style="display:flex;justify-content:space-between;align-items:center;">
+                    <div>
+                      <b style="font-size:11px;display:block;">Hazem_Android_CV.pdf</b>
+                      <small style="font-size:9px;color:var(--app-green);font-weight:700;">Vectorized in pgvector</small>
+                    </div>
+                    <button class="app-btn-secondary" style="width:auto;padding:4px 8px;font-size:9px;">Edit CV</button>
+                  </div>
+                </div>
+
+                <!-- Fast LinkedIn Share Callout -->
+                <div style="background:rgba(0,196,180,0.1);border:1px solid rgba(0,196,180,0.25);border-radius:12px;padding:10px;display:flex;gap:8px;align-items:center;margin-bottom:14px;">
+                  <span style="font-size:16px;">✨</span>
+                  <p style="font-size:10px;margin:0;line-height:1.4;color:var(--app-text);"><b>Faster:</b> In LinkedIn or any job app, tap <b>Share → CareerPilot</b>. The link is captured automatically.</p>
+                </div>
+
+                <!-- Compare Now Button -->
+                <button class="app-btn app-btn-teal btn-emu-optimize-bullet" style="margin-bottom:8px;">
+                  <svg style="width:12px;height:12px;fill:currentColor;"><use href="#i-target"/></svg>
+                  <span>Compare Now</span>
+                </button>
               </div>
 
               <!-- SCREEN 4: CHALLENGE ARENA -->
@@ -325,61 +394,145 @@
                 <div class="app-header">
                   <div class="app-header-title">
                     <button class="app-btn-secondary" style="width:auto;padding:4px 8px;border-radius:6px;" data-jump-screen="dashboard">←</button>
-                    <b>Challenge Arena</b>
+                    <b>Challenges</b>
                   </div>
-                  <span class="challenge-badge" style="font-size:8px;padding:2px 6px;">LIVE COHORT</span>
+                  <span class="challenge-badge" style="font-size:8px;padding:2px 6px;">LEADERBOARD</span>
                 </div>
 
-                <!-- Active Sprint Card -->
-                <div class="app-card" style="border-left:3px solid var(--app-primary);">
-                  <div class="app-card-title">
-                    <span>Mobile Sprint #4</span>
-                    <span class="sprint-timer-clock" style="color:var(--app-primary);">04:18 remaining</span>
-                  </div>
-                  <p style="font-size:11px;margin:0 0 10px;color:var(--app-muted);">5-question technical interview sprint testing Coroutines and Compose state resilience.</p>
-                  <button class="app-btn app-btn-primary" style="padding:8px;">Join Sprint Attempt</button>
+                <!-- Search Input Bar -->
+                <div style="display:flex;align-items:center;gap:6px;background:var(--app-card-hover);padding:8px 12px;border-radius:12px;border:1px solid var(--app-border);margin-bottom:10px;">
+                  <svg style="width:12px;height:12px;color:var(--app-muted);"><use href="#i-target"/></svg>
+                  <span style="font-size:11px;color:var(--app-muted);">Search by track or creator</span>
                 </div>
 
-                <!-- Cohort Leaderboard -->
-                <div class="app-card">
-                  <div class="app-card-title">Live Leaderboard</div>
-                  <div class="leaderboard-mini" style="margin-top:4px;">
-                    <div><span>01</span><b>Hazem A.</b><strong>96 pts</strong></div>
-                    <div><span>02</span><b>Hossam E.</b><strong>94 pts</strong></div>
-                    <div><span>03</span><b>Ahmed E.</b><strong>91 pts</strong></div>
-                    <div><span>04</span><b>Tasneem S.</b><strong>88 pts</strong></div>
+                <!-- Enter Code Pill Card -->
+                <div class="app-card" style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;margin-bottom:12px;cursor:pointer;background:rgba(255,122,69,0.06);border-color:rgba(255,122,69,0.2);">
+                  <div style="display:flex;gap:8px;align-items:center;">
+                    <span style="font-size:14px;">🔑</span>
+                    <b style="font-size:11px;color:var(--app-primary);">Enter Code</b>
                   </div>
+                  <svg style="width:12px;height:12px;color:var(--app-primary);"><use href="#i-arrow"/></svg>
+                </div>
+
+                <span style="font-size:10px;font-weight:800;color:var(--app-muted);text-transform:uppercase;display:block;margin-bottom:8px;">Public Challenges</span>
+
+                <!-- Real Public Challenge Cards from Screenshot -->
+                <div style="display:grid;gap:8px;margin-bottom:10px;">
+                  <!-- Challenge 1 -->
+                  <div class="app-card" style="border-left:3px solid var(--app-primary);padding:10px;margin:0;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px;">
+                      <b style="font-size:12px;">Android Development</b>
+                      <span style="padding:2px 6px;border-radius:6px;background:rgba(255,122,69,0.12);color:var(--app-primary);font-size:8px;font-weight:800;">Mid-level</span>
+                    </div>
+                    <small style="font-size:9px;color:var(--app-muted);display:block;margin-bottom:6px;">👤 Created by: ITI Expert</small>
+                    <div style="display:flex;gap:8px;font-size:9px;font-weight:700;color:var(--app-teal);">
+                      <span>? 3 Questions</span>
+                      <span>▲ Video and Audio</span>
+                    </div>
+                  </div>
+
+                  <!-- Challenge 2 -->
+                  <div class="app-card" style="border-left:3px solid #ef4444;padding:10px;margin:0;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px;">
+                      <b style="font-size:12px;">Java Core</b>
+                      <span style="padding:2px 6px;border-radius:6px;background:rgba(239,68,68,0.12);color:#ef4444;font-size:8px;font-weight:800;">Senior</span>
+                    </div>
+                    <small style="font-size:9px;color:var(--app-muted);display:block;margin-bottom:6px;">👤 Created by: James Gosling</small>
+                    <div style="display:flex;gap:8px;font-size:9px;font-weight:700;color:var(--app-teal);">
+                      <span>? 2 Questions</span>
+                      <span>▲ Audio Only</span>
+                    </div>
+                  </div>
+
+                  <!-- Challenge 3 -->
+                  <div class="app-card" style="border-left:3px solid var(--app-primary);padding:10px;margin:0;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px;">
+                      <b style="font-size:12px;">Kotlin Multiplatform</b>
+                      <span style="padding:2px 6px;border-radius:6px;background:rgba(255,122,69,0.12);color:var(--app-primary);font-size:8px;font-weight:800;">Mid-level</span>
+                    </div>
+                    <small style="font-size:9px;color:var(--app-muted);display:block;margin-bottom:6px;">👤 Created by: JetBrains Dev</small>
+                    <div style="display:flex;gap:8px;font-size:9px;font-weight:700;color:var(--app-teal);">
+                      <span>? 2 Questions</span>
+                      <span>▲ Video and Audio</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Floating + FAB -->
+                <div style="position:relative;height:36px;display:flex;justify-content:flex-end;">
+                  <button style="width:34px;height:34px;border-radius:50%;background:var(--app-primary);color:#fff;border:0;font-size:18px;font-weight:800;display:grid;place-items:center;cursor:pointer;box-shadow:0 4px 12px rgba(255,122,69,0.4);" title="Create Challenge">+</button>
                 </div>
               </div>
 
-              <!-- SCREEN 5: COIN WALLET & STORE -->
+              <!-- SCREEN 5: STUDY NOTES & LESSONS (Jetpack Compose SlotTable) -->
+              <div class="app-screen" data-screen="lessons">
+                <div class="app-header">
+                  <div class="app-header-title">
+                    <button class="app-btn-secondary" style="width:auto;padding:4px 8px;border-radius:6px;" data-jump-screen="dashboard">←</button>
+                    <b>Jetpack Compose Internals</b>
+                  </div>
+                </div>
+
+                <b style="font-size:13px;display:block;margin-bottom:6px;line-height:1.3;">The Recomposition Process and The Gap Buffer</b>
+                <p style="font-size:10px;line-height:1.5;color:var(--app-muted);margin:0 0 10px;">
+                  In Jetpack Compose, the UI is a function of state. When state changes, the framework triggers <span style="color:var(--app-teal);font-weight:700;">recomposition</span>. To do this efficiently, Compose uses a <code style="background:var(--app-card-hover);padding:1px 4px;border-radius:4px;">SlotTable</code>—a specialized data structure based on a <span style="color:var(--app-teal);font-weight:700;">Gap Buffer</span>—to store composition information.
+                </p>
+
+                <!-- Code Block Example -->
+                <div class="app-card" style="padding:10px;background:rgba(0,0,0,0.25);border-radius:10px;margin-bottom:12px;">
+                  <small style="font-size:9px;color:var(--app-muted);display:block;margin-bottom:4px;">Example:</small>
+                  <pre style="font-size:9px;font-family:monospace;margin:0;line-height:1.4;color:#38bdf8;">@Composable
+fun UserProfile(user: User) {
+  // Compiler tracks 'Text'
+  Text(text = user.name)
+  AgeDisplay(age = user.age)
+}</pre>
+                </div>
+
+                <button class="app-btn app-btn-primary" data-jump-screen="interview">
+                  <span>Take Knowledge Check</span>
+                </button>
+              </div>
+
+              <!-- SCREEN 6: SETTINGS & WALLET -->
               <div class="app-screen" data-screen="wallet">
                 <div class="app-header">
                   <div class="app-header-title">
                     <button class="app-btn-secondary" style="width:auto;padding:4px 8px;border-radius:6px;" data-jump-screen="dashboard">←</button>
-                    <b>Virtual Coin Wallet</b>
+                    <b>Settings & Wallet</b>
                   </div>
-                  <span class="challenge-badge" style="font-size:8px;padding:2px 6px;background:rgba(45,212,191,0.15);color:var(--app-teal);">PLUS PLAN</span>
+                  <span class="challenge-badge" style="font-size:8px;padding:2px 6px;background:rgba(45,212,191,0.15);color:var(--app-teal);">FREE PLAN</span>
+                </div>
+
+                <!-- User Profile Summary -->
+                <div class="app-card" style="display:flex;align-items:center;gap:10px;padding:10px;margin-bottom:10px;">
+                  <div style="width:36px;height:36px;border-radius:10px;background:#1e293b;display:grid;place-items:center;color:#fff;">
+                    <svg style="width:18px;height:18px;fill:currentColor;"><use href="#i-users"/></svg>
+                  </div>
+                  <div>
+                    <b style="font-size:12px;display:block;">Ahmed El-Sayyad Mohamed</b>
+                    <small style="font-size:9px;color:var(--app-muted);">ahmed.elsayyad@iti.gov.eg</small>
+                  </div>
                 </div>
 
                 <!-- Balance Display -->
-                <div class="app-card hero-readiness" style="text-align:center;justify-content:center;flex-direction:column;gap:4px;padding:16px;">
-                  <span style="font-size:10px;font-weight:800;text-transform:uppercase;color:var(--app-muted);">Available AI Coins</span>
-                  <strong class="emu-coin-val" style="font-size:36px;color:var(--app-primary);">120 Coins</strong>
-                  <small style="color:var(--app-muted);">80 coins refresh in 14 days</small>
+                <div class="app-card hero-readiness" style="text-align:center;justify-content:center;flex-direction:column;gap:2px;padding:12px;margin-bottom:10px;">
+                  <span style="font-size:9px;font-weight:800;text-transform:uppercase;color:var(--app-muted);">Available AI Coins</span>
+                  <strong class="emu-coin-val" style="font-size:28px;color:var(--app-primary);">250 Coins</strong>
+                  <small style="color:var(--app-muted);font-size:9px;">Monthly allowance refreshes in 14 days</small>
                 </div>
 
                 <!-- Coin Top-up Store -->
-                <div class="app-card">
-                  <div class="app-card-title">Quick Top-Up Packs</div>
-                  <div style="display:grid;gap:8px;">
-                    <div style="display:flex;justify-content:space-between;align-items:center;padding:8px;background:rgba(0,0,0,0.15);border-radius:8px;">
-                      <div><b>50 Coins</b><small style="display:block;color:var(--app-muted);">149 EGP</small></div>
-                      <button class="app-btn app-btn-secondary" style="width:auto;padding:6px 12px;" data-buy-coins="50">+ Add</button>
+                <div class="app-card" style="padding:10px;margin-bottom:10px;">
+                  <span style="font-size:9px;font-weight:800;color:var(--app-muted);text-transform:uppercase;display:block;margin-bottom:6px;">Top-Up Packs (PayMob)</span>
+                  <div style="display:grid;gap:6px;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 8px;background:var(--app-card-hover);border-radius:8px;">
+                      <div><b style="font-size:10px;">50 Coins</b><small style="display:block;color:var(--app-muted);font-size:8px;">149 EGP</small></div>
+                      <button class="app-btn app-btn-secondary" style="width:auto;padding:4px 8px;font-size:9px;" data-buy-coins="50">+ Add</button>
                     </div>
-                    <div style="display:flex;justify-content:space-between;align-items:center;padding:8px;background:rgba(255,122,69,0.1);border:1px solid rgba(255,122,69,0.3);border-radius:8px;">
-                      <div><b style="color:var(--app-primary);">120 Coins</b><small style="display:block;color:var(--app-muted);">299 EGP (Best Value)</small></div>
-                      <button class="app-btn app-btn-primary" style="width:auto;padding:6px 12px;" data-buy-coins="120">+ Add</button>
+                    <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 8px;background:rgba(255,122,69,0.1);border:1px solid rgba(255,122,69,0.3);border-radius:8px;">
+                      <div><b style="color:var(--app-primary);font-size:10px;">120 Coins</b><small style="display:block;color:var(--app-muted);font-size:8px;">299 EGP (Best Value)</small></div>
+                      <button class="app-btn app-btn-primary" style="width:auto;padding:4px 8px;font-size:9px;" data-buy-coins="120">+ Add</button>
                     </div>
                   </div>
                 </div>
@@ -409,27 +562,23 @@
               </div>
             </div>
 
-            <!-- Bottom Navigation Bar -->
+            <!-- Bottom Navigation Bar (4-Tab Android Layout) -->
             <div class="phone-bottom-nav">
               <button class="nav-tab-item active" data-nav-target="dashboard">
                 <svg><use href="#i-home"/></svg>
                 <span>Home</span>
               </button>
-              <button class="nav-tab-item" data-nav-target="interview">
-                <svg><use href="#i-mic"/></svg>
-                <span>Practice</span>
-              </button>
-              <button class="nav-tab-item" data-nav-target="ats">
-                <svg><use href="#i-target"/></svg>
-                <span>ATS</span>
-              </button>
               <button class="nav-tab-item" data-nav-target="challenges">
                 <svg><use href="#i-trophy"/></svg>
-                <span>Sprint</span>
+                <span>Challenges</span>
+              </button>
+              <button class="nav-tab-item" data-nav-target="interview">
+                <svg><use href="#i-chart"/></svg>
+                <span>Practice</span>
               </button>
               <button class="nav-tab-item" data-nav-target="wallet">
-                <svg><use href="#i-wallet"/></svg>
-                <span>Wallet</span>
+                <svg><use href="#i-users"/></svg>
+                <span>Profile</span>
               </button>
             </div>
 
@@ -448,11 +597,12 @@
           <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Click below or tap inside the phone screen to explore each mobile feature.</p>
           
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-            <button class="btn btn-secondary" onclick="setEmulatorScreen('dashboard')"><svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-home"/></svg> Dashboard</button>
-            <button class="btn btn-secondary" onclick="setEmulatorScreen('interview')"><svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-mic"/></svg> Mock Interview</button>
-            <button class="btn btn-secondary" onclick="setEmulatorScreen('ats')"><svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-target"/></svg> ATS Workspace</button>
-            <button class="btn btn-secondary" onclick="setEmulatorScreen('challenges')"><svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-trophy"/></svg> Challenge Arena</button>
-            <button class="btn btn-secondary" onclick="setEmulatorScreen('wallet')"><svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-wallet"/></svg> Virtual Wallet</button>
+            <button class="btn btn-secondary" onclick="setEmulatorScreen('dashboard')"><svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-home"/></svg> Home Feed</button>
+            <button class="btn btn-secondary" onclick="setEmulatorScreen('interview')"><svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-mic"/></svg> AI Interview</button>
+            <button class="btn btn-secondary" onclick="setEmulatorScreen('ats')"><svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-target"/></svg> ATS Match</button>
+            <button class="btn btn-secondary" onclick="setEmulatorScreen('challenges')"><svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-trophy"/></svg> Challenges</button>
+            <button class="btn btn-secondary" onclick="setEmulatorScreen('lessons')"><svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-code"/></svg> Study Notes</button>
+            <button class="btn btn-secondary" onclick="setEmulatorScreen('wallet')"><svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-users"/></svg> Profile & Store</button>
           </div>
         </div>
 
