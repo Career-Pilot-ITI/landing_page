@@ -420,6 +420,7 @@ html[data-theme="midnight"] .doc-badge-teal {
 .nav-category-title svg {
   width: 12px;
   height: 12px;
+  fill: currentColor;
   transition: transform .2s ease;
 }
 
@@ -1134,6 +1135,10 @@ html[data-theme="midnight"] .method-delete { color: #FCA5A5; }
 }
 
 /* Mobile Toggle and Responsive */
+.desktop-only {
+  display: inline-flex !important;
+}
+
 .mobile-sidebar-toggle {
   display: none;
 }
@@ -1142,64 +1147,81 @@ html[data-theme="midnight"] .method-delete { color: #FCA5A5; }
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(14,20,40,0.5);
+  background: rgba(14, 20, 40, 0.6);
   backdrop-filter: blur(4px);
-  z-index: 98;
+  z-index: 140;
   opacity: 0;
-  transition: opacity .3s ease;
+  transition: opacity .25s ease;
+  pointer-events: none;
 }
+
 .sidebar-backdrop.open {
   display: block;
   opacity: 1;
+  pointer-events: auto;
 }
 
 @media (max-width: 1200px) {
   .doc-toc {
-    display: none;
+    display: none !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .desktop-only {
+    display: none !important;
+  }
+  
+  .doc-search-bar {
+    width: 220px;
   }
 }
 
 @media (max-width: 900px) {
+  .desktop-only {
+    display: none !important;
+  }
+
+  .mobile-sidebar-toggle {
+    display: inline-flex !important;
+  }
+
   .doc-sidebar {
     position: fixed;
-    left: -100%;
+    left: -320px;
     top: var(--header-h);
     bottom: 0;
-    z-index: 99;
-    width: 300px;
+    z-index: 150;
+    width: 290px;
+    max-width: 85vw;
     background: var(--doc-surface);
-    transition: left .3s ease;
-    box-shadow: var(--doc-shadow);
+    transition: left .25s ease-in-out;
+    box-shadow: 10px 0 30px rgba(0,0,0,0.25);
+    border-right: 1px solid var(--doc-border);
   }
 
   .doc-sidebar.open {
     left: 0;
   }
 
-  .mobile-sidebar-toggle {
-    display: inline-flex;
-  }
-
   .doc-main {
     padding: 30px 20px 80px;
+    width: 100%;
   }
 
   .doc-search-bar {
-    width: 200px;
+    width: 180px;
   }
 
   .doc-section h1 {
-    font-size: 2rem;
+    font-size: 1.95rem;
   }
 
   .doc-section h2 {
-    font-size: 1.45rem;
+    font-size: 1.4rem;
   }
 
-  .doc-grid-2 {
-    grid-template-columns: 1fr;
-  }
-
+  .doc-grid-2,
   .doc-grid-3 {
     grid-template-columns: 1fr;
   }
@@ -1225,11 +1247,7 @@ html[data-theme="midnight"] .method-delete { color: #FCA5A5; }
   }
 
   .code-block-wrapper {
-    margin-left: -20px;
-    margin-right: -20px;
-    border-radius: 0;
-    border-left: none;
-    border-right: none;
+    max-width: 100%;
   }
 
   pre {
@@ -1238,64 +1256,90 @@ html[data-theme="midnight"] .method-delete { color: #FCA5A5; }
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 640px) {
+  :root {
+    --header-h: 60px;
+  }
+  
   .doc-header {
     padding: 0 12px;
+    height: var(--header-h);
   }
+
+  .doc-container {
+    margin-top: var(--header-h);
+  }
+
   .doc-search-bar {
-    display: none;
+    display: none !important;
   }
-  .doc-nav-actions .btn-doc span {
-    display: none;
+
+  .doc-brand span {
+    font-size: 1rem;
   }
-  .doc-nav-actions .btn-doc {
-    padding: 6px 10px;
+
+  .doc-brand span.doc-badge {
+    display: none !important;
   }
+
   .doc-nav-actions {
     gap: 6px;
   }
-  .doc-brand span {
-    display: none;
+
+  .doc-nav-actions .btn-doc {
+    padding: 6px 12px;
+    font-size: 0.82rem;
   }
-  .doc-badge {
-    display: none;
+
+  .doc-theme-popover {
+    right: 12px;
   }
+
   .doc-main {
     padding: 20px 14px 60px;
   }
+
   .doc-section h1 {
-    font-size: 1.6rem;
+    font-size: 1.55rem;
   }
+
   .doc-section h2 {
     font-size: 1.25rem;
-    margin: 28px 0 12px;
+    margin: 24px 0 12px;
   }
+
   .doc-section h3 {
-    font-size: 1.1rem;
+    font-size: 1.08rem;
   }
+
   .doc-lead {
     font-size: 0.95rem;
   }
+
   .doc-breadcrumb {
     font-size: 0.78rem;
     flex-wrap: wrap;
   }
+
   .table-wrap {
-    margin: 16px -14px;
-    border-radius: 0;
-    border-left: none;
-    border-right: none;
+    margin: 16px 0;
+    max-width: 100%;
   }
+
   th, td {
     padding: 8px 12px;
     font-size: 0.82rem;
   }
+
   .doc-feature-card {
     padding: 16px;
   }
+
   .callout {
     padding: 12px 14px;
+    gap: 10px;
   }
+
   .doc-toast {
     bottom: 16px;
     right: 16px;

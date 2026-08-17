@@ -72,6 +72,15 @@ if (typeof window !== 'undefined') {
     sidebarBackdrop?.classList.remove('open');
   });
 
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 900) {
+        sidebar?.classList.remove('open');
+        sidebarBackdrop?.classList.remove('open');
+      }
+    });
+  });
+
   // Category collapsing
   document.querySelectorAll('.nav-category-title').forEach(title => {
     title.addEventListener('click', () => {
