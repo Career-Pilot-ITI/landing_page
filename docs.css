@@ -1347,3 +1347,213 @@ html[data-theme="midnight"] .method-delete { color: #FCA5A5; }
     font-size: 0.82rem;
   }
 }
+
+/* QR Code Modal in Docs */
+.qr-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: none !important;
+}
+
+.qr-modal.open {
+  display: grid !important;
+  place-items: center;
+}
+
+.qr-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 7, 18, 0.72);
+  backdrop-filter: blur(14px);
+}
+
+.qr-dialog {
+  position: relative;
+  z-index: 2;
+  width: min(440px, calc(100% - 32px));
+  border-radius: 24px;
+  background: var(--doc-surface);
+  border: 1px solid var(--doc-border);
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.45);
+  padding: 32px 28px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  box-sizing: border-box;
+}
+
+.qr-dialog .close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: var(--doc-surface-alt);
+  border: 1px solid var(--doc-border);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--doc-text-muted);
+  transition: all 0.2s ease;
+}
+
+.qr-dialog .close-btn:hover {
+  background: var(--doc-primary);
+  color: #ffffff;
+  border-color: var(--doc-primary);
+}
+
+.qr-dialog .close-btn svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+.qr-dialog .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--doc-primary);
+  letter-spacing: 0.5px;
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--green);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--green);
+}
+
+.qr-dialog h3 {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--doc-heading);
+}
+
+.qr-dialog p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--doc-text-muted);
+  line-height: 1.5;
+}
+
+.qr-box-wrap {
+  position: relative;
+  padding: 16px;
+  border-radius: 20px;
+  background: #ffffff;
+  border: 2px solid var(--doc-border);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  max-width: 220px;
+  max-height: 220px;
+  box-sizing: border-box;
+}
+
+.qr-box-wrap img,
+.qr-box-wrap svg {
+  width: 180px;
+  height: 180px;
+  max-width: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.qr-scan-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--doc-primary), transparent);
+  box-shadow: 0 0 10px var(--doc-primary);
+  animation: qrScanBeam 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes qrScanBeam {
+  0% { top: 10%; opacity: 0.2; }
+  100% { top: 90%; opacity: 1; }
+}
+
+.qr-segmented {
+  display: inline-flex;
+  border: 1px solid var(--doc-border);
+  border-radius: 12px;
+  padding: 3px;
+  background: var(--doc-surface-alt);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.qr-segmented button {
+  flex: 1;
+  border: 0;
+  padding: 8px 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--doc-text-muted);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.qr-segmented button.active {
+  background: var(--doc-primary);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(255, 122, 69, 0.3);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  font-family: inherit;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--doc-primary);
+  color: #ffffff !important;
+}
+
+.btn-primary:hover {
+  background: var(--doc-primary-hover);
+  transform: translateY(-1px);
+}
+
+.btn-primary.full {
+  flex: 1;
+}
+
+.btn-secondary {
+  background: var(--doc-surface-alt);
+  border: 1px solid var(--doc-border);
+  color: var(--doc-text);
+}
+
+.btn-secondary:hover {
+  border-color: var(--doc-primary);
+  color: var(--doc-primary);
+}
