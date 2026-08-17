@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://career-pilot-indol.vercel.app/sitemap.xml

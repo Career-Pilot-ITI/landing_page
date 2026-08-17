@@ -1,4 +1,5 @@
 const CONFIG = {
+  productionUrl: "https://career-pilot-indol.vercel.app",
   apkUrl: "https://drive.google.com/file/d/1s3bEHNOvOh9IGUMnAgCO8QuruOPtWEDV/view?usp=sharing",
   apkDirectUrl: "https://drive.google.com/uc?export=download&id=1s3bEHNOvOh9IGUMnAgCO8QuruOPtWEDV",
   docsUrl: "downloads/Career_Pilot_Documentation.docx",

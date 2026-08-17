@@ -309,11 +309,14 @@ if (typeof window !== 'undefined') {
   });
 
   qrCopyBtn?.addEventListener('click', () => {
+    const origin = (window.location.origin && !window.location.origin.includes('localhost'))
+      ? window.location.origin
+      : (config.productionUrl || 'https://career-pilot-indol.vercel.app');
     const url = currentQrType === 'apk' 
       ? (config.apkUrl || 'https://drive.google.com/file/d/1s3bEHNOvOh9IGUMnAgCO8QuruOPtWEDV/view?usp=sharing')
-      : (window.location.origin + '/emulator.html');
+      : (origin + '/emulator.html');
     navigator.clipboard?.writeText(url).then(() => {
-      showToast('Link copied to clipboard!');
+      showToast('Link copied to clipboard: ' + url);
     }).catch(() => {
       showToast('Link: ' + url);
     });
