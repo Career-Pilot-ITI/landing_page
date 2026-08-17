@@ -109,13 +109,13 @@
     .challenge-actions .btn {
       width: 100%;
       justify-content: center;
-      padding: 14px 20px;
-      font-size: 1rem;
+      padding: 16px 20px;
+      font-size: 1.05rem;
       text-decoration: none;
     }
     .app-redirect-notice {
       margin-top: 20px;
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       color: var(--muted);
       line-height: 1.5;
     }
@@ -173,25 +173,20 @@
       </div>
 
       <div class="challenge-actions">
-        <a class="btn btn-primary" id="openAppBtn" href="careerpilot://challenge">
-          Open in Career Pilot App
-        </a>
-        <a class="btn btn-ghost apk-link" id="downloadApkBtn" href="https://drive.google.com/file/d/1s3bEHNOvOh9IGUMnAgCO8QuruOPtWEDV/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-          <svg style="width:18px;height:18px;fill:currentColor;"><use href="#i-download"/></svg>
+        <a class="btn btn-primary apk-link" id="downloadApkBtn" href="https://drive.google.com/file/d/1s3bEHNOvOh9IGUMnAgCO8QuruOPtWEDV/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+          <svg style="width:20px;height:20px;fill:currentColor;"><use href="#i-download"/></svg>
           Download Android App (APK)
         </a>
       </div>
 
       <p class="app-redirect-notice" id="redirectNotice">
-        Tap "Open in Career Pilot App" to start immediately. If you don't have the app installed, download the APK above.
+        Download and install Career Pilot on your device to participate in this interview challenge.
       </p>
     </div>
   </main>
 
   <script>
     (function() {
-      const DRIVE_APK_URL = "https://drive.google.com/file/d/1s3bEHNOvOh9IGUMnAgCO8QuruOPtWEDV/view?usp=sharing";
-
       // 1. Theme Management
       const themeBtn = document.getElementById('themeButton');
       const themes = ['cloud', 'pulse', 'midnight'];
@@ -221,7 +216,6 @@
         }
       }
 
-      const effectiveId = challengeId || code;
       const effectiveCode = code || challengeId;
       const codeContainer = document.getElementById('codeContainer');
       const codeValue = document.getElementById('codeValue');
@@ -238,41 +232,6 @@
             copyBtn.textContent = 'Copied!';
             setTimeout(() => { copyBtn.textContent = 'Copy'; }, 2000);
           });
-        });
-      }
-
-      // 3. Deep Link & Intent URI Builders
-      let queryPart = '';
-      if (effectiveId && effectiveCode && effectiveId !== effectiveCode) {
-        queryPart = `?id=${encodeURIComponent(effectiveId)}&code=${encodeURIComponent(effectiveCode)}`;
-      } else if (effectiveId) {
-        queryPart = `?id=${encodeURIComponent(effectiveId)}`;
-      }
-
-      const customSchemeUrl = `careerpilot://challenge${queryPart}`;
-      // Android Chrome intent URI format with fallback
-      const androidIntentUrl = `intent://challenge${queryPart}#Intent;scheme=careerpilot;package=com.iti.careerpilot;S.browser_fallback_url=${encodeURIComponent(DRIVE_APK_URL)};end`;
-
-      const openAppBtn = document.getElementById('openAppBtn');
-      if (openAppBtn) {
-        const isAndroid = /Android/i.test(navigator.userAgent);
-        openAppBtn.href = isAndroid ? androidIntentUrl : customSchemeUrl;
-
-        openAppBtn.addEventListener('click', function(e) {
-          if (isAndroid) {
-            // Let the Intent URL trigger Android Package Manager
-            window.location.href = androidIntentUrl;
-          } else {
-            window.location.href = customSchemeUrl;
-          }
-
-          // Fallback if app is not installed (page stays active)
-          const startTime = Date.now();
-          setTimeout(function() {
-            if (Date.now() - startTime < 2000 && !document.hidden) {
-              window.location.href = DRIVE_APK_URL;
-            }
-          }, 1200);
         });
       }
     })();
