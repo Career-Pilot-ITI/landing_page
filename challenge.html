@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en" data-theme="cloud">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="You have been invited to a mock interview challenge on Career Pilot. Practice, compete, and level up your career readiness." />
+  <meta name="theme-color" content="#f7f9ff" />
+  <title>Career Pilot — Mock Interview Challenge Invitation</title>
+  <link rel="icon" type="image/png" href="assets/career-pilot-icon.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .challenge-hero {
+      min-height: calc(100vh - var(--header-h) - 120px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+    .challenge-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      max-width: 580px;
+      width: 100%;
+      padding: 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(16px);
+    }
+    .challenge-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 122, 69, 0.12);
+      color: var(--primary);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+    }
+    .challenge-title {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+    .challenge-desc {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+    .code-box {
+      background: var(--surface-2);
+      border: 1px dashed var(--line);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+    }
+    .code-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      font-weight: 600;
+      display: block;
+      text-align: left;
+    }
+    .code-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 1px;
+    }
+    .btn-copy {
+      background: none;
+      border: 1px solid var(--line);
+      padding: 6px 12px;
+      border-radius: var(--radius-sm, 8px);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-copy:hover {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+    .challenge-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .challenge-actions .btn {
+      width: 100%;
+      justify-content: center;
+      padding: 14px 20px;
+      font-size: 1rem;
+    }
+    .app-redirect-notice {
+      margin-top: 20px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <!-- SVG SPRITES -->
+  <svg class="svg-sprite" aria-hidden="true" style="display:none;">
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></symbol>
+    <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0 0 18h1.2a2 2 0 0 0 1.5-3.3 2 2 0 0 1 1.5-3.3H18a3 3 0 0 0 3-3.1A9 9 0 0 0 12 3z"/><circle cx="7" cy="11" r="1"/><circle cx="9" cy="7" r="1"/><circle cx="14" cy="7" r="1"/></symbol>
+    <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 4h8v4a4 4 0 0 1-8 0zM10 16h4M12 12v4M8 6H4v2a4 4 0 0 0 4 4M16 6h4v2a4 4 0 0 1-4 4M8 20h8"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  </svg>
+
+  <!-- HEADER -->
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html" aria-label="Career Pilot home">
+        <img src="assets/career-pilot-icon.png" alt="Career Pilot application icon" />
+        <span><strong>Career Pilot</strong><small>AI Interview Coach</small></span>
+      </a>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="product.html">Product</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="emulator.html">Live Emulator</a>
+        <a href="docs.html">Docs</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn theme-button" id="themeButton" aria-label="Change theme" title="Change theme"><svg><use href="#i-palette"/></svg></button>
+        <a class="btn btn-primary desktop-only apk-link" href="downloads/CareerPilot.apk" download><svg><use href="#i-download"/></svg> APK</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CHALLENGE CONTENT -->
+  <main class="challenge-hero">
+    <div class="challenge-card">
+      <div class="challenge-badge">
+        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-trophy"/></svg>
+        Interview Challenge Invitation
+      </div>
+      <h1 class="challenge-title" id="challengeTitle">You've Been Challenged!</h1>
+      <p class="challenge-desc" id="challengeDesc">
+        A peer has invited you to take on a mock interview challenge on Career Pilot. Test your technical and behavioral skills with real-time AI scoring.
+      </p>
+
+      <div class="code-box" id="codeContainer" style="display:none;">
+        <div>
+          <span class="code-label">Invitation Code</span>
+          <span class="code-val" id="codeValue">CHALLENGE</span>
+        </div>
+        <button class="btn-copy" id="copyBtn" type="button">Copy</button>
+      </div>
+
+      <div class="challenge-actions">
+        <a class="btn btn-primary" id="openAppBtn" href="careerpilot://challenge">
+          Open in Career Pilot App
+        </a>
+        <a class="btn btn-ghost apk-link" href="downloads/CareerPilot.apk" download>
+          <svg style="width:18px;height:18px;fill:currentColor;"><use href="#i-download"/></svg>
+          Download Android App (APK)
+        </a>
+      </div>
+
+      <p class="app-redirect-notice" id="redirectNotice">
+        Opening in Career Pilot... If the app is not installed, click the Download APK button above.
+      </p>
+    </div>
+  </main>
+
+  <script>
+    (function() {
+      // 1. Theme Management
+      const themeBtn = document.getElementById('themeButton');
+      const themes = ['cloud', 'pulse', 'midnight'];
+      let currentTheme = localStorage.getItem('careerpilot_theme') || 'cloud';
+      document.documentElement.setAttribute('data-theme', currentTheme);
+
+      if (themeBtn) {
+        themeBtn.addEventListener('click', () => {
+          const nextIndex = (themes.indexOf(currentTheme) + 1) % themes.length;
+          currentTheme = themes[nextIndex];
+          document.documentElement.setAttribute('data-theme', currentTheme);
+          localStorage.setItem('careerpilot_theme', currentTheme);
+        });
+      }
+
+      // 2. Query Parameter Extraction
+      const params = new URLSearchParams(window.location.search);
+      let challengeId = params.get('id') || params.get('challengeId') || '';
+      let code = params.get('code') || '';
+
+      // Fallback: check path segments /challenge/{id}
+      if (!challengeId) {
+        const pathSegments = window.location.pathname.split('/').filter(Boolean);
+        const idx = pathSegments.indexOf('challenge');
+        if (idx !== -1 && pathSegments.length > idx + 1) {
+          challengeId = pathSegments[idx + 1];
+        }
+      }
+
+      const effectiveCode = code || challengeId;
+      const codeContainer = document.getElementById('codeContainer');
+      const codeValue = document.getElementById('codeValue');
+      const copyBtn = document.getElementById('copyBtn');
+
+      if (effectiveCode) {
+        codeContainer.style.display = 'flex';
+        codeValue.textContent = effectiveCode;
+      }
+
+      if (copyBtn) {
+        copyBtn.addEventListener('click', () => {
+          navigator.clipboard.writeText(effectiveCode).then(() => {
+            copyBtn.textContent = 'Copied!';
+            setTimeout(() => { copyBtn.textContent = 'Copy'; }, 2000);
+          });
+        });
+      }
+
+      // 3. Deep Link App URL Builder
+      let appSchemeUrl = 'careerpilot://challenge';
+      if (challengeId && code) {
+        appSchemeUrl = `careerpilot://challenge?id=${encodeURIComponent(challengeId)}&code=${encodeURIComponent(code)}`;
+      } else if (challengeId) {
+        appSchemeUrl = `careerpilot://challenge?id=${encodeURIComponent(challengeId)}`;
+      } else if (code) {
+        appSchemeUrl = `careerpilot://challenge?id=${encodeURIComponent(code)}`;
+      }
+
+      const openAppBtn = document.getElementById('openAppBtn');
+      if (openAppBtn) {
+        openAppBtn.href = appSchemeUrl;
+      }
+
+      // 4. Automatic App Launch Attempt
+      // If accessed on mobile, attempt to open custom scheme
+      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      if (isMobile && (challengeId || code)) {
+        setTimeout(() => {
+          window.location.href = appSchemeUrl;
+        }, 400);
+      }
+    })();
+  </script>
+</body>
+</html>

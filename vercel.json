@@ -4,6 +4,10 @@
   "outputDirectory": ".",
   "cleanUrls": true,
   "trailingSlash": false,
+  "rewrites": [
+    { "source": "/challenge", "destination": "/challenge.html" },
+    { "source": "/challenge/(.*)", "destination": "/challenge.html" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
