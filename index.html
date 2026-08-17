@@ -329,14 +329,14 @@
               <button data-device="android" class="active">Android Native</button>
               <button data-device="ios">iOS Native</button>
             </div>
-            <h3 id="demoHeading">Android product walkthrough</h3>
-            <p id="demoDescription">Show onboarding, CV setup, interview practice, ATS, Challenges, Access gating, pricing, and reports in one guided recording.</p>
+            <h3 id="demoHeading">Android native walkthrough</h3>
+            <p id="demoDescription">Experience the complete Android walkthrough: smart onboarding, CV setup, AI mock interview practice with real-time feedback, ATS optimization, and competitive challenges.</p>
             <div class="demo-features">
               <span><svg><use href="#i-check"/></svg> Native Frame</span>
-              <span><svg><use href="#i-check"/></svg> Portrait Walkthrough</span>
-              <span><svg><use href="#i-check"/></svg> Fullscreen Ready</span>
+              <span><svg><use href="#i-check"/></svg> Full Flow Walkthrough</span>
+              <span><svg><use href="#i-check"/></svg> Interactive Player</span>
             </div>
-            <button class="btn btn-primary btn-lg" data-open-demo><svg><use href="#i-play"/></svg> Open Live Demo</button>
+            <button class="btn btn-primary btn-lg" data-open-demo><svg><use href="#i-play"/></svg> Open Fullscreen Demo</button>
           </div>
           <div class="phone demo-phone">
             <div class="phone-island"></div>
@@ -346,8 +346,8 @@
               </video>
               <div class="video-empty" id="inlineVideoEmpty">
                 <img src="assets/career-pilot-icon.png" alt="Career Pilot app icon"/>
-                <b>Live Walkthrough Slot</b>
-                <span>Recorded walkthrough will display here.</span>
+                <b>Career Pilot Demo</b>
+                <span>Loading video stream...</span>
                 <button class="btn btn-primary" data-open-demo><svg><use href="#i-play"/></svg> Launch Preview</button>
               </div>
             </div>
@@ -483,9 +483,13 @@
     <div class="demo-dialog" role="dialog" aria-modal="true" aria-labelledby="demoModalTitle">
       <button class="close-btn" data-close-demo aria-label="Close demo"><svg><use href="#i-close"/></svg></button>
       <div class="demo-modal-copy">
-        <span class="eyebrow">Interactive Emulator</span>
-        <h2 id="demoModalTitle">Career Pilot live demo</h2>
-        <p>The player is ready for your recorded walkthrough. When <code>assets/demo/career-pilot-demo.mp4</code> is added, it plays here automatically.</p>
+        <span class="eyebrow"><span class="live-dot"></span> Full App Walkthrough</span>
+        <h2 id="demoModalTitle">Career Pilot Android Demo</h2>
+        <p>Explore the complete live walkthrough of Career Pilot on Android — showcasing onboarding, CV semantic parsing & ATS match scoring, AI mock interview simulations with real-time gaze/posture tracking, sprint arenas, and analytics.</p>
+        <div style="margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+          <a class="btn btn-primary apk-link" href="https://drive.google.com/file/d/1UaDY4iH1V7P2FbzhyFoJamS35vxfknQp/view?usp=sharing" target="_blank" rel="noopener noreferrer"><svg><use href="#i-download"/></svg> Download Signed APK</a>
+          <a class="btn btn-secondary" href="emulator.html"><svg><use href="#i-spark"/></svg> Try Web Emulator</a>
+        </div>
       </div>
       <div class="emulator-shell">
         <div class="phone modal-phone">
@@ -495,9 +499,9 @@
               <source src="assets/demo/career-pilot-demo.mp4" type="video/mp4"/>
             </video>
             <div class="video-empty" id="modalVideoEmpty">
-              <img src="assets/career-pilot-icon.png" alt=""/>
-              <b>Demo recording placeholder</b>
-              <span>Record your walkthrough later and replace one MP4 file.</span>
+              <img src="assets/career-pilot-icon.png" alt="Career Pilot Icon"/>
+              <b>Career Pilot Walkthrough</b>
+              <span>Loading video stream...</span>
             </div>
           </div>
         </div>

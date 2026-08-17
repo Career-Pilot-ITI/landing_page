@@ -209,28 +209,59 @@ if (typeof window !== 'undefined') {
 
   const demoModal = document.getElementById('demoModal');
   const modalVideo = document.getElementById('modalDemoVideo');
+  const inlineVideo = document.getElementById('inlineDemoVideo');
+
   const openDemo = () => {
     demoModal.classList.add('open');
     demoModal.setAttribute('aria-hidden', 'false');
     body.style.overflow = 'hidden';
+    if (inlineVideo && !inlineVideo.paused) {
+      inlineVideo.pause();
+    }
+    if (modalVideo) {
+      modalVideo.play().catch(() => {});
+    }
   };
+
   const closeDemo = () => {
     demoModal.classList.remove('open');
     demoModal.setAttribute('aria-hidden', 'true');
     body.style.overflow = '';
     modalVideo?.pause();
   };
+
   document.querySelectorAll('[data-open-demo]').forEach(btn => btn.addEventListener('click', openDemo));
   document.querySelectorAll('[data-close-demo]').forEach(btn => btn.addEventListener('click', closeDemo));
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && demoModal.classList.contains('open')) closeDemo(); });
 
+  const activateVideoUI = () => {
+    document.querySelectorAll('.demo-placeholder video').forEach(v => {
+      v.style.display = 'block';
+    });
+    document.querySelectorAll('.video-empty').forEach(x => {
+      x.style.display = 'none';
+    });
+  };
+
   const verifyVideo = async () => {
+    // 1. Check video element ready states & event listeners
+    const videos = document.querySelectorAll('.demo-placeholder video');
+    videos.forEach(v => {
+      if (v.readyState >= 1) {
+        activateVideoUI();
+      }
+      v.addEventListener('loadeddata', activateVideoUI, { once: true });
+      v.addEventListener('canplay', activateVideoUI, { once: true });
+      v.addEventListener('play', activateVideoUI);
+    });
+
+    // 2. Proactive network check
     try {
       const res = await fetch(config.demoVideoUrl || 'assets/demo/career-pilot-demo.mp4', { method: 'HEAD', cache: 'no-store' });
-      if (!res.ok) return;
-      document.querySelectorAll('.demo-placeholder video').forEach(v => { v.style.display = 'block'; });
-      document.querySelectorAll('.video-empty').forEach(x => x.style.display = 'none');
-    } catch (_) { /* placeholder stays visible */ }
+      if (res.ok) activateVideoUI();
+    } catch (_) {
+      // In local file:// or CORS-restricted environments, readyState/loadeddata handles it
+    }
   };
   verifyVideo();
 
