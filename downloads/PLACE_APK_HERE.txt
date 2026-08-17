@@ -1,0 +1,5 @@
+Place the signed Android release APK in this folder using exactly this filename:
+CareerPilot.apk
+
+The website Download APK buttons are already wired to:
+downloads/CareerPilot.apk

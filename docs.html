@@ -1,0 +1,1065 @@
+<!doctype html>
+<html lang="en" data-theme="cloud">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Career Pilot Official Documentation & SRS — Architecture, AI Models, RAG Pipelines, REST APIs, and Feature Specifications." />
+  <meta name="theme-color" content="#f7f9ff" />
+  <title>Documentation — Career Pilot Platform</title>
+  <link rel="icon" type="image/png" href="assets/career-pilot-icon.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="docs.css" />
+</head>
+<body>
+  <!-- SVG SPRITES -->
+  <svg style="display:none;" aria-hidden="true">
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 4h6a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H4zM20 4h-6a2 2 0 0 0-2 2v14a2 2 0 0 1 2-2h6z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4 10-10"/></symbol>
+    <symbol id="i-server" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="7" rx="2"/><rect x="3" y="14" width="18" height="7" rx="2"/><path d="M7 6h.01M7 17h.01M11 6h6M11 17h6"/></symbol>
+    <symbol id="i-brain" viewBox="0 0 24 24"><path d="M9 4a3 3 0 0 0-5 2 3 3 0 0 0 0 6 3 3 0 0 0 2 5 3 3 0 0 0 5 2V5a3 3 0 0 0-2-1zM15 4a3 3 0 0 1 5 2 3 3 0 0 1 0 6 3 3 0 0 1-2 5 3 3 0 0 1-5 2V5a3 3 0 0 1 2-1z"/><path d="M8 9h3M13 14h3M7 15h4M13 8h3"/></symbol>
+    <symbol id="i-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 9-4 3 4 3M16 9l4 3-4 3M14 5l-4 14"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2 20 5v6c0 5-3.2 9-8 11-4.8-2-8-6-8-11V5z"/><path d="m9 12 2 2 4-5"/></symbol>
+    <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M4 6h14a2 2 0 0 1 2 2v10H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h12"/><path d="M16 11h6v4h-6a2 2 0 0 1 0-4z"/></symbol>
+    <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 4h8v4a4 4 0 0 1-8 0zM10 16h4M12 12v4M8 6H4v2a4 4 0 0 0 4 4M16 6h4v2a4 4 0 0 1-4 4M8 20h8"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v5M8 22h8"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></symbol>
+    <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0 0 18h1.2a2 2 0 0 0 1.5-3.3 2 2 0 0 1 1.5-3.3H18a3 3 0 0 0 3-3.1A9 9 0 0 0 12 3z"/><circle cx="7" cy="11" r="1"/><circle cx="9" cy="7" r="1"/><circle cx="14" cy="7" r="1"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 2 1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8zM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></symbol>
+    <symbol id="i-qr" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M7 7h.01M17 7h.01M7 17h.01M17 17h.01"/></symbol>
+  </svg>
+
+  <!-- HEADER -->
+  <header class="doc-header">
+    <div class="doc-header-inner">
+      <div class="doc-brand-group">
+        <button class="btn-icon mobile-sidebar-toggle" id="mobileSidebarToggle" aria-label="Toggle navigation menu">
+          <svg><use href="#i-menu"/></svg>
+        </button>
+        <a class="doc-brand" href="index.html">
+          <img src="assets/career-pilot-icon.png" alt="Career Pilot logo" />
+          <span>Career Pilot</span>
+          <span class="doc-badge doc-badge-teal">Docs v2.0</span>
+        </a>
+      </div>
+
+      <div class="doc-search-bar" id="docSearchBar" role="button" tabindex="0">
+        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-search"/></svg>
+        <span>Search documentation...</span>
+        <kbd>Ctrl K</kbd>
+      </div>
+
+      <div class="doc-nav-actions">
+        <a class="btn-doc btn-doc-ghost desktop-only" href="index.html"><span>Company</span></a>
+        <a class="btn-doc btn-doc-ghost desktop-only" href="product.html"><span>Product</span></a>
+        <a class="btn-doc btn-doc-ghost desktop-only" href="pricing.html"><span>Pricing</span></a>
+        <a class="btn-doc btn-doc-ghost desktop-only" href="about.html"><span>About</span></a>
+        <a class="btn-doc btn-doc-ghost desktop-only" href="emulator.html"><span>Emulator</span></a>
+        <a class="btn-doc btn-doc-ghost desktop-only" href="contact.html"><span>Contact</span></a>
+        <button class="btn-doc btn-doc-ghost desktop-only" data-open-qr="apk" title="Scan QR code on mobile"><svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-qr"/></svg> <span>QR</span></button>
+        <a class="btn-doc btn-doc-primary apk-link" href="downloads/CareerPilot.apk" download>
+          <svg><use href="#i-download"/></svg>
+          <span>APK</span>
+        </a>
+        <button class="btn-icon theme-button" id="themeButton" title="Switch color theme" aria-label="Theme switcher">
+          <svg><use href="#i-palette"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Theme Popover -->
+    <div class="doc-theme-popover" id="themePopover">
+      <button data-theme-choice="cloud"><span class="theme-dot cloud-dot"></span> Light</button>
+      <button data-theme-choice="pulse"><span class="theme-dot pulse-dot"></span> Focus</button>
+      <button data-theme-choice="midnight"><span class="theme-dot midnight-dot"></span> Dark</button>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <div class="doc-container">
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="doc-sidebar" id="docSidebar">
+      <div class="sidebar-search-box">
+        <svg><use href="#i-search"/></svg>
+        <input type="text" id="sidebarSearchInput" placeholder="Filter topics..." />
+      </div>
+
+      <!-- Category 1 -->
+      <div class="nav-category">
+        <div class="nav-category-title">
+          <span>01. Overview & Business</span>
+          <svg><use href="#i-chevron-down"/></svg>
+        </div>
+        <ul class="nav-category-list">
+          <li><a href="#overview"><svg><use href="#i-book"/></svg> Abstract & Problem</a></li>
+          <li><a href="#personas-value"><svg><use href="#i-target"/></svg> Personas & Value</a></li>
+          <li><a href="#pricing-model"><svg><use href="#i-wallet"/></svg> Pricing & Coins</a></li>
+          <li><a href="#project-objectives"><svg><use href="#i-check"/></svg> Project Objectives</a></li>
+        </ul>
+      </div>
+
+      <!-- Category 2 -->
+      <div class="nav-category">
+        <div class="nav-category-title">
+          <span>02. System Architecture</span>
+          <svg><use href="#i-chevron-down"/></svg>
+        </div>
+        <ul class="nav-category-list">
+          <li><a href="#high-level-arch"><svg><use href="#i-server"/></svg> High-Level Architecture</a></li>
+          <li><a href="#android-arch"><svg><use href="#i-code"/></svg> Android Jetpack Compose</a></li>
+          <li><a href="#ios-arch"><svg><use href="#i-code"/></svg> iOS SwiftUI Architecture</a></li>
+          <li><a href="#platform-comparison"><svg><use href="#i-chart"/></svg> Platform Comparison</a></li>
+          <li><a href="#backend-arch"><svg><use href="#i-database"/></svg> Spring Boot Services</a></li>
+        </ul>
+      </div>
+
+      <!-- Category 3 -->
+      <div class="nav-category">
+        <div class="nav-category-title">
+          <span>03. AI & Perception Engine</span>
+          <svg><use href="#i-chevron-down"/></svg>
+        </div>
+        <ul class="nav-category-list">
+          <li><a href="#ai-boundaries"><svg><use href="#i-cpu"/></svg> AI Execution Boundaries</a></li>
+          <li><a href="#on-device-ml"><svg><use href="#i-brain"/></svg> On-Device Vision & Audio</a></li>
+          <li><a href="#rag-pipeline"><svg><use href="#i-database"/></svg> pgvector RAG Pipeline</a></li>
+          <li><a href="#agentic-ai"><svg><use href="#i-brain"/></svg> Agentic STAR Scoring</a></li>
+          <li><a href="#ai-matrix"><svg><use href="#i-check"/></svg> Model Responsibility Matrix</a></li>
+        </ul>
+      </div>
+
+      <!-- Category 4 -->
+      <div class="nav-category">
+        <div class="nav-category-title">
+          <span>04. Functional Features</span>
+          <svg><use href="#i-chevron-down"/></svg>
+        </div>
+        <ul class="nav-category-list">
+          <li><a href="#cv-knowledge-hub"><svg><use href="#i-file"/></svg> CV Knowledge Hub</a></li>
+          <li><a href="#adaptive-interviews"><svg><use href="#i-mic"/></svg> Adaptive Mock Interviews</a></li>
+          <li><a href="#ats-workspace"><svg><use href="#i-target"/></svg> ATS Fit & Gap Analysis</a></li>
+          <li><a href="#cv-optimization"><svg><use href="#i-code"/></svg> Async CV AI Optimization</a></li>
+          <li><a href="#cover-letter"><svg><use href="#i-file"/></svg> Cover Letter Generator</a></li>
+          <li><a href="#performance-analytics"><svg><use href="#i-chart"/></svg> Performance Analytics</a></li>
+          <li><a href="#challenges-arena"><svg><use href="#i-trophy"/></svg> Interview Challenges Arena</a></li>
+        </ul>
+      </div>
+
+      <!-- Category 5 -->
+      <div class="nav-category">
+        <div class="nav-category-title">
+          <span>05. Security & Access Gating</span>
+          <svg><use href="#i-chevron-down"/></svg>
+        </div>
+        <ul class="nav-category-list">
+          <li><a href="#jwt-security"><svg><use href="#i-shield"/></svg> JWT Stateless Auth</a></li>
+          <li><a href="#core-access"><svg><use href="#i-shield"/></svg> Centralized `core:access`</a></li>
+          <li><a href="#wallet-billing"><svg><use href="#i-wallet"/></svg> Coin Wallet & Billing</a></li>
+        </ul>
+      </div>
+
+      <!-- Category 6 -->
+      <div class="nav-category">
+        <div class="nav-category-title">
+          <span>06. Data & API Reference</span>
+          <svg><use href="#i-chevron-down"/></svg>
+        </div>
+        <ul class="nav-category-list">
+          <li><a href="#database-schema"><svg><use href="#i-database"/></svg> Database Schema & ERD</a></li>
+          <li><a href="#api-reference"><svg><use href="#i-server"/></svg> REST API Endpoints</a></li>
+        </ul>
+      </div>
+
+      <!-- Category 7 -->
+      <div class="nav-category">
+        <div class="nav-category-title">
+          <span>07. Requirements & QA</span>
+          <svg><use href="#i-chevron-down"/></svg>
+        </div>
+        <ul class="nav-category-list">
+          <li><a href="#functional-reqs"><svg><use href="#i-check"/></svg> Functional Requirements</a></li>
+          <li><a href="#non-functional-reqs"><svg><use href="#i-shield"/></svg> Non-Functional (NFR)</a></li>
+          <li><a href="#qa-testing"><svg><use href="#i-check"/></svg> Testing Suite Matrix</a></li>
+        </ul>
+      </div>
+
+      <!-- Category 8 -->
+      <div class="nav-category">
+        <div class="nav-category-title">
+          <span>08. Setup & Deployment</span>
+          <svg><use href="#i-chevron-down"/></svg>
+        </div>
+        <ul class="nav-category-list">
+          <li><a href="#apk-install"><svg><use href="#i-download"/></svg> Android APK Install</a></li>
+          <li><a href="#backend-setup"><svg><use href="#i-server"/></svg> Spring Boot & pgvector</a></li>
+          <li><a href="#web-deploy"><svg><use href="#i-code"/></svg> Web Deployment</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- MAIN ARTICLE CONTENT -->
+    <main class="doc-main">
+      <div class="doc-content">
+        <!-- Breadcrumbs -->
+        <nav class="doc-breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Career Pilot</a>
+          <span>/</span>
+          <a href="#overview">Documentation</a>
+          <span>/</span>
+          <span>Software Requirements Specification (SRS)</span>
+        </nav>
+
+        <!-- CHAPTER 1: OVERVIEW & BUSINESS MODEL -->
+        <article class="doc-section" id="overview">
+          <div class="doc-section-header">
+            <span class="doc-eyebrow">Chapter 01 · System Overview</span>
+            <h1>Career Pilot Platform Documentation</h1>
+            <p class="doc-lead">An AI-powered, multi-modal career preparation, adaptive interview coaching, ATS optimization, and competitive screening platform engineered for the modern job market.</p>
+          </div>
+
+          <h2>1.1 Abstract & Problem Statement <a class="header-anchor" href="#overview">#</a></h2>
+          <p>The contemporary technical recruitment pipeline presents steep hurdles for emerging software engineers and career-transitioning candidates. Traditional preparation typically relies on fragmented tools: isolated CV builders, generic LLM prompts that suffer from hallucinations, static interview question lists with zero speech/delivery feedback, and opaque Applicant Tracking Systems (ATS).</p>
+          
+          <div class="callout callout-note">
+            <svg class="callout-icon"><use href="#i-info"/></svg>
+            <div class="callout-content">
+              <strong>Core Engineering Philosophy</strong>
+              Career Pilot eliminates fragmented career preparation by providing an integrated feedback loop. Candidate CVs, target job postings, on-device vision/speech tracking, server-side RAG question generation, and structured STAR evaluation are unified into one persistent ecosystem.
+            </div>
+          </div>
+
+          <h3 id="personas-value">1.2 Target Personas & Value Proposition <a class="header-anchor" href="#personas-value">#</a></h3>
+          <p>Career Pilot serves six distinct user segments through tailored interaction paradigms:</p>
+          <div class="doc-grid-2">
+            <div class="doc-feature-card">
+              <h4><svg style="width:18px;height:18px;fill:var(--amber);"><use href="#i-target"/></svg> Fresh Graduates & Entry-Level</h4>
+              <p>Build interview confidence, master the STAR framework (Situation, Task, Action, Result), and identify real-world skill gaps before actual hiring rounds.</p>
+            </div>
+            <div class="doc-feature-card">
+              <h4><svg style="width:18px;height:18px;fill:var(--teal);"><use href="#i-brain"/></svg> Transitioning Engineers</h4>
+              <p>Pinpoint transferable competencies, receive automated CV refactoring against target role descriptions, and practice specialized track questions.</p>
+            </div>
+            <div class="doc-feature-card">
+              <h4><svg style="width:18px;height:18px;fill:var(--green);"><use href="#i-chart"/></svg> Senior Specialists & Tech Leads</h4>
+              <p>Refine complex architectural explanations, system design phrasing, leadership storytelling, and delivery pacing.</p>
+            </div>
+            <div class="doc-feature-card">
+              <h4><svg style="width:18px;height:18px;fill:var(--yellow);"><use href="#i-trophy"/></svg> Recruiters & Hiring Organizers</h4>
+              <p>Create private, invite-only interview challenges to pre-screen cohorts with standardized AI evaluation metrics.</p>
+            </div>
+          </div>
+
+          <h3 id="pricing-model">1.3 Business, Pricing & Virtual Coin Model <a class="header-anchor" href="#pricing-model">#</a></h3>
+          <p>Career Pilot uses a <strong>hybrid monetization model</strong> balancing recurring monthly subscription tiers with consumable virtual coins for compute-heavy AI actions.</p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Subscription Tier</th>
+                  <th>Monthly Price (EGP)</th>
+                  <th>Monthly Coin Allowance</th>
+                  <th>Key Feature Rights</th>
+                  <th>Gating & Access Policy</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>FREE</strong></td>
+                  <td>0 EGP</td>
+                  <td>20 Welcome Coins</td>
+                  <td>Voice Mock Interviews (via coins), Basic Analytics, Enter Public & Private Challenges</td>
+                  <td>Unrestricted entry to all competitions; AI usage gated by coin balance.</td>
+                </tr>
+                <tr>
+                  <td><strong>PLUS</strong></td>
+                  <td>349 EGP</td>
+                  <td>80 Coins / month</td>
+                  <td>ATS Matcher, CV AI Optimization, Cover Letter Generator, Technical Quizzes, PDF Reports</td>
+                  <td>Unlocks all career optimization workflows with monthly coin refills.</td>
+                </tr>
+                <tr>
+                  <td><strong>MAX</strong></td>
+                  <td>599 EGP</td>
+                  <td>160 Coins / month</td>
+                  <td>Multimodal Video Analysis, Advanced Behavioral Coaching, Create & Host Challenges</td>
+                  <td>Full platform access, custom challenge hosting, priority queue execution.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 id="project-objectives">1.4 Project Objectives <a class="header-anchor" href="#project-objectives">#</a></h3>
+          <ul>
+            <li><strong>Grounded Intelligence:</strong> Eliminate hallucination by constraining AI responses with PostgreSQL <code>pgvector</code> similarity search over verified curriculum data.</li>
+            <li><strong>Multimodal On-Device Perception:</strong> Process camera gaze, posture, and speech pacing locally on device (MediaPipe & Whisper / Apple Vision) to guarantee low latency and user privacy.</li>
+            <li><strong>Centralized Access Control:</strong> Enforce plan quotas, feature entitlement, and coin deductibility deterministically in <code>core:access</code>.</li>
+            <li><strong>Cross-Platform Parity:</strong> Deliver native high-performance mobile clients for Android (Jetpack Compose) and iOS (SwiftUI) communicating with a robust Spring Boot 3 cloud backend.</li>
+          </ul>
+        </article>
+
+        <!-- CHAPTER 2: SYSTEM ARCHITECTURE -->
+        <article class="doc-section" id="high-level-arch">
+          <div class="doc-section-header">
+            <span class="doc-eyebrow">Chapter 02 · System Architecture</span>
+            <h1>High-Level System Architecture</h1>
+            <p class="doc-lead">A decoupled 4-tier distributed architecture spanning native mobile edge computing, cloud orchestration, vector retrieval, and persistent transactional storage.</p>
+          </div>
+
+          <div class="diagram-card">
+            <h4>Distributed Subsystem Topology</h4>
+            <div class="diagram-flow">
+              <div class="flow-step">
+                <span class="flow-step-num">01</span>
+                <div class="flow-step-info">
+                  <h5>Client Edge Perception (Android Jetpack Compose / iOS SwiftUI)</h5>
+                  <p>Local media capture, MediaPipe face/gaze/pose estimation, Whisper/Apple speech recognition, and reactive UI state management.</p>
+                </div>
+              </div>
+              <div class="flow-step">
+                <span class="flow-step-num">02</span>
+                <div class="flow-step-info">
+                  <h5>Authoritative Cloud Gateway & Orchestration (Spring Boot 3 / Java 21)</h5>
+                  <p>Stateless JWT authentication, REST API controllers, business workflows, coin wallet ledger, and background worker queues.</p>
+                </div>
+              </div>
+              <div class="flow-step">
+                <span class="flow-step-num">03</span>
+                <div class="flow-step-info">
+                  <h5>Semantic Intelligence & RAG Layer (pgvector + Gemini 1.5 Pro)</h5>
+                  <p>Text embedding generation (768-dim), semantic question retrieval, grounded STAR evaluation prompts, and agentic follow-ups.</p>
+                </div>
+              </div>
+              <div class="flow-step">
+                <span class="flow-step-num">04</span>
+                <div class="flow-step-info">
+                  <h5>Transactional & Realtime Persistence (PostgreSQL 16 + Firebase)</h5>
+                  <p>ACID relational entities (Users, Subscriptions, Challenges, Transcripts), vector indexes (HNSW), and cloud push notifications.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h2 id="android-arch">2.1 Android Application Architecture <a class="header-anchor" href="#android-arch">#</a></h2>
+          <p>The Android client is architected according to <strong>Clean Architecture</strong> principles paired with the <strong>Model-View-Intent (MVI)</strong> pattern, Kotlin Coroutines, and Jetpack Compose for declarative rendering.</p>
+
+          <div class="code-block-wrapper">
+            <div class="code-header">
+              <span class="code-lang">Kotlin · Android MVI Intent & State</span>
+              <button class="btn-copy"><svg><use href="#i-copy"/></svg> Copy</button>
+            </div>
+            <pre><code><span class="token-comment">// MVI Contract for Adaptive Mock Interview Session</span>
+<span class="token-kw">sealed interface</span> <span class="token-type">InterviewIntent</span> {
+    <span class="token-kw">data class</span> <span class="token-fn">StartSession</span>(<span class="token-kw">val</span> trackId: <span class="token-type">Long</span>, <span class="token-kw">val</span> mode: <span class="token-type">InterviewMode</span>) : <span class="token-type">InterviewIntent</span>
+    <span class="token-kw">data class</span> <span class="token-fn">SubmitAnswerAudio</span>(<span class="token-kw">val</span> audioFile: <span class="token-type">File</span>, <span class="token-kw">val</span> durationSec: <span class="token-type">Int</span>) : <span class="token-type">InterviewIntent</span>
+    <span class="token-kw">data class</span> <span class="token-fn">OnVisionMetricUpdate</span>(<span class="token-kw">val</span> eyeContactScore: <span class="token-type">Float</span>, <span class="token-kw">val</span> postureStable: <span class="token-type">Boolean</span>) : <span class="token-type">InterviewIntent</span>
+    <span class="token-kw">object</span> <span class="token-fn">FinishInterview</span> : <span class="token-type">InterviewIntent</span>
+}
+
+<span class="token-kw">data class</span> <span class="token-type">InterviewUiState</span>(
+    <span class="token-kw">val</span> isLoading: <span class="token-type">Boolean</span> = <span class="token-num">false</span>,
+    <span class="token-kw">val</span> currentQuestionIndex: <span class="token-type">Int</span> = <span class="token-num">0</span>,
+    <span class="token-kw">val</span> activeQuestion: <span class="token-type">QuestionModel?</span> = <span class="token-num">null</span>,
+    <span class="token-kw">val</span> liveGazeScore: <span class="token-type">Float</span> = <span class="token-num">1.0f</span>,
+    <span class="token-kw">val</span> isRecording: <span class="token-type">Boolean</span> = <span class="token-num">false</span>,
+    <span class="token-kw">val</span> error: <span class="token-type">String?</span> = <span class="token-num">null</span>
+)</code></pre>
+          </div>
+
+          <h2 id="ios-arch">2.2 iOS Application Architecture <a class="header-anchor" href="#ios-arch">#</a></h2>
+          <p>The native iOS client utilizes <strong>SwiftUI</strong>, <strong>Clean Architecture + MVVM</strong>, Combine / Swift Concurrency (<code>async/await</code>), Swinject for Dependency Injection, and native Apple Vision & Speech frameworks.</p>
+
+          <h2 id="platform-comparison">2.3 Android vs. iOS Architecture Comparison <a class="header-anchor" href="#platform-comparison">#</a></h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Dimension</th>
+                  <th>Android Client</th>
+                  <th>iOS Client</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>UI Paradigm</strong></td>
+                  <td>Jetpack Compose (Kotlin)</td>
+                  <td>SwiftUI (Swift 5.10)</td>
+                </tr>
+                <tr>
+                  <td><strong>Architecture Pattern</strong></td>
+                  <td>Clean Architecture + MVI (StateFlow)</td>
+                  <td>Clean Architecture + MVVM (ObservableObject)</td>
+                </tr>
+                <tr>
+                  <td><strong>Dependency Injection</strong></td>
+                  <td>Google Dagger Hilt</td>
+                  <td>Swinject Container</td>
+                </tr>
+                <tr>
+                  <td><strong>Computer Vision</strong></td>
+                  <td>Google MediaPipe Face & Pose Landmarker</td>
+                  <td>Apple Vision Framework (VNDetectFaceLandmarksRequest)</td>
+                </tr>
+                <tr>
+                  <td><strong>Speech-to-Text</strong></td>
+                  <td>OpenAI Whisper Local / Server Pipeline</td>
+                  <td>Apple SFSpeechRecognizer on-device</td>
+                </tr>
+                <tr>
+                  <td><strong>Local Storage</strong></td>
+                  <td>Jetpack DataStore + Room DB</td>
+                  <td>Core Data + Apple Keychain Services</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="backend-arch">2.4 Authoritative Backend Architecture <a class="header-anchor" href="#backend-arch">#</a></h2>
+          <p>Built with <strong>Spring Boot 3 (Java 21)</strong>, Spring Security with stateless JWT filters, Spring Data JPA, and PostgreSQL 16. The backend orchestrates business logic, AI evaluation, coin transactions, and challenge leaderboards.</p>
+        </article>
+
+        <!-- CHAPTER 3: AI & PERCEPTION ENGINE -->
+        <article class="doc-section" id="ai-boundaries">
+          <div class="doc-section-header">
+            <span class="doc-eyebrow">Chapter 03 · AI & Machine Learning</span>
+            <h1>AI & Perception Engine Pipeline</h1>
+            <p class="doc-lead">A hybrid AI architecture splitting high-frequency multimodal edge perception from server-side vector retrieval and large language model reasoning.</p>
+          </div>
+
+          <h2>3.1 AI Modeling & Execution Boundaries <a class="header-anchor" href="#ai-boundaries">#</a></h2>
+          <p>To deliver real-time responsiveness without incurring excessive cloud costs or compromising user privacy, Career Pilot strictly delineates execution boundaries:</p>
+          <ul>
+            <li><strong>Edge Processing (On-Device):</strong> Real-time eye contact tracking, face orientation, smile detection, posture stability, and microphone audio capture are executed locally on the client at 30 FPS.</li>
+            <li><strong>Cloud Processing (Backend RAG):</strong> Semantic CV embedding, resume-to-job ATS scoring, contextual question selection, and STAR qualitative evaluation are processed on the authoritative backend.</li>
+          </ul>
+
+          <h2 id="on-device-ml">3.2 On-Device Computer Vision & Audio Tracking <a class="header-anchor" href="#on-device-ml">#</a></h2>
+          <p>The vision subsystem computes key metrics during live interview practice sessions:</p>
+          <ul>
+            <li><strong>Gaze Stability:</strong> Computes the deviation angle of iris landmarks relative to the camera lens normal vector.</li>
+            <li><strong>Posture Stability:</strong> Tracks shoulder alignment landmarks (MediaPipe pose points 11 & 12) to detect slumping, extreme fidgeting, or camera disappearance.</li>
+            <li><strong>Speech Pacing:</strong> Calculates words-per-minute (WPM), detecting pauses longer than 3 seconds or speech exceeding 180 WPM.</li>
+          </ul>
+
+          <h2 id="rag-pipeline">3.3 Retrieval-Augmented Generation (RAG) Architecture <a class="header-anchor" href="#rag-pipeline">#</a></h2>
+          <p>Career Pilot uses PostgreSQL with the <code>pgvector</code> extension to store 768-dimensional question and concept embeddings. When generating mock interview questions or evaluating answers, candidate background context is retrieved via cosine distance matching.</p>
+
+          <div class="code-block-wrapper">
+            <div class="code-header">
+              <span class="code-lang">SQL · PostgreSQL pgvector Similarity Query</span>
+              <button class="btn-copy"><svg><use href="#i-copy"/></svg> Copy</button>
+            </div>
+            <pre><code><span class="token-comment">-- Retrieve top-5 most relevant interview questions grounded in candidate CV & target role</span>
+<span class="token-kw">SELECT</span> 
+    q.id,
+    q.question_text,
+    q.difficulty,
+    q.category,
+    <span class="token-num">1</span> - (q.embedding &lt;=&gt; <span class="token-str">CAST</span>(:candidate_context_vector <span class="token-kw">AS</span> vector(<span class="token-num">768</span>))) <span class="token-kw">AS</span> similarity_score
+<span class="token-kw">FROM</span> interview_questions q
+<span class="token-kw">WHERE</span> q.track_id = :target_track_id
+  <span class="token-kw">AND</span> q.difficulty = :difficulty_level
+<span class="token-kw">ORDER BY</span> q.embedding &lt;=&gt; <span class="token-str">CAST</span>(:candidate_context_vector <span class="token-kw">AS</span> vector(<span class="token-num">768</span>))
+<span class="token-kw">LIMIT</span> <span class="token-num">5</span>;</code></pre>
+          </div>
+
+          <h2 id="agentic-ai">3.4 Agentic AI Evaluation & STAR Scoring <a class="header-anchor" href="#agentic-ai">#</a></h2>
+          <p>Interview answer evaluations follow structured prompt constraints to produce deterministic JSON output containing scores (0-100) across 4 dimensions:</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Dimension</th>
+                  <th>Weight</th>
+                  <th>Evaluation Criteria</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Situation & Task (ST)</strong></td>
+                  <td>25%</td>
+                  <td>Clear articulation of the engineering problem, context, constraints, and business goal.</td>
+                </tr>
+                <tr>
+                  <td><strong>Action (A)</strong></td>
+                  <td>35%</td>
+                  <td>Specific technical steps taken by the candidate, tools chosen, architecture decisions, and individual contributions.</td>
+                </tr>
+                <tr>
+                  <td><strong>Result & Reflection (R)</strong></td>
+                  <td>25%</td>
+                  <td>Quantifiable metrics (e.g., latency reduced by 40%), outcome, lessons learned, and trade-off analysis.</td>
+                </tr>
+                <tr>
+                  <td><strong>Delivery & Communication</strong></td>
+                  <td>15%</td>
+                  <td>Pacing, structural clarity, filler word frequency, and technical vocabulary accuracy.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="ai-matrix">3.5 AI Model Responsibility Matrix <a class="header-anchor" href="#ai-matrix">#</a></h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Feature</th>
+                  <th>AI Model / Technology</th>
+                  <th>Execution Location</th>
+                  <th>Latency Target</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Gaze & Posture Tracking</td>
+                  <td>MediaPipe Landmarker / Apple Vision</td>
+                  <td>On-Device Edge</td>
+                  <td>&lt; 33ms (30 FPS)</td>
+                </tr>
+                <tr>
+                  <td>Live Speech Transcription</td>
+                  <td>Whisper STT / Apple Speech</td>
+                  <td>On-Device / Streamed</td>
+                  <td>&lt; 300ms</td>
+                </tr>
+                <tr>
+                  <td>Question Grounding & RAG</td>
+                  <td>PostgreSQL pgvector (HNSW Index)</td>
+                  <td>Spring Boot Cloud</td>
+                  <td>&lt; 80ms</td>
+                </tr>
+                <tr>
+                  <td>STAR Answer Evaluation</td>
+                  <td>Gemini 1.5 Pro / Flash</td>
+                  <td>Cloud Backend</td>
+                  <td>&lt; 2.5s</td>
+                </tr>
+                <tr>
+                  <td>Async CV AI Optimization</td>
+                  <td>Gemini 1.5 Pro (Structured JSON)</td>
+                  <td>Worker Queue (Async)</td>
+                  <td>&lt; 8s</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <!-- CHAPTER 4: CORE FUNCTIONAL FEATURES -->
+        <article class="doc-section" id="cv-knowledge-hub">
+          <div class="doc-section-header">
+            <span class="doc-eyebrow">Chapter 04 · Functional Features</span>
+            <h1>Core Platform Capabilities</h1>
+            <p class="doc-lead">Ten interconnected product pillars designed to support the user throughout their entire career-preparation journey.</p>
+          </div>
+
+          <h2>4.1 CV Knowledge Hub <a class="header-anchor" href="#cv-knowledge-hub">#</a></h2>
+          <p>Allows users to upload their active CV (PDF/DOCX). The backend extracts skills, experience timelines, educational background, and projects into structured JSON entities and semantic vector embeddings, making candidate profile context available across all modules.</p>
+
+          <h2 id="adaptive-interviews">4.2 Adaptive Mock Interview Practice Room <a class="header-anchor" href="#adaptive-interviews">#</a></h2>
+          <p>Simulates real-world technical and behavioral interview sessions. Features track selection (e.g., Android, iOS, Backend, Quality Assurance), contextual question prompts, speech capture, on-device delivery cues, and instant feedback reports.</p>
+
+          <h2 id="ats-workspace">4.3 ATS Job Workspace & Gap Analysis <a class="header-anchor" href="#ats-workspace">#</a></h2>
+          <p>Candidates can paste target job descriptions or enter job URLs. The engine computes semantic match percentage, highlights missing required keywords, flags hard skill deficiencies, and suggests actionable CV enhancements.</p>
+
+          <h2 id="cv-optimization">4.4 Asynchronous CV AI Optimization <a class="header-anchor" href="#cv-optimization">#</a></h2>
+          <p>Long-running AI optimization jobs rewrite CV bullet points according to the Google X-Y-Z formula (<em>"Accomplished [X] as measured by [Y], by doing [Z]"</em>), improving ATS ranking without introducing ungrounded claims.</p>
+
+          <h2 id="cover-letter">4.5 Tailored Cover Letter Generator <a class="header-anchor" href="#cover-letter">#</a></h2>
+          <p>Synthesizes the candidate's verified CV achievements with target role requirements to produce persuasive, professionally structured cover letters with 1-click clipboard copy and PDF export.</p>
+
+          <h2 id="performance-analytics">4.6 Session Performance Analytics <a class="header-anchor" href="#performance-analytics">#</a></h2>
+          <p>Longitudinal analytics track user performance over time across multiple dimensions: average STAR score, technical accuracy, gaze stability, pacing consistency, and track-specific readiness percentiles.</p>
+
+          <h2 id="challenges-arena">4.7 Interview Challenges Arena <a class="header-anchor" href="#challenges-arena">#</a></h2>
+          <p>Provides a competitive practice dimension with three primary modes:</p>
+          <div class="doc-grid-3">
+            <div class="doc-feature-card">
+              <h4><svg style="width:16px;height:16px;fill:var(--teal);"><use href="#i-trophy"/></svg> Public Challenges</h4>
+              <p>Community-wide competitions open to all users (including Free tier) with live leaderboards and scoring.</p>
+            </div>
+            <div class="doc-feature-card">
+              <h4><svg style="width:16px;height:16px;fill:var(--amber);"><use href="#i-shield"/></svg> Private Challenges</h4>
+              <p>Passcode/invitation-only screening challenges created by organizers or study groups for structured evaluation.</p>
+            </div>
+            <div class="doc-feature-card">
+              <h4><svg style="width:16px;height:16px;fill:var(--green);"><use href="#i-server"/></svg> Host / Creator Mode</h4>
+              <p>Max-tier feature enabling users to configure custom question sets, time limits, and review aggregate candidate performance.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- CHAPTER 5: SECURITY & ACCESS CONTROL -->
+        <article class="doc-section" id="jwt-security">
+          <div class="doc-section-header">
+            <span class="doc-eyebrow">Chapter 05 · Security & Access</span>
+            <h1>Security, Entitlements & Wallet Engine</h1>
+            <p class="doc-lead">Enterprise-grade security policies, centralized feature gating, and a secure virtual coin transaction ledger.</p>
+          </div>
+
+          <h2>5.1 Authentication & Security Architecture <a class="header-anchor" href="#jwt-security">#</a></h2>
+          <p>All client-server communications use TLS 1.3 encryption. User sessions are governed by stateless JSON Web Tokens (JWT) signed with HMAC-SHA256.</p>
+          <ul>
+            <li><strong>Access Token:</strong> Short-lived (15 minutes expiration) bearing user ID, active subscription tier, and role claims.</li>
+            <li><strong>Refresh Token:</strong> Long-lived (30 days expiration) securely stored in Android EncryptedSharedPreferences / iOS Keychain.</li>
+            <li><strong>Password Hashing:</strong> BCrypt with cost factor 12.</li>
+          </ul>
+
+          <h2 id="core-access">5.2 Centralized Entitlement Engine (`core:access`) <a class="header-anchor" href="#core-access">#</a></h2>
+          <p>To eliminate duplicate gating logic across mobile screens, the Android application delegates all permission checks to a centralized <code>core:access</code> module.</p>
+
+          <div class="code-block-wrapper">
+            <div class="code-header">
+              <span class="code-lang">Kotlin · Centralized Feature Access Verifier</span>
+              <button class="btn-copy"><svg><use href="#i-copy"/></svg> Copy</button>
+            </div>
+            <pre><code><span class="token-kw">class</span> <span class="token-type">FeatureAccessManager</span> @Inject <span class="token-kw">constructor</span>(
+    <span class="token-kw">private val</span> userSessionRepository: <span class="token-type">UserSessionRepository</span>,
+    <span class="token-kw">private val</span> walletRepository: <span class="token-type">WalletRepository</span>
+) {
+    <span class="token-kw">suspend fun</span> <span class="token-fn">checkAccess</span>(feature: <span class="token-type">AppFeature</span>): <span class="token-type">AccessResult</span> {
+        <span class="token-kw">val</span> plan = userSessionRepository.getActivePlan()
+        <span class="token-kw">val</span> coins = walletRepository.getCoinBalance()
+
+        <span class="token-kw">if</span> (plan.tierRank &lt; feature.requiredPlan.tierRank) {
+            <span class="token-kw">return</span> <span class="token-type">AccessResult.PlanUpgradeRequired</span>(
+                current = plan,
+                required = feature.requiredPlan
+            )
+        }
+
+        <span class="token-kw">if</span> (feature.coinCost &gt; <span class="token-num">0</span> &amp;&amp; coins &lt; feature.coinCost) {
+            <span class="token-kw">return</span> <span class="token-type">AccessResult.InsufficientCoins</span>(
+                available = coins,
+                required = feature.coinCost
+            )
+        }
+
+        <span class="token-kw">return</span> <span class="token-type">AccessResult.Granted</span>
+    }
+}</code></pre>
+          </div>
+
+          <h2 id="wallet-billing">5.3 Coin Wallet Economics & PayMob Integration <a class="header-anchor" href="#wallet-billing">#</a></h2>
+          <p>Users can top up their virtual coin balance at any time via PayMob payment gateway (Credit/Debit Card, Mobile Wallets, Meeza). All transactions are recorded immutably in the PostgreSQL <code>wallet_transactions</code> ledger table.</p>
+        </article>
+
+        <!-- CHAPTER 6: DATA & API REFERENCE -->
+        <article class="doc-section" id="database-schema">
+          <div class="doc-section-header">
+            <span class="doc-eyebrow">Chapter 06 · Data & API Contracts</span>
+            <h1>Database Schema & REST API Reference</h1>
+            <p class="doc-lead">Relational persistence models, vector storage schemas, and complete REST integration contracts.</p>
+          </div>
+
+          <h2>6.1 Relational & Vector Persistence Schema <a class="header-anchor" href="#database-schema">#</a></h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Table Name</th>
+                  <th>Primary Key</th>
+                  <th>Key Foreign Keys</th>
+                  <th>Key Columns / Types</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>users</code></td>
+                  <td><code>id (BIGSERIAL)</code></td>
+                  <td>—</td>
+                  <td><code>email, password_hash, full_name, role, created_at</code></td>
+                </tr>
+                <tr>
+                  <td><code>subscriptions</code></td>
+                  <td><code>id (BIGSERIAL)</code></td>
+                  <td><code>user_id -&gt; users.id</code></td>
+                  <td><code>tier (FREE/PLUS/MAX), status, start_date, renewal_date</code></td>
+                </tr>
+                <tr>
+                  <td><code>coin_wallets</code></td>
+                  <td><code>id (BIGSERIAL)</code></td>
+                  <td><code>user_id -&gt; users.id</code></td>
+                  <td><code>balance (INTEGER), updated_at</code></td>
+                </tr>
+                <tr>
+                  <td><code>cv_documents</code></td>
+                  <td><code>id (BIGSERIAL)</code></td>
+                  <td><code>user_id -&gt; users.id</code></td>
+                  <td><code>raw_text, parsed_json, embedding (vector(768))</code></td>
+                </tr>
+                <tr>
+                  <td><code>mock_interviews</code></td>
+                  <td><code>id (BIGSERIAL)</code></td>
+                  <td><code>user_id, track_id</code></td>
+                  <td><code>status, overall_score, star_score, delivery_score</code></td>
+                </tr>
+                <tr>
+                  <td><code>interview_qa</code></td>
+                  <td><code>id (BIGSERIAL)</code></td>
+                  <td><code>interview_id, question_id</code></td>
+                  <td><code>answer_transcript, audio_url, score, ai_feedback_json</code></td>
+                </tr>
+                <tr>
+                  <td><code>challenges</code></td>
+                  <td><code>id (BIGSERIAL)</code></td>
+                  <td><code>creator_id -&gt; users.id</code></td>
+                  <td><code>title, passcode, is_public, track_id, end_time</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="api-reference">6.2 Core REST API Endpoints <a class="header-anchor" href="#api-reference">#</a></h2>
+
+          <!-- Endpoint 1 -->
+          <div class="api-endpoint">
+            <div class="api-header">
+              <span class="http-method method-post">POST</span>
+              <span class="api-path">/api/v1/auth/login</span>
+            </div>
+            <div class="api-body">
+              <p class="api-desc">Authenticates user credentials and returns JWT access and refresh tokens.</p>
+              <div class="code-block-wrapper">
+                <div class="code-header">
+                  <span class="code-lang">JSON · Request & Response Payload</span>
+                  <button class="btn-copy"><svg><use href="#i-copy"/></svg> Copy</button>
+                </div>
+                <pre><code><span class="token-comment">// Request</span>
+{
+  <span class="token-str">"email"</span>: <span class="token-str">"engineer@careerpilot.app"</span>,
+  <span class="token-str">"password"</span>: <span class="token-str">"SecureP@ss2026"</span>
+}
+
+<span class="token-comment">// Response (200 OK)</span>
+{
+  <span class="token-str">"accessToken"</span>: <span class="token-str">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."</span>,
+  <span class="token-str">"refreshToken"</span>: <span class="token-str">"dGhpcy1pcy1hLXJlZnJlc2gtdG9rZW4..."</span>,
+  <span class="token-str">"expiresIn"</span>: <span class="token-num">900</span>,
+  <span class="token-str">"user"</span>: {
+    <span class="token-str">"id"</span>: <span class="token-num">1042</span>,
+    <span class="token-str">"email"</span>: <span class="token-str">"engineer@careerpilot.app"</span>,
+    <span class="token-str">"plan"</span>: <span class="token-str">"PLUS"</span>,
+    <span class="token-str">"coins"</span>: <span class="token-num">80</span>
+  }
+}</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Endpoint 2 -->
+          <div class="api-endpoint">
+            <div class="api-header">
+              <span class="http-method method-post">POST</span>
+              <span class="api-path">/api/v1/interviews/start</span>
+            </div>
+            <div class="api-body">
+              <p class="api-desc">Initiates an adaptive mock interview session for a specified career track.</p>
+              <div class="code-block-wrapper">
+                <div class="code-header">
+                  <span class="code-lang">JSON · Start Interview Response</span>
+                  <button class="btn-copy"><svg><use href="#i-copy"/></svg> Copy</button>
+                </div>
+                <pre><code><span class="token-comment">// Response (201 Created)</span>
+{
+  <span class="token-str">"interviewId"</span>: <span class="token-num">8821</span>,
+  <span class="token-str">"track"</span>: <span class="token-str">"Android Native (Kotlin/Compose)"</span>,
+  <span class="token-str">"totalQuestions"</span>: <span class="token-num">5</span>,
+  <span class="token-str">"firstQuestion"</span>: {
+    <span class="token-str">"questionId"</span>: <span class="token-num">304</span>,
+    <span class="token-str">"questionText"</span>: <span class="token-str">"Explain how Kotlin StateFlow differs from SharedFlow in Jetpack Compose state management."</span>,
+    <span class="token-str">"category"</span>: <span class="token-str">"TECHNICAL_CORE"</span>,
+    <span class="token-str">"timeLimitSec"</span>: <span class="token-num">120</span>
+  }
+}</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Endpoint 3 -->
+          <div class="api-endpoint">
+            <div class="api-header">
+              <span class="http-method method-post">POST</span>
+              <span class="api-path">/api/v1/ats/analyze</span>
+            </div>
+            <div class="api-body">
+              <p class="api-desc">Compares uploaded active CV against raw job description text.</p>
+              <div class="code-block-wrapper">
+                <div class="code-header">
+                  <span class="code-lang">JSON · ATS Match Response</span>
+                  <button class="btn-copy"><svg><use href="#i-copy"/></svg> Copy</button>
+                </div>
+                <pre><code><span class="token-comment">// Response (200 OK)</span>
+{
+  <span class="token-str">"matchScore"</span>: <span class="token-num">84.5</span>,
+  <span class="token-str">"matchedKeywords"</span>: [<span class="token-str">"Kotlin"</span>, <span class="token-str">"Jetpack Compose"</span>, <span class="token-str">"Coroutines"</span>, <span class="token-str">"MVI"</span>],
+  <span class="token-str">"missingKeywords"</span>: [<span class="token-str">"Ktor"</span>, <span class="token-str">"Baseline Profiles"</span>],
+  <span class="token-str">"recommendations"</span>: [
+    <span class="token-str">"Highlight asynchronous networking experience using Ktor or Retrofit in your recent project."</span>
+  ]
+}</code></pre>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- CHAPTER 7: REQUIREMENTS & QA -->
+        <article class="doc-section" id="functional-reqs">
+          <div class="doc-section-header">
+            <span class="doc-eyebrow">Chapter 07 · Requirements & Quality Assurance</span>
+            <h1>Functional & Non-Functional Specifications</h1>
+            <p class="doc-lead">Traceable functional requirements (FR), non-functional guarantees (NFR), and QA testing matrix.</p>
+          </div>
+
+          <h2>7.1 Comprehensive Functional Requirements (FR) <a class="header-anchor" href="#functional-reqs">#</a></h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Req ID</th>
+                  <th>Subsystem</th>
+                  <th>Functional Requirement Description</th>
+                  <th>Priority</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>FR-01</code></td>
+                  <td>Auth</td>
+                  <td>User can register, login, reset password, and refresh tokens via secure JWT endpoints.</td>
+                  <td>High</td>
+                </tr>
+                <tr>
+                  <td><code>FR-02</code></td>
+                  <td>CV Hub</td>
+                  <td>System parses PDF/DOCX resumes, extracting structured work history and vector embeddings.</td>
+                  <td>High</td>
+                </tr>
+                <tr>
+                  <td><code>FR-03</code></td>
+                  <td>Interviews</td>
+                  <td>App orchestrates adaptive track-specific mock interviews with speech recognition and timing controls.</td>
+                  <td>High</td>
+                </tr>
+                <tr>
+                  <td><code>FR-04</code></td>
+                  <td>Vision ML</td>
+                  <td>Mobile client tracks gaze angle, smile probability, and posture stability in real time at 30 FPS.</td>
+                  <td>High</td>
+                </tr>
+                <tr>
+                  <td><code>FR-05</code></td>
+                  <td>ATS Engine</td>
+                  <td>System calculates vector-based ATS match score and provides missing skill recommendations.</td>
+                  <td>High</td>
+                </tr>
+                <tr>
+                  <td><code>FR-06</code></td>
+                  <td>CV AI Opt</td>
+                  <td>Server asynchronously rewrites CV bullets according to the Google X-Y-Z formula.</td>
+                  <td>Medium</td>
+                </tr>
+                <tr>
+                  <td><code>FR-07</code></td>
+                  <td>Challenges</td>
+                  <td>Users can browse public challenges, join private challenges via codes, and submit interview attempts.</td>
+                  <td>High</td>
+                </tr>
+                <tr>
+                  <td><code>FR-08</code></td>
+                  <td>Entitlements</td>
+                  <td><code>core:access</code> validates tier eligibility and coin balance before unlocking premium actions.</td>
+                  <td>High</td>
+                </tr>
+                <tr>
+                  <td><code>FR-09</code></td>
+                  <td>Wallet</td>
+                  <td>Users can inspect coin balances and purchase coin packages via payment gateway integration.</td>
+                  <td>High</td>
+                </tr>
+                <tr>
+                  <td><code>FR-10</code></td>
+                  <td>Analytics</td>
+                  <td>Users can view longitudinal performance reports with STAR breakdown and downloadable PDFs.</td>
+                  <td>Medium</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="non-functional-reqs">7.2 Non-Functional Requirements (NFR) <a class="header-anchor" href="#non-functional-reqs">#</a></h2>
+          <ul>
+            <li><strong>Performance:</strong> REST API p95 response time &lt; 250ms; on-device vision inference latency &lt; 33ms per frame.</li>
+            <li><strong>Security:</strong> OWASP Top 10 compliance, bcrypt password hashing (cost 12), TLS 1.3 enforced, encrypted local key storage.</li>
+            <li><strong>Reliability & Availability:</strong> 99.9% uptime target with automated PostgreSQL database backups.</li>
+            <li><strong>Maintainability:</strong> Clean Architecture separation with over 80% unit test code coverage on core domain logic.</li>
+          </ul>
+
+          <h2 id="qa-testing">7.3 Quality Assurance & Testing Suite <a class="header-anchor" href="#qa-testing">#</a></h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Testing Level</th>
+                  <th>Frameworks & Tools</th>
+                  <th>Scope & Coverage</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Android Unit & MVI</strong></td>
+                  <td>JUnit 5, MockK, Turbine, Coroutines Test</td>
+                  <td>ViewModel intent handlers, repository caching, access rule validation.</td>
+                </tr>
+                <tr>
+                  <td><strong>iOS Unit Testing</strong></td>
+                  <td>XCTest, Quick, Nimble</td>
+                  <td>ViewModels, Combine publishers, local database sync.</td>
+                </tr>
+                <tr>
+                  <td><strong>Backend Testing</strong></td>
+                  <td>JUnit 5, Testcontainers, MockMvc</td>
+                  <td>REST controller integration, pgvector similarity accuracy, coin transactions.</td>
+                </tr>
+                <tr>
+                  <td><strong>End-to-End Testing</strong></td>
+                  <td>Espresso, XCUITest, Postman Newman</td>
+                  <td>Full user journeys: onboarding, interview completion, and challenge submissions.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <!-- CHAPTER 8: SETUP & DEPLOYMENT -->
+        <article class="doc-section" id="apk-install">
+          <div class="doc-section-header">
+            <span class="doc-eyebrow">Chapter 08 · Setup & Deployment</span>
+            <h1>Setup, Build & Deployment Guide</h1>
+            <p class="doc-lead">Instructions for testing the native Android APK, running the Spring Boot backend, and deploying the website.</p>
+          </div>
+
+          <h2>8.1 Installing the Android APK <a class="header-anchor" href="#apk-install">#</a></h2>
+          <p>The Android application build is distributed as a signed APK package for physical Android devices (Android 8.0+ / API 26+).</p>
+          <div class="code-block-wrapper">
+            <div class="code-header">
+              <span class="code-lang">Bash · ADB Installation Command</span>
+              <button class="btn-copy"><svg><use href="#i-copy"/></svg> Copy</button>
+            </div>
+            <pre><code><span class="token-comment"># Install APK directly on connected physical device or emulator via ADB</span>
+adb install -r downloads/CareerPilot.apk</code></pre>
+          </div>
+
+          <h2 id="backend-setup">8.2 Running the Spring Boot Backend Locally <a class="header-anchor" href="#backend-setup">#</a></h2>
+          <div class="code-block-wrapper">
+            <div class="code-header">
+              <span class="code-lang">Bash · Maven Build & Run</span>
+              <button class="btn-copy"><svg><use href="#i-copy"/></svg> Copy</button>
+            </div>
+            <pre><code><span class="token-comment"># Clone repository and launch PostgreSQL with pgvector</span>
+docker run -d --name careerpilot-pg -p 5432:5432 -e POSTGRES_PASSWORD=postgres pgvector/pgvector:pg16
+
+<span class="token-comment"># Run Spring Boot service</span>
+./mvnw spring-boot:run -Dspring-boot.run.profiles=local</code></pre>
+          </div>
+
+          <h2 id="web-deploy">8.3 Static Web Deployment <a class="header-anchor" href="#web-deploy">#</a></h2>
+          <p>The website is fully static and configured for instant zero-config deployment on Vercel, Netlify, or GitHub Pages using the included <code>vercel.json</code>.</p>
+        </article>
+      </div>
+    </main>
+
+    <!-- RIGHT "ON THIS PAGE" TOC -->
+    <aside class="doc-toc" aria-label="On this page navigation">
+      <div class="toc-title">
+        <svg><use href="#i-book"/></svg>
+        <span>On this page</span>
+      </div>
+      <ul class="toc-list">
+        <li><a href="#overview">Abstract & Problem</a></li>
+        <li><a href="#personas-value">Personas & Value</a></li>
+        <li><a href="#pricing-model">Pricing & Coins</a></li>
+        <li><a href="#high-level-arch">High-Level Architecture</a></li>
+        <li><a href="#android-arch" class="sub-toc">Android Compose MVI</a></li>
+        <li><a href="#ios-arch" class="sub-toc">iOS SwiftUI MVVM</a></li>
+        <li><a href="#ai-boundaries">AI Boundaries & ML</a></li>
+        <li><a href="#rag-pipeline" class="sub-toc">pgvector RAG</a></li>
+        <li><a href="#agentic-ai" class="sub-toc">STAR Scoring</a></li>
+        <li><a href="#cv-knowledge-hub">Core Features</a></li>
+        <li><a href="#jwt-security">JWT Security & Access</a></li>
+        <li><a href="#database-schema">Database & REST APIs</a></li>
+        <li><a href="#functional-reqs">Requirements (FR/NFR)</a></li>
+        <li><a href="#apk-install">Setup & Deployment</a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <!-- SEARCH MODAL (CTRL+K) -->
+  <div class="search-modal" id="searchModal" aria-hidden="true">
+    <div class="search-dialog">
+      <div class="search-input-header">
+        <svg><use href="#i-search"/></svg>
+        <input type="text" id="modalSearchInput" placeholder="Search documentation, API endpoints, schemas..." />
+        <button class="search-close-btn" id="searchCloseBtn">ESC</button>
+      </div>
+      <div class="search-results-list" id="searchResultsList">
+        <div class="search-empty">
+          <p>Type keywords to search across all SRS chapters, architecture models, and API endpoints.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QR CODE MODAL -->
+  <div class="qr-modal" id="qrModal" aria-hidden="true">
+    <div class="qr-backdrop" data-close-qr></div>
+    <div class="qr-dialog" role="dialog" aria-modal="true" aria-labelledby="qrModalTitle">
+      <button class="close-btn" data-close-qr aria-label="Close QR modal"><svg><use href="#i-close"/></svg></button>
+      <div class="eyebrow" style="margin-bottom: 0;"><span class="live-dot"></span> Scan with Phone Camera</div>
+      <h3 id="qrModalTitle">Install & Test on Mobile</h3>
+      <p id="qrModalDesc">Scan the QR code below to download the signed Android APK directly to your device.</p>
+      
+      <div class="qr-segmented" id="qrTypeSelector">
+        <button class="active" data-qr-type="apk">Android APK</button>
+        <button data-qr-type="demo">Live Web Emulator</button>
+      </div>
+
+      <div class="qr-box-wrap">
+        <img id="qrImage" src="assets/qr-apk-download.svg" alt="Career Pilot QR Code" />
+        <div class="qr-scan-line"></div>
+      </div>
+
+      <div style="display: flex; gap: 10px; width: 100%;">
+        <a class="btn btn-primary full apk-link" id="qrActionBtn" href="downloads/CareerPilot.apk" download>
+          <svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-download"/></svg>
+          <span id="qrActionText">Download APK Directly</span>
+        </a>
+        <button class="btn btn-secondary" id="qrCopyBtn" title="Copy Link to Clipboard">
+          <svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-spark"/></svg>
+          <span>Copy</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="doc-toast" id="docToast" role="status" aria-live="polite"></div>
+
+  <script src="config.js"></script>
+  <script src="docs.js"></script>
+</body>
+</html>

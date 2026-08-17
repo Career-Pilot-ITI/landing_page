@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="en" data-theme="cloud">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Career Pilot Interactive Mobile Emulator — Test live Android & iOS features directly in your browser." />
+  <meta name="theme-color" content="#f7f9ff" />
+  <title>Live Mobile Emulator — Career Pilot</title>
+  <link rel="icon" type="image/png" href="assets/career-pilot-icon.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="emulator.css" />
+</head>
+<body>
+  <!-- SVG SPRITES -->
+  <svg class="svg-sprite" aria-hidden="true" style="display:none;">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v5M8 22h8"/></symbol>
+    <symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3z"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
+    <symbol id="i-wand" viewBox="0 0 24 24"><path d="M15 4V2M15 8v2M11 6h-2M21 6h-2M18.5 2.5l-1.4 1.4M18.5 9.5l-1.4-1.4M4 20l10-10 4 4L8 24z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+    <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 4h8v4a4 4 0 0 1-8 0zM10 16h4M12 12v4M8 6H4v2a4 4 0 0 0 4 4M16 6h4v2a4 4 0 0 1-4 4M8 20h8"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2 20 5v6c0 5-3.2 9-8 11-4.8-2-8-6-8-11V5z"/><path d="m9 12 2 2 4-5"/></symbol>
+    <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M4 6h14a2 2 0 0 1 2 2v10H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h12"/><path d="M16 11h6v4h-6a2 2 0 0 1 0-4z"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 4h6a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H4zM20 4h-6a2 2 0 0 0-2 2v14a2 2 0 0 1 2-2h6z"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m10 8 6 4-6 4z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4 10-10"/></symbol>
+    <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0 0 18h1.2a2 2 0 0 0 1.5-3.3 2 2 0 0 1 1.5-3.3H18a3 3 0 0 0 3-3.1A9 9 0 0 0 12 3z"/><circle cx="7" cy="11" r="1"/><circle cx="9" cy="7" r="1"/><circle cx="14" cy="7" r="1"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 2 1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8zM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-qr" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M7 7h.01M17 7h.01M7 17h.01M17 17h.01"/></symbol>
+  </svg>
+
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div><div class="ambient ambient-c"></div>
+
+  <!-- HEADER -->
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html" aria-label="Career Pilot home">
+        <img src="assets/career-pilot-icon.png" alt="Career Pilot application icon" />
+        <span><strong>Career Pilot</strong><small>ITI · Intake 46</small></span>
+      </a>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="index.html">Company</a>
+        <a href="product.html">Product</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About & Team</a>
+        <a href="emulator.html" class="active">Live Emulator</a>
+        <a href="contact.html">Contact</a>
+        <a href="docs.html" class="nav-docs-badge"><span class="badge-mini">SRS</span> Docs</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn theme-button" id="themeButton" aria-label="Change theme" title="Change theme"><svg><use href="#i-palette"/></svg></button>
+        <button class="btn btn-ghost desktop-only" data-open-qr="demo" title="Scan QR code to test on phone"><svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-qr"/></svg> QR</button>
+        <a class="btn btn-ghost desktop-only" href="docs.html"><svg><use href="#i-book"/></svg> Docs</a>
+        <a class="btn btn-primary desktop-only apk-link" href="downloads/CareerPilot.apk" download><svg><use href="#i-download"/></svg> APK</a>
+        <button class="icon-btn mobile-menu-btn" id="menuButton" aria-label="Open menu"><svg><use href="#i-menu"/></svg></button>
+      </div>
+    </div>
+    <div class="theme-popover" id="themePopover" role="menu" aria-label="Theme picker">
+      <button data-theme-choice="cloud"><span class="theme-dot cloud-dot"></span><span><b>Light</b><small>App light theme</small></span></button>
+      <button data-theme-choice="pulse"><span class="theme-dot pulse-dot"></span><span><b>Focus</b><small>Higher-contrast light theme</small></span></button>
+      <button data-theme-choice="midnight"><span class="theme-dot midnight-dot"></span><span><b>Dark</b><small>App dark theme</small></span></button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">Company</a>
+      <a href="product.html">Product</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="about.html">About & Team</a>
+      <a href="emulator.html">Live Emulator</a>
+      <a href="contact.html">Contact</a>
+      <a href="docs.html">Documentation Portal</a>
+      <div class="mobile-downloads">
+        <a class="btn btn-ghost" href="docs.html">Documentation</a>
+        <a class="btn btn-primary apk-link" href="downloads/CareerPilot.apk" download>Download APK</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- PAGE HERO -->
+    <section class="hero section-pad" style="min-height: auto; padding-top: 40px; padding-bottom: 20px;">
+      <div class="container" style="text-align: center; max-width: 860px; margin: 0 auto;">
+        <div class="eyebrow" style="margin-bottom: 12px;"><span class="live-dot"></span> Interactive Native Mobile Emulator</div>
+        <h1>Test Career Pilot in <span class="gradient-text">Real Time</span></h1>
+        <p class="hero-lead" style="margin: 0 auto 16px;">Interact with live in-app screens: practice adaptive mock interviews, scan ATS resume match, join live sprint competitions, and manage virtual coin entitlements.</p>
+      </div>
+    </section>
+
+    <!-- EMULATOR PLAYGROUND CONTAINER -->
+    <div class="emulator-page-container">
+      <!-- LEFT: REAL SMARTPHONE EMULATOR -->
+      <div>
+        <div class="phone-emulator" data-platform="android">
+          <!-- Physical Hardware Buttons on Phone Frame -->
+          <div class="hw-btn hw-power" data-tooltip="Power / Lock Screen" title="Power / Lock Screen"></div>
+          <div class="hw-btn hw-vol-up" data-tooltip="Volume +" title="Volume Up"></div>
+          <div class="hw-btn hw-vol-down" data-tooltip="Volume -" title="Volume Down"></div>
+
+          <!-- Phone Inner Screen -->
+          <div class="phone-inner">
+            <!-- Dynamic Island -->
+            <div class="dynamic-island">
+              <span class="island-dot"></span>
+              <span>AI Active</span>
+              <svg style="width:10px;height:10px;fill:currentColor;"><use href="#i-spark"/></svg>
+            </div>
+
+            <!-- Volume HUD -->
+            <div class="volume-hud">
+              <div class="volume-hud-fill" style="height: 70%;"></div>
+            </div>
+
+            <!-- Lock Screen Overlay -->
+            <div class="lock-screen-overlay">
+              <div style="text-align: center;">
+                <div class="lock-time">09:41</div>
+                <div class="lock-date">Monday, August 17</div>
+              </div>
+              <div class="lock-notification">
+                <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
+                  <img src="assets/career-pilot-icon.png" style="width:14px;height:14px;border-radius:3px;" alt="" />
+                  <b>Career Pilot</b> · <small>Just now</small>
+                </div>
+                <div>Your ATS match for <b>Senior Mobile Engineer</b> is ready (88% Match).</div>
+              </div>
+              <div style="font-size:10px;color:#94a3b8;letter-spacing:0.5px;">Tap screen to unlock</div>
+            </div>
+
+            <!-- Status Bar -->
+            <div class="phone-status-bar">
+              <span class="status-clock">09:41</span>
+              <div style="display: flex; align-items: center; gap: 6px;">
+                <span>5G</span>
+                <span>● ● ●</span>
+                <span>100%</span>
+              </div>
+            </div>
+
+            <!-- App Screen Container -->
+            <div class="app-screen-container">
+              <!-- SCREEN 1: DASHBOARD -->
+              <div class="app-screen active" data-screen="dashboard">
+                <div class="app-header">
+                  <div class="app-header-title">
+                    <img src="assets/career-pilot-icon.png" alt="" />
+                    <div>
+                      <b>Hazem Abdelraouf</b>
+                      <small>Android Native Track</small>
+                    </div>
+                  </div>
+                  <div class="app-coin-badge" data-jump-screen="wallet">
+                    <svg style="width:12px;height:12px;fill:currentColor;"><use href="#i-wallet"/></svg>
+                    <span class="emu-coin-val">120 Coins</span>
+                  </div>
+                </div>
+
+                <!-- Readiness Card -->
+                <div class="app-card hero-readiness">
+                  <div>
+                    <span>Career Readiness</span>
+                    <strong style="display:block;margin:4px 0;">84%</strong>
+                    <small style="color:var(--app-green);font-weight:700;">+12% vs last week</small>
+                  </div>
+                  <div class="readiness-ring">84%</div>
+                </div>
+
+                <!-- Active CV Status -->
+                <div class="app-card">
+                  <div class="app-card-title">
+                    <span>Active CV Knowledge</span>
+                    <span style="color:var(--app-teal);">Vectorized</span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:10px;">
+                    <svg style="width:24px;height:24px;color:var(--app-primary);"><use href="#i-file"/></svg>
+                    <div>
+                      <b style="font-size:12px;display:block;">Hazem_Android_CV.pdf</b>
+                      <small style="font-size:10px;color:var(--app-muted);">768-dim embeddings in pgvector</small>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Feature Quick Grid -->
+                <div class="app-tile-grid">
+                  <div class="app-tile" data-jump-screen="interview">
+                    <svg><use href="#i-mic"/></svg>
+                    <b>AI Interview</b>
+                    <small>Voice & Vision</small>
+                  </div>
+                  <div class="app-tile" data-jump-screen="ats">
+                    <svg><use href="#i-target"/></svg>
+                    <b>ATS Workspace</b>
+                    <small>Job Gap Match</small>
+                  </div>
+                  <div class="app-tile" data-jump-screen="challenges">
+                    <svg><use href="#i-trophy"/></svg>
+                    <b>Challenges</b>
+                    <small>Live Sprints</small>
+                  </div>
+                  <div class="app-tile" data-jump-screen="wallet">
+                    <svg><use href="#i-wallet"/></svg>
+                    <b>Coin Store</b>
+                    <small>Top-Up Packs</small>
+                  </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="app-card" style="margin-bottom:0;">
+                  <div class="app-card-title">Recent Session</div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;">
+                    <div><b>Compose MVI Practice</b><small style="display:block;color:var(--app-muted);">Today · 14 min session</small></div>
+                    <strong style="color:var(--app-primary);font-size:14px;">94/100</strong>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SCREEN 2: MOCK INTERVIEW ROOM -->
+              <div class="app-screen" data-screen="interview">
+                <div class="app-header">
+                  <div class="app-header-title">
+                    <button class="app-btn-secondary" style="width:auto;padding:4px 8px;border-radius:6px;" data-jump-screen="dashboard">←</button>
+                    <b>Mock Interview</b>
+                  </div>
+                  <span class="app-coin-badge" style="color:var(--app-teal);border-color:var(--app-teal);background:rgba(45,212,191,0.1);">2 Coins/min</span>
+                </div>
+
+                <!-- Simulated Camera Box -->
+                <div class="sim-camera-box">
+                  <div class="camera-mesh"></div>
+                  <div class="face-hud-box">
+                    <div class="hud-corner hud-tl"></div>
+                    <div class="hud-corner hud-tr"></div>
+                    <div class="hud-corner hud-bl"></div>
+                    <div class="hud-corner hud-br"></div>
+                    <span>Gaze: 94%</span>
+                  </div>
+                  <div class="camera-badge">
+                    <span class="camera-badge-dot"></span>
+                    <span>MediaPipe 30 FPS</span>
+                  </div>
+                </div>
+
+                <!-- Question Prompt Card -->
+                <div class="app-card">
+                  <div class="app-card-title">
+                    <span style="color:var(--app-primary);">Kotlin · Compose · MVI</span>
+                    <span>02:00</span>
+                  </div>
+                  <p style="font-size:12px;line-height:1.5;margin:0 0 10px;font-weight:600;">Explain how Kotlin StateFlow differs from SharedFlow in Compose state management.</p>
+                  
+                  <!-- Waveform -->
+                  <div style="display:flex;align-items:center;gap:3px;height:24px;padding:0 8px;background:rgba(0,0,0,0.2);border-radius:6px;margin-bottom:10px;">
+                    <div class="audio-bar sim-wave-bar" style="height:8px;"></div>
+                    <div class="audio-bar sim-wave-bar" style="height:14px;"></div>
+                    <div class="audio-bar sim-wave-bar" style="height:10px;"></div>
+                    <div class="audio-bar sim-wave-bar" style="height:18px;"></div>
+                    <div class="audio-bar sim-wave-bar" style="height:12px;"></div>
+                    <div class="audio-bar sim-wave-bar" style="height:16px;"></div>
+                    <span style="font-size:9px;color:var(--app-muted);margin-left:auto;">Speech Active</span>
+                  </div>
+
+                  <button class="app-btn app-btn-primary btn-sim-record">
+                    <svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-mic"/></svg>
+                    <span>Start Speaking (Simulate)</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- SCREEN 3: ATS WORKSPACE -->
+              <div class="app-screen" data-screen="ats">
+                <div class="app-header">
+                  <div class="app-header-title">
+                    <button class="app-btn-secondary" style="width:auto;padding:4px 8px;border-radius:6px;" data-jump-screen="dashboard">←</button>
+                    <b>ATS Fit Workspace</b>
+                  </div>
+                  <span style="font-size:10px;font-weight:700;color:var(--app-muted);">Role: Senior Android</span>
+                </div>
+
+                <!-- Match Score Gauge -->
+                <div class="app-card hero-readiness" style="text-align:center;justify-content:center;flex-direction:column;gap:6px;padding:16px;">
+                  <span style="font-size:10px;font-weight:800;text-transform:uppercase;color:var(--app-muted);">Semantic Job Match</span>
+                  <strong style="font-size:36px;color:var(--app-primary);">88%</strong>
+                  <small style="color:var(--app-teal);font-weight:700;">Top 8% Candidate Fit</small>
+                </div>
+
+                <!-- Skills Match Chips -->
+                <div class="app-card">
+                  <div class="app-card-title">Extracted Skills</div>
+                  <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px;">
+                    <span class="skill-pill skill-match" style="font-size:10px;padding:3px 8px;">✓ Kotlin</span>
+                    <span class="skill-pill skill-match" style="font-size:10px;padding:3px 8px;">✓ Compose</span>
+                    <span class="skill-pill skill-match" style="font-size:10px;padding:3px 8px;">✓ Coroutines</span>
+                    <span class="skill-pill skill-missing" style="font-size:10px;padding:3px 8px;">✕ Ktor Client</span>
+                  </div>
+                </div>
+
+                <!-- AI Bullet Rewriter -->
+                <div class="app-card">
+                  <div class="app-card-title">AI Bullet Refactor (X-Y-Z)</div>
+                  <div class="bullet-comparison" style="padding:10px;font-size:11px;margin-bottom:10px;">
+                    <b>Before:</b>
+                    <p style="margin:0 0 6px;color:var(--app-muted);">Built android app UI and connected APIs.</p>
+                    <b>Optimized (Google Formula):</b>
+                    <p class="emu-opt-bullet-text" style="margin:0;font-weight:600;">Engineered 14+ Jetpack Compose screens adopting Clean Architecture + MVI, reducing UI latency by 35%.</p>
+                  </div>
+                  <button class="app-btn app-btn-teal btn-emu-optimize-bullet">
+                    <svg style="width:12px;height:12px;fill:currentColor;"><use href="#i-wand"/></svg>
+                    <span>Refactor with AI</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- SCREEN 4: CHALLENGE ARENA -->
+              <div class="app-screen" data-screen="challenges">
+                <div class="app-header">
+                  <div class="app-header-title">
+                    <button class="app-btn-secondary" style="width:auto;padding:4px 8px;border-radius:6px;" data-jump-screen="dashboard">←</button>
+                    <b>Challenge Arena</b>
+                  </div>
+                  <span class="challenge-badge" style="font-size:8px;padding:2px 6px;">LIVE COHORT</span>
+                </div>
+
+                <!-- Active Sprint Card -->
+                <div class="app-card" style="border-left:3px solid var(--app-primary);">
+                  <div class="app-card-title">
+                    <span>Mobile Sprint #4</span>
+                    <span class="sprint-timer-clock" style="color:var(--app-primary);">04:18 remaining</span>
+                  </div>
+                  <p style="font-size:11px;margin:0 0 10px;color:var(--app-muted);">5-question technical interview sprint testing Coroutines and Compose state resilience.</p>
+                  <button class="app-btn app-btn-primary" style="padding:8px;">Join Sprint Attempt</button>
+                </div>
+
+                <!-- Cohort Leaderboard -->
+                <div class="app-card">
+                  <div class="app-card-title">Live Leaderboard</div>
+                  <div class="leaderboard-mini" style="margin-top:4px;">
+                    <div><span>01</span><b>Hazem A.</b><strong>96 pts</strong></div>
+                    <div><span>02</span><b>Hossam E.</b><strong>94 pts</strong></div>
+                    <div><span>03</span><b>Ahmed E.</b><strong>91 pts</strong></div>
+                    <div><span>04</span><b>Tasneem S.</b><strong>88 pts</strong></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SCREEN 5: COIN WALLET & STORE -->
+              <div class="app-screen" data-screen="wallet">
+                <div class="app-header">
+                  <div class="app-header-title">
+                    <button class="app-btn-secondary" style="width:auto;padding:4px 8px;border-radius:6px;" data-jump-screen="dashboard">←</button>
+                    <b>Virtual Coin Wallet</b>
+                  </div>
+                  <span class="challenge-badge" style="font-size:8px;padding:2px 6px;background:rgba(45,212,191,0.15);color:var(--app-teal);">PLUS PLAN</span>
+                </div>
+
+                <!-- Balance Display -->
+                <div class="app-card hero-readiness" style="text-align:center;justify-content:center;flex-direction:column;gap:4px;padding:16px;">
+                  <span style="font-size:10px;font-weight:800;text-transform:uppercase;color:var(--app-muted);">Available AI Coins</span>
+                  <strong class="emu-coin-val" style="font-size:36px;color:var(--app-primary);">120 Coins</strong>
+                  <small style="color:var(--app-muted);">80 coins refresh in 14 days</small>
+                </div>
+
+                <!-- Coin Top-up Store -->
+                <div class="app-card">
+                  <div class="app-card-title">Quick Top-Up Packs</div>
+                  <div style="display:grid;gap:8px;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;padding:8px;background:rgba(0,0,0,0.15);border-radius:8px;">
+                      <div><b>50 Coins</b><small style="display:block;color:var(--app-muted);">149 EGP</small></div>
+                      <button class="app-btn app-btn-secondary" style="width:auto;padding:6px 12px;" data-buy-coins="50">+ Add</button>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;align-items:center;padding:8px;background:rgba(255,122,69,0.1);border:1px solid rgba(255,122,69,0.3);border-radius:8px;">
+                      <div><b style="color:var(--app-primary);">120 Coins</b><small style="display:block;color:var(--app-muted);">299 EGP (Best Value)</small></div>
+                      <button class="app-btn app-btn-primary" style="width:auto;padding:6px 12px;" data-buy-coins="120">+ Add</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- STAR Scoring Sheet Modal inside Phone -->
+            <div class="phone-modal interview-result-modal">
+              <div class="phone-modal-card">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+                  <div>
+                    <span style="font-size:9px;font-weight:800;text-transform:uppercase;color:var(--app-muted);">AI Evaluation</span>
+                    <h4 style="margin:0;font-size:14px;">STAR Breakdown</h4>
+                  </div>
+                  <strong style="font-size:22px;color:var(--app-primary);">94/100</strong>
+                </div>
+                <div style="font-size:10px;display:grid;gap:6px;margin-bottom:12px;">
+                  <div style="display:flex;justify-content:space-between;"><span>Situation:</span><b>24/25</b></div>
+                  <div style="display:flex;justify-content:space-between;"><span>Technical Action:</span><b>33/35</b></div>
+                  <div style="display:flex;justify-content:space-between;"><span>Results & Metrics:</span><b>23/25</b></div>
+                  <div style="display:flex;justify-content:space-between;"><span>Delivery & WPM:</span><b>14/15</b></div>
+                </div>
+                <div style="font-size:10px;padding:8px;background:rgba(45,212,191,0.1);border:1px solid var(--app-teal);border-radius:8px;color:var(--app-text);margin-bottom:12px;">
+                  ✨ <b>Coach Feedback:</b> Strong explanation of state isolation and Coroutine dispatchers.
+                </div>
+                <button class="app-btn app-btn-primary btn-close-interview-modal">Done / Save Session</button>
+              </div>
+            </div>
+
+            <!-- Bottom Navigation Bar -->
+            <div class="phone-bottom-nav">
+              <button class="nav-tab-item active" data-nav-target="dashboard">
+                <svg><use href="#i-home"/></svg>
+                <span>Home</span>
+              </button>
+              <button class="nav-tab-item" data-nav-target="interview">
+                <svg><use href="#i-mic"/></svg>
+                <span>Practice</span>
+              </button>
+              <button class="nav-tab-item" data-nav-target="ats">
+                <svg><use href="#i-target"/></svg>
+                <span>ATS</span>
+              </button>
+              <button class="nav-tab-item" data-nav-target="challenges">
+                <svg><use href="#i-trophy"/></svg>
+                <span>Sprint</span>
+              </button>
+              <button class="nav-tab-item" data-nav-target="wallet">
+                <svg><use href="#i-wallet"/></svg>
+                <span>Wallet</span>
+              </button>
+            </div>
+
+            <!-- Home Indicator -->
+            <div class="home-indicator"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: INTERACTIVE CONTROL DECK -->
+      <div class="emulator-sidebar">
+        <!-- Control Panel 1: Platform & Screen Jump -->
+        <div class="emulator-control-panel reveal">
+          <p class="kicker">Live Control Deck</p>
+          <h3 style="margin:0 0 12px;">Interactive Screen Switcher</h3>
+          <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Click below or tap inside the phone screen to explore each mobile feature.</p>
+          
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <button class="btn btn-secondary" onclick="setEmulatorScreen('dashboard')"><svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-home"/></svg> Dashboard</button>
+            <button class="btn btn-secondary" onclick="setEmulatorScreen('interview')"><svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-mic"/></svg> Mock Interview</button>
+            <button class="btn btn-secondary" onclick="setEmulatorScreen('ats')"><svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-target"/></svg> ATS Workspace</button>
+            <button class="btn btn-secondary" onclick="setEmulatorScreen('challenges')"><svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-trophy"/></svg> Challenge Arena</button>
+            <button class="btn btn-secondary" onclick="setEmulatorScreen('wallet')"><svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-wallet"/></svg> Virtual Wallet</button>
+          </div>
+        </div>
+
+        <!-- Control Panel 2: Live Telemetry -->
+        <div class="emulator-control-panel reveal">
+          <p class="kicker">Telemetry & Backend Contracts</p>
+          <h3 style="margin:0 0 12px;">Architecture In Action</h3>
+          <div style="font-size:12px;line-height:1.6;display:grid;gap:8px;">
+            <div><b>Edge ML Latency:</b> <span style="color:var(--teal);">22ms (Google MediaPipe 30 FPS)</span></div>
+            <div><b>pgvector Cosine Search:</b> <span style="color:var(--primary);">p95 &lt; 78ms</span></div>
+            <div><b>Entitlement Engine:</b> <code>core:access</code> (Checked on each session)</div>
+            <div><b>Backend Runtime:</b> Spring Boot 3 + PostgreSQL 16</div>
+          </div>
+          <div style="margin-top:16px;">
+            <a class="text-link" href="docs.html">Read Full Specification in SRS Docs <svg style="width:12px;height:12px;fill:currentColor;"><use href="#i-arrow"/></svg></a>
+          </div>
+        </div>
+
+        <!-- Control Panel 3: Mobile Phone QR Sync -->
+        <div class="emulator-control-panel reveal">
+          <p class="kicker">Test On Real Device</p>
+          <h3 style="margin:0 0 8px;">Scan with Phone Camera</h3>
+          <p style="font-size:12px;color:var(--muted);margin-bottom:12px;">Open the live mobile interface directly on your Android or iPhone device.</p>
+          
+          <div style="display:flex;gap:14px;align-items:center;background:var(--surface-2);padding:12px;border-radius:14px;border:1px solid var(--line);">
+            <div class="qr-box-wrap" style="padding:6px;border-radius:10px;background:#fff;flex-shrink:0;">
+              <img src="assets/qr-live-demo.svg" alt="Scan QR Code" style="width:72px;height:72px;display:block;" />
+            </div>
+            <div style="font-size:12px;display:flex;flex-direction:column;gap:6px;">
+              <b>Instant Camera Scan</b>
+              <span style="color:var(--muted);font-size:11px;">Opens the responsive web client directly on your physical smartphone.</span>
+              <button class="btn btn-secondary" data-open-qr="demo" style="padding:4px 10px;font-size:11px;min-height:28px;align-self:flex-start;"><svg style="width:12px;height:12px;fill:currentColor;"><use href="#i-qr"/></svg> Expand QR</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- QR CODE MODAL -->
+  <div class="qr-modal" id="qrModal" aria-hidden="true">
+    <div class="qr-backdrop" data-close-qr></div>
+    <div class="qr-dialog" role="dialog" aria-modal="true" aria-labelledby="qrModalTitle">
+      <button class="close-btn" data-close-qr aria-label="Close QR modal"><svg><use href="#i-close"/></svg></button>
+      <div class="eyebrow" style="margin-bottom: 0;"><span class="live-dot"></span> Scan with Phone Camera</div>
+      <h3 id="qrModalTitle">Install & Test on Mobile</h3>
+      <p id="qrModalDesc">Scan the QR code below to download the signed Android APK directly to your device.</p>
+      
+      <div class="qr-segmented" id="qrTypeSelector">
+        <button data-qr-type="apk">Android APK</button>
+        <button class="active" data-qr-type="demo">Live Web Emulator</button>
+      </div>
+
+      <div class="qr-box-wrap">
+        <img id="qrImage" src="assets/qr-live-demo.svg" alt="Career Pilot QR Code" />
+        <div class="qr-scan-line"></div>
+      </div>
+
+      <div style="display: flex; gap: 10px; width: 100%;">
+        <a class="btn btn-primary full" id="qrActionBtn" href="emulator.html">
+          <svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-spark"/></svg>
+          <span id="qrActionText">Open Emulator Page</span>
+        </a>
+        <button class="btn btn-secondary" id="qrCopyBtn" title="Copy Link to Clipboard">
+          <svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-spark"/></svg>
+          <span>Copy</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="config.js"></script>
+  <script src="emulator.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

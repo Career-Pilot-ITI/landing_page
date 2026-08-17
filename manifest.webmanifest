@@ -1,0 +1,12 @@
+{
+  "name": "Career Pilot",
+  "short_name": "Career Pilot",
+  "description": "AI-powered career preparation and interview coaching platform.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#F7F8FC",
+  "theme_color": "#FF7A45",
+  "icons": [
+    {"src":"assets/career-pilot-icon.png","sizes":"512x512","type":"image/png"}
+  ]
+}

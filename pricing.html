@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en" data-theme="cloud">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Career Pilot Pricing & Plans — Free, Plus, and Max tiers with virtual coin economics, PayMob integration, and ROI readiness calculator." />
+  <meta name="theme-color" content="#f7f9ff" />
+  <title>Pricing & Plans — Career Pilot</title>
+  <link rel="icon" type="image/png" href="assets/career-pilot-icon.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- SVG SPRITES -->
+  <svg class="svg-sprite" aria-hidden="true" style="display:none;">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4 10-10"/></symbol>
+    <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M4 6h14a2 2 0 0 1 2 2v10H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h12"/><path d="M16 11h6v4h-6a2 2 0 0 1 0-4z"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2 20 5v6c0 5-3.2 9-8 11-4.8-2-8-6-8-11V5z"/><path d="m9 12 2 2 4-5"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 4h6a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H4zM20 4h-6a2 2 0 0 0-2 2v14a2 2 0 0 1 2-2h6z"/></symbol>
+    <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0 0 18h1.2a2 2 0 0 0 1.5-3.3 2 2 0 0 1 1.5-3.3H18a3 3 0 0 0 3-3.1A9 9 0 0 0 12 3z"/><circle cx="7" cy="11" r="1"/><circle cx="9" cy="7" r="1"/><circle cx="14" cy="7" r="1"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 2 1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8zM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-qr" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M7 7h.01M17 7h.01M7 17h.01M17 17h.01"/></symbol>
+  </svg>
+
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div><div class="ambient ambient-c"></div>
+
+  <!-- HEADER -->
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html" aria-label="Career Pilot home">
+        <img src="assets/career-pilot-icon.png" alt="Career Pilot application icon" />
+        <span><strong>Career Pilot</strong><small>ITI · Intake 46</small></span>
+      </a>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="index.html">Company</a>
+        <a href="product.html">Product</a>
+        <a href="pricing.html" class="active">Pricing</a>
+        <a href="about.html">About & Team</a>
+        <a href="emulator.html">Live Emulator</a>
+        <a href="contact.html">Contact</a>
+        <a href="docs.html" class="nav-docs-badge"><span class="badge-mini">SRS</span> Docs</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn theme-button" id="themeButton" aria-label="Change theme" title="Change theme"><svg><use href="#i-palette"/></svg></button>
+        <button class="btn btn-ghost desktop-only" data-open-qr="apk" title="Scan QR code on phone"><svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-qr"/></svg> QR</button>
+        <a class="btn btn-ghost desktop-only" href="docs.html"><svg><use href="#i-book"/></svg> Docs</a>
+        <a class="btn btn-primary desktop-only apk-link" href="downloads/CareerPilot.apk" download><svg><use href="#i-download"/></svg> APK</a>
+        <button class="icon-btn mobile-menu-btn" id="menuButton" aria-label="Open menu"><svg><use href="#i-menu"/></svg></button>
+      </div>
+    </div>
+    <div class="theme-popover" id="themePopover" role="menu" aria-label="Theme picker">
+      <button data-theme-choice="cloud"><span class="theme-dot cloud-dot"></span><span><b>Light</b><small>App light theme</small></span></button>
+      <button data-theme-choice="pulse"><span class="theme-dot pulse-dot"></span><span><b>Focus</b><small>Higher-contrast light theme</small></span></button>
+      <button data-theme-choice="midnight"><span class="theme-dot midnight-dot"></span><span><b>Dark</b><small>App dark theme</small></span></button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">Company</a>
+      <a href="product.html">Product</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="about.html">About & Team</a>
+      <a href="emulator.html">Live Emulator</a>
+      <a href="contact.html">Contact</a>
+      <a href="docs.html">Documentation Portal</a>
+      <div class="mobile-downloads">
+        <a class="btn btn-ghost" href="docs.html">Documentation</a>
+        <a class="btn btn-primary apk-link" href="downloads/CareerPilot.apk" download>Download APK</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- PRICING HERO -->
+    <section class="hero section-pad" style="min-height: auto; padding-top: 50px; padding-bottom: 60px;">
+      <div class="container" style="text-align: center; max-width: 860px; margin: 0 auto;">
+        <div class="eyebrow" style="margin-bottom: 16px;"><span class="live-dot"></span> Simple, Transparent Pricing</div>
+        <h1>Pay only for the <span class="gradient-text">intelligence you need.</span></h1>
+        <p class="hero-lead" style="margin: 0 auto 28px;">A hybrid billing structure uniting predictable monthly plans with flexible virtual coins for compute-heavy AI actions. Accessible in Egyptian Pounds (EGP).</p>
+      </div>
+    </section>
+
+    <!-- PRICING CARDS -->
+    <section class="section-pad alt-section" id="plans">
+      <div class="container">
+        <div class="pricing-grid">
+          <!-- Free Plan -->
+          <article class="price-card reveal">
+            <div class="plan-row"><span>FREE</span><small>Explore Platform</small></div>
+            <div class="price"><strong>0</strong><span>EGP<br/>/ month</span></div>
+            <div class="coin-line">20 Welcome Coins on Signup</div>
+            <ul>
+              <li><svg><use href="#i-check"/></svg>Voice mock interviews (via coins)</li>
+              <li><svg><use href="#i-check"/></svg>Core performance & readiness scoring</li>
+              <li><svg><use href="#i-check"/></svg>Enter public & private challenges</li>
+              <li><svg><use href="#i-check"/></svg>Basic STAR feedback reports</li>
+            </ul>
+            <a class="btn btn-secondary full apk-link" href="downloads/CareerPilot.apk" download>Get Started Free</a>
+          </article>
+
+          <!-- Plus Plan -->
+          <article class="price-card popular reveal reveal-delay-1">
+            <div class="popular-ribbon">Most Popular</div>
+            <div class="plan-row"><span>PLUS</span><small>Focused Preparation</small></div>
+            <div class="price"><strong>349</strong><span>EGP<br/>/ month</span></div>
+            <div class="coin-line">80 Monthly Coins Included</div>
+            <ul>
+              <li><svg><use href="#i-check"/></svg>Everything in Free</li>
+              <li><svg><use href="#i-check"/></svg>ATS resume-to-job matching</li>
+              <li><svg><use href="#i-check"/></svg>Asynchronous CV AI optimization</li>
+              <li><svg><use href="#i-check"/></svg>Tailored cover letter generator</li>
+              <li><svg><use href="#i-check"/></svg>Technical quizzes & PDF exports</li>
+            </ul>
+            <a class="btn btn-primary full apk-link" href="downloads/CareerPilot.apk" download>Choose Plus Plan</a>
+          </article>
+
+          <!-- Max Plan -->
+          <article class="price-card reveal reveal-delay-2">
+            <div class="plan-row"><span>MAX</span><small>Advanced Coaching</small></div>
+            <div class="price"><strong>599</strong><span>EGP<br/>/ month</span></div>
+            <div class="coin-line">160 Monthly Coins Included</div>
+            <ul>
+              <li><svg><use href="#i-check"/></svg>Everything in Plus</li>
+              <li><svg><use href="#i-check"/></svg>Video AI & multimodal gaze/posture coaching</li>
+              <li><svg><use href="#i-check"/></svg>Create, host & review challenge sessions</li>
+              <li><svg><use href="#i-check"/></svg>Priority cloud AI execution queue</li>
+            </ul>
+            <a class="btn btn-secondary full apk-link" href="downloads/CareerPilot.apk" download>Unlock Max Plan</a>
+          </article>
+        </div>
+
+        <!-- COIN TOP UPS -->
+        <div class="coin-packs reveal" style="margin-top: 40px;">
+          <div>
+            <p class="kicker">Virtual Coin Top-Ups</p>
+            <h3>Use additional AI power without changing your plan.</h3>
+          </div>
+          <div class="pack"><b>50</b><span>coins</span><strong>149 EGP</strong></div>
+          <div class="pack featured-pack"><small>Best Value</small><b>120</b><span>coins</span><strong>299 EGP</strong></div>
+          <div class="pack"><b>300</b><span>coins</span><strong>599 EGP</strong></div>
+        </div>
+
+        <!-- ACCESS EXPLORER -->
+        <div class="access-explorer reveal" style="margin-top: 40px;">
+          <div class="access-explorer-header">
+            <div>
+              <p class="kicker">Interactive Entitlement Explorer</p>
+              <h3>See what each plan unlocks in the app.</h3>
+            </div>
+            <div class="segmented" id="planSelector">
+              <button data-plan="FREE" class="active">Free Tier</button>
+              <button data-plan="PLUS">Plus Tier</button>
+              <button data-plan="MAX">Max Tier</button>
+            </div>
+          </div>
+          <div class="access-result" id="accessResult"></div>
+        </div>
+
+        <!-- READINESS CALCULATOR -->
+        <div class="calculator-panel reveal" id="calculator">
+          <div class="calc-slider-box">
+            <div>
+              <p class="kicker" style="margin-bottom:4px;">Practice ROI Estimator</p>
+              <h3 style="margin:0 0 6px;font-size:22px;">Estimate your interview acceleration</h3>
+              <p style="font-size:13px;margin:0;color:var(--muted);">Adjust your weekly practice commitment to project your employability score.</p>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-weight:700;font-size:13px;">
+              <span>Weekly Practice:</span>
+              <strong id="calcHoursVal" style="color:var(--primary);">6 hrs / week</strong>
+            </div>
+            <input type="range" id="calcHoursSlider" min="1" max="15" value="6" step="1" />
+          </div>
+          <div class="calc-result-box">
+            <div class="calc-stat">
+              <strong id="calcReadiness">84%</strong>
+              <span>Target Readiness</span>
+            </div>
+            <div class="calc-stat">
+              <strong id="calcWeeks">5.4 wks</strong>
+              <span>Est. Time to Offer</span>
+            </div>
+            <div class="calc-stat">
+              <strong id="calcPercentile">Top 15%</strong>
+              <span>ATS Percentile</span>
+            </div>
+            <div class="calc-stat">
+              <strong style="color:var(--teal);">3x Faster</strong>
+              <span>STAR Mastery</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="section-pad faq-section">
+      <div class="container faq-grid">
+        <div class="section-heading reveal compact-heading">
+          <span class="section-no">02.</span>
+          <div>
+            <p class="kicker">Billing & Monetization FAQ</p>
+            <h2>Frequently asked questions.</h2>
+          </div>
+        </div>
+        <div class="faq-list reveal">
+          <details>
+            <summary>How do virtual coins work alongside subscriptions?<span>+</span></summary>
+            <p>Each monthly plan includes a recurring monthly coin allowance. Light features (like browsing challenges or reviewing reports) cost 0 coins. Heavy compute tasks (like full voice interviews or asynchronous CV optimization) consume coins. You can top up coins at any time without changing your plan.</p>
+          </details>
+          <details>
+            <summary>Can Free users enter interview challenges?<span>+</span></summary>
+            <p>Yes! Free users can browse public challenges, join private challenges via codes, and submit interview attempts. Creating and hosting challenges is a Max plan entitlement.</p>
+          </details>
+          <details>
+            <summary>What payment methods are supported?<span>+</span></summary>
+            <p>Career Pilot integrates with PayMob payment gateway, supporting local Credit/Debit cards, Meeza cards, and Egyptian Mobile Wallets (Vodafone Cash, Orange Money, etc.).</p>
+          </details>
+          <details>
+            <summary>Do unused coins roll over?<span>+</span></summary>
+            <p>Purchased top-up coins never expire. Monthly subscription allowance coins refresh with each billing cycle.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- QR CODE MODAL -->
+  <div class="qr-modal" id="qrModal" aria-hidden="true">
+    <div class="qr-backdrop" data-close-qr></div>
+    <div class="qr-dialog" role="dialog" aria-modal="true" aria-labelledby="qrModalTitle">
+      <button class="close-btn" data-close-qr aria-label="Close QR modal"><svg><use href="#i-close"/></svg></button>
+      <div class="eyebrow" style="margin-bottom: 0;"><span class="live-dot"></span> Scan with Phone Camera</div>
+      <h3 id="qrModalTitle">Install & Test on Mobile</h3>
+      <p id="qrModalDesc">Scan the QR code below to download the signed Android APK directly to your device.</p>
+      
+      <div class="qr-segmented" id="qrTypeSelector">
+        <button class="active" data-qr-type="apk">Android APK</button>
+        <button data-qr-type="demo">Live Web Emulator</button>
+      </div>
+
+      <div class="qr-box-wrap">
+        <img id="qrImage" src="assets/qr-apk-download.svg" alt="Career Pilot QR Code" />
+        <div class="qr-scan-line"></div>
+      </div>
+
+      <div style="display: flex; gap: 10px; width: 100%;">
+        <a class="btn btn-primary full apk-link" id="qrActionBtn" href="downloads/CareerPilot.apk" download>
+          <svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-download"/></svg>
+          <span id="qrActionText">Download APK Directly</span>
+        </a>
+        <button class="btn btn-secondary" id="qrCopyBtn" title="Copy Link to Clipboard">
+          <svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-spark"/></svg>
+          <span>Copy</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

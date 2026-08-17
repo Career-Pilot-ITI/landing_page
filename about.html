@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en" data-theme="cloud">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="About Career Pilot — ITI Intake 46 Graduation Project Team, Supervisors, and Engineering Technology Stack." />
+  <meta name="theme-color" content="#f7f9ff" />
+  <title>About & Team — Career Pilot</title>
+  <link rel="icon" type="image/png" href="assets/career-pilot-icon.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- SVG SPRITES -->
+  <svg class="svg-sprite" aria-hidden="true" style="display:none;">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4 10-10"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-4 2.5-6 6-6s6 2 6 6M17 8a3 3 0 1 0 0-6M16 14c3.3.2 5 2.1 5 6"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 2 1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8zM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-qr" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M7 7h.01M17 7h.01M7 17h.01M17 17h.01"/></symbol>
+  </svg>
+
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div><div class="ambient ambient-c"></div>
+
+  <!-- HEADER -->
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html" aria-label="Career Pilot home">
+        <img src="assets/career-pilot-icon.png" alt="Career Pilot application icon" />
+        <span><strong>Career Pilot</strong><small>ITI · Intake 46</small></span>
+      </a>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="index.html">Company</a>
+        <a href="product.html">Product</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html" class="active">About & Team</a>
+        <a href="emulator.html">Live Emulator</a>
+        <a href="contact.html">Contact</a>
+        <a href="docs.html" class="nav-docs-badge"><span class="badge-mini">SRS</span> Docs</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn theme-button" id="themeButton" aria-label="Change theme" title="Change theme"><svg><use href="#i-palette"/></svg></button>
+        <button class="btn btn-ghost desktop-only" data-open-qr="apk" title="Scan QR code on phone"><svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-qr"/></svg> QR</button>
+        <a class="btn btn-ghost desktop-only" href="docs.html"><svg><use href="#i-book"/></svg> Docs</a>
+        <a class="btn btn-primary desktop-only apk-link" href="downloads/CareerPilot.apk" download><svg><use href="#i-download"/></svg> APK</a>
+        <button class="icon-btn mobile-menu-btn" id="menuButton" aria-label="Open menu"><svg><use href="#i-menu"/></svg></button>
+      </div>
+    </div>
+    <div class="theme-popover" id="themePopover" role="menu" aria-label="Theme picker">
+      <button data-theme-choice="cloud"><span class="theme-dot cloud-dot"></span><span><b>Light</b><small>App light theme</small></span></button>
+      <button data-theme-choice="pulse"><span class="theme-dot pulse-dot"></span><span><b>Focus</b><small>Higher-contrast light theme</small></span></button>
+      <button data-theme-choice="midnight"><span class="theme-dot midnight-dot"></span><span><b>Dark</b><small>App dark theme</small></span></button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">Company</a>
+      <a href="product.html">Product</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="about.html">About & Team</a>
+      <a href="emulator.html">Live Emulator</a>
+      <a href="contact.html">Contact</a>
+      <a href="docs.html">Documentation Portal</a>
+      <div class="mobile-downloads">
+        <a class="btn btn-ghost" href="docs.html">Documentation</a>
+        <a class="btn btn-primary apk-link" href="downloads/CareerPilot.apk" download>Download APK</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ABOUT HERO -->
+    <section class="hero section-pad" style="min-height: auto; padding-top: 50px; padding-bottom: 60px;">
+      <div class="container" style="text-align: center; max-width: 860px; margin: 0 auto;">
+        <div class="eyebrow" style="margin-bottom: 16px;"><span class="live-dot"></span> Information Technology Institute · Intake 46</div>
+        <h1>The Engineers Behind <span class="gradient-text">Career Pilot</span></h1>
+        <p class="hero-lead" style="margin: 0 auto 28px;">Engineered by a collaborative multi-disciplinary team across Native Android, Native iOS, Cloud Software Engineering, and Quality Assurance under expert ITI mentorship.</p>
+      </div>
+    </section>
+
+    <!-- MISSION & CONTEXT -->
+    <section class="section-pad alt-section">
+      <div class="container">
+        <div class="mission-panel reveal" style="margin-top: 0;">
+          <div>
+            <p class="kicker">The Vision</p>
+            <h3>Bridging the gap between preparation and hiring reality.</h3>
+          </div>
+          <p>Career Pilot was born out of a real engineering challenge: traditional job seekers practice with fragmented tools, receive hallucinatory advice from generic chatbots, and enter high-stakes interviews without objective delivery feedback. Our mission is to provide an evidence-grounded, multimodal intelligence platform that delivers measurable employability progress.</p>
+          <div class="mission-points">
+            <span><svg><use href="#i-check"/></svg> Grounded RAG Intelligence</span>
+            <span><svg><use href="#i-check"/></svg> On-Device Multimodal Perception</span>
+            <span><svg><use href="#i-check"/></svg> Native Platform Parity</span>
+            <span><svg><use href="#i-check"/></svg> Centralized Entitlements</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM SECTION -->
+    <section class="section-pad" id="team">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="section-no">01.</span>
+          <div>
+            <p class="kicker">Multi-Disciplinary Engineering</p>
+            <h2>The Project Team.</h2>
+            <p>16 specialized software engineers collaborating across four core technical disciplines.</p>
+          </div>
+        </div>
+
+        <div class="team-grid">
+          <article class="team-group reveal">
+            <span>Android Track</span>
+            <h3>Native Android</h3>
+            <ul class="team-list">
+              <li>Hazem Abdelraouf Mohammed</li>
+              <li>Hossam Ahmed Elgmmal</li>
+              <li>Tasneem AbdElhakeem Soliman</li>
+              <li>Mohamed Amir Mohamed</li>
+            </ul>
+          </article>
+
+          <article class="team-group reveal reveal-delay-1">
+            <span>iOS Track</span>
+            <h3>Native iOS</h3>
+            <ul class="team-list">
+              <li>Ahmed El Sayyad Mohamed</li>
+              <li>Moaz Osama Ahmdd</li>
+              <li>Mohamed Magdy Ahmed</li>
+              <li>Eyad Waleed Abd El Fatah</li>
+            </ul>
+          </article>
+
+          <article class="team-group reveal reveal-delay-2">
+            <span>Backend Track</span>
+            <h3>Cloud & Systems</h3>
+            <ul class="team-list">
+              <li>Amr Mohammed Shms</li>
+              <li>Noureen Ashraf Abdelmoneam</li>
+              <li>Mohamed Salah Mahmoud</li>
+            </ul>
+          </article>
+
+          <article class="team-group reveal reveal-delay-3">
+            <span>QA Track</span>
+            <h3>Quality Assurance</h3>
+            <ul class="team-list">
+              <li>Ahmed Hazem Ahmed</li>
+              <li>Yousef Mohamed Fawzy</li>
+              <li>Alhussein Abdelgaber Ibrahim</li>
+              <li>Zainab Yousef Rashwan</li>
+              <li>Hager Ashraf AboElfadl</li>
+            </ul>
+          </article>
+        </div>
+
+        <!-- SUPERVISOR -->
+        <div class="supervisor-card reveal" style="margin-top: 30px;">
+          <span>Project Supervision:</span>
+          <strong>Eng. Mayar Hassan</strong>
+          <small>Information Technology Institute (ITI) · 9-Month Professional Program · Intake 46</small>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECH STACK MATRIX -->
+    <section class="section-pad alt-section" id="technology">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="section-no">02.</span>
+          <div>
+            <p class="kicker">Core Technology Stack</p>
+            <h2>Built with modern engineering standards.</h2>
+            <p>From reactive mobile frameworks to high-throughput vector retrieval and on-device machine learning.</p>
+          </div>
+        </div>
+
+        <div class="tech-grid">
+          <div class="tech-card reveal"><div class="tech-mark">K</div><span>Android</span><b>Kotlin + Compose</b></div>
+          <div class="tech-card reveal"><div class="tech-mark">S</div><span>iOS</span><b>Swift + SwiftUI</b></div>
+          <div class="tech-card reveal"><div class="tech-mark">J</div><span>Backend</span><b>Java 21</b></div>
+          <div class="tech-card reveal"><div class="tech-mark">SB</div><span>Framework</span><b>Spring Boot 3</b></div>
+          <div class="tech-card reveal"><div class="tech-mark">PG</div><span>Database</span><b>PostgreSQL + pgvector</b></div>
+          <div class="tech-card reveal"><div class="tech-mark">FB</div><span>Realtime</span><b>Firebase</b></div>
+          <div class="tech-card reveal"><div class="tech-mark">MP</div><span>Vision ML</span><b>Google MediaPipe</b></div>
+          <div class="tech-card reveal"><div class="tech-mark">AV</div><span>Vision ML</span><b>Apple Vision</b></div>
+          <div class="tech-card reveal"><div class="tech-mark">AI</div><span>Intelligence</span><b>Gemini + RAG</b></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta section-pad">
+      <div class="container final-card reveal">
+        <img src="assets/career-pilot-icon.png" alt="Career Pilot icon"/>
+        <div>
+          <p class="kicker">Explore Career Pilot</p>
+          <h2>Ready to experience the platform?</h2>
+          <p>Read the official SRS documentation, try the interactive playground, or install the Android build.</p>
+        </div>
+        <div class="final-actions">
+          <a class="btn btn-primary btn-lg" href="product.html#playground"><svg><use href="#i-spark"/></svg> Try Playground</a>
+          <a class="btn btn-secondary btn-lg" href="docs.html"><svg><use href="#i-book"/></svg> Explore Docs</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- QR CODE MODAL -->
+  <div class="qr-modal" id="qrModal" aria-hidden="true">
+    <div class="qr-backdrop" data-close-qr></div>
+    <div class="qr-dialog" role="dialog" aria-modal="true" aria-labelledby="qrModalTitle">
+      <button class="close-btn" data-close-qr aria-label="Close QR modal"><svg><use href="#i-close"/></svg></button>
+      <div class="eyebrow" style="margin-bottom: 0;"><span class="live-dot"></span> Scan with Phone Camera</div>
+      <h3 id="qrModalTitle">Install & Test on Mobile</h3>
+      <p id="qrModalDesc">Scan the QR code below to download the signed Android APK directly to your device.</p>
+      
+      <div class="qr-segmented" id="qrTypeSelector">
+        <button class="active" data-qr-type="apk">Android APK</button>
+        <button data-qr-type="demo">Live Web Emulator</button>
+      </div>
+
+      <div class="qr-box-wrap">
+        <img id="qrImage" src="assets/qr-apk-download.svg" alt="Career Pilot QR Code" />
+        <div class="qr-scan-line"></div>
+      </div>
+
+      <div style="display: flex; gap: 10px; width: 100%;">
+        <a class="btn btn-primary full apk-link" id="qrActionBtn" href="downloads/CareerPilot.apk" download>
+          <svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-download"/></svg>
+          <span id="qrActionText">Download APK Directly</span>
+        </a>
+        <button class="btn btn-secondary" id="qrCopyBtn" title="Copy Link to Clipboard">
+          <svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-spark"/></svg>
+          <span>Copy</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
