@@ -40,6 +40,8 @@
     <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 2 1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8zM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></symbol>
     <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
     <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
     <symbol id="i-qr" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M7 7h.01M17 7h.01M7 17h.01M17 17h.01"/></symbol>
   </svg>
 
@@ -115,98 +117,126 @@
           <div class="orbit-tag orbit-2"><svg><use href="#i-mic"/></svg> AI Interview</div>
           <div class="orbit-tag orbit-3"><svg><use href="#i-trophy"/></svg> Challenges</div>
           <div class="orbit-tag orbit-4"><svg><use href="#i-chart"/></svg> Reports</div>
-          <div class="phone hero-phone">
-            <div class="phone-island"></div>
-            <div class="phone-screen dashboard-screen" style="padding:12px;display:flex;flex-direction:column;gap:8px;font-size:11px;">
-              <div class="phone-status" style="margin-bottom:2px;"><span>09:41</span><span style="display:flex;align-items:center;gap:4px;"><span>5G</span><span>100%</span></span></div>
-              
-              <!-- Greeting & Coin Balance -->
-              <div style="display:flex;justify-content:space-between;align-items:center;">
-                <div>
-                  <small style="color:var(--muted);font-size:9px;">Good evening 👋</small>
-                  <b style="font-size:13px;display:block;color:var(--text);">Hossam Ahmed</b>
-                </div>
-                <div style="display:flex;align-items:center;gap:4px;background:rgba(255,122,69,0.15);padding:2px 8px;border-radius:12px;color:var(--primary);font-weight:800;font-size:10px;">
-                  <span>🪙</span> 250
-                </div>
-              </div>
+          <div class="phone hero-phone" aria-label="Career Pilot Dashboard Preview">
+            <!-- Hardware Side Buttons -->
+            <div class="phone-hw-btn phone-hw-power"></div>
+            <div class="phone-hw-btn phone-hw-vol-up"></div>
+            <div class="phone-hw-btn phone-hw-vol-down"></div>
 
-              <!-- Upgrade Plan Card -->
-              <div style="background:linear-gradient(135deg, #6366f1 0%, #38bdf8 100%);border-radius:10px;padding:8px 10px;color:#fff;display:flex;justify-content:space-between;align-items:center;">
-                <div>
-                  <span style="font-size:7px;font-weight:800;letter-spacing:0.5px;opacity:0.9;">FREE PLAN</span>
-                  <b style="display:block;font-size:10px;">Upgrade for ATS & Quizzes</b>
+            <div class="phone-screen hero-dash-screen">
+              <!-- Integrated Status Bar with Dynamic Island -->
+              <div class="hero-dash-status-bar">
+                <span class="hero-dash-clock">09:41</span>
+                <div class="hero-dash-island">
+                  <span class="hero-island-cam"></span>
+                  <span class="hero-island-sensor"></span>
                 </div>
-                <span style="background:#fff;color:#0f172a;border-radius:12px;font-size:8px;font-weight:800;padding:3px 8px;">Upgrade</span>
-              </div>
-
-              <!-- Circular Overall Score Donut -->
-              <div style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px 10px;display:flex;align-items:center;gap:10px;">
-                <div style="width:40px;height:40px;border-radius:50%;background:conic-gradient(var(--primary) 0% 85%, var(--line) 85% 100%);display:grid;place-items:center;flex-shrink:0;">
-                  <div style="width:30px;height:30px;border-radius:50%;background:var(--surface);display:grid;place-items:center;font-weight:800;font-size:11px;color:var(--text);">85</div>
-                </div>
-                <div style="flex:1;">
-                  <span style="font-size:7px;font-weight:800;text-transform:uppercase;color:var(--muted);letter-spacing:0.5px;">OVERALL SCORE</span>
-                  <b style="font-size:11px;display:block;color:var(--text);">Excellent Work</b>
-                  <small style="color:#22c55e;font-weight:700;font-size:8px;">▲ +7 from last session</small>
-                </div>
-              </div>
-
-              <!-- Practice Interview Card -->
-              <div style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 10px;display:flex;justify-content:space-between;align-items:center;">
-                <div style="display:flex;align-items:center;gap:8px;">
-                  <div style="width:26px;height:26px;border-radius:8px;background:rgba(255,122,69,0.15);display:grid;place-items:center;color:var(--primary);">
-                    <svg style="width:12px;height:12px;fill:currentColor;"><use href="#i-mic"/></svg>
+                <div class="hero-dash-indicators">
+                  <span>5G</span>
+                  <div class="hero-dash-battery">
+                    <span class="hero-dash-battery-level"></span>
                   </div>
-                  <div>
-                    <span style="font-size:7px;font-weight:800;color:var(--muted);text-transform:uppercase;">ANDROID</span>
-                    <b style="font-size:10px;display:block;">Practice Interview</b>
-                  </div>
-                </div>
-                <div style="width:20px;height:20px;border-radius:50%;background:var(--primary);display:grid;place-items:center;color:#fff;">
-                  <svg style="width:10px;height:10px;fill:currentColor;"><use href="#i-arrow"/></svg>
+                  <span>100%</span>
                 </div>
               </div>
 
-              <!-- ATS Job Match Card -->
-              <div style="background:rgba(0,196,180,0.08);border:1px solid rgba(0,196,180,0.25);border-radius:10px;padding:8px 10px;display:flex;justify-content:space-between;align-items:center;">
-                <div style="display:flex;align-items:center;gap:8px;">
-                  <div style="width:26px;height:26px;border-radius:8px;background:rgba(0,196,180,0.2);display:grid;place-items:center;color:#00bfa5;">
-                    <svg style="width:12px;height:12px;fill:currentColor;"><use href="#i-target"/></svg>
+              <!-- Scrollable Dashboard Screen Content -->
+              <div class="hero-dash-content">
+                <!-- Greeting & Coin Badge -->
+                <div class="hero-dash-header">
+                  <div class="hero-dash-user">
+                    <span class="hero-dash-salutation">Good evening 👋</span>
+                    <strong class="hero-dash-username">Hossam Ahmed</strong>
                   </div>
-                  <div>
-                    <div style="display:flex;align-items:center;gap:4px;">
-                      <b style="font-size:10px;">ATS Job Match</b>
-                      <span style="padding:1px 4px;border-radius:3px;background:#00bfa5;color:#fff;font-size:7px;font-weight:800;">🔒 PLUS</span>
+                  <a href="emulator.html" class="hero-dash-coin-badge" title="Virtual Coin Balance">
+                    <span class="hero-dash-coin-icon">🪙</span>
+                    <span class="hero-dash-coin-num">250</span>
+                  </a>
+                </div>
+
+                <!-- 1. Free Plan Banner Card -->
+                <div class="hero-dash-banner">
+                  <div class="hero-dash-banner-text">
+                    <span class="hero-dash-plan-tag">FREE PLAN</span>
+                    <b class="hero-dash-plan-title">Upgrade for ATS & Quizzes</b>
+                  </div>
+                  <a href="pricing.html" class="hero-dash-upgrade-btn">Upgrade</a>
+                </div>
+
+                <!-- 2. Overall Score Card with Donut Ring -->
+                <div class="hero-dash-card hero-dash-score-card">
+                  <div class="hero-dash-score-donut">
+                    <div class="hero-dash-score-inner">85</div>
+                  </div>
+                  <div class="hero-dash-score-info">
+                    <span class="hero-dash-card-label">OVERALL SCORE</span>
+                    <b class="hero-dash-score-headline">Excellent Work</b>
+                    <span class="hero-dash-score-delta">
+                      <svg viewBox="0 0 10 10" width="10" height="10" fill="currentColor"><path d="M5 1.5l4 6H1z"/></svg>
+                      +7 from last session
+                    </span>
+                  </div>
+                </div>
+
+                <!-- 3. Practice Interview Card -->
+                <div class="hero-dash-card hero-dash-interview-card">
+                  <div class="hero-dash-card-left">
+                    <div class="hero-dash-icon-box hero-dash-mic-box">
+                      <svg><use href="#i-mic"/></svg>
                     </div>
-                    <small style="font-size:8px;color:var(--muted);">Paste a job link · See CV score</small>
+                    <div class="hero-dash-card-text">
+                      <span class="hero-dash-card-label">ANDROID</span>
+                      <b class="hero-dash-card-title">Practice Interview</b>
+                    </div>
+                  </div>
+                  <div class="hero-dash-arrow-btn">
+                    <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                   </div>
                 </div>
-                <svg style="width:10px;height:10px;color:#00bfa5;"><use href="#i-arrow"/></svg>
+
+                <!-- 4. ATS Job Match Card -->
+                <div class="hero-dash-card hero-dash-ats-card">
+                  <div class="hero-dash-card-left">
+                    <div class="hero-dash-icon-box hero-dash-ats-box">
+                      <svg><use href="#i-target"/></svg>
+                    </div>
+                    <div class="hero-dash-card-text">
+                      <div class="hero-dash-ats-title-row">
+                        <b class="hero-dash-card-title">ATS Job Match</b>
+                        <span class="hero-dash-plus-badge">🔒 PLUS</span>
+                      </div>
+                      <small class="hero-dash-card-sub">Paste a job link · See CV score</small>
+                    </div>
+                  </div>
+                  <div class="hero-dash-ats-arrow">
+                    <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+                  </div>
+                </div>
               </div>
 
-              <!-- Phone Bottom Nav Bar -->
-              <div class="phone-nav-bar">
-                <div class="phone-nav-item active">
+              <!-- Docked Bottom Navigation Bar -->
+              <div class="hero-dash-nav-bar">
+                <div class="hero-dash-nav-item active">
                   <svg><use href="#i-home"/></svg>
                   <span>Home</span>
                 </div>
-                <div class="phone-nav-item">
+                <div class="hero-dash-nav-item">
                   <svg><use href="#i-trophy"/></svg>
                   <span>Arena</span>
                 </div>
-                <div class="phone-nav-item">
+                <div class="hero-dash-nav-item">
                   <svg><use href="#i-chart"/></svg>
                   <span>Reports</span>
                 </div>
-                <div class="phone-nav-item">
-                  <svg><use href="#i-users"/></svg>
+                <div class="hero-dash-nav-item">
+                  <svg><use href="#i-user"/></svg>
                   <span>Profile</span>
                 </div>
+                <div class="hero-dash-home-indicator"></div>
               </div>
             </div>
+            <div class="hero-glow"></div>
           </div>
-          <div class="hero-glow"></div>
         </div>
       </div>
     </section>
