@@ -170,57 +170,61 @@ p { color: var(--muted); }
 .hero-visual { position: relative; min-height: 560px; display: grid; place-items: center; }
 .hero-glow { width: 440px; height: 440px; border-radius: 50%; position: absolute; z-index: -2; background: radial-gradient(circle, var(--primary), transparent 68%); filter: blur(75px); opacity: .24; }
 
-/* Smartphone Chassis */
+/* Flagship Smartphone Chassis & Slim Titanium Bezel */
 .phone {
-  width: 316px;
+  width: 312px;
   height: 636px;
-  border-radius: 46px;
-  background: #0B0F19;
-  padding: 10px;
+  border-radius: 44px;
+  background: #0A0E17;
+  padding: 6px;
   box-shadow: 
-    0 0 0 1px rgba(255, 255, 255, 0.14),
-    0 25px 70px -10px rgba(11, 15, 25, 0.5),
-    0 0 70px rgba(255, 122, 69, 0.12);
+    0 0 0 1px rgba(255, 255, 255, 0.18),
+    0 0 0 2.5px rgba(15, 23, 42, 0.9),
+    0 25px 70px -8px rgba(0, 0, 0, 0.65),
+    0 0 50px rgba(255, 122, 69, 0.12);
   position: relative;
-  border: 4px solid #1E273D;
+  border: 2px solid #1E293B;
   overflow: visible;
   user-select: none;
 }
 .phone::before {
   content: "";
   position: absolute;
-  inset: 1px;
-  border-radius: 42px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  inset: 0px;
+  border-radius: 41px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   pointer-events: none;
   z-index: 5;
 }
 
-/* Hardware Side Buttons */
+/* Brushed Metal Side Hardware Buttons */
 .phone-hw-btn {
   position: absolute;
-  background: linear-gradient(180deg, #475569, #1E293B);
-  border-radius: 3px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: linear-gradient(180deg, #64748B 0%, #334155 45%, #1E293B 100%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   z-index: 2;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
 }
 .phone-hw-power {
-  right: -9px;
-  top: 120px;
-  width: 5px;
-  height: 48px;
+  right: -5.5px;
+  top: 110px;
+  width: 3.5px;
+  height: 44px;
+  border-radius: 0 3px 3px 0;
 }
 .phone-hw-vol-up {
-  left: -9px;
-  top: 100px;
-  width: 5px;
-  height: 38px;
+  left: -5.5px;
+  top: 95px;
+  width: 3.5px;
+  height: 36px;
+  border-radius: 3px 0 0 3px;
 }
 .phone-hw-vol-down {
-  left: -9px;
-  top: 148px;
-  width: 5px;
-  height: 38px;
+  left: -5.5px;
+  top: 140px;
+  width: 3.5px;
+  height: 36px;
+  border-radius: 3px 0 0 3px;
 }
 
 .hero-phone {
@@ -232,11 +236,11 @@ p { color: var(--muted); }
   transform: rotate(0deg) translateY(-4px);
 }
 
-/* Base Phone Inner Screen (Clipped to Phone Bezel) */
+/* Base Phone Inner Screen (Concentric with 44px Outer Radius) */
 .phone-screen {
   width: 100%;
   height: 100%;
-  border-radius: 36px;
+  border-radius: 38px;
   overflow: hidden;
   position: relative;
   background: #090D16;
@@ -252,34 +256,34 @@ p { color: var(--muted); }
 /* Dynamic Island Notch for Standalone/Demo Screens */
 .phone-island {
   position: absolute;
-  top: 10px;
+  top: 7px;
   left: 50%;
   transform: translateX(-50%);
-  width: 82px;
-  height: 22px;
-  border-radius: 14px;
+  width: 74px;
+  height: 18px;
+  border-radius: 20px;
   background: #000000;
   z-index: 12;
   pointer-events: none;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: 0 9px;
-  gap: 4px;
+  padding: 0 8px;
+  gap: 3.5px;
 }
 .phone-island::before {
   content: '';
-  width: 7px;
-  height: 7px;
+  width: 6.5px;
+  height: 6.5px;
   border-radius: 50%;
   background: #0F172A;
   border: 1px solid #1E293B;
 }
 .phone-island::after {
   content: '';
-  width: 3.5px;
-  height: 3.5px;
+  width: 3px;
+  height: 3px;
   border-radius: 50%;
   background: #059669;
   opacity: 0.85;
@@ -289,7 +293,7 @@ p { color: var(--muted); }
 .hero-dash-screen {
   width: 100%;
   height: 100%;
-  border-radius: 36px;
+  border-radius: 38px;
   overflow: hidden;
   position: relative;
   background: #F8FAFC;
@@ -976,7 +980,7 @@ p { color: var(--muted); }
 .demo-placeholder {
   width: 100%;
   height: 100%;
-  border-radius: 36px;
+  border-radius: 38px;
   overflow: hidden;
   position: relative;
   background: radial-gradient(circle at 50% 35%, #1e293b, #090d16 72%);
@@ -994,7 +998,7 @@ p { color: var(--muted); }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 36px;
+  border-radius: 38px;
   overflow: hidden;
   display: none;
   z-index: 3;
@@ -1188,10 +1192,10 @@ footer { border-top: 1px solid var(--line); padding: 34px 0; }
   .hero-actions { flex-direction: column; }
   .hero-actions .btn, .hero-actions .text-link { width: 100%; justify-content: center; }
   .hero-visual { min-height: auto; padding: 10px 0; overflow: visible; }
-  .phone, .demo-phone, .modal-phone { width: 290px; height: 595px; border-radius: 40px; padding: 8px; margin: 0 auto; }
-  .hero-dash-screen, .phone-screen, .demo-placeholder, .demo-placeholder video { border-radius: 32px; }
+  .phone, .demo-phone, .modal-phone { width: 290px; height: 595px; border-radius: 40px; padding: 5px; margin: 0 auto; }
+  .hero-dash-screen, .phone-screen, .demo-placeholder, .demo-placeholder video { border-radius: 35px; }
   .hero-dash-status-bar { height: 38px; padding: 0 12px; }
-  .hero-dash-island, .phone-island { width: 76px; height: 20px; top: 6px; }
+  .hero-dash-island, .phone-island { width: 70px; height: 18px; top: 5px; }
   .hero-dash-content { padding: 2px 10px 58px; gap: 8px; }
   .hero-dash-banner { padding: 10px 12px; border-radius: 14px; }
   .hero-dash-plan-title { font-size: 11.5px; }
@@ -1255,9 +1259,9 @@ footer { border-top: 1px solid var(--line); padding: 34px 0; }
   .announcement-bar { flex-wrap: wrap; justify-content: center; font-size: 11px; gap: 4px; }
   .announcement-bar span:first-child { white-space: normal; }
   .hero-visual { min-height: auto; padding: 12px 0; }
-  .phone, .demo-phone, .modal-phone { width: 295px; height: 605px; border-radius: 42px; }
-  .hero-dash-screen, .phone-screen, .demo-placeholder, .demo-placeholder video { border-radius: 34px; }
-  .hero-dash-island, .phone-island { width: 74px; height: 20px; top: 6px; }
+  .phone, .demo-phone, .modal-phone { width: 295px; height: 605px; border-radius: 42px; padding: 6px; }
+  .hero-dash-screen, .phone-screen, .demo-placeholder, .demo-placeholder video { border-radius: 36px; }
+  .hero-dash-island, .phone-island { width: 72px; height: 18px; top: 5px; }
   .orbit-tag { font-size: 10px; padding: 6px 10px; }
   .stats-grid { grid-template-columns: 1fr 1fr; }
   .problem-grid { grid-template-columns: 1fr; }
@@ -1309,10 +1313,10 @@ footer { border-top: 1px solid var(--line); padding: 34px 0; }
   .hero-lead { font-size: 14px; line-height: 1.55; }
   .hero-actions .btn, .hero-actions .text-link { width: 100%; justify-content: center; }
   .hero-visual { min-height: auto; padding: 10px 0; overflow: visible; width: 100%; }
-  .phone, .demo-phone, .modal-phone { width: min(285px, calc(100vw - 32px)); height: 585px; border-radius: 38px; padding: 7px; margin: 0 auto; }
-  .hero-dash-screen, .phone-screen, .demo-placeholder, .demo-placeholder video { border-radius: 30px; }
+  .phone, .demo-phone, .modal-phone { width: min(285px, calc(100vw - 32px)); height: 585px; border-radius: 38px; padding: 5px; margin: 0 auto; }
+  .hero-dash-screen, .phone-screen, .demo-placeholder, .demo-placeholder video { border-radius: 33px; }
   .hero-dash-status-bar { height: 36px; padding: 0 10px; }
-  .hero-dash-island, .phone-island { width: 70px; height: 18px; top: 6px; }
+  .hero-dash-island, .phone-island { width: 68px; height: 16px; top: 5px; }
   .hero-dash-content { padding: 2px 8px 56px; gap: 7px; }
   .hero-dash-banner { padding: 9px 11px; border-radius: 13px; }
   .hero-dash-plan-title { font-size: 11px; }
