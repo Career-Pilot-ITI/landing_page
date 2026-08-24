@@ -47,7 +47,7 @@
 
   <div class="scroll-progress" id="scrollProgress"></div>
   <div class="announcement-bar">
-    <span>✨ ITI Intake 46 Graduation Showcase</span> · <span>Native Android & iOS, Spring Cloud, RAG & Full Documentation</span> · <a href="docs.html">Explore SRS Docs <svg style="width:12px;height:12px;fill:currentColor;"><use href="#i-arrow"/></svg></a>
+    <span>✨ ITI Intake 46 Graduation Showcase</span> · <span>Native Android & iOS, Spring Cloud, pgvector RAG</span> · <a href="docs.html">Read Architecture Docs <svg style="width:12px;height:12px;fill:currentColor;"><use href="#i-arrow"/></svg></a>
   </div>
   <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div><div class="ambient ambient-c"></div>
 
@@ -96,20 +96,20 @@
   </header>
 
   <main>
-    <!-- HERO SECTION -->
+    <!-- HERO SECTION (WITH THREEUI 3D FLOW FIELD) -->
     <section class="hero" data-threeui-hero-bg>
       <div class="container hero-grid">
         <div class="hero-copy reveal">
           <div class="eyebrow"><span class="live-dot"></span> AI-powered career readiness platform</div>
           <h1>Prepare with context.<br/><span class="gradient-text">Perform with confidence.</span></h1>
-          <p class="hero-lead">Career Pilot unifies CV intelligence, adaptive mock interviews with on-device computer vision, ATS matching, and competitive challenges into one seamless readiness platform.</p>
+          <p class="hero-lead">Career Pilot unifies CV semantic intelligence, adaptive mock interviews with on-device computer vision, ATS matching, and competitive screening arenas into one seamless platform.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary btn-lg" href="product.html"><svg><use href="#i-spark"/></svg> Explore Product</a>
-            <a class="btn btn-secondary btn-lg" href="pricing.html"><svg><use href="#i-wallet"/></svg> View Pricing</a>
-            <a class="text-link" href="docs.html">Read SRS Documentation <svg><use href="#i-arrow"/></svg></a>
+            <a class="btn btn-primary btn-lg apk-link" href="https://drive.google.com/file/d/1UaDY4iH1V7P2FbzhyFoJamS35vxfknQp/view?usp=sharing" target="_blank" rel="noopener noreferrer"><svg><use href="#i-download"/></svg> Download Signed APK</a>
+            <a class="btn btn-secondary btn-lg" href="product.html"><svg><use href="#i-spark"/></svg> Explore Product</a>
+            <a class="text-link" href="emulator.html">Try Live Web Emulator <svg><use href="#i-arrow"/></svg></a>
           </div>
           <div class="hero-meta">
-            <span>Native Android</span><span>Native iOS</span><span>Spring Cloud</span><span>RAG & Agentic AI</span>
+            <span>Native Android (Kotlin)</span><span>Native iOS (Swift)</span><span>Spring Cloud 3.4</span><span>pgvector RAG</span>
           </div>
         </div>
         <div class="hero-visual reveal reveal-delay-1" aria-label="Career Pilot application preview">
@@ -117,7 +117,7 @@
           <div class="orbit-tag orbit-2"><svg><use href="#i-mic"/></svg> AI Interview</div>
           <div class="orbit-tag orbit-3"><svg><use href="#i-trophy"/></svg> Challenges</div>
           <div class="orbit-tag orbit-4"><svg><use href="#i-chart"/></svg> Reports</div>
-          <div class="phone hero-phone" aria-label="Career Pilot Dashboard Preview">
+          <div class="phone hero-phone" data-threeui-tilt aria-label="Career Pilot Dashboard Preview">
             <!-- Hardware Side Buttons -->
             <div class="phone-hw-btn phone-hw-power"></div>
             <div class="phone-hw-btn phone-hw-vol-up"></div>
@@ -140,7 +140,7 @@
                 </div>
               </div>
 
-              <!-- Scrollable Dashboard Screen Content -->
+              <!-- Focused Dashboard Content -->
               <div class="hero-dash-content">
                 <!-- Greeting & Coin Badge -->
                 <div class="hero-dash-header">
@@ -154,22 +154,13 @@
                   </a>
                 </div>
 
-                <!-- 1. Free Plan Banner Card -->
-                <div class="hero-dash-banner">
-                  <div class="hero-dash-banner-text">
-                    <span class="hero-dash-plan-tag">FREE PLAN</span>
-                    <b class="hero-dash-plan-title">Upgrade for ATS & Quizzes</b>
-                  </div>
-                  <a href="pricing.html" class="hero-dash-upgrade-btn">Upgrade</a>
-                </div>
-
-                <!-- 2. Overall Score Card with Donut Ring -->
+                <!-- Overall Score Card -->
                 <div class="hero-dash-card hero-dash-score-card">
                   <div class="hero-dash-score-donut">
                     <div class="hero-dash-score-inner">85</div>
                   </div>
                   <div class="hero-dash-score-info">
-                    <span class="hero-dash-card-label">OVERALL SCORE</span>
+                    <span class="hero-dash-card-label">OVERALL READINESS</span>
                     <b class="hero-dash-score-headline">Excellent Work</b>
                     <span class="hero-dash-score-delta">
                       <svg viewBox="0 0 10 10" width="10" height="10" fill="currentColor"><path d="M5 1.5l4 6H1z"/></svg>
@@ -178,15 +169,16 @@
                   </div>
                 </div>
 
-                <!-- 3. Practice Interview Card -->
+                <!-- Active Mock Interview Practice Card -->
                 <div class="hero-dash-card hero-dash-interview-card">
                   <div class="hero-dash-card-left">
                     <div class="hero-dash-icon-box hero-dash-mic-box">
                       <svg><use href="#i-mic"/></svg>
                     </div>
                     <div class="hero-dash-card-text">
-                      <span class="hero-dash-card-label">ANDROID</span>
-                      <b class="hero-dash-card-title">Practice Interview</b>
+                      <span class="hero-dash-card-label">ANDROID TRACK</span>
+                      <b class="hero-dash-card-title">Technical Mock Interview</b>
+                      <small style="font-size:10px;color:var(--muted);display:block;margin-top:2px;">Live Vision & Speech AI scoring</small>
                     </div>
                   </div>
                   <div class="hero-dash-arrow-btn">
@@ -194,7 +186,7 @@
                   </div>
                 </div>
 
-                <!-- 4. ATS Job Match Card -->
+                <!-- ATS Quick Match Banner -->
                 <div class="hero-dash-card hero-dash-ats-card">
                   <div class="hero-dash-card-left">
                     <div class="hero-dash-icon-box hero-dash-ats-box">
@@ -202,10 +194,10 @@
                     </div>
                     <div class="hero-dash-card-text">
                       <div class="hero-dash-ats-title-row">
-                        <b class="hero-dash-card-title">ATS Job Match</b>
-                        <span class="hero-dash-plus-badge">🔒 PLUS</span>
+                        <b class="hero-dash-card-title">ATS Job Match: 94%</b>
+                        <span class="hero-dash-plus-badge">PLUS</span>
                       </div>
-                      <small class="hero-dash-card-sub">Paste a job link · See CV score</small>
+                      <small class="hero-dash-card-sub">Google X-Y-Z resume refactoring ready</small>
                     </div>
                   </div>
                   <div class="hero-dash-ats-arrow">
@@ -241,100 +233,56 @@
       </div>
     </section>
 
-    <!-- TRUST STATS STRIP -->
+    <!-- TRUST & ENGINEERING STATS STRIP -->
     <section class="stats-strip">
       <div class="container stats-grid reveal">
-        <div><strong data-count="10">0</strong><span>Product Pillars</span></div>
-        <div><strong data-count="3">0</strong><span>Access Tiers</span></div>
-        <div><strong data-count="4">0</strong><span>Engineering Tracks</span></div>
-        <div><strong data-count="2">0</strong><span>Native Platforms</span></div>
+        <div><strong data-count="30">0</strong><span>FPS Edge Vision</span></div>
+        <div><strong data-count="1536">0</strong><span>pgvector Dimensions</span></div>
+        <div><strong data-count="100">0</strong><span>% Native Clients</span></div>
+        <div><strong data-count="4">0</strong><span>STAR Evaluation Tiers</span></div>
       </div>
     </section>
 
-    <!-- COMPANY MISSION & VALUE PROPOSITION -->
-    <section class="section-pad" id="company">
+    <!-- CORE VALUE PILLARS (CLEAN 3-CARD ARCHITECTURE) -->
+    <section class="section-pad alt-section" id="pillars">
       <div class="container">
         <div class="section-heading reveal">
           <span class="section-no">01.</span>
           <div>
-            <p class="kicker">Why Career Pilot</p>
-            <h2>Career preparation breaks when context is fragmented.</h2>
-            <p>CV editors, mock interview bots, ATS checkers, and delivery feedback usually live in disconnected silos. Career Pilot links the candidate, target role, and real-time performance memory.</p>
+            <p class="kicker">Core System Capabilities</p>
+            <h2>Three unified pillars of career preparation.</h2>
+            <p>Every practice session is linked to verified candidate context—from active CV embeddings to real-time gaze metrics and hiring rubrics.</p>
           </div>
         </div>
 
-        <div class="problem-grid">
-          <article class="card reveal"><div class="icon-chip"><svg><use href="#i-file"/></svg></div><h3>Fragmented Tools</h3><p>Your CV, target role requirements, and practice history live in disconnected apps with no shared context.</p></article>
-          <article class="card reveal reveal-delay-1"><div class="icon-chip"><svg><use href="#i-target"/></svg></div><h3>ATS Blind Spots</h3><p>Strong engineers miss first-round screening because their CV fails to communicate required semantic evidence.</p></article>
-          <article class="card reveal reveal-delay-2"><div class="icon-chip"><svg><use href="#i-brain"/></svg></div><h3>Generic AI Hallucinations</h3><p>Ungrounded chatbots ask irrelevant questions and offer uncalibrated advice disconnected from real hiring rubrics.</p></article>
-          <article class="card reveal reveal-delay-3"><div class="icon-chip"><svg><use href="#i-video"/></svg></div><h3>Missing Delivery Feedback</h3><p>Text-only practice misses eye contact, body posture stability, speech pacing (WPM), and communication flow.</p></article>
-        </div>
-
-        <div class="mission-panel reveal">
-          <div>
-            <p class="kicker">Our Mission</p>
-            <h3>Turn preparation into a measurable coaching journey.</h3>
-          </div>
-          <p>We provide a closed-loop system: from CV ingestion and semantic gap analysis to adaptive mock interviews, live on-device delivery cues, and structured STAR feedback scoring.</p>
-          <div class="mission-points">
-            <span><svg><use href="#i-check"/></svg> Grounded Personalization</span>
-            <span><svg><use href="#i-check"/></svg> Multimodal Real-Time Cues</span>
-            <span><svg><use href="#i-check"/></svg> Measurable Employability</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CORE SOLUTIONS AT A GLANCE (GATEWAY CARDS) -->
-    <section class="section-pad alt-section" id="solutions">
-      <div class="container">
-        <div class="section-heading reveal">
-          <span class="section-no">02.</span>
-          <div>
-            <p class="kicker">Platform Solutions</p>
-            <h2>Four interconnected product experiences.</h2>
-            <p>Explore our specialized features and interactive capabilities across the platform.</p>
-          </div>
-        </div>
-
-        <div class="problem-grid" style="grid-template-columns: repeat(2, 1fr);">
-          <!-- Solution 1 -->
-          <article class="card reveal" style="min-height: auto;">
-            <div class="icon-chip"><svg><use href="#i-mic"/></svg></div>
-            <h3>Adaptive Mock Interviews & Voice AI</h3>
-            <p>Practice track-specific technical and behavioral interviews with real-time speech transcription, live on-device vision cues (gaze & posture), and multi-criteria STAR scoring.</p>
-            <div style="margin-top: 18px;">
-              <a class="btn btn-secondary" href="product.html#playground">Try Live Simulator <svg style="width:12px;height:12px;fill:currentColor;"><use href="#i-arrow"/></svg></a>
-            </div>
-          </article>
-
-          <!-- Solution 2 -->
-          <article class="card reveal reveal-delay-1" style="min-height: auto;">
+        <div class="problem-grid" style="grid-template-columns: repeat(3, 1fr);">
+          <!-- Pillar 1: CV & ATS -->
+          <article class="card reveal" data-threeui-tilt style="min-height: auto;">
             <div class="icon-chip"><svg><use href="#i-target"/></svg></div>
-            <h3>ATS Match Workspace & CV AI Optimization</h3>
-            <p>Upload your CV, parse target job descriptions, calculate vector-based match percentage, and asynchronously refactor resume bullets with the Google X-Y-Z formula.</p>
-            <div style="margin-top: 18px;">
+            <h3>CV & ATS Vector Intelligence</h3>
+            <p>Upload resumes, extract semantic embeddings via pgvector, match against target job descriptions, and asynchronously refactor bullets using Google's X-Y-Z formula.</p>
+            <div style="margin-top: 20px;">
               <a class="btn btn-secondary" href="product.html#ats">Test ATS Scanner <svg style="width:12px;height:12px;fill:currentColor;"><use href="#i-arrow"/></svg></a>
             </div>
           </article>
 
-          <!-- Solution 3 -->
-          <article class="card reveal reveal-delay-2" style="min-height: auto;">
-            <div class="icon-chip"><svg><use href="#i-trophy"/></svg></div>
-            <h3>Interview Challenges & Cohort Screening</h3>
-            <p>Compete in open public community sprints or join private invite-only screening rounds. Max creators can configure custom question rubrics and review candidate submissions.</p>
-            <div style="margin-top: 18px;">
-              <a class="btn btn-secondary" href="product.html#challenges">Explore Challenges <svg style="width:12px;height:12px;fill:currentColor;"><use href="#i-arrow"/></svg></a>
+          <!-- Pillar 2: Multimodal Interviews -->
+          <article class="card reveal reveal-delay-1" data-threeui-tilt style="min-height: auto;">
+            <div class="icon-chip"><svg><use href="#i-mic"/></svg></div>
+            <h3>Adaptive Mock Interviews & Vision AI</h3>
+            <p>Practice track-specific technical and behavioral interviews with real-time speech transcription, live on-device vision cues (gaze & posture), and dynamic follow-up questioning.</p>
+            <div style="margin-top: 20px;">
+              <a class="btn btn-secondary" href="product.html#playground">Try Live Simulator <svg style="width:12px;height:12px;fill:currentColor;"><use href="#i-arrow"/></svg></a>
             </div>
           </article>
 
-          <!-- Solution 4 -->
-          <article class="card reveal reveal-delay-3" style="min-height: auto;">
-            <div class="icon-chip"><svg><use href="#i-wallet"/></svg></div>
-            <h3>Hybrid Monetization & Virtual Coins</h3>
-            <p>Free, Plus, and Max subscription tiers combined with flexible virtual coins for compute-heavy actions, secure PayMob integration, and centralized <code>core:access</code> gating.</p>
-            <div style="margin-top: 18px;">
-              <a class="btn btn-secondary" href="pricing.html">View Plans & Calculator <svg style="width:12px;height:12px;fill:currentColor;"><use href="#i-arrow"/></svg></a>
+          <!-- Pillar 3: STAR Scoring & Arenas -->
+          <article class="card reveal reveal-delay-2" data-threeui-tilt style="min-height: auto;">
+            <div class="icon-chip"><svg><use href="#i-trophy"/></svg></div>
+            <h3>Explainable STAR Scoring & Arenas</h3>
+            <p>Receive structured breakdown scores across Situation, Task, Action, and Result with targeted coaching tips, or compete in public sprints and private screening cohorts.</p>
+            <div style="margin-top: 20px;">
+              <a class="btn btn-secondary" href="product.html#challenges">Explore Arenas <svg style="width:12px;height:12px;fill:currentColor;"><use href="#i-arrow"/></svg></a>
             </div>
           </article>
         </div>
@@ -353,8 +301,9 @@
               <div class="sphere-pillar-tag"><span class="sphere-pillar-tag-dot" style="background:#ec4899;"></span> ATS Matcher (X-Y-Z)</div>
               <div class="sphere-pillar-tag"><span class="sphere-pillar-tag-dot" style="background:#a855f7;"></span> Competitive Arena</div>
             </div>
-            <div style="margin-top: 12px;">
+            <div style="margin-top: 12px; display: flex; gap: 10px; flex-wrap: wrap;">
               <a class="btn btn-primary" href="product.html#playground"><svg><use href="#i-spark"/></svg> Launch Interactive Simulator</a>
+              <a class="btn btn-secondary" href="docs.html"><svg><use href="#i-book"/></svg> Explore SRS Specs</a>
             </div>
           </div>
           <div class="threeui-sphere-viewport" id="threeui-ai-sphere">
@@ -367,11 +316,11 @@
       </div>
     </section>
 
-    <!-- LIVE DEMO & EMULATOR SHOWCASE -->
+    <!-- LIVE DEMO & INTERACTIVE WALKTHROUGH -->
     <section class="section-pad" id="demo">
       <div class="container demo-layout">
         <div class="section-heading reveal compact-heading">
-          <span class="section-no">03.</span>
+          <span class="section-no">02.</span>
           <div>
             <p class="kicker">Interactive Product Walkthrough</p>
             <h2>Experience Career Pilot in action.</h2>
@@ -392,9 +341,12 @@
               <span><svg><use href="#i-check"/></svg> Full Flow Walkthrough</span>
               <span><svg><use href="#i-check"/></svg> Interactive Player</span>
             </div>
-            <button class="btn btn-primary btn-lg" data-open-demo><svg><use href="#i-play"/></svg> Open Fullscreen Demo</button>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px;">
+              <button class="btn btn-primary btn-lg" data-open-demo><svg><use href="#i-play"/></svg> Fullscreen Video Demo</button>
+              <a class="btn btn-secondary btn-lg" href="emulator.html"><svg><use href="#i-spark"/></svg> Try Live Web Emulator</a>
+            </div>
           </div>
-          <div class="phone demo-phone">
+          <div class="phone demo-phone" data-threeui-tilt>
             <div class="phone-hw-btn phone-hw-power"></div>
             <div class="phone-hw-btn phone-hw-vol-up"></div>
             <div class="phone-hw-btn phone-hw-vol-down"></div>
@@ -415,91 +367,14 @@
       </div>
     </section>
 
-    <!-- RESOURCE HUB -->
-    <section class="section-pad alt-section" id="resources">
-      <div class="container">
-        <div class="section-heading reveal">
-          <span class="section-no">04.</span>
-          <div>
-            <p class="kicker">Platform Hub & Resources</p>
-            <h2>Explore Career Pilot by section.</h2>
-            <p>Jump to our dedicated product features, pricing economics, technical documentation, or Android build.</p>
-          </div>
-        </div>
-
-        <div class="download-grid">
-          <!-- Card 1: Docs -->
-          <a class="download-card featured-download reveal" href="docs.html">
-            <div class="download-icon"><svg><use href="#i-book"/></svg></div>
-            <div>
-              <span class="badge-tag">Documentation</span>
-              <h3>Interactive SRS Portal</h3>
-              <p>Explore complete architecture designs, pgvector RAG models, and REST API contracts.</p>
-            </div>
-            <svg class="edge-arrow"><use href="#i-arrow"/></svg>
-          </a>
-
-          <!-- Card 2: Product -->
-          <a class="download-card reveal" href="product.html">
-            <div class="download-icon"><svg><use href="#i-spark"/></svg></div>
-            <div>
-              <span>Platform Tour</span>
-              <h3>Product & Live Playground</h3>
-              <p>Explore 10 pillars and test the interactive interview simulator in your browser.</p>
-            </div>
-            <svg class="edge-arrow"><use href="#i-arrow"/></svg>
-          </a>
-
-          <!-- Card 3: Pricing -->
-          <a class="download-card reveal" href="pricing.html">
-            <div class="download-icon"><svg><use href="#i-wallet"/></svg></div>
-            <div>
-              <span>Monetization</span>
-              <h3>Plans & ROI Calculator</h3>
-              <p>Free, Plus, and Max tiers, virtual coin packs, and interactive practice estimator.</p>
-            </div>
-            <svg class="edge-arrow"><use href="#i-arrow"/></svg>
-          </a>
-
-          <!-- Card 4: APK -->
-          <a class="download-card reveal apk-link" href="https://drive.google.com/file/d/1UaDY4iH1V7P2FbzhyFoJamS35vxfknQp/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-            <div class="download-icon"><svg><use href="#i-download"/></svg></div>
-            <div>
-              <span>Mobile Release</span>
-              <h3>Download Android APK</h3>
-              <p>Install the signed native Android build directly on a physical device or emulator.</p>
-            </div>
-            <svg class="edge-arrow"><use href="#i-arrow"/></svg>
-          </a>
-        </div>
-
-        <!-- QR Code Instant Install Card -->
-        <div class="qr-inline-card reveal">
-          <div class="qr-box-wrap">
-            <img src="assets/qr-apk-download.svg" alt="Scan to download APK" />
-            <div class="qr-scan-line"></div>
-          </div>
-          <div class="qr-inline-info">
-            <div class="eyebrow" style="margin-bottom: 4px; padding: 4px 10px;"><span class="live-dot"></span> Instant Mobile Install</div>
-            <b>Scan QR Code with Phone Camera</b>
-            <span>Point your phone camera to download the Android APK directly or tap to expand.</span>
-            <div style="display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap;">
-              <button class="btn btn-secondary" data-open-qr="apk" style="padding: 6px 12px; font-size: 11px; min-height: 32px;"><svg style="width:12px;height:12px;fill:currentColor;"><use href="#i-qr"/></svg> Expand QR Code</button>
-              <button class="btn btn-secondary" data-open-qr="demo" style="padding: 6px 12px; font-size: 11px; min-height: 32px;"><svg style="width:12px;height:12px;fill:currentColor;"><use href="#i-spark"/></svg> Web Emulator QR</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- FAQ SECTION -->
-    <section class="section-pad faq-section">
+    <section class="section-pad faq-section alt-section" id="faq">
       <div class="container faq-grid">
         <div class="section-heading reveal compact-heading">
-          <span class="section-no">05.</span>
+          <span class="section-no">03.</span>
           <div>
             <p class="kicker">Quick Answers</p>
-            <h2>What visitors usually ask.</h2>
+            <h2>Frequently asked questions.</h2>
           </div>
         </div>
         <div class="faq-list reveal">
@@ -508,8 +383,8 @@
             <p>Career Pilot is an end-to-end AI career readiness platform developed as an Information Technology Institute (ITI Intake 46) 9-Month Professional Graduation Project. It unifies CV ingestion, adaptive mock interviews with multimodal cues, ATS job matching, performance analytics, and competitive challenges.</p>
           </details>
           <details>
-            <summary>How is Career Pilot's AI different from generic chatbots?<span>+</span></summary>
-            <p>Career Pilot grounds all AI questions and evaluations in candidate profile context and curriculum standards using PostgreSQL <code>pgvector</code> semantic retrieval, eliminating hallucinations and ensuring realistic STAR interview scoring.</p>
+            <summary>How is Career Pilot's AI grounded without hallucinations?<span>+</span></summary>
+            <p>Career Pilot grounds all AI questions and evaluations in candidate profile context and curriculum standards using PostgreSQL <code>pgvector</code> semantic retrieval, ensuring realistic STAR interview scoring and explainable feedback.</p>
           </details>
           <details>
             <summary>What native mobile platforms are supported?<span>+</span></summary>
@@ -519,18 +394,18 @@
       </div>
     </section>
 
-    <!-- FINAL CTA -->
+    <!-- FINAL CTA BANNER -->
     <section class="final-cta section-pad">
       <div class="container final-card reveal">
         <img src="assets/career-pilot-icon.png" alt="Career Pilot icon"/>
         <div>
           <p class="kicker">Ready to experience Career Pilot?</p>
           <h2>Turn preparation into measurable progress.</h2>
-          <p>Try the interactive playground, inspect the full SRS documentation, or download the mobile app.</p>
+          <p>Try the interactive playground, inspect the full SRS documentation, or install the Android application.</p>
         </div>
         <div class="final-actions">
-          <a class="btn btn-primary btn-lg" href="product.html#playground"><svg><use href="#i-spark"/></svg> Try Playground</a>
-          <a class="btn btn-secondary btn-lg" href="docs.html"><svg><use href="#i-book"/></svg> Explore Docs</a>
+          <a class="btn btn-primary btn-lg apk-link" href="https://drive.google.com/file/d/1UaDY4iH1V7P2FbzhyFoJamS35vxfknQp/view?usp=sharing" target="_blank" rel="noopener noreferrer"><svg><use href="#i-download"/></svg> Download Signed APK</a>
+          <a class="btn btn-secondary btn-lg" href="docs.html"><svg><use href="#i-book"/></svg> Explore SRS Documentation</a>
         </div>
       </div>
     </section>

@@ -792,7 +792,7 @@ p { color: var(--muted); }
 .section-heading.compact-heading { max-width: 840px; }
 .section-heading p:not(.kicker) { max-width: 780px; font-size: 16px; }
 .section-no { font-size: 12px; color: var(--primary); font-weight: 800; letter-spacing: .16em; padding-top: 9px; }
-.problem-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+.problem-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
 .card, .feature-card, .platform-card, .team-group { border: 1px solid var(--line); background: var(--surface); border-radius: var(--radius-lg); box-shadow: var(--shadow-soft); }
 .card { padding: 26px; min-height: 250px; transition: .25s var(--ease); }
 .card:hover, .feature-card:hover, .team-group:hover { transform: translateY(-5px); border-color: color-mix(in srgb,var(--primary) 32%,var(--line)); box-shadow: var(--shadow); }
