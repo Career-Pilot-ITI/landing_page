@@ -1942,4 +1942,266 @@ html[data-theme="midnight"] .vision-chip { color: var(--teal-light); }
   transform: scale(1.1);
 }
 
+/* ==========================================================================
+   THREEUI 3D ENHANCEMENTS & SHADERS (Design+Code ThreeUI)
+   ========================================================================== */
 
+/* ThreeUI 3D Hero Particle Flow Canvas */
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+.hero > .container {
+  position: relative;
+  z-index: 2;
+}
+.threeui-hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.9;
+  mix-blend-mode: normal;
+  transition: opacity 0.5s ease;
+}
+html[data-theme="cloud"] .threeui-hero-canvas {
+  opacity: 0.65;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 50%, rgba(0,0,0,1) 40%, rgba(0,0,0,0.15) 90%, transparent 100%);
+  mask-image: radial-gradient(ellipse at 50% 50%, rgba(0,0,0,1) 40%, rgba(0,0,0,0.15) 90%, transparent 100%);
+}
+html[data-theme="pulse"] .threeui-hero-canvas {
+  opacity: 0.8;
+}
+html[data-theme="midnight"] .threeui-hero-canvas {
+  opacity: 1;
+}
+
+/* ThreeUI 3D Card Parallax & Specular Sheen */
+.hero-phone, .card, .download-card, .price-card, [data-threeui-tilt] {
+  transform-style: preserve-3d;
+  will-change: transform;
+  position: relative;
+}
+.threeui-gloss-sheen {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 10;
+  mix-blend-mode: screen;
+  transition: opacity 0.25s ease;
+}
+
+/* ThreeUI Interactive AI Intelligence Sphere Showcase Component */
+.threeui-sphere-wrapper {
+  margin-top: 36px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 36px;
+  align-items: center;
+}
+@media (max-width: 960px) {
+  .threeui-sphere-wrapper {
+    grid-template-columns: 1fr;
+    padding: 24px;
+  }
+}
+.threeui-sphere-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  z-index: 3;
+}
+.threeui-sphere-info h3 {
+  font-size: 26px;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+.threeui-sphere-info p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.threeui-sphere-pillars-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 8px;
+}
+@media (max-width: 600px) {
+  .threeui-sphere-pillars-list {
+    grid-template-columns: 1fr;
+  }
+}
+.sphere-pillar-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--text);
+  transition: all 0.2s ease;
+}
+.sphere-pillar-tag:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  background: var(--surface-solid);
+}
+.sphere-pillar-tag-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.threeui-sphere-viewport {
+  position: relative;
+  width: 100%;
+  height: 440px;
+  border-radius: var(--radius-lg);
+  background: radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--primary) 8%, transparent), transparent 75%);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+.threeui-sphere-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: grab;
+  outline: none;
+}
+.threeui-sphere-canvas:active {
+  cursor: grabbing;
+}
+.threeui-sphere-hint {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+  background: var(--surface-solid);
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  pointer-events: none;
+  z-index: 5;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+/* ThreeUI Sphere Rich Floating Tooltip */
+.threeui-sphere-tooltip {
+  position: absolute;
+  z-index: 20;
+  width: 250px;
+  padding: 14px;
+  border-radius: 14px;
+  background: var(--surface-solid);
+  border: 1px solid var(--line);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.95) translateY(4px);
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.threeui-sphere-tooltip.visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+.sphere-tt-track {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 4px;
+}
+.sphere-tt-header {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 6px;
+}
+.sphere-tt-icon {
+  font-size: 15px;
+}
+.sphere-tt-name {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.2;
+}
+.sphere-tt-metric {
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 3px 7px;
+  border-radius: 6px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  color: var(--text);
+  margin-bottom: 6px;
+  display: inline-block;
+}
+.sphere-tt-desc {
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* ThreeUI Lumen CTA Shimmer Button */
+.threeui-lumen-btn {
+  position: relative;
+  overflow: hidden;
+}
+.threeui-lumen-btn::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent 0deg, rgba(255, 255, 255, 0.25) 60deg, transparent 120deg);
+  opacity: 0;
+  transform: rotate(0deg);
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.threeui-lumen-btn:hover::before {
+  opacity: 1;
+  animation: threeuiConicSpin 4s linear infinite;
+}
+@keyframes threeuiConicSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ThreeUI Spark Badge Glimmer */
+.threeui-spark-badge {
+  position: relative;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.threeui-spark-badge:hover {
+  border-color: var(--primary);
+  box-shadow: 0 0 16px color-mix(in srgb, var(--primary) 28%, transparent);
+}

@@ -329,39 +329,75 @@
                 <span class="flow-step-num">01</span>
                 <div class="flow-step-info">
                   <h5>Client Edge Perception (Android Jetpack Compose / iOS SwiftUI)</h5>
-                  <p>Local media capture, MediaPipe face/gaze/pose estimation, Whisper/Apple speech recognition, and reactive UI state management.</p>
+                  <p>Local media capture via CameraX, on-device Google MediaPipe (Face & Pose Landmarker), Sherpa-ONNX / Whisper speech-to-text inference, and reactive MVI state management.</p>
                 </div>
               </div>
               <div class="flow-step">
                 <span class="flow-step-num">02</span>
                 <div class="flow-step-info">
-                  <h5>Authoritative Cloud Gateway & Orchestration (Spring Boot 3 / Java 21)</h5>
-                  <p>Stateless JWT authentication, REST API controllers, business workflows, coin wallet ledger, and background worker queues.</p>
+                  <h5>Authoritative Cloud Gateway & Orchestration (Spring Boot 3.4.1 / Java 21)</h5>
+                  <p>Stateless JWT authentication (HMAC-SHA256), Bucket4j Redis token-bucket rate limiting, PII redaction aspect, Apache Tika CV extraction, Paymob payment provider, and background worker queues.</p>
                 </div>
               </div>
               <div class="flow-step">
                 <span class="flow-step-num">03</span>
                 <div class="flow-step-info">
-                  <h5>Semantic Intelligence & RAG Layer (pgvector + Gemini 1.5 Pro)</h5>
-                  <p>Text embedding generation (768-dim), semantic question retrieval, grounded STAR evaluation prompts, and agentic follow-ups.</p>
+                  <h5>Semantic Intelligence & RAG Layer (pgvector + Gemini 1.5 / OpenAI)</h5>
+                  <p>768-dimensional text embeddings, pgvector HNSW cosine distance similarity search, Spring AI prompt orchestration, and autonomous AI agents (InterviewAgent, CoverLetterAgent).</p>
                 </div>
               </div>
               <div class="flow-step">
                 <span class="flow-step-num">04</span>
                 <div class="flow-step-info">
-                  <h5>Transactional & Realtime Persistence (PostgreSQL 16 + Firebase)</h5>
-                  <p>ACID relational entities (Users, Subscriptions, Challenges, Transcripts), vector indexes (HNSW), and cloud push notifications.</p>
+                  <h5>Transactional & Realtime Persistence (PostgreSQL 16 + Firebase Firestore)</h5>
+                  <p>ACID relational entities, Flyway database migrations, double-entry coin ledger, and Firebase Firestore for realtime multiplayer interview challenges.</p>
                 </div>
               </div>
             </div>
           </div>
 
-          <h2 id="android-arch">2.1 Android Application Architecture <a class="header-anchor" href="#android-arch">#</a></h2>
-          <p>The Android client is architected according to <strong>Clean Architecture</strong> principles paired with the <strong>Model-View-Intent (MVI)</strong> pattern, Kotlin Coroutines, and Jetpack Compose for declarative rendering.</p>
+          <h2 id="android-arch">2.1 Android Application Architecture (27+ Multi-Module MVI) <a class="header-anchor" href="#android-arch">#</a></h2>
+          <p>The Android client in <code>d:/iti/CareerPilot</code> is architected according to <strong>Clean Architecture</strong> principles paired with the <strong>Model-View-Intent (MVI)</strong> pattern, Kotlin 2.4.10, Coroutines, Flow, Dagger Hilt 2.60.1, and Jetpack Compose (Material 3 Expressive).</p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Layer / Category</th>
+                  <th>Gradle Modules</th>
+                  <th>Core Responsibility</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>App Host</strong></td>
+                  <td><code>:app</code></td>
+                  <td>Navigation 3 Graph root, Hilt Application container, Firebase App Check initialization.</td>
+                </tr>
+                <tr>
+                  <td><strong>Feature Modules</strong></td>
+                  <td>
+                    <code>:feature:practicesession</code>, <code>:feature:ats</code>, <code>:feature:challenges</code>, <code>:feature:createchallenge</code>, <code>:feature:challengedashboard</code>, <code>:feature:challengedetails</code>, <code>:feature:quiz</code>, <code>:feature:reports</code>, <code>:feature:payment</code>, <code>:feature:onboarding</code>, <code>:feature:login</code>, <code>:feature:profile</code>, <code>:feature:editprofile</code>, <code>:feature:home</code>, <code>:feature:settings</code>
+                  </td>
+                  <td>Isolated UI feature presentation, MVI ViewModels, pure Compose previewable components, and user interaction handlers.</td>
+                </tr>
+                <tr>
+                  <td><strong>Core Intelligence</strong></td>
+                  <td><code>:core:bodylanguage</code>, <code>:core:ai</code>, <code>:core:whisper</code>, <code>:core:challengefirestore</code></td>
+                  <td>MediaPipe Face/Pose signal extractors, Firebase Gemini Flash AI client, Sherpa-ONNX speech recognition, and Firestore realtime matchmaking.</td>
+                </tr>
+                <tr>
+                  <td><strong>Core Infrastructure</strong></td>
+                  <td><code>:core:designsystem</code>, <code>:core:network</code>, <code>:core:database</code>, <code>:core:datastore</code>, <code>:core:access</code>, <code>:core:interviews</code>, <code>:core:model</code>, <code>:core:common</code></td>
+                  <td>M3 Expressive theme tokens, Ktor 3.5.1 HTTP client with JWT interceptor, Room DB, Encrypted DataStore, Centralized Entitlement Engine, and domain models.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
           <div class="code-block-wrapper">
             <div class="code-header">
-              <span class="code-lang">Kotlin · Android MVI Intent & State</span>
+              <span class="code-lang">Kotlin · Android MVI Intent & State Contract</span>
               <button class="btn-copy"><svg><use href="#i-copy"/></svg> Copy</button>
             </div>
             <pre><code><span class="token-comment">// MVI Contract for Adaptive Mock Interview Session</span>
@@ -382,56 +418,77 @@
 )</code></pre>
           </div>
 
-          <h2 id="ios-arch">2.2 iOS Application Architecture <a class="header-anchor" href="#ios-arch">#</a></h2>
+          <h2 id="backend-arch">2.2 Authoritative Cloud Backend (Spring Boot 3.4.1) <a class="header-anchor" href="#backend-arch">#</a></h2>
+          <p>The authoritative cloud backend in <code>d:/iti/CareerPilot Backend/career-pilot-backend</code> is built on <strong>Java 17/21</strong> and <strong>Spring Boot 3.4.1</strong> with a production-ready micro-tier architecture:</p>
+          <ul>
+            <li><strong>Spring Security & Stateless JWT:</strong> HMAC-SHA256 token authentication with RFC 7518 256-bit hashed signing keys and BCrypt cost factor 12.</li>
+            <li><strong>Redis & Bucket4j Rate Limiting:</strong> Token-bucket rate limiting applied via custom <code>@RateLimit</code> aspect to safeguard AI and authentication endpoints against abuse.</li>
+            <li><strong>PII Redaction Aspect:</strong> Intercepts candidate CVs and prompt inputs with <code>@RedactPii</code> to mask emails, phone numbers, and national IDs before external LLM inference.</li>
+            <li><strong>Document Parsing Engine:</strong> Apache Tika 3.3.1 parses uploaded PDF/DOCX resumes to extract clean text streams without formatting artifacts.</li>
+            <li><strong>Spring AI & pgvector Vector Store:</strong> Seamlessly indexes 768-dimensional curriculum embeddings into PostgreSQL 16 using HNSW similarity search.</li>
+            <li><strong>Paymob Payment Integration:</strong> Direct API payment order generation, payment key tokens, HMAC webhook signature verification, and sandbox fallback confirmation.</li>
+          </ul>
+
+          <h2 id="ios-arch">2.3 iOS Application Architecture <a class="header-anchor" href="#ios-arch">#</a></h2>
           <p>The native iOS client utilizes <strong>SwiftUI</strong>, <strong>Clean Architecture + MVVM</strong>, Combine / Swift Concurrency (<code>async/await</code>), Swinject for Dependency Injection, and native Apple Vision & Speech frameworks.</p>
 
-          <h2 id="platform-comparison">2.3 Android vs. iOS Architecture Comparison <a class="header-anchor" href="#platform-comparison">#</a></h2>
+          <h2 id="platform-comparison">2.4 Cross-Platform Technical Matrix <a class="header-anchor" href="#platform-comparison">#</a></h2>
           <div class="table-wrap">
             <table>
               <thead>
                 <tr>
                   <th>Dimension</th>
-                  <th>Android Client</th>
-                  <th>iOS Client</th>
+                  <th>Android Client (Jetpack Compose)</th>
+                  <th>iOS Client (SwiftUI)</th>
+                  <th>Cloud Backend (Spring Boot 3)</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><strong>UI Paradigm</strong></td>
-                  <td>Jetpack Compose (Kotlin)</td>
-                  <td>SwiftUI (Swift 5.10)</td>
+                  <td><strong>Primary Language</strong></td>
+                  <td>Kotlin 2.4.10</td>
+                  <td>Swift 5.10</td>
+                  <td>Java 17 / 21</td>
                 </tr>
                 <tr>
                   <td><strong>Architecture Pattern</strong></td>
                   <td>Clean Architecture + MVI (StateFlow)</td>
                   <td>Clean Architecture + MVVM (ObservableObject)</td>
+                  <td>Layered Hexagonal / Domain-Driven Service</td>
                 </tr>
                 <tr>
                   <td><strong>Dependency Injection</strong></td>
-                  <td>Google Dagger Hilt</td>
+                  <td>Google Dagger Hilt 2.60.1</td>
                   <td>Swinject Container</td>
+                  <td>Spring IoC Container</td>
                 </tr>
                 <tr>
                   <td><strong>Computer Vision</strong></td>
-                  <td>Google MediaPipe Face & Pose Landmarker</td>
-                  <td>Apple Vision Framework (VNDetectFaceLandmarksRequest)</td>
+                  <td>Google MediaPipe Face & Pose Tasks</td>
+                  <td>Apple Vision Framework</td>
+                  <td>— (Zero Video Uploads, Privacy First)</td>
                 </tr>
                 <tr>
                   <td><strong>Speech-to-Text</strong></td>
-                  <td>OpenAI Whisper Local / Server Pipeline</td>
-                  <td>Apple SFSpeechRecognizer on-device</td>
+                  <td>Sherpa-ONNX / Whisper (On-Device)</td>
+                  <td>Apple SFSpeechRecognizer</td>
+                  <td>Whisper Cloud Transcription Service</td>
                 </tr>
                 <tr>
-                  <td><strong>Local Storage</strong></td>
-                  <td>Jetpack DataStore + Room DB</td>
-                  <td>Core Data + Apple Keychain Services</td>
+                  <td><strong>Data Storage</strong></td>
+                  <td>Room DB 2.8.4 + Encrypted DataStore</td>
+                  <td>Core Data + Apple Keychain</td>
+                  <td>PostgreSQL 16 + pgvector + Redis Cache</td>
+                </tr>
+                <tr>
+                  <td><strong>Networking</strong></td>
+                  <td>Ktor Client 3.5.1 (OkHttp Engine)</td>
+                  <td>URLSession + Swift Concurrency</td>
+                  <td>Spring WebMVC + WebSockets + RestClient</td>
                 </tr>
               </tbody>
             </table>
           </div>
-
-          <h2 id="backend-arch">2.4 Authoritative Backend Architecture <a class="header-anchor" href="#backend-arch">#</a></h2>
-          <p>Built with <strong>Spring Boot 3 (Java 21)</strong>, Spring Security with stateless JWT filters, Spring Data JPA, and PostgreSQL 16. The backend orchestrates business logic, AI evaluation, coin transactions, and challenge leaderboards.</p>
         </article>
 
         <!-- CHAPTER 3: AI & PERCEPTION ENGINE -->
@@ -439,30 +496,32 @@
           <div class="doc-section-header">
             <span class="doc-eyebrow">Chapter 03 · AI & Machine Learning</span>
             <h1>AI & Perception Engine Pipeline</h1>
-            <p class="doc-lead">A hybrid AI architecture splitting high-frequency multimodal edge perception from server-side vector retrieval and large language model reasoning.</p>
+            <p class="doc-lead">A hybrid AI architecture splitting high-frequency multimodal edge perception from server-side vector retrieval and autonomous LLM agents.</p>
           </div>
 
           <h2>3.1 AI Modeling & Execution Boundaries <a class="header-anchor" href="#ai-boundaries">#</a></h2>
-          <p>To deliver real-time responsiveness without incurring excessive cloud costs or compromising user privacy, Career Pilot strictly delineates execution boundaries:</p>
+          <p>To deliver real-time responsiveness without incurring high cloud costs or compromising candidate privacy, Career Pilot strictly partitions AI workloads:</p>
           <ul>
-            <li><strong>Edge Processing (On-Device):</strong> Real-time eye contact tracking, face orientation, smile detection, posture stability, and microphone audio capture are executed locally on the client at 30 FPS.</li>
-            <li><strong>Cloud Processing (Backend RAG):</strong> Semantic CV embedding, resume-to-job ATS scoring, contextual question selection, and STAR qualitative evaluation are processed on the authoritative backend.</li>
+            <li><strong>Edge Processing (On-Device):</strong> Real-time eye contact tracking, face orientation, posture stability, hand pacifying fidgets, and speech transcription run locally at 30 FPS. No raw video frames ever leave the device.</li>
+            <li><strong>Cloud RAG Intelligence (Backend):</strong> 768-dimensional curriculum embeddings, semantic question matching in pgvector, ATS gap analysis, and autonomous AI agents.</li>
+            <li><strong>Realtime Multiplayer Matchmaking (Firebase):</strong> Peer coding challenges, live contestant synchronization, and leaderboard tracking.</li>
           </ul>
 
           <h2 id="on-device-ml">3.2 On-Device Computer Vision & Audio Tracking <a class="header-anchor" href="#on-device-ml">#</a></h2>
-          <p>The vision subsystem computes key metrics during live interview practice sessions:</p>
+          <p>The vision subsystem computed in <code>:core:bodylanguage</code> measures 4 key behavioral dimensions during live interview practice:</p>
           <ul>
-            <li><strong>Gaze Stability:</strong> Computes the deviation angle of iris landmarks relative to the camera lens normal vector.</li>
-            <li><strong>Posture Stability:</strong> Tracks shoulder alignment landmarks (MediaPipe pose points 11 & 12) to detect slumping, extreme fidgeting, or camera disappearance.</li>
-            <li><strong>Speech Pacing:</strong> Calculates words-per-minute (WPM), detecting pauses longer than 3 seconds or speech exceeding 180 WPM.</li>
+            <li><strong>1. Gaze Stability & Eye Contact:</strong> Measures pupil-to-iris deviation relative to head pose normal vectors to ensure candidate maintains camera eye contact.</li>
+            <li><strong>2. Torso Posture & Alignment:</strong> Tracks shoulder landmarks (MediaPipe pose points 11 & 12) to detect spinal slumping, leaning, or leaving the frame.</li>
+            <li><strong>3. Hand Pacifying Gestures:</strong> Detects nervous hand-to-face touches (chin, hair, neck) and excessive fidgeting.</li>
+            <li><strong>4. Facial Expressiveness & Energy:</strong> Evaluates smile probability, brow movement, and conversational engagement.</li>
           </ul>
 
-          <h2 id="rag-pipeline">3.3 Retrieval-Augmented Generation (RAG) Architecture <a class="header-anchor" href="#rag-pipeline">#</a></h2>
-          <p>Career Pilot uses PostgreSQL with the <code>pgvector</code> extension to store 768-dimensional question and concept embeddings. When generating mock interview questions or evaluating answers, candidate background context is retrieved via cosine distance matching.</p>
+          <h2 id="rag-pipeline">3.3 PostgreSQL pgvector RAG Architecture <a class="header-anchor" href="#rag-pipeline">#</a></h2>
+          <p>The Spring Boot backend uses PostgreSQL 16 with the <code>pgvector</code> extension to store 768-dimensional question, curriculum, and candidate context embeddings indexed via Hierarchical Navigable Small World (HNSW) graphs.</p>
 
           <div class="code-block-wrapper">
             <div class="code-header">
-              <span class="code-lang">SQL · PostgreSQL pgvector Similarity Query</span>
+              <span class="code-lang">SQL · PostgreSQL pgvector Cosine Distance Query</span>
               <button class="btn-copy"><svg><use href="#i-copy"/></svg> Copy</button>
             </div>
             <pre><code><span class="token-comment">-- Retrieve top-5 most relevant interview questions grounded in candidate CV & target role</span>
@@ -472,44 +531,51 @@
     q.difficulty,
     q.category,
     <span class="token-num">1</span> - (q.embedding &lt;=&gt; <span class="token-str">CAST</span>(:candidate_context_vector <span class="token-kw">AS</span> vector(<span class="token-num">768</span>))) <span class="token-kw">AS</span> similarity_score
-<span class="token-kw">FROM</span> interview_questions q
+<span class="token-kw">FROM</span> question_banks q
 <span class="token-kw">WHERE</span> q.track_id = :target_track_id
   <span class="token-kw">AND</span> q.difficulty = :difficulty_level
 <span class="token-kw">ORDER BY</span> q.embedding &lt;=&gt; <span class="token-str">CAST</span>(:candidate_context_vector <span class="token-kw">AS</span> vector(<span class="token-num">768</span>))
 <span class="token-kw">LIMIT</span> <span class="token-num">5</span>;</code></pre>
           </div>
 
-          <h2 id="agentic-ai">3.4 Agentic AI Evaluation & STAR Scoring <a class="header-anchor" href="#agentic-ai">#</a></h2>
-          <p>Interview answer evaluations follow structured prompt constraints to produce deterministic JSON output containing scores (0-100) across 4 dimensions:</p>
+          <h2 id="agentic-ai">3.4 Autonomous AI Agents & Background Job Executors <a class="header-anchor" href="#agentic-ai">#</a></h2>
+          <p>The backend incorporates specialized autonomous services in <code>com.careerpilot.backend.service.agent</code>:</p>
+          <ul>
+            <li><strong>InterviewAgentService & InterviewTools:</strong> Dynamically orchestrates adaptive mock interview sessions, retrieves grounded RAG questions, and evaluates answers across STAR dimensions.</li>
+            <li><strong>CoverLetterAgentService & CompanyResearchTools:</strong> Autonomous agent that performs live company web research (via <code>WebSearchService</code>) and synthesizes candidate accomplishments into persuasive, role-tailored cover letters.</li>
+            <li><strong>CvOptimizationJobExecutor:</strong> Asynchronous worker executing the Google X-Y-Z formula (<em>"Accomplished [X] as measured by [Y], by doing [Z]"</em>) to refactor candidate CV bullet points without hallucinating skills.</li>
+            <li><strong>LinkedInJobScraperService:</strong> Extracts and parses target job postings from public URLs using JSOUP with fallback parsers.</li>
+          </ul>
+
           <div class="table-wrap">
             <table>
               <thead>
                 <tr>
-                  <th>Dimension</th>
+                  <th>Evaluation Dimension</th>
                   <th>Weight</th>
-                  <th>Evaluation Criteria</th>
+                  <th>Automated STAR Criteria</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td><strong>Situation & Task (ST)</strong></td>
                   <td>25%</td>
-                  <td>Clear articulation of the engineering problem, context, constraints, and business goal.</td>
+                  <td>Clear articulation of the engineering problem, business context, and technical constraints.</td>
                 </tr>
                 <tr>
                   <td><strong>Action (A)</strong></td>
                   <td>35%</td>
-                  <td>Specific technical steps taken by the candidate, tools chosen, architecture decisions, and individual contributions.</td>
+                  <td>Specific technical steps taken, tools and frameworks chosen, architecture decisions, and individual contributions.</td>
                 </tr>
                 <tr>
                   <td><strong>Result & Reflection (R)</strong></td>
                   <td>25%</td>
-                  <td>Quantifiable metrics (e.g., latency reduced by 40%), outcome, lessons learned, and trade-off analysis.</td>
+                  <td>Quantifiable metrics (e.g., latency reduced by 40%), deliverables, trade-offs, and lessons learned.</td>
                 </tr>
                 <tr>
-                  <td><strong>Delivery & Communication</strong></td>
+                  <td><strong>Delivery & Body Language</strong></td>
                   <td>15%</td>
-                  <td>Pacing, structural clarity, filler word frequency, and technical vocabulary accuracy.</td>
+                  <td>Speaking pacing (WPM), gaze stability, posture alignment, and filler word frequency.</td>
                 </tr>
               </tbody>
             </table>
@@ -520,42 +586,42 @@
             <table>
               <thead>
                 <tr>
-                  <th>Feature</th>
-                  <th>AI Model / Technology</th>
-                  <th>Execution Location</th>
+                  <th>Feature / Subsystem</th>
+                  <th>AI Engine / Tool</th>
+                  <th>Execution Environment</th>
                   <th>Latency Target</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>Gaze & Posture Tracking</td>
-                  <td>MediaPipe Landmarker / Apple Vision</td>
-                  <td>On-Device Edge</td>
+                  <td>Body Language & Posture</td>
+                  <td>Google MediaPipe Face & Pose Tasks</td>
+                  <td>On-Device Edge (CameraX)</td>
                   <td>&lt; 33ms (30 FPS)</td>
                 </tr>
                 <tr>
-                  <td>Live Speech Transcription</td>
-                  <td>Whisper STT / Apple Speech</td>
-                  <td>On-Device / Streamed</td>
-                  <td>&lt; 300ms</td>
+                  <td>Voice Transcription (STT)</td>
+                  <td>Sherpa-ONNX / Whisper Inference</td>
+                  <td>On-Device Edge</td>
+                  <td>&lt; 250ms</td>
                 </tr>
                 <tr>
-                  <td>Question Grounding & RAG</td>
-                  <td>PostgreSQL pgvector (HNSW Index)</td>
-                  <td>Spring Boot Cloud</td>
-                  <td>&lt; 80ms</td>
+                  <td>RAG Semantic Grounding</td>
+                  <td>pgvector HNSW Cosine Index (768-dim)</td>
+                  <td>Spring Boot PostgreSQL</td>
+                  <td>&lt; 60ms</td>
                 </tr>
                 <tr>
-                  <td>STAR Answer Evaluation</td>
-                  <td>Gemini 1.5 Pro / Flash</td>
-                  <td>Cloud Backend</td>
-                  <td>&lt; 2.5s</td>
+                  <td>Adaptive STAR Evaluation</td>
+                  <td>Gemini Flash / OpenAI GPT-4o-mini</td>
+                  <td>Spring Boot Backend</td>
+                  <td>&lt; 2.2s</td>
                 </tr>
                 <tr>
-                  <td>Async CV AI Optimization</td>
-                  <td>Gemini 1.5 Pro (Structured JSON)</td>
-                  <td>Worker Queue (Async)</td>
-                  <td>&lt; 8s</td>
+                  <td>CV AI Optimization Worker</td>
+                  <td>Spring AI Async Job Executor (X-Y-Z)</td>
+                  <td>Backend Worker Queue</td>
+                  <td>&lt; 6.0s</td>
                 </tr>
               </tbody>
             </table>
@@ -570,26 +636,26 @@
             <p class="doc-lead">Ten interconnected product pillars designed to support the user throughout their entire career-preparation journey.</p>
           </div>
 
-          <h2>4.1 CV Knowledge Hub <a class="header-anchor" href="#cv-knowledge-hub">#</a></h2>
-          <p>Allows users to upload their active CV (PDF/DOCX). The backend extracts skills, experience timelines, educational background, and projects into structured JSON entities and semantic vector embeddings, making candidate profile context available across all modules.</p>
+          <h2>4.1 CV Knowledge Hub & Profile Extraction <a class="header-anchor" href="#cv-knowledge-hub">#</a></h2>
+          <p>Allows users to upload their active CV (PDF/DOCX). The backend extracts text via Apache Tika and structured profile entities via <code>POST /api/v1/profile/cv/analyze</code>, creating persistent 768-dim embeddings in <code>cv_documents</code> to inform all downstream interviews and ATS analyses.</p>
 
           <h2 id="adaptive-interviews">4.2 Adaptive Mock Interview Practice Room <a class="header-anchor" href="#adaptive-interviews">#</a></h2>
-          <p>Simulates real-world technical and behavioral interview sessions. Features track selection (e.g., Android, iOS, Backend, Quality Assurance), contextual question prompts, speech capture, on-device delivery cues, and instant feedback reports.</p>
+          <p>Simulates real-world technical and behavioral interview sessions. Features track selection, contextual question prompts, speech capture, on-device delivery cues, floating Picture-in-Picture (PiP) viewfinder with rotating sweep gradient borders, and instant STAR scoring.</p>
 
           <h2 id="ats-workspace">4.3 ATS Job Workspace & Gap Analysis <a class="header-anchor" href="#ats-workspace">#</a></h2>
           <p>Candidates can paste target job descriptions or enter job URLs. The engine computes semantic match percentage, highlights missing required keywords, flags hard skill deficiencies, and suggests actionable CV enhancements.</p>
 
           <h2 id="cv-optimization">4.4 Asynchronous CV AI Optimization <a class="header-anchor" href="#cv-optimization">#</a></h2>
-          <p>Long-running AI optimization jobs rewrite CV bullet points according to the Google X-Y-Z formula (<em>"Accomplished [X] as measured by [Y], by doing [Z]"</em>), improving ATS ranking without introducing ungrounded claims.</p>
+          <p>Long-running AI optimization jobs rewrite CV bullet points according to the Google X-Y-Z formula (<em>"Accomplished [X] as measured by [Y], by doing [Z]"</em>), improving ATS ranking without introducing ungrounded claims. Monitored in Android via AndroidX WorkManager.</p>
 
           <h2 id="cover-letter">4.5 Tailored Cover Letter Generator <a class="header-anchor" href="#cover-letter">#</a></h2>
-          <p>Synthesizes the candidate's verified CV achievements with target role requirements to produce persuasive, professionally structured cover letters with 1-click clipboard copy and PDF export.</p>
+          <p>Synthesizes the candidate's verified CV achievements with target role requirements and company background to produce persuasive, professionally structured cover letters with 1-click clipboard copy and PDF export.</p>
 
           <h2 id="performance-analytics">4.6 Session Performance Analytics <a class="header-anchor" href="#performance-analytics">#</a></h2>
-          <p>Longitudinal analytics track user performance over time across multiple dimensions: average STAR score, technical accuracy, gaze stability, pacing consistency, and track-specific readiness percentiles.</p>
+          <p>Longitudinal analytics track user performance over time: multi-axis radar charts, average STAR score, technical accuracy, gaze stability, pacing consistency, and track-specific readiness percentiles.</p>
 
-          <h2 id="challenges-arena">4.7 Interview Challenges Arena <a class="header-anchor" href="#challenges-arena">#</a></h2>
-          <p>Provides a competitive practice dimension with three primary modes:</p>
+          <h2 id="challenges-arena">4.7 Multiplayer Coding Challenges Arena <a class="header-anchor" href="#challenges-arena">#</a></h2>
+          <p>Provides a competitive practice dimension powered by Firebase Firestore with three primary modes:</p>
           <div class="doc-grid-3">
             <div class="doc-feature-card">
               <h4><svg style="width:16px;height:16px;fill:var(--teal);"><use href="#i-trophy"/></svg> Public Challenges</h4>
@@ -619,11 +685,13 @@
           <ul>
             <li><strong>Access Token:</strong> Short-lived (15 minutes expiration) bearing user ID, active subscription tier, and role claims.</li>
             <li><strong>Refresh Token:</strong> Long-lived (30 days expiration) securely stored in Android EncryptedSharedPreferences / iOS Keychain.</li>
+            <li><strong>RFC 7518 Key Hashing:</strong> SHA-256 key hashing in <code>JwtService.java</code> ensures signing keys satisfy strict 256-bit security standards.</li>
             <li><strong>Password Hashing:</strong> BCrypt with cost factor 12.</li>
+            <li><strong>PII Redaction Aspect:</strong> <code>@RedactPii</code> masks candidate phone numbers, emails, and sensitive identifiers prior to LLM processing.</li>
           </ul>
 
           <h2 id="core-access">5.2 Centralized Entitlement Engine (`core:access`) <a class="header-anchor" href="#core-access">#</a></h2>
-          <p>To eliminate duplicate gating logic across mobile screens, the Android application delegates all permission checks to a centralized <code>core:access</code> module.</p>
+          <p>To eliminate duplicate gating logic across mobile screens, the Android application delegates all permission checks to the centralized <code>:core:access</code> module via <code>CheckFeatureAccessUseCase</code> and <code>DeductCoinsUseCase</code>.</p>
 
           <div class="code-block-wrapper">
             <div class="code-header">
@@ -657,8 +725,16 @@
 }</code></pre>
           </div>
 
-          <h2 id="wallet-billing">5.3 Coin Wallet Economics & PayMob Integration <a class="header-anchor" href="#wallet-billing">#</a></h2>
-          <p>Users can top up their virtual coin balance at any time via PayMob payment gateway (Credit/Debit Card, Mobile Wallets, Meeza). All transactions are recorded immutably in the PostgreSQL <code>wallet_transactions</code> ledger table.</p>
+          <h2 id="wallet-billing">5.3 Paymob Payment Gateway & Virtual Coin Ledger <a class="header-anchor" href="#wallet-billing">#</a></h2>
+          <p>Users can top up their virtual coin balance or subscribe to Plus/Max plans via Paymob (Credit/Debit Card, Mobile Wallets, Meeza):</p>
+          <ul>
+            <li><strong>Order Creation:</strong> <code>POST /api/v1/payments/initiate</code> generates a Paymob order ID and payment key token.</li>
+            <li><strong>WebView Checkout:</strong> Android opens Paymob Hosted Checkout in a secure WebView / Custom Tab.</li>
+            <li><strong>Webhook & HMAC Validation:</strong> <code>PaymobPaymentProvider</code> validates the HMAC signature from query parameters or JSON body.</li>
+            <li><strong>Sandbox Fallback Endpoint:</strong> <code>POST /api/v1/payments/confirm/{merchantOrderId}</code> allows direct transaction confirmation in sandbox / test environments.</li>
+            <li><strong>Double-Entry Ledger:</strong> Recorded immutably in <code>coin_ledger_entries</code> and <code>payment_transactions</code>.</li>
+            <li><strong>Monthly Renewal Sweeper:</strong> <code>SubscriptionRenewalSweepJob</code> automatically sweeps expiring subscriptions and credits monthly plan coin allowances.</li>
+          </ul>
         </article>
 
         <!-- CHAPTER 6: DATA & API REFERENCE -->
@@ -669,15 +745,15 @@
             <p class="doc-lead">Relational persistence models, vector storage schemas, and complete REST integration contracts.</p>
           </div>
 
-          <h2>6.1 Relational & Vector Persistence Schema <a class="header-anchor" href="#database-schema">#</a></h2>
+          <h2>6.1 Relational & Vector Persistence Schema (PostgreSQL 16 + pgvector) <a class="header-anchor" href="#database-schema">#</a></h2>
           <div class="table-wrap">
             <table>
               <thead>
                 <tr>
-                  <th>Table Name</th>
+                  <th>Entity Table</th>
                   <th>Primary Key</th>
-                  <th>Key Foreign Keys</th>
-                  <th>Key Columns / Types</th>
+                  <th>Foreign Keys</th>
+                  <th>Key Attributes & Types</th>
                 </tr>
               </thead>
               <tbody>
@@ -685,13 +761,19 @@
                   <td><code>users</code></td>
                   <td><code>id (BIGSERIAL)</code></td>
                   <td>—</td>
-                  <td><code>email, password_hash, full_name, role, created_at</code></td>
+                  <td><code>email, password_hash, full_name, phone_number, is_active, created_at</code></td>
+                </tr>
+                <tr>
+                  <td><code>user_profiles</code></td>
+                  <td><code>id (BIGSERIAL)</code></td>
+                  <td><code>user_id -&gt; users.id</code></td>
+                  <td><code>headline, summary, current_track_id, avatar_url, github_url, linkedin_url</code></td>
                 </tr>
                 <tr>
                   <td><code>subscriptions</code></td>
                   <td><code>id (BIGSERIAL)</code></td>
                   <td><code>user_id -&gt; users.id</code></td>
-                  <td><code>tier (FREE/PLUS/MAX), status, start_date, renewal_date</code></td>
+                  <td><code>tier (FREE/PLUS/MAX), is_active, started_at, renewed_at, expires_at</code></td>
                 </tr>
                 <tr>
                   <td><code>coin_wallets</code></td>
@@ -700,43 +782,79 @@
                   <td><code>balance (INTEGER), updated_at</code></td>
                 </tr>
                 <tr>
+                  <td><code>coin_ledger_entries</code></td>
+                  <td><code>id (BIGSERIAL)</code></td>
+                  <td><code>wallet_id -&gt; coin_wallets.id</code></td>
+                  <td><code>amount, balance_after, reason (PLAN_GRANT, REFILL, INTERVIEW_DEDUCTION), created_at</code></td>
+                </tr>
+                <tr>
+                  <td><code>payment_transactions</code></td>
+                  <td><code>id (BIGSERIAL)</code></td>
+                  <td><code>user_id -&gt; users.id</code></td>
+                  <td><code>merchant_order_id, paymob_order_id, amount_cents, currency, status, provider</code></td>
+                </tr>
+                <tr>
                   <td><code>cv_documents</code></td>
                   <td><code>id (BIGSERIAL)</code></td>
                   <td><code>user_id -&gt; users.id</code></td>
-                  <td><code>raw_text, parsed_json, embedding (vector(768))</code></td>
+                  <td><code>raw_text, parsed_json, embedding (vector(768)), is_active, file_url</code></td>
                 </tr>
                 <tr>
-                  <td><code>mock_interviews</code></td>
+                  <td><code>interview_sessions</code></td>
                   <td><code>id (BIGSERIAL)</code></td>
                   <td><code>user_id, track_id</code></td>
-                  <td><code>status, overall_score, star_score, delivery_score</code></td>
+                  <td><code>session_type, status (ACTIVE, COMPLETED), started_at, completed_at, duration_sec</code></td>
                 </tr>
                 <tr>
-                  <td><code>interview_qa</code></td>
+                  <td><code>session_questions</code></td>
                   <td><code>id (BIGSERIAL)</code></td>
-                  <td><code>interview_id, question_id</code></td>
-                  <td><code>answer_transcript, audio_url, score, ai_feedback_json</code></td>
+                  <td><code>session_id, question_id</code></td>
+                  <td><code>question_text, answer_transcript, audio_url, duration_sec, sequence_no</code></td>
                 </tr>
                 <tr>
-                  <td><code>challenges</code></td>
+                  <td><code>question_scores</code></td>
                   <td><code>id (BIGSERIAL)</code></td>
-                  <td><code>creator_id -&gt; users.id</code></td>
-                  <td><code>title, passcode, is_public, track_id, end_time</code></td>
+                  <td><code>session_question_id</code></td>
+                  <td><code>st_score (25%), a_score (35%), r_score (25%), delivery_score (15%), total_score</code></td>
+                </tr>
+                <tr>
+                  <td><code>feedback_reports</code></td>
+                  <td><code>id (BIGSERIAL)</code></td>
+                  <td><code>session_id -&gt; interview_sessions.id</code></td>
+                  <td><code>overall_score, strengths_json, improvements_json, radar_metrics_json, report_pdf_url</code></td>
+                </tr>
+                <tr>
+                  <td><code>job_workspaces</code></td>
+                  <td><code>id (BIGSERIAL)</code></td>
+                  <td><code>user_id -&gt; users.id</code></td>
+                  <td><code>title, target_company, job_url, raw_job_description, match_score, status</code></td>
+                </tr>
+                <tr>
+                  <td><code>ai_jobs</code></td>
+                  <td><code>id (BIGSERIAL)</code></td>
+                  <td><code>user_id -&gt; users.id</code></td>
+                  <td><code>job_type (CV_OPTIMIZATION, COVER_LETTER), status (PENDING, RUNNING, COMPLETED), payload_json</code></td>
+                </tr>
+                <tr>
+                  <td><code>question_banks</code></td>
+                  <td><code>id (BIGSERIAL)</code></td>
+                  <td><code>track_id -&gt; tracks.id</code></td>
+                  <td><code>question_text, category, difficulty, embedding (vector(768)), sample_answer</code></td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-          <h2 id="api-reference">6.2 Core REST API Endpoints <a class="header-anchor" href="#api-reference">#</a></h2>
+          <h2 id="api-reference">6.2 Authoritative Spring Boot REST API Reference <a class="header-anchor" href="#api-reference">#</a></h2>
 
-          <!-- Endpoint 1 -->
+          <!-- Endpoint 1: Auth Login -->
           <div class="api-endpoint">
             <div class="api-header">
               <span class="http-method method-post">POST</span>
               <span class="api-path">/api/v1/auth/login</span>
             </div>
             <div class="api-body">
-              <p class="api-desc">Authenticates user credentials and returns JWT access and refresh tokens.</p>
+              <p class="api-desc">Authenticates user credentials and returns JWT access and refresh tokens with user entitlements.</p>
               <div class="code-block-wrapper">
                 <div class="code-header">
                   <span class="code-lang">JSON · Request & Response Payload</span>
@@ -756,15 +874,40 @@
   <span class="token-str">"user"</span>: {
     <span class="token-str">"id"</span>: <span class="token-num">1042</span>,
     <span class="token-str">"email"</span>: <span class="token-str">"engineer@careerpilot.app"</span>,
+    <span class="token-str">"fullName"</span>: <span class="token-str">"Hazem Abdelraouf"</span>,
     <span class="token-str">"plan"</span>: <span class="token-str">"PLUS"</span>,
-    <span class="token-str">"coins"</span>: <span class="token-num">80</span>
+    <span class="token-str">"coinBalance"</span>: <span class="token-num">80</span>
   }
 }</code></pre>
               </div>
             </div>
           </div>
 
-          <!-- Endpoint 2 -->
+          <!-- Endpoint 2: CV Analyze -->
+          <div class="api-endpoint">
+            <div class="api-header">
+              <span class="http-method method-post">POST</span>
+              <span class="api-path">/api/v1/profile/cv/analyze</span>
+            </div>
+            <div class="api-body">
+              <p class="api-desc">Uploads and parses a candidate CV (PDF/DOCX) using Apache Tika and extracts structured skills, experience, and 768-dim embeddings.</p>
+              <div class="code-block-wrapper">
+                <div class="code-header">
+                  <span class="code-lang">JSON · Multipart Upload Response (200 OK)</span>
+                  <button class="btn-copy"><svg><use href="#i-copy"/></svg> Copy</button>
+                </div>
+                <pre><code>{
+  <span class="token-str">"cvDocumentId"</span>: <span class="token-num">501</span>,
+  <span class="token-str">"detectedTrack"</span>: <span class="token-str">"Android Native"</span>,
+  <span class="token-str">"extractedSkills"</span>: [<span class="token-str">"Kotlin"</span>, <span class="token-str">"Jetpack Compose"</span>, <span class="token-str">"Coroutines"</span>, <span class="token-str">"Dagger Hilt"</span>, <span class="token-str">"MVI"</span>, <span class="token-str">"MediaPipe"</span>],
+  <span class="token-str">"yearsOfExperience"</span>: <span class="token-num">2.5</span>,
+  <span class="token-str">"embeddingVectorLength"</span>: <span class="token-num">768</span>
+}</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Endpoint 3: Start Interview -->
           <div class="api-endpoint">
             <div class="api-header">
               <span class="http-method method-post">POST</span>
@@ -774,12 +917,11 @@
               <p class="api-desc">Initiates an adaptive mock interview session for a specified career track.</p>
               <div class="code-block-wrapper">
                 <div class="code-header">
-                  <span class="code-lang">JSON · Start Interview Response</span>
+                  <span class="code-lang">JSON · Start Interview Response (201 Created)</span>
                   <button class="btn-copy"><svg><use href="#i-copy"/></svg> Copy</button>
                 </div>
-                <pre><code><span class="token-comment">// Response (201 Created)</span>
-{
-  <span class="token-str">"interviewId"</span>: <span class="token-num">8821</span>,
+                <pre><code>{
+  <span class="token-str">"sessionId"</span>: <span class="token-num">8821</span>,
   <span class="token-str">"track"</span>: <span class="token-str">"Android Native (Kotlin/Compose)"</span>,
   <span class="token-str">"totalQuestions"</span>: <span class="token-num">5</span>,
   <span class="token-str">"firstQuestion"</span>: {
@@ -793,27 +935,105 @@
             </div>
           </div>
 
-          <!-- Endpoint 3 -->
+          <!-- Endpoint 4: Submit Answer & Evaluate -->
           <div class="api-endpoint">
             <div class="api-header">
               <span class="http-method method-post">POST</span>
-              <span class="api-path">/api/v1/ats/analyze</span>
+              <span class="api-path">/api/v1/interviews/{sessionId}/submit-answer</span>
             </div>
             <div class="api-body">
-              <p class="api-desc">Compares uploaded active CV against raw job description text.</p>
+              <p class="api-desc">Submits spoken answer transcript and live body language telemetry for STAR score evaluation.</p>
               <div class="code-block-wrapper">
                 <div class="code-header">
-                  <span class="code-lang">JSON · ATS Match Response</span>
+                  <span class="code-lang">JSON · Submit Answer Response (200 OK)</span>
                   <button class="btn-copy"><svg><use href="#i-copy"/></svg> Copy</button>
                 </div>
-                <pre><code><span class="token-comment">// Response (200 OK)</span>
-{
-  <span class="token-str">"matchScore"</span>: <span class="token-num">84.5</span>,
-  <span class="token-str">"matchedKeywords"</span>: [<span class="token-str">"Kotlin"</span>, <span class="token-str">"Jetpack Compose"</span>, <span class="token-str">"Coroutines"</span>, <span class="token-str">"MVI"</span>],
+                <pre><code>{
+  <span class="token-str">"questionId"</span>: <span class="token-num">304</span>,
+  <span class="token-str">"scores"</span>: {
+    <span class="token-str">"situationTaskScore"</span>: <span class="token-num">88</span>,
+    <span class="token-str">"actionScore"</span>: <span class="token-num">92</span>,
+    <span class="token-str">"resultScore"</span>: <span class="token-num">85</span>,
+    <span class="token-str">"deliveryScore"</span>: <span class="token-num">90</span>,
+    <span class="token-str">"totalWeightedScore"</span>: <span class="token-num">89.0</span>
+  },
+  <span class="token-str">"feedbackSummary"</span>: <span class="token-str">"Excellent distinction between replay caches in StateFlow vs SharedFlow. Strong structured delivery."</span>,
+  <span class="token-str">"hasFollowUp"</span>: <span class="token-num">false</span>,
+  <span class="token-str">"nextQuestion"</span>: {
+    <span class="token-str">"questionId"</span>: <span class="token-num">305</span>,
+    <span class="token-str">"questionText"</span>: <span class="token-str">"How do you configure Dagger Hilt multi-module dependency graphs with custom Gradle plugins?"</span>
+  }
+}</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Endpoint 5: ATS Analyze -->
+          <div class="api-endpoint">
+            <div class="api-header">
+              <span class="http-method method-post">POST</span>
+              <span class="api-path">/api/v1/workspaces/{id}/analyze</span>
+            </div>
+            <div class="api-body">
+              <p class="api-desc">Executes ATS keyword matching and semantic gap analysis between candidate CV and target job posting.</p>
+              <div class="code-block-wrapper">
+                <div class="code-header">
+                  <span class="code-lang">JSON · ATS Match Response (200 OK)</span>
+                  <button class="btn-copy"><svg><use href="#i-copy"/></svg> Copy</button>
+                </div>
+                <pre><code>{
+  <span class="token-str">"matchScore"</span>: <span class="token-num">86.5</span>,
+  <span class="token-str">"matchedKeywords"</span>: [<span class="token-str">"Kotlin"</span>, <span class="token-str">"Jetpack Compose"</span>, <span class="token-str">"Coroutines"</span>, <span class="token-str">"MVI"</span>, <span class="token-str">"MediaPipe"</span>],
   <span class="token-str">"missingKeywords"</span>: [<span class="token-str">"Ktor"</span>, <span class="token-str">"Baseline Profiles"</span>],
   <span class="token-str">"recommendations"</span>: [
-    <span class="token-str">"Highlight asynchronous networking experience using Ktor or Retrofit in your recent project."</span>
+    <span class="token-str">"Explicitly mention asynchronous HTTP networking with Ktor 3.5 in your recent project highlights."</span>
   ]
+}</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Endpoint 6: Payment Initiate -->
+          <div class="api-endpoint">
+            <div class="api-header">
+              <span class="http-method method-post">POST</span>
+              <span class="api-path">/api/v1/payments/initiate</span>
+            </div>
+            <div class="api-body">
+              <p class="api-desc">Initiates Paymob order for subscription upgrade or coin top-up, returning checkout payment URL.</p>
+              <div class="code-block-wrapper">
+                <div class="code-header">
+                  <span class="code-lang">JSON · Payment Initiate Response (200 OK)</span>
+                  <button class="btn-copy"><svg><use href="#i-copy"/></svg> Copy</button>
+                </div>
+                <pre><code>{
+  <span class="token-str">"merchantOrderId"</span>: <span class="token-str">"CP-TX-99418"</span>,
+  <span class="token-str">"amountEgp"</span>: <span class="token-num">349.00</span>,
+  <span class="token-str">"paymentUrl"</span>: <span class="token-str">"https://accept.paymob.com/api/acceptance/iframes/884912?payment_token=..."</span>,
+  <span class="token-str">"targetPlan"</span>: <span class="token-str">"PLUS"</span>
+}</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- Endpoint 7: Payment Confirm Fallback -->
+          <div class="api-endpoint">
+            <div class="api-header">
+              <span class="http-method method-post">POST</span>
+              <span class="api-path">/api/v1/payments/confirm/{merchantOrderId}</span>
+            </div>
+            <div class="api-body">
+              <p class="api-desc">Idempotent confirmation endpoint called upon successful checkout redirect in development and sandbox tunnels.</p>
+              <div class="code-block-wrapper">
+                <div class="code-header">
+                  <span class="code-lang">JSON · Fallback Confirm Response (200 OK)</span>
+                  <button class="btn-copy"><svg><use href="#i-copy"/></svg> Copy</button>
+                </div>
+                <pre><code>{
+  <span class="token-str">"message"</span>: <span class="token-str">"Payment confirmed successfully"</span>,
+  <span class="token-str">"status"</span>: <span class="token-str">"CONFIRMED"</span>,
+  <span class="token-str">"activePlan"</span>: <span class="token-str">"PLUS"</span>,
+  <span class="token-str">"updatedCoinBalance"</span>: <span class="token-num">160</span>
 }</code></pre>
               </div>
             </div>
@@ -843,61 +1063,67 @@
                 <tr>
                   <td><code>FR-01</code></td>
                   <td>Auth</td>
-                  <td>User can register, login, reset password, and refresh tokens via secure JWT endpoints.</td>
+                  <td>User can register, login, request SMS OTP, reset password, and refresh tokens via secure JWT endpoints.</td>
                   <td>High</td>
                 </tr>
                 <tr>
                   <td><code>FR-02</code></td>
                   <td>CV Hub</td>
-                  <td>System parses PDF/DOCX resumes, extracting structured work history and vector embeddings.</td>
+                  <td>System parses PDF/DOCX resumes with Apache Tika, extracting structured work history and 768-dim vector embeddings.</td>
                   <td>High</td>
                 </tr>
                 <tr>
                   <td><code>FR-03</code></td>
                   <td>Interviews</td>
-                  <td>App orchestrates adaptive track-specific mock interviews with speech recognition and timing controls.</td>
+                  <td>App orchestrates adaptive track-specific mock interviews with on-device speech recognition and timing controls.</td>
                   <td>High</td>
                 </tr>
                 <tr>
                   <td><code>FR-04</code></td>
                   <td>Vision ML</td>
-                  <td>Mobile client tracks gaze angle, smile probability, and posture stability in real time at 30 FPS.</td>
+                  <td>Mobile client tracks gaze deviation, smile probability, and posture stability in real time at 30 FPS via MediaPipe.</td>
                   <td>High</td>
                 </tr>
                 <tr>
                   <td><code>FR-05</code></td>
                   <td>ATS Engine</td>
-                  <td>System calculates vector-based ATS match score and provides missing skill recommendations.</td>
+                  <td>System calculates vector-based ATS match score, keyword match %, and hard skill gap recommendations.</td>
                   <td>High</td>
                 </tr>
                 <tr>
                   <td><code>FR-06</code></td>
                   <td>CV AI Opt</td>
-                  <td>Server asynchronously rewrites CV bullets according to the Google X-Y-Z formula.</td>
+                  <td>Server asynchronously rewrites CV bullet points according to the Google X-Y-Z formula without hallucinating skills.</td>
                   <td>Medium</td>
                 </tr>
                 <tr>
                   <td><code>FR-07</code></td>
-                  <td>Challenges</td>
-                  <td>Users can browse public challenges, join private challenges via codes, and submit interview attempts.</td>
-                  <td>High</td>
+                  <td>Cover Letter</td>
+                  <td>Autonomous agent researches target company and generates tailored cover letters with 1-click clipboard export.</td>
+                  <td>Medium</td>
                 </tr>
                 <tr>
                   <td><code>FR-08</code></td>
-                  <td>Entitlements</td>
-                  <td><code>core:access</code> validates tier eligibility and coin balance before unlocking premium actions.</td>
+                  <td>Challenges</td>
+                  <td>Users can browse public challenges, join private challenges via codes, and submit attempts synced via Firestore.</td>
                   <td>High</td>
                 </tr>
                 <tr>
                   <td><code>FR-09</code></td>
-                  <td>Wallet</td>
-                  <td>Users can inspect coin balances and purchase coin packages via payment gateway integration.</td>
+                  <td>Entitlements</td>
+                  <td><code>:core:access</code> validates tier eligibility and coin balance before unlocking premium actions.</td>
                   <td>High</td>
                 </tr>
                 <tr>
                   <td><code>FR-10</code></td>
+                  <td>Wallet</td>
+                  <td>Users can inspect balances and purchase coin top-ups or subscriptions via Paymob payment integration.</td>
+                  <td>High</td>
+                </tr>
+                <tr>
+                  <td><code>FR-11</code></td>
                   <td>Analytics</td>
-                  <td>Users can view longitudinal performance reports with STAR breakdown and downloadable PDFs.</td>
+                  <td>Users can view longitudinal performance reports with multi-axis radar charts and downloadable PDFs.</td>
                   <td>Medium</td>
                 </tr>
               </tbody>
@@ -906,10 +1132,10 @@
 
           <h2 id="non-functional-reqs">7.2 Non-Functional Requirements (NFR) <a class="header-anchor" href="#non-functional-reqs">#</a></h2>
           <ul>
-            <li><strong>Performance:</strong> REST API p95 response time &lt; 250ms; on-device vision inference latency &lt; 33ms per frame.</li>
-            <li><strong>Security:</strong> OWASP Top 10 compliance, bcrypt password hashing (cost 12), TLS 1.3 enforced, encrypted local key storage.</li>
-            <li><strong>Reliability & Availability:</strong> 99.9% uptime target with automated PostgreSQL database backups.</li>
-            <li><strong>Maintainability:</strong> Clean Architecture separation with over 80% unit test code coverage on core domain logic.</li>
+            <li><strong>Performance:</strong> REST API p95 response time &lt; 200ms; on-device vision inference latency &lt; 33ms per frame (30 FPS).</li>
+            <li><strong>Security:</strong> OWASP Top 10 compliance, BCrypt password hashing (cost 12), TLS 1.3 enforced, PII redaction on LLM prompts.</li>
+            <li><strong>Reliability & Availability:</strong> 99.9% uptime target with automated PostgreSQL database backups and Flyway migration controls.</li>
+            <li><strong>Maintainability:</strong> Clean Architecture separation with over 85% unit test code coverage on core domain and access logic.</li>
           </ul>
 
           <h2 id="qa-testing">7.3 Quality Assurance & Testing Suite <a class="header-anchor" href="#qa-testing">#</a></h2>
@@ -926,22 +1152,22 @@
                 <tr>
                   <td><strong>Android Unit & MVI</strong></td>
                   <td>JUnit 5, MockK, Turbine, Coroutines Test</td>
-                  <td>ViewModel intent handlers, repository caching, access rule validation.</td>
+                  <td>ViewModel intent handlers, repository caching, access rule validation across all 27 modules.</td>
                 </tr>
                 <tr>
                   <td><strong>iOS Unit Testing</strong></td>
                   <td>XCTest, Quick, Nimble</td>
-                  <td>ViewModels, Combine publishers, local database sync.</td>
+                  <td>ViewModels, Combine publishers, local database synchronization.</td>
                 </tr>
                 <tr>
                   <td><strong>Backend Testing</strong></td>
                   <td>JUnit 5, Testcontainers, MockMvc</td>
-                  <td>REST controller integration, pgvector similarity accuracy, coin transactions.</td>
+                  <td>REST controller integration, pgvector similarity accuracy, Paymob webhook verification, coin transactions.</td>
                 </tr>
                 <tr>
                   <td><strong>End-to-End Testing</strong></td>
                   <td>Espresso, XCUITest, Postman Newman</td>
-                  <td>Full user journeys: onboarding, interview completion, and challenge submissions.</td>
+                  <td>Full user journeys: onboarding, CV upload, interview completion, and challenge submissions.</td>
                 </tr>
               </tbody>
             </table>
@@ -953,35 +1179,52 @@
           <div class="doc-section-header">
             <span class="doc-eyebrow">Chapter 08 · Setup & Deployment</span>
             <h1>Setup, Build & Deployment Guide</h1>
-            <p class="doc-lead">Instructions for testing the native Android APK, running the Spring Boot backend, and deploying the website.</p>
+            <p class="doc-lead">Instructions for running the 2 primary repositories: the Native Android Mobile Application and the Spring Boot Cloud Backend.</p>
           </div>
 
-          <h2>8.1 Installing the Android APK <a class="header-anchor" href="#apk-install">#</a></h2>
-          <p>The Android application build is distributed as a signed APK package for physical Android devices (Android 8.0+ / API 26+).</p>
+          <h2>8.1 Native Android Mobile App Setup (`d:/iti/CareerPilot`) <a class="header-anchor" href="#apk-install">#</a></h2>
+          <p>The Android application build is distributed as a signed APK package for physical Android devices (Android 8.0+ / API 26+ / Target SDK 37).</p>
           <div class="code-block-wrapper">
             <div class="code-header">
-              <span class="code-lang">Bash · ADB Installation Command</span>
+              <span class="code-lang">Bash · Local Setup & ADB Install</span>
               <button class="btn-copy"><svg><use href="#i-copy"/></svg> Copy</button>
             </div>
-            <pre><code><span class="token-comment"># Install APK directly on connected physical device or emulator via ADB</span>
-adb install -r downloads/CareerPilot.apk</code></pre>
+            <pre><code><span class="token-comment"># In d:/iti/CareerPilot directory</span>
+<span class="token-comment"># Configure local.properties with backend URL:</span>
+<span class="token-comment"># BASE_URL=https://your-backend-tunnel.ngrok-free.app/</span>
+
+<span class="token-comment"># Build debug APK</span>
+./gradlew assembleDebug
+
+<span class="token-comment"># Install APK directly on connected physical device or emulator via ADB</span>
+adb install -r app/build/outputs/apk/debug/app-debug.apk</code></pre>
           </div>
 
-          <h2 id="backend-setup">8.2 Running the Spring Boot Backend Locally <a class="header-anchor" href="#backend-setup">#</a></h2>
+          <h2 id="backend-setup">8.2 Authoritative Spring Boot Backend Setup (`d:/iti/CareerPilot Backend`) <a class="header-anchor" href="#backend-setup">#</a></h2>
           <div class="code-block-wrapper">
             <div class="code-header">
-              <span class="code-lang">Bash · Maven Build & Run</span>
+              <span class="code-lang">Bash · Docker & Maven Run</span>
               <button class="btn-copy"><svg><use href="#i-copy"/></svg> Copy</button>
             </div>
-            <pre><code><span class="token-comment"># Clone repository and launch PostgreSQL with pgvector</span>
+            <pre><code><span class="token-comment"># In d:/iti/CareerPilot Backend/career-pilot-backend directory</span>
+<span class="token-comment"># 1. Launch PostgreSQL with pgvector and Redis</span>
 docker run -d --name careerpilot-pg -p 5432:5432 -e POSTGRES_PASSWORD=postgres pgvector/pgvector:pg16
+docker run -d --name careerpilot-redis -p 6379:6379 redis:7-alpine
 
-<span class="token-comment"># Run Spring Boot service</span>
-./mvnw spring-boot:run -Dspring-boot.run.profiles=local</code></pre>
+<span class="token-comment"># 2. Build and run Spring Boot service</span>
+./mvnw clean spring-boot:run -Dspring-boot.run.profiles=local</code></pre>
           </div>
 
-          <h2 id="web-deploy">8.3 Static Web Deployment <a class="header-anchor" href="#web-deploy">#</a></h2>
-          <p>The website is fully static and configured for instant zero-config deployment on Vercel, Netlify, or GitHub Pages using the included <code>vercel.json</code>.</p>
+          <h2 id="web-deploy">8.3 Static Web Deployment & Server <a class="header-anchor" href="#web-deploy">#</a></h2>
+          <div class="code-block-wrapper">
+            <div class="code-header">
+              <span class="code-lang">Bash · Local Web Server</span>
+              <button class="btn-copy"><svg><use href="#i-copy"/></svg> Copy</button>
+            </div>
+            <pre><code><span class="token-comment"># In d:/iti/CareerPilot_Website_v2_AppPalette/CareerPilot_Website_v2_Theme</span>
+node server.js
+<span class="token-comment"># Open http://localhost:3000 in your browser</span></code></pre>
+          </div>
         </article>
       </div>
     </main>
