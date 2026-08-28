@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en" data-theme="cloud">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="You have been invited to an official hiring interview assessment on Career Pilot Enterprise." />
+  <meta name="theme-color" content="#f7f9ff" />
+  <title>Career Pilot Enterprise — Interview Assessment Invitation</title>
+  <link rel="icon" type="image/png" href="assets/career-pilot-icon.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .interview-hero {
+      min-height: calc(100vh - var(--header-h) - 100px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+    .interview-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      max-width: 600px;
+      width: 100%;
+      padding: 44px 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(16px);
+      box-sizing: border-box;
+    }
+    .interview-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(37, 99, 235, 0.1);
+      color: #2563EB;
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+    }
+    .interview-title {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+    .interview-company {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
+    .interview-desc {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+    .company-logo-preview {
+      max-height: 56px;
+      max-width: 200px;
+      margin: 0 auto 20px;
+      display: block;
+      border-radius: 8px;
+    }
+    .rules-box {
+      background: var(--surface-alt, #F1F5F9);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      text-align: left;
+      margin-bottom: 30px;
+    }
+    .rules-box h4 {
+      margin: 0 0 10px 0;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .rules-box ul {
+      margin: 0;
+      padding-left: 20px;
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .action-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+    .btn-launch {
+      width: 100%;
+      padding: 16px 28px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html" aria-label="Career Pilot home">
+        <img src="assets/career-pilot-icon.png" alt="Career Pilot application icon" />
+        <span><strong>Career Pilot</strong><small>Enterprise Assessments</small></span>
+      </a>
+      <div class="nav-actions">
+        <a class="btn btn-primary apk-link" href="https://drive.google.com/file/d/1UaDY4iH1V7P2FbzhyFoJamS35vxfknQp/view?usp=sharing" target="_blank" rel="noopener noreferrer">Download APK</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="interview-hero">
+      <div class="interview-card">
+        <div class="interview-badge">
+          <span class="live-dot"></span> Official Hiring Assessment
+        </div>
+
+        <img id="companyLogo" class="company-logo-preview" style="display:none;" alt="Company Logo" />
+        <div id="companyName" class="interview-company">CareerPilot Partner Assessment</div>
+
+        <h1 class="interview-title" id="interviewTitle">Hiring Interview</h1>
+        <p class="interview-desc" id="interviewDesc">You have been invited to an AI-assisted video and speech assessment. Launch the mobile application to start your timed interview.</p>
+
+        <div class="rules-box">
+          <h4>Assessment Guidelines:</h4>
+          <ul>
+            <li>Live camera and microphone permissions are required.</li>
+            <li>Spoken answers will be transcribed and evaluated by AI against hiring rubrics.</li>
+            <li>Body language presence and speech clarity are analyzed on-device.</li>
+            <li>You will have one attempt to complete all questions.</li>
+          </ul>
+        </div>
+
+        <div class="action-group">
+          <a id="launchAppBtn" class="btn btn-primary btn-launch" href="careerpilot://company-interview">
+            🚀 Launch in CareerPilot App
+          </a>
+          <a class="btn btn-secondary full apk-link" href="https://drive.google.com/file/d/1UaDY4iH1V7P2FbzhyFoJamS35vxfknQp/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+            📥 Don't have the app? Download APK
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+
+    if (token) {
+      const appSchemeUrl = `careerpilot://company-interview?token=${encodeURIComponent(token)}`;
+      const launchBtn = document.getElementById('launchAppBtn');
+      if (launchBtn) {
+        launchBtn.href = appSchemeUrl;
+      }
+
+      // Try automatic intent forward
+      setTimeout(() => {
+        window.location.href = appSchemeUrl;
+      }, 500);
+
+      // Fetch dynamic interview metadata from API if available
+      const API_BASE = window.location.origin.includes('localhost') ? 'http://localhost:8080/api/v1' : 'https://api.careerpilot.me/api/v1';
+      fetch(`${API_BASE}/applicant/interview/${token}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data && data.title) {
+            document.getElementById('interviewTitle').innerText = data.title;
+            if (data.companyName) document.getElementById('companyName').innerText = data.companyName;
+            if (data.description) document.getElementById('interviewDesc').innerText = data.description;
+            if (data.companyLogoUrl) {
+              const logo = document.getElementById('companyLogo');
+              logo.src = data.companyLogoUrl;
+              logo.style.display = 'block';
+            }
+          }
+        })
+        .catch(err => console.log("Static preview fallback"));
+    }
+  </script>
+</body>
+</html>

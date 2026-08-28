@@ -6,7 +6,9 @@
   "trailingSlash": false,
   "rewrites": [
     { "source": "/challenge", "destination": "/challenge.html" },
-    { "source": "/challenge/(.*)", "destination": "/challenge.html" }
+    { "source": "/challenge/(.*)", "destination": "/challenge.html" },
+    { "source": "/interview", "destination": "/interview.html" },
+    { "source": "/interview/(.*)", "destination": "/interview.html" }
   ],
   "headers": [
     {
