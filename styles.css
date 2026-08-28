@@ -126,13 +126,13 @@ p { color: var(--muted); }
 .brand span { display: flex; flex-direction: column; line-height: 1.15; }
 .brand strong { font-size: 15px; }
 .brand small { color: var(--muted); font-size: 11px; margin-top: 4px; }
-.desktop-nav { display: flex; align-items: center; gap: 24px; margin-left: auto; }
-.desktop-nav a { font-size: 13px; color: var(--muted); font-weight: 700; position: relative; padding: 25px 0; }
+.desktop-nav { display: flex; align-items: center; gap: 18px; margin-left: auto; }
+.desktop-nav a { font-size: 13px; color: var(--muted); font-weight: 700; position: relative; padding: 25px 0; white-space: nowrap; }
 .desktop-nav a::after { content: ""; position: absolute; bottom: 17px; left: 0; width: 0; height: 2px; border-radius: 2px; background: var(--primary); transition: width .25s var(--ease); }
 .desktop-nav a:hover, .desktop-nav a.active { color: var(--text); }
 .desktop-nav a:hover::after, .desktop-nav a.active::after { width: 100%; }
 .nav-actions { display: flex; align-items: center; gap: 8px; }
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; border: 1px solid transparent; border-radius: 14px; min-height: 42px; padding: 0 16px; font-size: 13px; font-weight: 800; cursor: pointer; transition: transform .2s var(--ease), box-shadow .2s var(--ease), background .2s var(--ease), border-color .2s var(--ease); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; border: 1px solid transparent; border-radius: 14px; min-height: 42px; padding: 0 16px; font-size: 13px; font-weight: 800; cursor: pointer; white-space: nowrap; transition: transform .2s var(--ease), box-shadow .2s var(--ease), background .2s var(--ease), border-color .2s var(--ease); }
 .btn:hover { transform: translateY(-2px); }
 .btn-primary { background: linear-gradient(135deg,var(--primary),var(--primary-2)); color: white; box-shadow: 0 12px 26px color-mix(in srgb, var(--primary) 24%, transparent); }
 .btn-primary:hover { box-shadow: 0 16px 34px color-mix(in srgb, var(--primary) 34%, transparent); }
