@@ -1,4 +1,200 @@
-// Career Pilot Employer Dashboard Logic
+// Career Pilot Employer Authentication & Dashboard Controller
+
+let currentEmployer = null;
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', () => {
+  initEmployerState();
+});
+
+function initEmployerState() {
+  const saved = localStorage.getItem('cp_employer_session');
+  if (saved) {
+    try {
+      currentEmployer = JSON.parse(saved);
+      renderLoggedInState();
+    } catch (e) {
+      renderLoggedOutState();
+    }
+  } else {
+    // Default to sandbox mode so recruiters can interact immediately
+    currentEmployer = {
+      companyName: "Acme Technologies",
+      recruiterName: "Alex Morgan",
+      email: "alex@acme.com",
+      tier: "Growth",
+      quota: 50
+    };
+    renderLoggedInState();
+  }
+}
+
+function renderLoggedInState() {
+  const authGate = document.getElementById('authGate');
+  const dashboardInterface = document.getElementById('dashboardInterface');
+  const companyHeaderName = document.getElementById('companyHeaderName');
+  const companyHeaderSub = document.getElementById('companyHeaderSub');
+  const logoBadge = document.getElementById('companyLogoBadge');
+
+  if (authGate) authGate.style.display = 'none';
+  if (dashboardInterface) dashboardInterface.style.display = 'block';
+
+  if (currentEmployer) {
+    if (companyHeaderName) {
+      companyHeaderName.innerText = `${currentEmployer.companyName} · Recruiter Dashboard`;
+    }
+    if (companyHeaderSub) {
+      companyHeaderSub.innerText = `${currentEmployer.tier || 'Starter'} Tier Active (${currentEmployer.quota || 10} Candidate Quota)`;
+    }
+    if (logoBadge) {
+      logoBadge.innerText = currentEmployer.companyName ? currentEmployer.companyName.substring(0, 2).toUpperCase() : 'CP';
+    }
+  }
+}
+
+function renderLoggedOutState() {
+  const authGate = document.getElementById('authGate');
+  const dashboardInterface = document.getElementById('dashboardInterface');
+  if (authGate) authGate.style.display = 'block';
+  if (dashboardInterface) dashboardInterface.style.display = 'none';
+}
+
+// Modal Handlers
+function openAuthModal(viewType) {
+  const modal = document.getElementById('authModal');
+  const regView = document.getElementById('modalRegisterView');
+  const otpView = document.getElementById('modalOtpView');
+  const loginView = document.getElementById('modalLoginView');
+
+  if (!modal) return;
+  modal.style.display = 'flex';
+
+  if (regView) regView.style.display = (viewType === 'register') ? 'block' : 'none';
+  if (otpView) otpView.style.display = (viewType === 'otp') ? 'block' : 'none';
+  if (loginView) loginView.style.display = (viewType === 'login') ? 'block' : 'none';
+}
+
+function closeAuthModal() {
+  const modal = document.getElementById('authModal');
+  if (modal) modal.style.display = 'none';
+}
+
+// Register Flow
+let pendingRegData = null;
+
+async function handleEmployerRegister(e) {
+  e.preventDefault();
+  const compName = document.getElementById('regCompName')?.value;
+  const name = document.getElementById('regRecruiterName')?.value;
+  const email = document.getElementById('regEmail')?.value;
+  const password = document.getElementById('regPass')?.value;
+  const industry = document.getElementById('regIndustry')?.value;
+  const website = document.getElementById('regWebsite')?.value;
+
+  pendingRegData = {
+    companyName: compName,
+    recruiterName: name,
+    email: email,
+    password: password,
+    industry: industry,
+    website: website,
+    tier: 'Starter',
+    quota: 10
+  };
+
+  // Try calling backend API if available
+  try {
+    const API_BASE = "http://localhost:8080/api/v1";
+    await fetch(`${API_BASE}/company/auth/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        companyName: compName,
+        name: name,
+        email: email,
+        password: password,
+        industry: industry,
+        website: website
+      })
+    });
+  } catch (err) {
+    // Network offline / local simulation
+  }
+
+  // Switch to OTP view
+  openAuthModal('otp');
+}
+
+async function handleEmployerOtp(e) {
+  e.preventDefault();
+  const code = document.getElementById('regOtpCode')?.value;
+  if (!code || code.length < 4) {
+    alert('Please enter a valid verification code');
+    return;
+  }
+
+  // Verify
+  currentEmployer = pendingRegData || {
+    companyName: "New Enterprise",
+    recruiterName: "Recruiter",
+    email: "recruiter@enterprise.com",
+    tier: "Starter",
+    quota: 10
+  };
+
+  localStorage.setItem('cp_employer_session', JSON.stringify(currentEmployer));
+  closeAuthModal();
+  renderLoggedInState();
+  switchTab('overview');
+  alert(`Welcome to Career Pilot Enterprise! Your 14-day Starter free trial is active.`);
+}
+
+// Login Flow
+async function handleEmployerLogin(e) {
+  e.preventDefault();
+  const email = document.getElementById('loginEmail')?.value;
+  const pass = document.getElementById('loginPass')?.value;
+
+  if (!email || !pass) {
+    alert('Please enter your email and password');
+    return;
+  }
+
+  currentEmployer = {
+    companyName: email.split('@')[1]?.split('.')[0]?.toUpperCase() || "Enterprise",
+    recruiterName: email.split('@')[0],
+    email: email,
+    tier: "Growth",
+    quota: 50
+  };
+
+  localStorage.setItem('cp_employer_session', JSON.stringify(currentEmployer));
+  closeAuthModal();
+  renderLoggedInState();
+  switchTab('overview');
+}
+
+function handleLogout() {
+  if (confirm("Are you sure you want to sign out?")) {
+    localStorage.removeItem('cp_employer_session');
+    currentEmployer = null;
+    renderLoggedOutState();
+  }
+}
+
+function unlockSandbox() {
+  currentEmployer = {
+    companyName: "Acme Technologies",
+    recruiterName: "Alex Morgan",
+    email: "alex@acme.com",
+    tier: "Growth",
+    quota: 50
+  };
+  renderLoggedInState();
+  switchTab('overview');
+}
+
+// Tab Switching
 function switchTab(tabId) {
   const tabs = ['overview', 'new-interview', 'candidates', 'report'];
   tabs.forEach(t => {
@@ -38,7 +234,7 @@ function addQuestionField() {
 
 function handleCreateInterview(e) {
   e.preventDefault();
-  const title = document.getElementById('intTitle')?.value;
+  const title = document.getElementById('intTitle')?.value || "Mobile Engineer Assessment";
   alert(`Assessment "${title}" created and published! Now add your candidates.`);
   switchTab('candidates');
 }

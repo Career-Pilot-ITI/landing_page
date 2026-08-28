@@ -318,23 +318,50 @@
         </div>
 
         <div class="emp-dashboard" id="employerApp">
-          <!-- Top Bar -->
-          <div class="emp-header">
-            <div style="display: flex; align-items: center; gap: 14px;">
-              <div style="width: 40px; height: 40px; border-radius: 12px; background: var(--primary); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 18px; color: #fff;">
-                CP
-              </div>
-              <div>
-                <strong style="font-size: 16px; display: block;">Acme Technologies · Recruiter Dashboard</strong>
-                <small style="color: var(--teal); font-weight: 700;">Growth Tier Active (50 Candidate Quota)</small>
-              </div>
+          <!-- Auth Gate for Logged-Out Users -->
+          <div id="authGate" style="display: none; padding: 60px 30px; text-align: center;">
+            <div style="width: 54px; height: 54px; border-radius: 16px; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 900; margin: 0 auto 16px; box-shadow: 0 10px 25px rgba(255,122,69,.3);">
+              CP
             </div>
-            <div>
-              <button class="btn btn-primary" style="min-height: 38px; padding: 0 16px; font-size: 12px;" onclick="switchTab('new-interview')">
-                <svg><use href="#i-plus"/></svg> Create Interview
+            <h2 style="margin-bottom: 8px;">Access Recruiter Assessment Hub</h2>
+            <p style="color: var(--muted); max-width: 480px; margin: 0 auto 28px; font-size: 14px;">
+              Sign in or create your company account to configure custom question rubrics, batch dispatch candidate deep links, and inspect AI evaluation reports.
+            </p>
+            <div style="display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
+              <button class="btn btn-primary btn-lg" onclick="openAuthModal('register')">
+                <svg><use href="#i-plus"/></svg> Register Company (14-Day Free Trial)
+              </button>
+              <button class="btn btn-secondary btn-lg" onclick="openAuthModal('login')">
+                <svg><use href="#i-user"/></svg> Sign In
+              </button>
+              <button class="btn btn-ghost btn-lg" onclick="unlockSandbox()">
+                <svg><use href="#i-spark"/></svg> Enter Demo Sandbox
               </button>
             </div>
           </div>
+
+          <!-- Logged-in Dashboard Interface -->
+          <div id="dashboardInterface">
+            <!-- Top Bar -->
+            <div class="emp-header">
+              <div style="display: flex; align-items: center; gap: 14px;">
+                <div id="companyLogoBadge" style="width: 40px; height: 40px; border-radius: 12px; background: var(--primary); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 18px; color: #fff;">
+                  CP
+                </div>
+                <div>
+                  <strong id="companyHeaderName" style="font-size: 16px; display: block;">Acme Technologies · Recruiter Dashboard</strong>
+                  <small id="companyHeaderSub" style="color: var(--teal); font-weight: 700;">Growth Tier Active (50 Candidate Quota)</small>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <button class="btn btn-primary" style="min-height: 38px; padding: 0 16px; font-size: 12px;" onclick="switchTab('new-interview')">
+                  <svg><use href="#i-plus"/></svg> Create Interview
+                </button>
+                <button class="btn btn-ghost" style="min-height: 38px; padding: 0 12px; font-size: 12px; color: #ef4444; border-color: rgba(239,68,68,.3);" onclick="handleLogout()">
+                  Sign Out
+                </button>
+              </div>
+            </div>
 
           <!-- Nav Tabs -->
           <div class="emp-nav-tabs">
@@ -584,6 +611,109 @@
         </div>
       </div>
     </section>
+
+    <!-- AUTH MODALS (REGISTER & LOGIN) -->
+    <div id="authModal" style="display: none; position: fixed; inset: 0; background: rgba(14,20,40,.6); backdrop-filter: blur(12px); z-index: 9999; align-items: center; justify-content: center; padding: 20px;">
+      <div style="background: var(--surface-solid); border: 1px solid var(--line); border-radius: var(--radius-xl); box-shadow: var(--shadow); max-width: 500px; width: 100%; padding: 36px; position: relative;">
+        <button onclick="closeAuthModal()" style="position: absolute; top: 20px; right: 20px; border: 0; background: transparent; font-size: 20px; color: var(--muted); cursor: pointer;">&times;</button>
+        
+        <!-- REGISTER VIEW -->
+        <div id="modalRegisterView">
+          <div style="text-align: center; margin-bottom: 24px;">
+            <div style="width: 44px; height: 44px; border-radius: 12px; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 900; margin: 0 auto 10px;">CP</div>
+            <h3 style="margin-bottom: 4px;">Register Company Account</h3>
+            <p style="font-size: 12px; color: var(--muted); margin: 0;">Start your 14-day free trial with 10 candidate evaluations</p>
+          </div>
+
+          <form id="empRegisterForm" onsubmit="handleEmployerRegister(event)">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+              <div class="form-group" style="margin:0;">
+                <label>Company Name *</label>
+                <input type="text" id="regCompName" class="form-control" placeholder="Acme Inc." required />
+              </div>
+              <div class="form-group" style="margin:0;">
+                <label>Your Full Name *</label>
+                <input type="text" id="regRecruiterName" class="form-control" placeholder="Alex Morgan" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Work Email *</label>
+              <input type="email" id="regEmail" class="form-control" placeholder="alex@acme.com" required />
+            </div>
+
+            <div class="form-group">
+              <label>Password *</label>
+              <input type="password" id="regPass" class="form-control" placeholder="At least 6 characters" minlength="6" required />
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
+              <div class="form-group" style="margin:0;">
+                <label>Industry</label>
+                <input type="text" id="regIndustry" class="form-control" placeholder="Software / AI" />
+              </div>
+              <div class="form-group" style="margin:0;">
+                <label>Website</label>
+                <input type="text" id="regWebsite" class="form-control" placeholder="https://acme.com" />
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary full btn-lg" style="margin-top: 8px;">
+              Create Company Account &rarr;
+            </button>
+          </form>
+
+          <p style="text-align: center; font-size: 12px; color: var(--muted); margin-top: 16px;">
+            Already registered? <a href="javascript:void(0)" onclick="openAuthModal('login')" style="color: var(--primary); font-weight: 800;">Sign in here</a>
+          </p>
+        </div>
+
+        <!-- VERIFY OTP VIEW -->
+        <div id="modalOtpView" style="display: none; text-align: center;">
+          <div style="width: 44px; height: 44px; border-radius: 12px; background: var(--teal); color: #0e1428; display: flex; align-items: center; justify-content: center; font-weight: 900; margin: 0 auto 10px;">✓</div>
+          <h3 style="margin-bottom: 4px;">Verify Email Code</h3>
+          <p style="font-size: 12px; color: var(--muted); margin-bottom: 20px;">Enter the 6-digit verification code sent to your inbox</p>
+
+          <form id="empOtpForm" onsubmit="handleEmployerOtp(event)">
+            <div class="form-group">
+              <input type="text" id="regOtpCode" class="form-control" placeholder="123456" maxlength="6" style="text-align: center; font-size: 24px; letter-spacing: .2em; font-family: monospace;" required />
+            </div>
+            <button type="submit" class="btn btn-primary full btn-lg">
+              Verify & Enter Dashboard &rarr;
+            </button>
+          </form>
+        </div>
+
+        <!-- LOGIN VIEW -->
+        <div id="modalLoginView" style="display: none;">
+          <div style="text-align: center; margin-bottom: 24px;">
+            <div style="width: 44px; height: 44px; border-radius: 12px; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 900; margin: 0 auto 10px;">CP</div>
+            <h3 style="margin-bottom: 4px;">Recruiter Sign In</h3>
+            <p style="font-size: 12px; color: var(--muted); margin: 0;">Access your active candidate evaluation pipelines</p>
+          </div>
+
+          <form id="empLoginForm" onsubmit="handleEmployerLogin(event)">
+            <div class="form-group">
+              <label>Work Email</label>
+              <input type="email" id="loginEmail" class="form-control" placeholder="recruiter@company.com" required />
+            </div>
+
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" id="loginPass" class="form-control" placeholder="••••••••" required />
+            </div>
+
+            <button type="submit" class="btn btn-primary full btn-lg" style="margin-top: 12px;">
+              Sign In to Dashboard &rarr;
+            </button>
+          </form>
+
+          <p style="text-align: center; font-size: 12px; color: var(--muted); margin-top: 16px;">
+            Don't have a company account? <a href="javascript:void(0)" onclick="openAuthModal('register')" style="color: var(--primary); font-weight: 800;">Register free trial</a>
+          </p>
+        </div>
+      </div>
+    </div>
 
     <!-- ENTERPRISE PRICING -->
     <section class="section-pad alt-section" id="enterprise-pricing">
