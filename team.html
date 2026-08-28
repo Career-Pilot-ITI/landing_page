@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en" data-theme="cloud">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Team Members & Roles — Career Pilot Enterprise</title>
+  <link rel="icon" type="image/png" href="assets/career-pilot-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      background: var(--bg);
+      min-height: 100vh;
+      display: flex;
+    }
+    .dash-sidebar {
+      width: 260px;
+      background: var(--navy-dark);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid rgba(255,255,255,.08);
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 100;
+    }
+    .dash-main {
+      flex: 1;
+      margin-left: 260px;
+      padding: 32px 40px;
+      min-height: 100vh;
+    }
+    .sidebar-brand {
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .sidebar-menu {
+      padding: 20px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+    }
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      color: #94a3b8;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: .2s ease;
+    }
+    .sidebar-link:hover, .sidebar-link.active {
+      background: rgba(255,122,69,.15);
+      color: #fff;
+    }
+    .sidebar-link.active {
+      color: var(--primary-2);
+      font-weight: 800;
+    }
+    .table-card {
+      background: var(--surface-solid);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      margin-top: 24px;
+    }
+    .table-header {
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+    }
+    .form-control {
+      padding: 10px 14px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font-size: 13px;
+      background: var(--bg);
+      color: var(--text);
+    }
+  </style>
+</head>
+<body>
+  <!-- SIDEBAR -->
+  <aside class="dash-sidebar">
+    <div class="sidebar-brand">
+      <div id="companyAvatar" style="width: 38px; height: 38px; border-radius: 10px; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 16px;">
+        CP
+      </div>
+      <div>
+        <strong id="sidebarCompName" style="font-size: 14px; display: block; color: #fff;">Acme Corp</strong>
+        <small id="sidebarTierBadge" style="color: var(--teal); font-size: 11px; font-weight: 800;">Growth Tier</small>
+      </div>
+    </div>
+
+    <nav class="sidebar-menu">
+      <a href="dashboard.html" class="sidebar-link">
+        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-home"/></svg>
+        Overview & Positions
+      </a>
+      <a href="create-interview.html" class="sidebar-link">
+        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-plus"/></svg>
+        Create Interview
+      </a>
+      <a href="billing.html" class="sidebar-link">
+        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-spark"/></svg>
+        Plans & Quota
+      </a>
+      <a href="team.html" class="sidebar-link active">
+        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-users"/></svg>
+        Team Members
+      </a>
+      <a href="settings.html" class="sidebar-link">
+        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-palette"/></svg>
+        Branding & Logo
+      </a>
+    </nav>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="dash-main">
+    <div style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
+      <div>
+        <h1 style="font-size: 26px; margin-bottom: 4px;">Recruiter Seats & Team Permissions</h1>
+        <p style="color: var(--muted); font-size: 14px; margin: 0;">Invite hiring managers, recruiters, and interviewers to collaborate on candidate reviews</p>
+      </div>
+      <button class="btn btn-primary btn-lg" onclick="openInviteModal()">
+        <svg><use href="#i-plus"/></svg> Invite Team Member
+      </button>
+    </div>
+
+    <div class="table-card">
+      <div class="table-header">
+        <div>
+          <h3 style="font-size: 16px; margin: 0;">Active Recruiter Seats (3 of 5 seats used)</h3>
+        </div>
+      </div>
+
+      <div style="overflow-x: auto;">
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th>Member</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Status</th>
+              <th style="text-align: right;">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Alex Morgan</strong></td>
+              <td>alex@acme.com</td>
+              <td><span class="badge-mini" style="background: rgba(255,122,69,.15); color: var(--primary);">Organization Admin</span></td>
+              <td><span class="badge-status badge-completed">Active</span></td>
+              <td style="text-align: right;"><span style="color: var(--muted); font-size: 12px;">Owner</span></td>
+            </tr>
+            <tr>
+              <td><strong>Mona Adel</strong></td>
+              <td>mona.adel@acme.com</td>
+              <td><span class="badge-mini">Recruiter</span></td>
+              <td><span class="badge-status badge-completed">Active</span></td>
+              <td style="text-align: right;"><button class="btn btn-ghost" style="min-height: 28px; font-size: 11px;">Edit Role</button></td>
+            </tr>
+            <tr>
+              <td><strong>David Kim</strong></td>
+              <td>david.k@acme.com</td>
+              <td><span class="badge-mini">Hiring Manager (Reviewer)</span></td>
+              <td><span class="badge-status badge-completed">Active</span></td>
+              <td style="text-align: right;"><button class="btn btn-ghost" style="min-height: 28px; font-size: 11px;">Edit Role</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/company-api.js"></script>
+  <script>
+    const session = CompanyApi.requireAuth();
+    if (session) {
+      document.getElementById("sidebarCompName").innerText = session.company?.name || "My Company";
+      document.getElementById("sidebarTierBadge").innerText = `${session.company?.subscriptionTier || "Starter"} Tier`;
+      document.getElementById("companyAvatar").innerText = (session.company?.name || "CP").substring(0, 2).toUpperCase();
+    }
+
+    function openInviteModal() {
+      const email = prompt("Enter the recruiter or hiring manager's work email to invite:");
+      if (email) {
+        alert(`Invitation link sent to ${email} with Recruiter access!`);
+      }
+    }
+  </script>
+</body>
+</html>

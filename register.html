@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en" data-theme="cloud">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Register Company Account — Career Pilot Enterprise</title>
+  <link rel="icon" type="image/png" href="assets/career-pilot-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: var(--bg);
+    }
+    .auth-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+    .auth-card {
+      width: 100%;
+      max-width: 520px;
+      background: var(--surface-solid);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      padding: 40px;
+    }
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .form-control {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      font-size: 14px;
+      background: var(--bg);
+      color: var(--text);
+      transition: .2s ease;
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(255,122,69,.15);
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="site-header" style="background: transparent; border-bottom: 1px solid var(--line);">
+    <div class="container nav-wrap" style="justify-content: space-between;">
+      <a class="brand" href="index.html">
+        <img src="assets/career-pilot-icon.png" alt="Career Pilot application icon" />
+        <span><strong>Career Pilot</strong><small>Enterprise Portal</small></span>
+      </a>
+      <div>
+        <a href="index.html" class="btn btn-ghost" style="font-size: 12px;">&larr; Back to Website</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- AUTH MAIN -->
+  <main class="auth-container">
+    <div class="auth-card">
+      <!-- STEP 1: COMPANY FORM -->
+      <div id="step1View">
+        <div style="text-align: center; margin-bottom: 24px;">
+          <div style="width: 48px; height: 48px; border-radius: 14px; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 20px; margin: 0 auto 14px; box-shadow: 0 8px 20px rgba(255,122,69,.25);">
+            CP
+          </div>
+          <h2 style="font-size: 24px; margin-bottom: 6px;">Register Company Account</h2>
+          <p style="font-size: 13px; color: var(--muted); margin: 0;">Start your 14-day free trial with 10 candidate evaluations</p>
+        </div>
+
+        <form id="regForm" onsubmit="handleRegisterSubmit(event)">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <div class="form-group">
+              <label>Company Name *</label>
+              <input type="text" id="companyName" class="form-control" placeholder="Acme Inc." required />
+            </div>
+            <div class="form-group">
+              <label>Your Full Name *</label>
+              <input type="text" id="recruiterName" class="form-control" placeholder="Alex Morgan" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Work Email *</label>
+            <input type="email" id="email" class="form-control" placeholder="alex@acme.com" required />
+          </div>
+
+          <div class="form-group">
+            <label>Password *</label>
+            <input type="password" id="password" class="form-control" placeholder="At least 6 characters" minlength="6" required />
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <div class="form-group">
+              <label>Industry</label>
+              <input type="text" id="industry" class="form-control" placeholder="Software / AI" />
+            </div>
+            <div class="form-group">
+              <label>Website</label>
+              <input type="text" id="website" class="form-control" placeholder="https://acme.com" />
+            </div>
+          </div>
+
+          <button type="submit" id="regBtn" class="btn btn-primary full btn-lg" style="margin-top: 10px;">
+            Continue to Verification &rarr;
+          </button>
+        </form>
+
+        <div style="text-align: center; font-size: 13px; color: var(--muted); margin-top: 24px; border-top: 1px solid var(--line); padding-top: 20px;">
+          Already registered? <a href="login.html" style="color: var(--primary); font-weight: 800;">Sign in here</a>
+        </div>
+      </div>
+
+      <!-- STEP 2: OTP VERIFICATION -->
+      <div id="step2View" style="display: none; text-align: center;">
+        <div style="width: 52px; height: 52px; border-radius: 16px; background: var(--teal); color: #0e1428; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 22px; margin: 0 auto 16px; box-shadow: 0 8px 20px rgba(45,212,191,.3);">
+          ✓
+        </div>
+        <h2 style="font-size: 24px; margin-bottom: 6px;">Verify Email Code</h2>
+        <p style="font-size: 13px; color: var(--muted); margin-bottom: 24px;" id="otpSubText">
+          We sent a 6-digit confirmation code to your work email.
+        </p>
+
+        <form id="otpForm" onsubmit="handleOtpSubmit(event)">
+          <div class="form-group">
+            <input type="text" id="otpCode" class="form-control" placeholder="123456" maxlength="6" style="text-align: center; font-size: 28px; font-weight: 900; letter-spacing: .25em; font-family: monospace;" required />
+          </div>
+
+          <button type="submit" id="otpBtn" class="btn btn-primary full btn-lg">
+            Verify & Launch Dashboard &rarr;
+          </button>
+
+          <p style="font-size: 12px; color: var(--muted); margin-top: 16px;">
+            Didn't receive it? <a href="javascript:void(0)" onclick="alert('Verification code resent!')" style="color: var(--primary); font-weight: 800;">Resend code</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/company-api.js"></script>
+  <script>
+    let registeredEmail = "";
+
+    async function handleRegisterSubmit(e) {
+      e.preventDefault();
+      const compName = document.getElementById("companyName").value;
+      const recName = document.getElementById("recruiterName").value;
+      const email = document.getElementById("email").value;
+      const pass = document.getElementById("password").value;
+      const ind = document.getElementById("industry").value;
+      const web = document.getElementById("website").value;
+
+      registeredEmail = email;
+      const btn = document.getElementById("regBtn");
+      btn.disabled = true;
+      btn.innerText = "Creating account...";
+
+      try {
+        await CompanyApi.register({
+          companyName: compName,
+          name: recName,
+          email: email,
+          password: pass,
+          industry: ind,
+          website: web
+        });
+      } catch (ex) {}
+
+      document.getElementById("step1View").style.display = "none";
+      document.getElementById("step2View").style.display = "block";
+      document.getElementById("otpSubText").innerText = `We sent a 6-digit confirmation code to ${email}`;
+      document.getElementById("otpCode").focus();
+    }
+
+    async function handleOtpSubmit(e) {
+      e.preventDefault();
+      const code = document.getElementById("otpCode").value;
+      const btn = document.getElementById("otpBtn");
+      btn.disabled = true;
+      btn.innerText = "Verifying...";
+
+      try {
+        await CompanyApi.verifyOtp(registeredEmail, code);
+        alert("Account verified successfully! Your 14-day Starter trial is now active.");
+        window.location.href = "dashboard.html";
+      } catch (ex) {
+        alert("Verification failed. Please check the code.");
+        btn.disabled = false;
+        btn.innerText = "Verify & Launch Dashboard →";
+      }
+    }
+  </script>
+</body>
+</html>

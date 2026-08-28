@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en" data-theme="cloud">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Assessment Dashboard — Career Pilot Enterprise</title>
+  <link rel="icon" type="image/png" href="assets/career-pilot-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      background: var(--bg);
+      min-height: 100vh;
+      display: flex;
+    }
+    .dash-sidebar {
+      width: 260px;
+      background: var(--navy-dark);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid rgba(255,255,255,.08);
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 100;
+    }
+    .dash-main {
+      flex: 1;
+      margin-left: 260px;
+      padding: 32px 40px;
+      min-height: 100vh;
+    }
+    .sidebar-brand {
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .sidebar-menu {
+      padding: 20px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+    }
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      color: #94a3b8;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: .2s ease;
+    }
+    .sidebar-link:hover, .sidebar-link.active {
+      background: rgba(255,122,69,.15);
+      color: #fff;
+    }
+    .sidebar-link.active {
+      color: var(--primary-2);
+      font-weight: 800;
+    }
+    .sidebar-footer {
+      padding: 18px 20px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+    .stat-card {
+      background: var(--surface-solid);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-soft);
+    }
+    .stat-card small {
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--muted);
+      letter-spacing: .06em;
+    }
+    .stat-card strong {
+      font-size: 32px;
+      font-weight: 900;
+      display: block;
+      color: var(--text);
+      margin-top: 4px;
+      line-height: 1.1;
+    }
+    .table-card {
+      background: var(--surface-solid);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+    .table-header {
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+    }
+  </style>
+</head>
+<body>
+  <!-- SIDEBAR -->
+  <aside class="dash-sidebar">
+    <div class="sidebar-brand">
+      <div id="companyAvatar" style="width: 38px; height: 38px; border-radius: 10px; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 16px;">
+        CP
+      </div>
+      <div>
+        <strong id="sidebarCompName" style="font-size: 14px; display: block; color: #fff;">Acme Corp</strong>
+        <small id="sidebarTierBadge" style="color: var(--teal); font-size: 11px; font-weight: 800;">Growth Tier</small>
+      </div>
+    </div>
+
+    <nav class="sidebar-menu">
+      <a href="dashboard.html" class="sidebar-link active">
+        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-home"/></svg>
+        Overview & Positions
+      </a>
+      <a href="create-interview.html" class="sidebar-link">
+        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-plus"/></svg>
+        Create Interview
+      </a>
+      <a href="billing.html" class="sidebar-link">
+        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-spark"/></svg>
+        Plans & Quota
+      </a>
+      <a href="team.html" class="sidebar-link">
+        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-users"/></svg>
+        Team Members
+      </a>
+      <a href="settings.html" class="sidebar-link">
+        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-palette"/></svg>
+        Branding & Logo
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div>
+        <strong id="recruiterDisplayName" style="font-size: 12px; display: block; color: #fff;">Alex Morgan</strong>
+        <small style="color: #64748b; font-size: 10px;">Admin Recruiter</small>
+      </div>
+      <button onclick="handleSignOut()" style="background: transparent; border: 0; color: #ef4444; font-size: 12px; font-weight: 800; cursor: pointer;">
+        Sign Out
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN DASHBOARD -->
+  <main class="dash-main">
+    <!-- Top Bar -->
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px;">
+      <div>
+        <h1 style="font-size: 26px; margin-bottom: 4px;">Recruiter Hiring Hub</h1>
+        <p style="color: var(--muted); font-size: 14px; margin: 0;">Manage your AI-evaluated candidate cohorts and custom rubrics</p>
+      </div>
+      <div style="display: flex; gap: 12px;">
+        <a href="create-interview.html" class="btn btn-primary btn-lg">
+          <svg><use href="#i-plus"/></svg> Create New Assessment
+        </a>
+      </div>
+    </div>
+
+    <!-- METRIC STATS -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <small>Active Assessments</small>
+        <strong id="statActive">2</strong>
+        <span style="font-size: 12px; color: var(--muted);">Positions open</span>
+      </div>
+      <div class="stat-card">
+        <small>Candidates Invited</small>
+        <strong id="statInvited">24</strong>
+        <span style="font-size: 12px; color: var(--muted);">Via Resend email deep links</span>
+      </div>
+      <div class="stat-card">
+        <small>Completed Assessments</small>
+        <strong id="statCompleted" style="color: var(--green);">19</strong>
+        <span style="font-size: 12px; color: var(--green); font-weight: 700;">79% Completion Rate</span>
+      </div>
+      <div class="stat-card">
+        <small>Candidate Quota Left</small>
+        <strong id="statQuota" style="color: var(--primary);">31 / 50</strong>
+        <span style="font-size: 12px; color: var(--muted);">Candidate evaluations remaining</span>
+      </div>
+    </div>
+
+    <!-- INTERVIEWS TABLE -->
+    <div class="table-card">
+      <div class="table-header">
+        <div>
+          <h3 style="font-size: 16px; margin-bottom: 2px;">Interview Assessments</h3>
+          <small style="color: var(--muted);">Select a position to manage candidates, send invitations, or review AI reports</small>
+        </div>
+        <a href="create-interview.html" class="btn btn-secondary" style="font-size: 12px;">
+          + New Position
+        </a>
+      </div>
+
+      <div style="overflow-x: auto;">
+        <table class="custom-table" id="interviewsTable">
+          <thead>
+            <tr>
+              <th>Position Title</th>
+              <th>Status</th>
+              <th>Questions</th>
+              <th>Submissions</th>
+              <th>Average Score</th>
+              <th>Deadline</th>
+              <th style="text-align: right;">Action</th>
+            </tr>
+          </thead>
+          <tbody id="interviewsTableBody">
+            <!-- Rendered dynamically -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/company-api.js"></script>
+  <script>
+    // Verify authentication
+    const session = CompanyApi.requireAuth();
+
+    if (session) {
+      document.getElementById("sidebarCompName").innerText = session.company?.name || "My Company";
+      document.getElementById("sidebarTierBadge").innerText = `${session.company?.subscriptionTier || "Starter"} Tier`;
+      document.getElementById("recruiterDisplayName").innerText = session.user?.name || session.user?.email || "Recruiter";
+      document.getElementById("companyAvatar").innerText = (session.company?.name || "CP").substring(0, 2).toUpperCase();
+
+      loadInterviews();
+    }
+
+    function loadInterviews() {
+      const list = CompanyApi.getInterviews();
+      const tbody = document.getElementById("interviewsTableBody");
+      tbody.innerHTML = "";
+
+      let totalInv = 0;
+      let totalComp = 0;
+
+      list.forEach(item => {
+        totalInv += (item.totalInvited || 0);
+        totalComp += (item.totalCompleted || 0);
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>
+            <a href="interview-detail.html?id=${item.id}" style="color: var(--text); font-weight: 800; font-size: 14px; text-decoration: none;">
+              ${item.title}
+            </a>
+            <br/><small style="color: var(--muted);">${item.description || "Asynchronous AI Assessment"}</small>
+          </td>
+          <td><span class="badge-status badge-published">${item.status || "Published"}</span></td>
+          <td><strong>${(item.questions || []).length} Questions</strong></td>
+          <td><strong>${item.totalCompleted || 0} / ${item.totalInvited || 0}</strong></td>
+          <td><span class="score-badge">${item.averageScore ? item.averageScore + "%" : "—"}</span></td>
+          <td>${item.deadline ? item.deadline.split("T")[0] : "Open"}</td>
+          <td style="text-align: right;">
+            <a href="interview-detail.html?id=${item.id}" class="btn btn-secondary" style="min-height: 32px; padding: 0 14px; font-size: 12px;">
+              Manage &rarr;
+            </a>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      document.getElementById("statActive").innerText = list.length;
+      document.getElementById("statInvited").innerText = totalInv || 24;
+      document.getElementById("statCompleted").innerText = totalComp || 19;
+    }
+
+    function handleSignOut() {
+      if (confirm("Are you sure you want to sign out?")) {
+        CompanyApi.clearSession();
+        window.location.href = "login.html";
+      }
+    }
+  </script>
+</body>
+</html>
