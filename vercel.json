@@ -8,7 +8,11 @@
     { "source": "/challenge", "destination": "/challenge.html" },
     { "source": "/challenge/(.*)", "destination": "/challenge.html" },
     { "source": "/interview", "destination": "/interview.html" },
-    { "source": "/interview/(.*)", "destination": "/interview.html" }
+    { "source": "/interview/(.*)", "destination": "/interview.html" },
+    { "source": "/employer", "destination": "/employer.html" },
+    { "source": "/employer/(.*)", "destination": "/employer.html" },
+    { "source": "/enterprise", "destination": "/employer.html" },
+    { "source": "/enterprise/(.*)", "destination": "/employer.html" }
   ],
   "headers": [
     {

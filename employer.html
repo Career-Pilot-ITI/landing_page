@@ -1,0 +1,678 @@
+<!doctype html>
+<html lang="en" data-theme="cloud">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Career Pilot for Employers & Enterprise — Asynchronous AI hiring assessments with custom question rubrics, on-device MediaPipe vision, and Whisper voice transcription." />
+  <meta name="theme-color" content="#f7f9ff" />
+  <title>Employers & Enterprise Portal — Career Pilot</title>
+  <link rel="icon" type="image/png" href="assets/career-pilot-icon.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Custom Employer Dashboard Styles matching CareerPilot theme */
+    .emp-dashboard {
+      background: var(--surface-solid);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-top: 30px;
+    }
+    .emp-header {
+      background: var(--navy-dark);
+      color: #fff;
+      padding: 24px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .emp-nav-tabs {
+      display: flex;
+      gap: 8px;
+      background: var(--bg-2);
+      padding: 8px 16px;
+      border-bottom: 1px solid var(--line);
+      overflow-x: auto;
+    }
+    .emp-tab-btn {
+      padding: 10px 20px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 800;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: .2s ease;
+    }
+    .emp-tab-btn.active {
+      background: var(--surface-solid);
+      color: var(--primary);
+      border-color: var(--line);
+      box-shadow: var(--shadow-soft);
+    }
+    .emp-body {
+      padding: 32px;
+      min-height: 480px;
+    }
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    .stat-box {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 20px;
+    }
+    .stat-box small {
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--muted);
+      letter-spacing: .08em;
+    }
+    .stat-box strong {
+      display: block;
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--text);
+      line-height: 1.1;
+      margin-top: 4px;
+    }
+    .custom-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 13px;
+    }
+    .custom-table th {
+      background: var(--bg-2);
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      padding: 12px 18px;
+      text-align: left;
+      border-bottom: 1px solid var(--line);
+    }
+    .custom-table td {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+      color: var(--text);
+    }
+    .custom-table tr:hover td {
+      background: var(--bg);
+    }
+    .badge-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .badge-published { background: rgba(45,212,191,.15); color: #0d9488; }
+    .badge-completed { background: rgba(34,197,94,.15); color: #16a34a; }
+    .badge-draft { background: rgba(255,122,69,.15); color: var(--primary); }
+    .score-badge {
+      font-weight: 900;
+      font-size: 15px;
+      color: var(--primary);
+    }
+    .rubric-box {
+      background: rgba(255,122,69,.06);
+      border: 1px dashed var(--primary);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      margin-top: 10px;
+    }
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .form-control {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      font-size: 14px;
+      background: var(--bg);
+      color: var(--text);
+      transition: .2s ease;
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(255,122,69,.15);
+    }
+    .pillar-card {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      position: relative;
+    }
+    .pillar-card strong {
+      font-size: 28px;
+      font-weight: 900;
+      display: block;
+      margin: 8px 0;
+    }
+    .transcript-quote {
+      font-style: italic;
+      font-family: Georgia, serif;
+      background: var(--bg-2);
+      border-left: 4px solid var(--primary);
+      padding: 16px 20px;
+      border-radius: 0 12px 12px 0;
+      margin: 12px 0;
+      color: var(--text);
+    }
+  </style>
+</head>
+<body>
+  <!-- SVG SPRITES -->
+  <svg class="svg-sprite" aria-hidden="true" style="display:none;">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4 10-10"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 2 1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8zM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></symbol>
+    <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0 0 18h1.2a2 2 0 0 0 1.5-3.3 2 2 0 0 1 1.5-3.3H18a3 3 0 0 0 3-3.1A9 9 0 0 0 12 3z"/><circle cx="7" cy="11" r="1"/><circle cx="9" cy="7" r="1"/><circle cx="14" cy="7" r="1"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2 20 5v6c0 5-3.2 9-8 11-4.8-2-8-6-8-11V5z"/><path d="m9 12 2 2 4-5"/></symbol>
+    <symbol id="i-video" viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></symbol>
+    <symbol id="i-qr" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M7 7h.01M17 7h.01M7 17h.01M17 17h.01"/></symbol>
+  </svg>
+
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div><div class="ambient ambient-c"></div>
+
+  <!-- HEADER -->
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html" aria-label="Career Pilot home">
+        <img src="assets/career-pilot-icon.png" alt="Career Pilot application icon" />
+        <span><strong>Career Pilot</strong><small>ITI · Intake 46</small></span>
+      </a>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="index.html">Company</a>
+        <a href="product.html">Product</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="employer.html" class="active">Employers & Enterprise</a>
+        <a href="about.html">About & Team</a>
+        <a href="emulator.html">Live Emulator</a>
+        <a href="contact.html">Contact</a>
+        <a href="docs.html" class="nav-docs-badge"><span class="badge-mini">SRS</span> Docs</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn theme-button" id="themeButton" aria-label="Change theme" title="Change theme"><svg><use href="#i-palette"/></svg></button>
+        <a class="btn btn-ghost desktop-only" href="interview.html" title="Candidate Interview Portal"><svg style="width:14px;height:14px;fill:currentColor;"><use href="#i-spark"/></svg> Interview Portal</a>
+        <a class="btn btn-primary desktop-only" href="#recruiter-portal"><svg><use href="#i-spark"/></svg> Recruiter Portal</a>
+        <button class="icon-btn mobile-menu-btn" id="menuButton" aria-label="Open menu"><svg><use href="#i-menu"/></svg></button>
+      </div>
+    </div>
+    <div class="theme-popover" id="themePopover" role="menu" aria-label="Theme picker">
+      <button data-theme-choice="cloud"><span class="theme-dot cloud-dot"></span><span><b>Light</b><small>App light theme</small></span></button>
+      <button data-theme-choice="pulse"><span class="theme-dot pulse-dot"></span><span><b>Focus</b><small>Higher-contrast light theme</small></span></button>
+      <button data-theme-choice="midnight"><span class="theme-dot midnight-dot"></span><span><b>Dark</b><small>App dark theme</small></span></button>
+    </div>
+  </header>
+
+  <main>
+    <!-- EMPLOYER HERO -->
+    <section class="hero section-pad" style="min-height: auto; padding-top: 50px; padding-bottom: 60px;">
+      <div class="container" style="text-align: center; max-width: 920px; margin: 0 auto;">
+        <div class="eyebrow" style="margin-bottom: 16px;"><span class="live-dot"></span> CareerPilot Enterprise B2B Service</div>
+        <h1>Screen with context.<br/><span class="gradient-text">Evaluate with precision.</span></h1>
+        <p class="hero-lead" style="margin: 0 auto 28px;">
+          Create custom-rubric interviews, batch invite candidates via branded email deep links, and evaluate candidates asynchronously via the CareerPilot Android App powered by MediaPipe vision and Whisper voice AI.
+        </p>
+        <div class="hero-actions" style="justify-content: center;">
+          <a class="btn btn-primary btn-lg" href="#recruiter-portal"><svg><use href="#i-spark"/></svg> Open Recruiter Portal</a>
+          <a class="btn btn-secondary btn-lg" href="#enterprise-pricing">View Enterprise Plans</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 PILLARS -->
+    <section class="section-pad alt-section">
+      <div class="container">
+        <div style="text-align: center; max-width: 700px; margin: 0 auto 50px;">
+          <p class="kicker">3-Pillar Candidate Scoring Model</p>
+          <h2>Fair, comprehensive, and unbiased candidate evaluations.</h2>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+          <div class="pillar-card">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="kicker" style="margin:0;">Pillar 1 · 60% Weight</span>
+              <span style="font-weight: 900; color: var(--primary);">Rubric Accuracy</span>
+            </div>
+            <strong>Custom Criteria Match</strong>
+            <p style="font-size: 13px; color: var(--muted); margin:0;">
+              AI directly verifies if candidate answers hit your required keywords, design patterns, or technical explanations.
+            </p>
+          </div>
+
+          <div class="pillar-card">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="kicker" style="margin:0; color: var(--teal);">Pillar 2 · 20% Weight</span>
+              <span style="font-weight: 900; color: var(--teal);">MediaPipe Vision</span>
+            </div>
+            <strong>Eye Contact & Posture</strong>
+            <p style="font-size: 13px; color: var(--muted); margin:0;">
+              On-device camera analysis measures gaze direction, screen engagement, and posture stability without uploading raw video.
+            </p>
+          </div>
+
+          <div class="pillar-card">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="kicker" style="margin:0; color: var(--green);">Pillar 3 · 20% Weight</span>
+              <span style="font-weight: 900; color: var(--green);">Whisper Speech AI</span>
+            </div>
+            <strong>Fluency & Articulation</strong>
+            <p style="font-size: 13px; color: var(--muted); margin:0;">
+              Speech-to-text measures words-per-minute pacing, hesitation pauses, and articulation confidence.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE RECRUITER DASHBOARD APP -->
+    <section class="section-pad" id="recruiter-portal">
+      <div class="container">
+        <div style="text-align: center; max-width: 800px; margin: 0 auto 30px;">
+          <div class="eyebrow"><span class="live-dot"></span> Live Interactive Dashboard</div>
+          <h2>Recruiter Assessment Management Hub</h2>
+          <p class="hero-lead" style="font-size: 15px;">
+            Create positions, define evaluation rubrics, batch dispatch invitation emails, and inspect complete candidate reports.
+          </p>
+        </div>
+
+        <div class="emp-dashboard" id="employerApp">
+          <!-- Top Bar -->
+          <div class="emp-header">
+            <div style="display: flex; align-items: center; gap: 14px;">
+              <div style="width: 40px; height: 40px; border-radius: 12px; background: var(--primary); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 18px; color: #fff;">
+                CP
+              </div>
+              <div>
+                <strong style="font-size: 16px; display: block;">Acme Technologies · Recruiter Dashboard</strong>
+                <small style="color: var(--teal); font-weight: 700;">Growth Tier Active (50 Candidate Quota)</small>
+              </div>
+            </div>
+            <div>
+              <button class="btn btn-primary" style="min-height: 38px; padding: 0 16px; font-size: 12px;" onclick="switchTab('new-interview')">
+                <svg><use href="#i-plus"/></svg> Create Interview
+              </button>
+            </div>
+          </div>
+
+          <!-- Nav Tabs -->
+          <div class="emp-nav-tabs">
+            <button class="emp-tab-btn active" id="tab-btn-overview" onclick="switchTab('overview')">
+              <svg style="width:16px;height:16px;"><use href="#i-spark"/></svg> Assessment Overview
+            </button>
+            <button class="emp-tab-btn" id="tab-btn-new-interview" onclick="switchTab('new-interview')">
+              <svg style="width:16px;height:16px;"><use href="#i-plus"/></svg> Create Assessment & Rubric
+            </button>
+            <button class="emp-tab-btn" id="tab-btn-candidates" onclick="switchTab('candidates')">
+              <svg style="width:16px;height:16px;"><use href="#i-users"/></svg> Batch Candidates & Invitations
+            </button>
+            <button class="emp-tab-btn" id="tab-btn-report" onclick="switchTab('report')">
+              <svg style="width:16px;height:16px;"><use href="#i-shield"/></svg> Candidate AI Report & Transcripts
+            </button>
+          </div>
+
+          <!-- TAB 1: OVERVIEW -->
+          <div class="emp-body" id="tab-overview">
+            <div class="stats-row">
+              <div class="stat-box">
+                <small>Active Assessments</small>
+                <strong>3</strong>
+                <span style="font-size: 12px; color: var(--muted);">Positions open</span>
+              </div>
+              <div class="stat-box">
+                <small>Candidates Invited</small>
+                <strong>24</strong>
+                <span style="font-size: 12px; color: var(--muted);">Via Resend deep links</span>
+              </div>
+              <div class="stat-box">
+                <small>Completed Sessions</small>
+                <strong style="color: var(--green);">19</strong>
+                <span style="font-size: 12px; color: var(--green); font-weight: 700;">79% Completion rate</span>
+              </div>
+              <div class="stat-box">
+                <small>Cohort Average Score</small>
+                <strong style="color: var(--primary);">84.2%</strong>
+                <span style="font-size: 12px; color: var(--muted);">Across all 3 pillars</span>
+              </div>
+            </div>
+
+            <h3 style="margin-bottom: 16px;">Active Position Assessments</h3>
+            <div style="overflow-x: auto;">
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>Position Title</th>
+                    <th>Status</th>
+                    <th>Questions</th>
+                    <th>Submissions</th>
+                    <th>Average Score</th>
+                    <th>Deadline</th>
+                    <th style="text-align: right;">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Senior Android Engineer</strong><br/><small style="color: var(--muted);">Kotlin, Coroutines, Jetpack Compose</small></td>
+                    <td><span class="badge-status badge-published">Published</span></td>
+                    <td><strong>4 Questions</strong></td>
+                    <td><strong>12 / 15</strong></td>
+                    <td><span class="score-badge">88%</span></td>
+                    <td>Sep 05, 2026</td>
+                    <td style="text-align: right;">
+                      <button class="btn btn-secondary" style="min-height: 32px; padding: 0 12px; font-size: 11px;" onclick="viewReportSample('Sarah Jenkins', 92)">View Report</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Spring Cloud Backend Architect</strong><br/><small style="color: var(--muted);">Distributed Microservices, pgvector RAG</small></td>
+                    <td><span class="badge-status badge-published">Published</span></td>
+                    <td><strong>3 Questions</strong></td>
+                    <td><strong>7 / 9</strong></td>
+                    <td><span class="score-badge">81%</span></td>
+                    <td>Sep 10, 2026</td>
+                    <td style="text-align: right;">
+                      <button class="btn btn-secondary" style="min-height: 32px; padding: 0 12px; font-size: 11px;" onclick="viewReportSample('Hossam Ahmed', 85)">View Report</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- TAB 2: CREATE INTERVIEW -->
+          <div class="emp-body" id="tab-new-interview" style="display: none;">
+            <h3 style="margin-bottom: 6px;">Create New Interview Assessment</h3>
+            <p style="color: var(--muted); font-size: 13px; margin-bottom: 24px;">Configure questions and describe what the candidate must mention for AI to score them.</p>
+
+            <form id="createInterviewForm" onsubmit="handleCreateInterview(event)">
+              <div class="form-group">
+                <label>Position / Assessment Title</label>
+                <input type="text" id="intTitle" class="form-control" placeholder="e.g. Lead Mobile Engineer (Kotlin / Compose)" required />
+              </div>
+
+              <div class="form-group">
+                <label>Candidate Description & Welcome Message</label>
+                <textarea id="intDesc" class="form-control" rows="2" placeholder="Visible to applicants in their email invitation..."></textarea>
+              </div>
+
+              <div style="margin: 30px 0 20px;">
+                <h4>Questions & Custom Evaluation Rubric</h4>
+                <p style="font-size: 13px; color: var(--muted);">What should AI look for in the spoken answer?</p>
+              </div>
+
+              <div id="questionsContainer" style="display: flex; flex-direction: column; gap: 20px;">
+                <div class="pillar-card" style="border-color: var(--line);">
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                    <span class="kicker" style="margin:0;">Question #1</span>
+                    <span style="font-size: 12px; font-weight: 700; color: var(--muted);">90s Spoken Limit · 1x Weight</span>
+                  </div>
+                  <div class="form-group">
+                    <label>Spoken Question</label>
+                    <input type="text" class="form-control" value="Explain how Kotlin Coroutines manage structured concurrency and how you handle Dispatchers?" required />
+                  </div>
+                  <div class="rubric-box">
+                    <label style="color: var(--primary);"><svg style="width:14px;height:14px;display:inline-block;vertical-align:-2px;"><use href="#i-spark"/></svg> What You Want to Hear (AI Scoring Rubric)</label>
+                    <textarea class="form-control" rows="2" style="background:#fff; margin-top:6px;">Candidate must mention CoroutineScope, SupervisorJob, difference between Dispatchers.IO vs Default, and cancellation propagation.</textarea>
+                  </div>
+                </div>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 30px; border-top: 1px solid var(--line); padding-top: 20px;">
+                <button type="button" class="btn btn-secondary" onclick="addQuestionField()">
+                  <svg><use href="#i-plus"/></svg> Add Another Question
+                </button>
+                <button type="submit" class="btn btn-primary btn-lg">
+                  <svg><use href="#i-check"/></svg> Save & Publish Assessment
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- TAB 3: CANDIDATE DISPATCHER -->
+          <div class="emp-body" id="tab-candidates" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 14px;">
+              <div>
+                <h3 style="margin-bottom: 4px;">Candidate Invitation Manager</h3>
+                <p style="color: var(--muted); font-size: 13px; margin: 0;">Add emails or upload CSV to dispatch deep link invitations.</p>
+              </div>
+              <div style="display: flex; gap: 10px;">
+                <button class="btn btn-primary" onclick="dispatchEmailsDemo()">
+                  <svg><use href="#i-send"/></svg> Send Batch Invitations via Resend
+                </button>
+              </div>
+            </div>
+
+            <div style="background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-md); padding: 20px; margin-bottom: 24px;">
+              <h4 style="margin-bottom: 12px;">Quick Add Candidate</h4>
+              <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                <input type="text" id="newCandName" class="form-control" placeholder="Candidate Name" style="flex: 1; min-width: 200px;" />
+                <input type="email" id="newCandEmail" class="form-control" placeholder="candidate@email.com" style="flex: 1; min-width: 200px;" />
+                <button class="btn btn-secondary" onclick="addCandidateRow()">Add to List</button>
+              </div>
+            </div>
+
+            <div id="invitationSuccessNotice" style="display: none; background: rgba(34,197,94,.15); border: 1px solid #22c55e; color: #15803d; padding: 14px 20px; border-radius: 12px; margin-bottom: 20px; font-weight: 700; font-size: 13px;">
+              ✓ Dispatched 4 invitation emails successfully with Android deep links!
+            </div>
+
+            <table class="custom-table" id="candidatesTable">
+              <thead>
+                <tr>
+                  <th>Candidate</th>
+                  <th>Invitation Link</th>
+                  <th>Status</th>
+                  <th>Pillar Score</th>
+                  <th style="text-align: right;">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Sarah Jenkins</strong><br/><small style="color:var(--muted);">sarah.jenkins@example.com</small></td>
+                  <td><code style="font-size:11px; color:var(--primary);">careerpilot://company-interview?token=tk_sarah92</code></td>
+                  <td><span class="badge-status badge-completed">Completed</span></td>
+                  <td><strong style="color:var(--primary); font-size:16px;">92%</strong></td>
+                  <td style="text-align: right;"><button class="btn btn-secondary" style="min-height:30px; font-size:11px;" onclick="viewReportSample('Sarah Jenkins', 92)">Inspect Report</button></td>
+                </tr>
+                <tr>
+                  <td><strong>Omar Farooq</strong><br/><small style="color:var(--muted);">omar.farooq@example.com</small></td>
+                  <td><code style="font-size:11px; color:var(--primary);">careerpilot://company-interview?token=tk_omar85</code></td>
+                  <td><span class="badge-status badge-completed">Completed</span></td>
+                  <td><strong style="color:var(--primary); font-size:16px;">88%</strong></td>
+                  <td style="text-align: right;"><button class="btn btn-secondary" style="min-height:30px; font-size:11px;" onclick="viewReportSample('Omar Farooq', 88)">Inspect Report</button></td>
+                </tr>
+                <tr>
+                  <td><strong>Layla Mansour</strong><br/><small style="color:var(--muted);">layla.m@example.com</small></td>
+                  <td><code style="font-size:11px; color:var(--primary);">careerpilot://company-interview?token=tk_layla01</code></td>
+                  <td><span class="badge-status badge-draft">Invitation Sent</span></td>
+                  <td><span style="color:var(--muted);">Awaiting App</span></td>
+                  <td style="text-align: right;"><span style="font-size:12px; color:var(--muted);">In Progress</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- TAB 4: CANDIDATE REPORT -->
+          <div class="emp-body" id="tab-report" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; border-bottom: 1px solid var(--line); padding-bottom: 16px;">
+              <div>
+                <span class="badge-status badge-completed" style="margin-bottom: 6px;">Verified Submission</span>
+                <h3 id="repCandName">Candidate Assessment Report · Sarah Jenkins</h3>
+                <small style="color: var(--muted);">Senior Android Engineer Assessment · Spoken Spurt Duration: 3m 42s</small>
+              </div>
+              <div style="text-align: center; background: var(--navy-dark); color: #fff; padding: 12px 24px; border-radius: 16px;">
+                <div style="font-size: 32px; font-weight: 900; color: var(--primary);" id="repScore">92%</div>
+                <small style="font-size: 10px; text-transform: uppercase; font-weight: 800; color: var(--teal);">Overall Score</small>
+              </div>
+            </div>
+
+            <!-- 3 Pillars Breakdown -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 30px;">
+              <div class="stat-box" style="border-top: 3px solid var(--primary);">
+                <small>1. Custom Rubric Match (60%)</small>
+                <strong style="color: var(--primary);">94%</strong>
+                <span style="font-size: 12px; color: var(--muted);">Covered Coroutines, Scope, and Job trees</span>
+              </div>
+              <div class="stat-box" style="border-top: 3px solid var(--teal);">
+                <small>2. MediaPipe Vision (20%)</small>
+                <strong style="color: var(--teal);">88%</strong>
+                <span style="font-size: 12px; color: var(--muted);">88% Eye contact, 0 slouch alerts</span>
+              </div>
+              <div class="stat-box" style="border-top: 3px solid var(--green);">
+                <small>3. Voice Delivery (20%)</small>
+                <strong style="color: var(--green);">93%</strong>
+                <span style="font-size: 12px; color: var(--muted);">138 WPM, minimal filler words</span>
+              </div>
+            </div>
+
+            <!-- Question 1 Breakdown -->
+            <div class="pillar-card" style="margin-bottom: 20px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <strong>Question #1: Structured Concurrency & Dispatchers</strong>
+                <span class="score-badge">94% AI Match</span>
+              </div>
+              <div class="transcript-quote">
+                "Kotlin coroutines enforce structured concurrency through CoroutineScope and Job hierarchies. When a child coroutine fails without a SupervisorJob, the exception propagates upwards and cancels parent siblings. I use Dispatchers.IO for networking and Room disk operations, and Dispatchers.Default for CPU heavy parsing."
+              </div>
+              <div class="rubric-box" style="background: rgba(34,197,94,.08); border-color: #22c55e;">
+                <label style="color: #16a34a; font-weight: 800;">✓ AI Rubric Evaluation Analysis</label>
+                <p style="font-size: 12px; margin: 4px 0 0; color: var(--text);">
+                  Candidate clearly articulated all target keywords: CoroutineScope, SupervisorJob, Dispatchers.IO vs Default, and exception propagation. Full points awarded.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ENTERPRISE PRICING -->
+    <section class="section-pad alt-section" id="enterprise-pricing">
+      <div class="container">
+        <div style="text-align: center; max-width: 700px; margin: 0 auto 50px;">
+          <p class="kicker">Enterprise B2B Plans</p>
+          <h2>Scale your hiring with predictable candidate allowances.</h2>
+        </div>
+
+        <div class="pricing-grid">
+          <!-- Starter -->
+          <article class="price-card reveal">
+            <div class="plan-row"><span>STARTER</span><small>Free Trial</small></div>
+            <div class="price"><strong>0</strong><span>USD<br/>/ 14 days</span></div>
+            <div class="coin-line">10 Candidate Evaluations</div>
+            <ul>
+              <li><svg><use href="#i-check"/></svg>1 Active interview position</li>
+              <li><svg><use href="#i-check"/></svg>Custom AI evaluation rubrics</li>
+              <li><svg><use href="#i-check"/></svg>MediaPipe on-device gaze tracking</li>
+              <li><svg><use href="#i-check"/></svg>2 Team recruiter seats</li>
+            </ul>
+            <a class="btn btn-secondary full" href="#recruiter-portal" onclick="switchTab('new-interview')">Start Free Trial</a>
+          </article>
+
+          <!-- Growth -->
+          <article class="price-card popular reveal reveal-delay-1">
+            <div class="popular-ribbon">Most Popular</div>
+            <div class="plan-row"><span>GROWTH</span><small>Active Teams</small></div>
+            <div class="price"><strong>49</strong><span>USD<br/>/ month</span></div>
+            <div class="coin-line">50 Candidates ($2.00/extra)</div>
+            <ul>
+              <li><svg><use href="#i-check"/></svg>5 Active interview positions</li>
+              <li><svg><use href="#i-check"/></svg>Batch CSV invitations via Resend</li>
+              <li><svg><use href="#i-check"/></svg>Custom logo & brand accent color</li>
+              <li><svg><use href="#i-check"/></svg>5 Recruiter & hiring manager seats</li>
+              <li><svg><use href="#i-check"/></svg>CSV & ATS export rankings</li>
+            </ul>
+            <a class="btn btn-primary full" href="#recruiter-portal" onclick="switchTab('new-interview')">Choose Growth Plan</a>
+          </article>
+
+          <!-- Business -->
+          <article class="price-card reveal reveal-delay-2">
+            <div class="plan-row"><span>BUSINESS</span><small>High Volume</small></div>
+            <div class="price"><strong>199</strong><span>USD<br/>/ month</span></div>
+            <div class="coin-line">200 Candidates ($1.50/extra)</div>
+            <ul>
+              <li><svg><use href="#i-check"/></svg>Unlimited active positions</li>
+              <li><svg><use href="#i-check"/></svg>Priority AI transcription queue</li>
+              <li><svg><use href="#i-check"/></svg>20 Recruiter & interviewer seats</li>
+              <li><svg><use href="#i-check"/></svg>Webhook ATS integrations</li>
+            </ul>
+            <a class="btn btn-secondary full" href="#recruiter-portal" onclick="switchTab('new-interview')">Choose Business Plan</a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <img src="assets/career-pilot-icon.png" alt="Career Pilot application icon" />
+          <span><strong>Career Pilot</strong><small>ITI · Intake 46</small></span>
+        </a>
+        <p>Enterprise AI hiring assessments with custom rubrics and on-device computer vision.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Employers</h4>
+        <a href="employer.html">Enterprise Portal</a>
+        <a href="#enterprise-pricing">B2B Pricing</a>
+        <a href="interview.html">Candidate Portal</a>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="product.html">Platform Architecture</a>
+        <a href="pricing.html">Candidate App Pricing</a>
+        <a href="emulator.html">Live Web Emulator</a>
+        <a href="docs.html">SRS Docs</a>
+      </div>
+    </div>
+    <div class="footer-bottom container">
+      <p>&copy; 2026 Career Pilot · ITI Intake 46 Graduation Showcase. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/employer.js"></script>
+</body>
+</html>
