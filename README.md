@@ -38,38 +38,7 @@
 - **Double-Entry Ledger**: Immutably recorded in `coin_ledger_entries` and `payment_transactions` with automated monthly renewals (`SubscriptionRenewalSweepJob`).
 - **Centralized Gating**: Enforced in Android via `:core:access` (`CheckFeatureAccessUseCase`, `DeductCoinsUseCase`).
 
----
 
-## 🏃 Running the Projects Locally
-
-### 1. Run the Web Documentation & Presentation Site
-From this folder (`CareerPilot_Website_v2_Theme`):
-```bash
-# Option A: Using Node.js (with MP4 streaming support)
-node server.js
-
-# Option B: Using Python
-python -m http.server 8080
-```
-Open `http://localhost:3000` (Node) or `http://localhost:8080` (Python).
-
-### 2. Run the Spring Boot Backend (`d:/iti/CareerPilot Backend`)
-```bash
-# 1. Launch PostgreSQL with pgvector and Redis in Docker
-docker run -d --name careerpilot-pg -p 5432:5432 -e POSTGRES_PASSWORD=postgres pgvector/pgvector:pg16
-docker run -d --name careerpilot-redis -p 6379:6379 redis:7-alpine
-
-# 2. Build and run Spring Boot service
-cd "d:/iti/CareerPilot Backend/career-pilot-backend"
-./mvnw clean spring-boot:run -Dspring-boot.run.profiles=local
-```
-Swagger UI available at: `http://localhost:8080/swagger-ui.html`
-
-### 3. Build and Run the Android Mobile App (`d:/iti/CareerPilot`)
-Open `d:/iti/CareerPilot` in **Android Studio Ladybug/Meerkat** (JDK 17/21, SDK 37), configure `local.properties` with the backend URL, and run `./gradlew assembleDebug` or install via ADB:
-```bash
-adb install -r app/build/outputs/apk/debug/app-debug.apk
-```
 
 ---
 
