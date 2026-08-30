@@ -2747,6 +2747,25 @@ body.dash-dark, body.dash-body {
   border-bottom: 1px solid var(--dash-sidebar-border);
 }
 
+.sidebar-brand strong,
+.sidebar-brand #sidebarCompName {
+  color: var(--dash-heading) !important;
+  font-size: 14px;
+  font-weight: 800;
+  display: block;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.sidebar-brand .kpi-badge {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 99px;
+  font-weight: 800;
+  display: inline-block;
+  margin-top: 4px;
+}
+
 .sidebar-menu {
   padding: 20px 12px;
   display: flex;

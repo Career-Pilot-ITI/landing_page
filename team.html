@@ -24,12 +24,12 @@
   <!-- SIDEBAR -->
   <aside class="dash-sidebar">
     <div class="sidebar-brand">
-      <div id="companyAvatar" style="width: 42px; height: 42px; border-radius: 14px; background: linear-gradient(135deg, #FF7A45, #F05B24); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 16px; box-shadow: 0 4px 16px rgba(255,122,69,0.35);">
+      <div id="companyAvatar" style="width: 42px; height: 42px; border-radius: 14px; background: linear-gradient(135deg, #FF7A45, #F05B24); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 16px; box-shadow: 0 4px 16px rgba(255,122,69,0.35); flex-shrink: 0;">
         CP
       </div>
-      <div>
-        <strong id="sidebarCompName" style="font-size: 14px; display: block; color: var(--dash-heading);">Acme Corp</strong>
-        <span id="sidebarTierBadge" class="kpi-badge" style="font-size: 10px; padding: 2px 8px; margin-top: 3px; display: inline-block;">Growth Tier</span>
+      <div style="overflow: hidden;">
+        <strong id="sidebarCompName" style="font-size: 14px; display: block; color: var(--dash-heading); letter-spacing: -0.02em; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">Acme Corp</strong>
+        <span id="sidebarTierBadge" class="kpi-badge amber" style="font-size: 10px; padding: 2px 8px; margin-top: 3px; display: inline-block;">Growth Tier</span>
       </div>
     </div>
 

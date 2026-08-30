@@ -24,12 +24,12 @@
   <!-- SIDEBAR -->
   <aside class="dash-sidebar">
     <div class="sidebar-brand">
-      <div id="companyAvatar" style="width: 42px; height: 42px; border-radius: 14px; background: linear-gradient(135deg, #FF7A45, #F05B24); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 16px; box-shadow: 0 4px 16px rgba(255,122,69,0.35);">
+      <div id="companyAvatar" style="width: 42px; height: 42px; border-radius: 14px; background: linear-gradient(135deg, #FF7A45, #F05B24); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 16px; box-shadow: 0 4px 16px rgba(255,122,69,0.35); flex-shrink: 0;">
         CP
       </div>
-      <div>
-        <strong id="sidebarCompName" style="font-size: 14px; display: block; color: var(--dash-heading);">Acme Corp</strong>
-        <span id="sidebarTierBadge" class="kpi-badge" style="font-size: 10px; padding: 2px 8px; margin-top: 3px; display: inline-block;">Growth Tier</span>
+      <div style="overflow: hidden;">
+        <strong id="sidebarCompName" style="font-size: 14px; display: block; color: var(--dash-heading); letter-spacing: -0.02em; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">Acme Corp</strong>
+        <span id="sidebarTierBadge" class="kpi-badge amber" style="font-size: 10px; padding: 2px 8px; margin-top: 3px; display: inline-block;">Growth Tier</span>
       </div>
     </div>
 
@@ -365,6 +365,21 @@
       });
 
       window.location.href = `interview-detail.html?id=${newIntv.id}`;
+    }
+
+    const session = CompanyApi.requireAuth();
+    if (session) {
+      document.getElementById("sidebarCompName").innerText = session.company?.name || "Acme Corp";
+      document.getElementById("sidebarTierBadge").innerText = `${session.company?.subscriptionTier || "Growth"} Tier`;
+      document.getElementById("recruiterDisplayName").innerText = session.user?.name || session.user?.email || "Alex Morgan";
+      document.getElementById("companyAvatar").innerText = (session.company?.name || "CP").substring(0, 2).toUpperCase();
+    }
+
+    function handleSignOut() {
+      if (confirm("Are you sure you want to sign out?")) {
+        CompanyApi.clearSession();
+        window.location.href = "login.html";
+      }
     }
 
     // Initialize with Android Template
