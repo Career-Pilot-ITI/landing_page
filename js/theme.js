@@ -99,3 +99,49 @@ if (document.readyState === "loading") {
 } else {
   ThemeManager.init();
 }
+
+// Mobile Dashboard Sidebar Drawer Toggle
+function toggleDashboardSidebar() {
+  const sidebar = document.querySelector(".dash-sidebar");
+  let overlay = document.querySelector(".dash-sidebar-overlay");
+  
+  if (!overlay) {
+    overlay = document.createElement("div");
+    overlay.className = "dash-sidebar-overlay";
+    overlay.onclick = toggleDashboardSidebar;
+    document.body.appendChild(overlay);
+  }
+  
+  if (sidebar) {
+    const isOpen = sidebar.classList.toggle("open");
+    overlay.classList.toggle("open", isOpen);
+    document.body.style.overflow = isOpen ? "hidden" : "";
+  }
+}
+
+// Auto-close sidebar on link click on mobile & keyboard ESC support
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".sidebar-link").forEach(link => {
+    link.addEventListener("click", () => {
+      if (window.innerWidth <= 900) {
+        const sidebar = document.querySelector(".dash-sidebar");
+        const overlay = document.querySelector(".dash-sidebar-overlay");
+        if (sidebar) sidebar.classList.remove("open");
+        if (overlay) overlay.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+    });
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      const sidebar = document.querySelector(".dash-sidebar");
+      const overlay = document.querySelector(".dash-sidebar-overlay");
+      if (sidebar && sidebar.classList.contains("open")) {
+        sidebar.classList.remove("open");
+        if (overlay) overlay.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+    }
+  });
+});

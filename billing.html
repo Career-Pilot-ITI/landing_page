@@ -31,6 +31,7 @@
         <strong id="sidebarCompName" style="font-size: 14px; display: block; color: var(--dash-heading); letter-spacing: -0.02em; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">Acme Corp</strong>
         <span id="sidebarTierBadge" class="kpi-badge amber" style="font-size: 10px; padding: 2px 8px; margin-top: 3px; display: inline-block;">Growth Tier</span>
       </div>
+      <button class="sidebar-close-btn" onclick="toggleDashboardSidebar()" aria-label="Close Navigation">&times;</button>
     </div>
 
     <nav class="sidebar-menu">
@@ -70,12 +71,21 @@
   <!-- MAIN BILLING -->
   <main class="dash-main">
     <div class="command-header">
-      <div>
-        <div style="display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 800; text-transform: uppercase; color: #FF7A45; letter-spacing: 0.08em; margin-bottom: 6px;">
-          Subscription & Allowance
+      <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 12px;">
+        <div>
+          <div style="display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 800; text-transform: uppercase; color: #FF7A45; letter-spacing: 0.08em; margin-bottom: 6px;">
+            Subscription & Allowance
+          </div>
+          <h1>Candidate Evaluation Allowance</h1>
+          <p>Manage enterprise quotas, top up coin balances, or upgrade subscription tier.</p>
         </div>
-        <h1>Candidate Evaluation Allowance</h1>
-        <p>Manage enterprise quotas, top up coin balances, or upgrade subscription tier.</p>
+        <button class="dash-mobile-toggle" onclick="toggleDashboardSidebar()" aria-label="Open Navigation">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
       </div>
       <div>
         <button onclick="toggleTheme()" class="theme-toggle-btn" title="Toggle Light / Dark Mode" aria-label="Toggle Theme">
