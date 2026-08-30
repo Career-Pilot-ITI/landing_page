@@ -2196,18 +2196,11 @@ html[data-theme="midnight"] .vision-chip { color: var(--teal-light); }
 }
 
 /* ==========================================================================
-   ENTERPRISE DASHBOARD & THREE.JS 3D GLASS STYLES
+   ENTERPRISE RECRUITER OBSIDIAN GLASS THEME
    ========================================================================== */
 
 .three-canvas-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.65;
+  display: none !important;
 }
 
 body.dash-dark {
