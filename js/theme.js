@@ -39,12 +39,12 @@ const ThemeManager = (() => {
     document.querySelectorAll(".theme-toggle-btn").forEach(btn => {
       btn.setAttribute("aria-checked", isDark ? "true" : "false");
       const label = btn.querySelector(".theme-toggle-label");
-      if (label) label.textContent = isDark ? "Dark Mode" : "Light Mode";
+      if (label) label.textContent = isDark ? "Light Mode" : "Dark Mode";
       const sun = btn.querySelector(".theme-icon-sun");
       const moon = btn.querySelector(".theme-icon-moon");
       if (sun && moon) {
-        sun.style.display = isDark ? "none" : "inline-flex";
-        moon.style.display = isDark ? "inline-flex" : "none";
+        sun.style.display = isDark ? "inline-flex" : "none";
+        moon.style.display = isDark ? "none" : "inline-flex";
       }
     });
   }
