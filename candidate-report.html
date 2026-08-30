@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="cloud">
+<html lang="en" data-theme="midnight">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,45 +7,65 @@
   <link rel="icon" type="image/png" href="assets/career-pilot-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <style>
-    body {
-      background: var(--bg);
-      min-height: 100vh;
+    body.dash-dark {
+      background: #090D1A;
+      color: #F8FAFC;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
       display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
     }
+    
+    .bg-ambient-glow-1 {
+      position: fixed;
+      top: -100px;
+      left: 20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255, 122, 69, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .bg-ambient-glow-2 {
+      position: fixed;
+      bottom: -100px;
+      right: 10%;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(45, 212, 191, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
     .dash-sidebar {
       width: 260px;
-      background: var(--navy-dark);
-      color: #fff;
+      background: rgba(13, 18, 36, 0.95);
+      backdrop-filter: blur(20px);
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
       display: flex;
       flex-direction: column;
-      border-right: 1px solid rgba(255,255,255,.08);
       position: fixed;
       top: 0;
       bottom: 0;
       left: 0;
       z-index: 100;
     }
-    .dash-main {
-      flex: 1;
-      margin-left: 260px;
-      padding: 32px 40px;
-      min-height: 100vh;
-    }
     .sidebar-brand {
-      padding: 24px;
+      padding: 24px 20px;
       display: flex;
       align-items: center;
       gap: 12px;
-      border-bottom: 1px solid rgba(255,255,255,.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
     .sidebar-menu {
-      padding: 20px 14px;
+      padding: 20px 12px;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 4px;
       flex: 1;
     }
     .sidebar-link {
@@ -53,94 +73,109 @@
       align-items: center;
       gap: 12px;
       padding: 12px 16px;
-      border-radius: 12px;
-      color: #94a3b8;
+      border-radius: 14px;
+      color: #94A3B8;
       font-size: 13px;
       font-weight: 700;
       text-decoration: none;
-      transition: .2s ease;
+      transition: all 0.2s ease;
     }
-    .sidebar-link:hover, .sidebar-link.active {
-      background: rgba(255,122,69,.15);
-      color: #fff;
+    .sidebar-link:hover {
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.05);
     }
     .sidebar-link.active {
-      color: var(--primary-2);
+      background: linear-gradient(135deg, rgba(255, 122, 69, 0.15), rgba(240, 91, 36, 0.08));
+      color: #FF9E72;
+      border: 1px solid rgba(255, 122, 69, 0.25);
       font-weight: 800;
     }
-    .report-header-card {
-      background: var(--surface-solid);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-xl);
-      padding: 32px;
-      box-shadow: var(--shadow-soft);
+    .sidebar-footer {
+      padding: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 24px;
-      margin-bottom: 28px;
+      background: rgba(9, 13, 26, 0.5);
     }
-    .pillar-card {
-      background: var(--surface-solid);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      padding: 24px;
-      box-shadow: var(--shadow-soft);
+
+    .dash-main {
+      flex: 1;
+      margin-left: 260px;
+      padding: 32px 40px 60px;
+      position: relative;
+      z-index: 1;
+      max-width: 1440px;
     }
-    .transcript-quote {
-      font-style: italic;
-      font-family: Georgia, serif;
-      background: var(--bg);
-      border-left: 4px solid var(--primary);
+
+    .glass-card {
+      background: rgba(18, 24, 48, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 28px;
+      padding: 26px 28px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      margin-bottom: 24px;
+    }
+
+    .transcript-quote-dark {
+      background: rgba(9, 13, 26, 0.6);
+      border-left: 4px solid #FF7A45;
       padding: 16px 20px;
-      border-radius: 0 12px 12px 0;
+      border-radius: 0 14px 14px 0;
       margin: 14px 0;
-      color: var(--text);
+      color: #E2E8F0;
+      font-size: 13px;
       line-height: 1.6;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      border-right: 1px solid rgba(255, 255, 255, 0.04);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
     }
-    .rubric-box {
-      background: rgba(34,197,94,.08);
-      border: 1px solid #22c55e;
+
+    .rubric-box-dark {
+      background: rgba(34, 197, 94, 0.08);
+      border: 1px solid rgba(34, 197, 94, 0.25);
       padding: 16px 20px;
-      border-radius: 12px;
+      border-radius: 14px;
       margin-top: 14px;
     }
   </style>
 </head>
-<body>
+<body class="dash-dark">
+  <div class="bg-ambient-glow-1"></div>
+  <div class="bg-ambient-glow-2"></div>
+
   <!-- SIDEBAR -->
   <aside class="dash-sidebar">
     <div class="sidebar-brand">
-      <div id="companyAvatar" style="width: 38px; height: 38px; border-radius: 10px; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 16px;">
+      <div id="companyAvatar" style="width: 42px; height: 42px; border-radius: 14px; background: linear-gradient(135deg, #FF7A45, #F05B24); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 16px; box-shadow: 0 4px 16px rgba(255,122,69,0.35);">
         CP
       </div>
       <div>
-        <strong id="sidebarCompName" style="font-size: 14px; display: block; color: #fff;">Acme Corp</strong>
-        <small id="sidebarTierBadge" style="color: var(--teal); font-size: 11px; font-weight: 800;">Growth Tier</small>
+        <strong id="sidebarCompName" style="font-size: 14px; display: block; color: #fff; letter-spacing: -0.02em;">Acme Corp</strong>
+        <span id="sidebarTierBadge" class="kpi-badge amber" style="font-size: 10px; padding: 2px 8px; margin-top: 3px; display: inline-block;">Growth Tier</span>
       </div>
     </div>
 
     <nav class="sidebar-menu">
       <a href="dashboard.html" class="sidebar-link active">
-        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-home"/></svg>
-        Overview & Positions
+        <svg style="width:16px;height:16px;stroke:#FF7A45;"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        Overview & Pipeline
       </a>
       <a href="create-interview.html" class="sidebar-link">
-        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-plus"/></svg>
-        Create Interview
+        <svg style="width:16px;height:16px;"><path d="M12 5v14M5 12h14"/></svg>
+        Create Assessment
       </a>
       <a href="billing.html" class="sidebar-link">
-        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-spark"/></svg>
+        <svg style="width:16px;height:16px;"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
         Plans & Quota
       </a>
       <a href="team.html" class="sidebar-link">
-        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-users"/></svg>
-        Team Members
+        <svg style="width:16px;height:16px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Recruiter Seats
       </a>
       <a href="settings.html" class="sidebar-link">
-        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-palette"/></svg>
-        Branding & Logo
+        <svg style="width:16px;height:16px;"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Branding & Preview
       </a>
     </nav>
   </aside>
@@ -148,104 +183,110 @@
   <!-- MAIN REPORT -->
   <main class="dash-main">
     <div style="margin-bottom: 20px;">
-      <a href="javascript:history.back()" style="font-size: 13px; color: var(--muted); text-decoration: none; font-weight: 700;">&larr; Back to Candidate Pipeline</a>
+      <a href="javascript:history.back()" style="font-size: 13px; color: #94A3B8; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 6px;">
+        <svg style="width:14px;height:14px;" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Back to Candidate Pipeline
+      </a>
     </div>
 
     <!-- REPORT HEADER -->
-    <div class="report-header-card">
-      <div>
-        <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
-          <span class="badge-status badge-completed">Verified App Submission</span>
-          <span style="font-size: 12px; color: var(--muted);">Spoken Duration: 3m 42s</span>
+    <div class="glass-card">
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px;">
+        <div>
+          <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
+            <span class="status-pill published" style="font-size: 10px; padding: 3px 10px;">
+              <span class="dot"></span> Verified App Submission
+            </span>
+            <span style="font-size: 12px; color: #94A3B8; font-weight: 600;">Spoken Duration: 3m 42s</span>
+          </div>
+          <h1 style="font-size: 28px; font-weight: 900; margin: 0; color: #fff; letter-spacing: -0.03em;" id="candName">Sarah Jenkins</h1>
+          <p style="color: #94A3B8; font-size: 13px; margin: 4px 0 0;" id="candRole">Senior Android Engineer Assessment · Submitted Aug 25, 2026</p>
         </div>
-        <h1 style="font-size: 28px; margin: 0;" id="candName">Sarah Jenkins</h1>
-        <p style="color: var(--muted); font-size: 14px; margin: 4px 0 0;" id="candRole">Senior Android Engineer Assessment · Submitted Aug 25, 2026</p>
-      </div>
 
-      <div style="display: flex; align-items: center; gap: 16px;">
-        <div style="text-align: right;">
-          <span style="font-size: 12px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: .06em;">Overall Cohort Match</span>
-          <div style="font-size: 40px; font-weight: 900; color: var(--primary); line-height: 1;" id="overallScore">92%</div>
+        <div style="display: flex; align-items: center; gap: 20px;">
+          <div style="text-align: right;">
+            <span style="font-size: 11px; font-weight: 800; color: #94A3B8; text-transform: uppercase; letter-spacing: .08em; display: block; margin-bottom: 4px;">Overall Cohort Match</span>
+            <div style="font-size: 38px; font-weight: 900; color: #FF7A45; line-height: 1; letter-spacing: -0.02em;" id="overallScore">92%</div>
+          </div>
+          <button class="btn-primary-glow" onclick="window.print()" style="font-size: 12px; padding: 10px 18px;">
+            <svg style="width:14px;height:14px;" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Print PDF Report
+          </button>
         </div>
-        <button class="btn btn-secondary" onclick="window.print()">
-          <svg><use href="#i-download"/></svg> Print PDF
-        </button>
       </div>
     </div>
 
     <!-- 3-PILLAR SCORE BREAKDOWN -->
-    <h3 style="font-size: 18px; margin-bottom: 16px;">3-Pillar Assessment Metrics</h3>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 36px;">
-      <div class="pillar-card">
+    <h3 style="font-size: 17px; font-weight: 900; color: #fff; margin-bottom: 16px;">3-Pillar Assessment Breakdown</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 32px;">
+      <div class="glass-card" style="margin-bottom: 0;">
         <div style="display: flex; justify-content: space-between; align-items: center;">
-          <span class="kicker" style="margin:0;">Pillar 1 · 60% Weight</span>
-          <strong style="color: var(--primary); font-size: 20px;">94%</strong>
+          <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #FF7A45; letter-spacing: 0.08em;">Pillar 1 · 60% Weight</span>
+          <strong style="color: #FF7A45; font-size: 22px; font-weight: 900;">94%</strong>
         </div>
-        <strong style="font-size: 18px; display: block; margin: 8px 0 4px;">Rubric Accuracy</strong>
-        <p style="font-size: 12px; color: var(--muted); margin: 0;">Hit all core concepts: CoroutineScope, SupervisorJob, Dispatchers, Compose stability.</p>
+        <strong style="font-size: 16px; font-weight: 900; color: #fff; display: block; margin: 10px 0 4px;">Rubric Accuracy</strong>
+        <p style="font-size: 12px; color: #94A3B8; margin: 0; line-height: 1.5;">Hit all core concepts: CoroutineScope, SupervisorJob, Dispatchers, Compose stability.</p>
       </div>
 
-      <div class="pillar-card">
+      <div class="glass-card" style="margin-bottom: 0;">
         <div style="display: flex; justify-content: space-between; align-items: center;">
-          <span class="kicker" style="margin:0; color: var(--teal);">Pillar 2 · 20% Weight</span>
-          <strong style="color: var(--teal); font-size: 20px;">88%</strong>
+          <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #2DD4BF; letter-spacing: 0.08em;">Pillar 2 · 20% Weight</span>
+          <strong style="color: #2DD4BF; font-size: 22px; font-weight: 900;">88%</strong>
         </div>
-        <strong style="font-size: 18px; display: block; margin: 8px 0 4px;">MediaPipe Vision Tracking</strong>
-        <p style="font-size: 12px; color: var(--muted); margin: 0;">Maintained 88% direct gaze into camera lens with upright posture throughout.</p>
+        <strong style="font-size: 16px; font-weight: 900; color: #fff; display: block; margin: 10px 0 4px;">MediaPipe Vision Tracking</strong>
+        <p style="font-size: 12px; color: #94A3B8; margin: 0; line-height: 1.5;">Maintained 88% direct gaze into camera lens with upright posture throughout.</p>
       </div>
 
-      <div class="pillar-card">
+      <div class="glass-card" style="margin-bottom: 0;">
         <div style="display: flex; justify-content: space-between; align-items: center;">
-          <span class="kicker" style="margin:0; color: var(--green);">Pillar 3 · 20% Weight</span>
-          <strong style="color: var(--green); font-size: 20px;">93%</strong>
+          <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #22C55E; letter-spacing: 0.08em;">Pillar 3 · 20% Weight</span>
+          <strong style="color: #22C55E; font-size: 22px; font-weight: 900;">93%</strong>
         </div>
-        <strong style="font-size: 18px; display: block; margin: 8px 0 4px;">Whisper Voice AI</strong>
-        <p style="font-size: 12px; color: var(--muted); margin: 0;">Fluent delivery at 138 WPM with only 2 minor filler hesitations.</p>
+        <strong style="font-size: 16px; font-weight: 900; color: #fff; display: block; margin: 10px 0 4px;">Whisper Voice AI</strong>
+        <p style="font-size: 12px; color: #94A3B8; margin: 0; line-height: 1.5;">Fluent delivery at 138 WPM with only 2 minor filler hesitations.</p>
       </div>
     </div>
 
     <!-- QUESTION BY QUESTION TRANSCRIPTS -->
-    <h3 style="font-size: 18px; margin-bottom: 16px;">Spoken Transcripts & Rubric Alignment</h3>
-    <div id="answersContainer" style="display: flex; flex-direction: column; gap: 24px;">
+    <h3 style="font-size: 17px; font-weight: 900; color: #fff; margin-bottom: 16px;">Spoken Transcripts & Rubric Alignment</h3>
+    <div id="answersContainer" style="display: flex; flex-direction: column; gap: 20px;">
       <!-- Answer 1 -->
-      <div class="pillar-card">
+      <div class="glass-card" style="margin-bottom: 0;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-          <strong style="font-size: 16px;">Question 1: Structured Concurrency & Dispatchers</strong>
-          <span class="score-badge">94% AI Match</span>
+          <strong style="font-size: 16px; color: #fff; font-weight: 900;">Question 1: Structured Concurrency & Dispatchers</strong>
+          <span style="font-size: 12px; font-weight: 900; color: #22C55E; background: rgba(34,197,94,0.12); padding: 4px 10px; border-radius: 8px; border: 1px solid rgba(34,197,94,0.25);">94% AI Match</span>
         </div>
-        <div style="font-size: 13px; color: var(--muted); margin-bottom: 8px;">
+        <div style="font-size: 12px; color: #94A3B8; margin-bottom: 8px;">
           Spoken Question: "Can you explain how Kotlin Coroutines manage structured concurrency, and how you handle Dispatchers and exception propagation?"
         </div>
-        <div class="transcript-quote">
+        <div class="transcript-quote-dark">
           "Kotlin coroutines enforce structured concurrency through CoroutineScope and Job parent-child hierarchies. When a child coroutine fails without a SupervisorJob, the cancellation propagates upwards to cancel all sibling jobs. I use Dispatchers.IO for background I/O operations and Dispatchers.Default for CPU heavy parsing and data transformation."
         </div>
-        <div class="rubric-box">
-          <label style="color: #16a34a; font-weight: 800; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; display: flex; align-items: center; gap: 6px;">
-            <svg style="width:14px;height:14px;stroke:#16a34a;stroke-width:2.5;fill:none;" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> AI Rubric Evaluation
+        <div class="rubric-box-dark">
+          <label style="color: #4ADE80; font-weight: 800; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; display: flex; align-items: center; gap: 6px;">
+            <svg style="width:14px;height:14px;stroke:#4ADE80;stroke-width:2.5;fill:none;" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> AI Rubric Evaluation
           </label>
-          <p style="font-size: 13px; margin: 6px 0 0; color: var(--text);">
+          <p style="font-size: 13px; margin: 6px 0 0; color: #E2E8F0; line-height: 1.5;">
             Candidate accurately hit every single required criteria: clearly explained CoroutineScope, SupervisorJob exception scoping, Dispatchers.IO vs Default separation, and Job cancellation propagation. Full points awarded.
           </p>
         </div>
       </div>
 
       <!-- Answer 2 -->
-      <div class="pillar-card">
+      <div class="glass-card" style="margin-bottom: 0;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-          <strong style="font-size: 16px;">Question 2: Jetpack Compose Recomposition & Stability</strong>
-          <span class="score-badge">90% AI Match</span>
+          <strong style="font-size: 16px; color: #fff; font-weight: 900;">Question 2: Jetpack Compose Recomposition & Stability</strong>
+          <span style="font-size: 12px; font-weight: 900; color: #22C55E; background: rgba(34,197,94,0.12); padding: 4px 10px; border-radius: 8px; border: 1px solid rgba(34,197,94,0.25);">90% AI Match</span>
         </div>
-        <div style="font-size: 13px; color: var(--muted); margin-bottom: 8px;">
+        <div style="font-size: 12px; color: #94A3B8; margin-bottom: 8px;">
           Spoken Question: "How do you optimize Jetpack Compose recomposition performance and ensure stability for state holders?"
         </div>
-        <div class="transcript-quote">
+        <div class="transcript-quote-dark">
           "I ensure state stability by annotating immutable domain models with @Immutable or @Stable so Compose can skip unnecessary recompositions. I also use derivedStateOf to throttle high-frequency state changes and defer reads inside layout/draw lambda modifiers."
         </div>
-        <div class="rubric-box">
-          <label style="color: #16a34a; font-weight: 800; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; display: flex; align-items: center; gap: 6px;">
-            <svg style="width:14px;height:14px;stroke:#16a34a;stroke-width:2.5;fill:none;" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> AI Rubric Evaluation
+        <div class="rubric-box-dark">
+          <label style="color: #4ADE80; font-weight: 800; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; display: flex; align-items: center; gap: 6px;">
+            <svg style="width:14px;height:14px;stroke:#4ADE80;stroke-width:2.5;fill:none;" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> AI Rubric Evaluation
           </label>
-          <p style="font-size: 13px; margin: 6px 0 0; color: var(--text);">
+          <p style="font-size: 13px; margin: 6px 0 0; color: #E2E8F0; line-height: 1.5;">
             Excellent explanation of state stability, skippable composables, and derivedStateOf optimization.
           </p>
         </div>
@@ -257,8 +298,8 @@
   <script>
     const session = CompanyApi.requireAuth();
     if (session) {
-      document.getElementById("sidebarCompName").innerText = session.company?.name || "My Company";
-      document.getElementById("sidebarTierBadge").innerText = `${session.company?.subscriptionTier || "Starter"} Tier`;
+      document.getElementById("sidebarCompName").innerText = session.company?.name || "Acme Corp";
+      document.getElementById("sidebarTierBadge").innerText = `${session.company?.subscriptionTier || "Growth"} Tier`;
       document.getElementById("companyAvatar").innerText = (session.company?.name || "CP").substring(0, 2).toUpperCase();
     }
   </script>
