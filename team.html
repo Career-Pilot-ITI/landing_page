@@ -1,186 +1,220 @@
 <!doctype html>
-<html lang="en" data-theme="cloud">
+<html lang="en" data-theme="midnight">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Team Members & Roles — Career Pilot Enterprise</title>
+  <title>Recruiter Seats & Team Permissions — Career Pilot Enterprise</title>
   <link rel="icon" type="image/png" href="assets/career-pilot-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    body {
-      background: var(--bg);
-      min-height: 100vh;
-      display: flex;
-    }
-    .dash-sidebar {
-      width: 260px;
-      background: var(--navy-dark);
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      border-right: 1px solid rgba(255,255,255,.08);
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      z-index: 100;
-    }
-    .dash-main {
-      flex: 1;
-      margin-left: 260px;
-      padding: 32px 40px;
-      min-height: 100vh;
-    }
-    .sidebar-brand {
-      padding: 24px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-    }
-    .sidebar-menu {
-      padding: 20px 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      flex: 1;
-    }
-    .sidebar-link {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 16px;
-      border-radius: 12px;
-      color: #94a3b8;
-      font-size: 13px;
-      font-weight: 700;
-      text-decoration: none;
-      transition: .2s ease;
-    }
-    .sidebar-link:hover, .sidebar-link.active {
-      background: rgba(255,122,69,.15);
-      color: #fff;
-    }
-    .sidebar-link.active {
-      color: var(--primary-2);
-      font-weight: 800;
-    }
-    .table-card {
-      background: var(--surface-solid);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow-soft);
-      overflow: hidden;
-      margin-top: 24px;
-    }
-    .table-header {
-      padding: 20px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--line);
-    }
-    .form-control {
-      padding: 10px 14px;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      font-size: 13px;
-      background: var(--bg);
-      color: var(--text);
-    }
-  </style>
 </head>
-<body>
+<body class="dash-dark">
+  <!-- THREE.JS 3D BACKGROUND -->
+  <canvas id="three-bg" class="three-canvas-bg"></canvas>
+
   <!-- SIDEBAR -->
   <aside class="dash-sidebar">
     <div class="sidebar-brand">
-      <div id="companyAvatar" style="width: 38px; height: 38px; border-radius: 10px; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 16px;">
+      <div id="companyAvatar" style="width: 42px; height: 42px; border-radius: 14px; background: linear-gradient(135deg, #FF7A45, #F05B24); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 16px; box-shadow: 0 4px 16px rgba(255,122,69,0.35);">
         CP
       </div>
       <div>
         <strong id="sidebarCompName" style="font-size: 14px; display: block; color: #fff;">Acme Corp</strong>
-        <small id="sidebarTierBadge" style="color: var(--teal); font-size: 11px; font-weight: 800;">Growth Tier</small>
+        <span id="sidebarTierBadge" class="kpi-badge" style="font-size: 10px; padding: 2px 8px; margin-top: 3px; display: inline-block;">Growth Tier</span>
       </div>
     </div>
 
     <nav class="sidebar-menu">
       <a href="dashboard.html" class="sidebar-link">
-        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-home"/></svg>
-        Overview & Positions
+        <svg style="width:16px;height:16px;"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        Overview & Pipeline
       </a>
       <a href="create-interview.html" class="sidebar-link">
-        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-plus"/></svg>
-        Create Interview
+        <svg style="width:16px;height:16px;"><path d="M12 5v14M5 12h14"/></svg>
+        Create Assessment
       </a>
       <a href="billing.html" class="sidebar-link">
-        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-spark"/></svg>
+        <svg style="width:16px;height:16px;"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
         Plans & Quota
       </a>
       <a href="team.html" class="sidebar-link active">
-        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-users"/></svg>
-        Team Members
+        <svg style="width:16px;height:16px;stroke:#FF7A45;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Recruiter Seats
       </a>
       <a href="settings.html" class="sidebar-link">
-        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-palette"/></svg>
-        Branding & Logo
+        <svg style="width:16px;height:16px;"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Branding & Preview
       </a>
     </nav>
-  </aside>
 
-  <!-- MAIN -->
-  <main class="dash-main">
-    <div style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
+    <div class="sidebar-footer">
       <div>
-        <h1 style="font-size: 26px; margin-bottom: 4px;">Recruiter Seats & Team Permissions</h1>
-        <p style="color: var(--muted); font-size: 14px; margin: 0;">Invite hiring managers, recruiters, and interviewers to collaborate on candidate reviews</p>
+        <strong id="recruiterDisplayName" style="font-size: 13px; display: block; color: #fff;">Alex Morgan</strong>
+        <small style="color: #64748b; font-size: 11px;">Senior Talent Lead</small>
       </div>
-      <button class="btn btn-primary btn-lg" onclick="openInviteModal()">
-        <svg><use href="#i-plus"/></svg> Invite Team Member
+      <button onclick="handleSignOut()" style="background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.25); color: #EF4444; padding: 6px 12px; border-radius: 10px; font-size: 11px; font-weight: 800; cursor: pointer;">
+        Sign Out
       </button>
     </div>
+  </aside>
 
-    <div class="table-card">
-      <div class="table-header">
+  <!-- MAIN TEAM -->
+  <main class="dash-main">
+    <div class="command-header">
+      <div>
+        <div style="display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 800; text-transform: uppercase; color: #FF7A45; letter-spacing: 0.08em; margin-bottom: 6px;">
+          Access Control & Collaboration
+        </div>
+        <h1>Recruiter Seats & Team Permissions</h1>
+        <p>Manage hiring managers, technical interview reviewers, and role-based permissions.</p>
+      </div>
+    </div>
+
+    <!-- 3 SUMMARY STATS -->
+    <div class="kpi-grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 32px;">
+      <div class="kpi-card" data-tilt>
+        <div class="kpi-top">
+          <div class="kpi-icon">
+            <svg style="width:20px;height:20px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          </div>
+          <span class="kpi-badge">3 / 5 Seats</span>
+        </div>
         <div>
-          <h3 style="font-size: 16px; margin: 0;">Active Recruiter Seats (3 of 5 seats used)</h3>
+          <div class="kpi-label">Active Recruiter Seats</div>
+          <div class="kpi-val">3</div>
+          <span style="font-size: 12px; color: #94A3B8;">2 additional seats available in Growth Tier</span>
         </div>
       </div>
 
-      <div style="overflow-x: auto;">
-        <table class="custom-table">
+      <div class="kpi-card" data-tilt>
+        <div class="kpi-top">
+          <div class="kpi-icon teal">
+            <svg style="width:20px;height:20px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <span class="kpi-badge">Admin</span>
+        </div>
+        <div>
+          <div class="kpi-label">Admin Privileges</div>
+          <div class="kpi-val" style="color: #2DD4BF;">1</div>
+          <span style="font-size: 12px; color: #94A3B8;">Full assessment & billing control</span>
+        </div>
+      </div>
+
+      <div class="kpi-card" data-tilt>
+        <div class="kpi-top">
+          <div class="kpi-icon green">
+            <svg style="width:20px;height:20px;"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <span class="kpi-badge">Reviewers</span>
+        </div>
+        <div>
+          <div class="kpi-label">Evaluator Reviewers</div>
+          <div class="kpi-val" style="color: #22C55E;">2</div>
+          <span style="font-size: 12px; color: #94A3B8;">Candidate scoring & interview access</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- INVITE MEMBER INLINE BAR -->
+    <form onsubmit="handleInvite(event)" class="glass-panel" style="padding: 20px 28px; margin-bottom: 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+      <div style="flex: 1; min-width: 260px;">
+        <label class="dark-label" style="margin-bottom: 4px;">Invite Teammate via Email</label>
+        <input type="email" id="inviteEmail" required placeholder="colleague@acme.tech" class="dark-input" style="padding: 10px 16px;" />
+      </div>
+
+      <div style="width: 200px;">
+        <label class="dark-label" style="margin-bottom: 4px;">Assigned Role</label>
+        <select id="inviteRole" class="dark-select" style="padding: 10px 16px;">
+          <option value="RECRUITER">Recruiter (Can create)</option>
+          <option value="REVIEWER">Reviewer (View & score)</option>
+          <option value="ADMIN">Admin (Full access)</option>
+        </select>
+      </div>
+
+      <div style="padding-top: 18px;">
+        <button type="submit" class="btn-primary-glow" style="padding: 10px 22px;">
+          Send Invitation &rarr;
+        </button>
+      </div>
+    </form>
+
+    <!-- TEAM TABLE -->
+    <div class="glass-panel">
+      <div style="padding: 24px 28px; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <h3 style="font-size: 16px; font-weight: 900; margin: 0; color: #fff;">Organization Members</h3>
+          <p style="font-size: 12px; color: #94A3B8; margin: 4px 0 0;">Users authorized to inspect spoken recordings, facial analytics, and candidate scores.</p>
+        </div>
+      </div>
+
+      <div class="data-table-wrap">
+        <table class="dark-table">
           <thead>
             <tr>
-              <th>Member</th>
-              <th>Email</th>
+              <th>Member Name & Email</th>
               <th>Role</th>
               <th>Status</th>
+              <th>Last Active</th>
               <th style="text-align: right;">Action</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><strong>Alex Morgan</strong></td>
-              <td>alex@acme.com</td>
-              <td><span class="badge-mini" style="background: rgba(255,122,69,.15); color: var(--primary);">Organization Admin</span></td>
-              <td><span class="badge-status badge-completed">Active</span></td>
-              <td style="text-align: right;"><span style="color: var(--muted); font-size: 12px;">Owner</span></td>
+              <td>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <div style="width: 36px; height: 36px; border-radius: 12px; background: rgba(255,122,69,0.15); color: #FF7A45; font-weight: 900; display: flex; align-items: center; justify-content: center; font-size: 13px;">
+                    AM
+                  </div>
+                  <div>
+                    <strong style="color: #fff; font-size: 13px; display: block;">Alex Morgan</strong>
+                    <small style="color: #94A3B8; font-size: 11px;">alex.morgan@acme.tech</small>
+                  </div>
+                </div>
+              </td>
+              <td><span class="status-pill published" style="font-size: 10px;"><span class="dot"></span> ADMIN</span></td>
+              <td><span style="color: #22C55E; font-weight: 700; font-size: 12px;">Active Now</span></td>
+              <td style="color: #94A3B8; font-size: 12px;">Just now</td>
+              <td style="text-align: right; color: #64748B; font-size: 12px;">(Owner)</td>
             </tr>
             <tr>
-              <td><strong>Mona Adel</strong></td>
-              <td>mona.adel@acme.com</td>
-              <td><span class="badge-mini">Recruiter</span></td>
-              <td><span class="badge-status badge-completed">Active</span></td>
-              <td style="text-align: right;"><button class="btn btn-ghost" style="min-height: 28px; font-size: 11px;">Edit Role</button></td>
+              <td>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <div style="width: 36px; height: 36px; border-radius: 12px; background: rgba(45,212,191,0.15); color: #2DD4BF; font-weight: 900; display: flex; align-items: center; justify-content: center; font-size: 13px;">
+                    MA
+                  </div>
+                  <div>
+                    <strong style="color: #fff; font-size: 13px; display: block;">Mona Adel</strong>
+                    <small style="color: #94A3B8; font-size: 11px;">mona.adel@acme.tech</small>
+                  </div>
+                </div>
+              </td>
+              <td><span class="status-pill published" style="font-size: 10px; background: rgba(45,212,191,0.1); color: #2DD4BF; border-color: rgba(45,212,191,0.25);"><span class="dot" style="background:#2DD4BF; box-shadow: 0 0 8px #2DD4BF;"></span> RECRUITER</span></td>
+              <td><span style="color: #22C55E; font-weight: 700; font-size: 12px;">Active</span></td>
+              <td style="color: #94A3B8; font-size: 12px;">2 hours ago</td>
+              <td style="text-align: right;">
+                <button onclick="alert('Removed member')" style="background: 0; border: 0; color: #EF4444; font-size: 12px; font-weight: 800; cursor: pointer;">Remove</button>
+              </td>
             </tr>
             <tr>
-              <td><strong>David Kim</strong></td>
-              <td>david.k@acme.com</td>
-              <td><span class="badge-mini">Hiring Manager (Reviewer)</span></td>
-              <td><span class="badge-status badge-completed">Active</span></td>
-              <td style="text-align: right;"><button class="btn btn-ghost" style="min-height: 28px; font-size: 11px;">Edit Role</button></td>
+              <td>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <div style="width: 36px; height: 36px; border-radius: 12px; background: rgba(255,255,255,0.08); color: #E2E8F0; font-weight: 900; display: flex; align-items: center; justify-content: center; font-size: 13px;">
+                    DK
+                  </div>
+                  <div>
+                    <strong style="color: #fff; font-size: 13px; display: block;">David Kim</strong>
+                    <small style="color: #94A3B8; font-size: 11px;">david.kim@acme.tech</small>
+                  </div>
+                </div>
+              </td>
+              <td><span class="status-pill draft" style="font-size: 10px;"><span class="dot"></span> REVIEWER</span></td>
+              <td><span style="color: #FF9E72; font-weight: 700; font-size: 12px;">Invited</span></td>
+              <td style="color: #94A3B8; font-size: 12px;">Pending accept</td>
+              <td style="text-align: right;">
+                <button onclick="alert('Invitation resent via Resend')" class="btn-secondary-dark" style="padding: 4px 10px; font-size: 11px; border-radius: 8px;">Resend</button>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -188,19 +222,32 @@
     </div>
   </main>
 
+  <script src="js/vendor/three.min.js"></script>
+  <script src="js/threeui.js"></script>
   <script src="js/company-api.js"></script>
+
   <script>
     const session = CompanyApi.requireAuth();
+
     if (session) {
-      document.getElementById("sidebarCompName").innerText = session.company?.name || "My Company";
-      document.getElementById("sidebarTierBadge").innerText = `${session.company?.subscriptionTier || "Starter"} Tier`;
+      document.getElementById("sidebarCompName").innerText = session.company?.name || "Acme Corp";
+      document.getElementById("sidebarTierBadge").innerText = `${session.company?.subscriptionTier || "Growth"} Tier`;
+      document.getElementById("recruiterDisplayName").innerText = session.user?.name || session.user?.email || "Alex Morgan";
       document.getElementById("companyAvatar").innerText = (session.company?.name || "CP").substring(0, 2).toUpperCase();
     }
 
-    function openInviteModal() {
-      const email = prompt("Enter the recruiter or hiring manager's work email to invite:");
-      if (email) {
-        alert(`Invitation link sent to ${email} with Recruiter access!`);
+    function handleInvite(e) {
+      e.preventDefault();
+      const email = document.getElementById("inviteEmail").value;
+      const role = document.getElementById("inviteRole").value;
+      alert(`Invitation sent to ${email} as ${role}!`);
+      document.getElementById("inviteEmail").value = "";
+    }
+
+    function handleSignOut() {
+      if (confirm("Are you sure you want to sign out?")) {
+        CompanyApi.clearSession();
+        window.location.href = "login.html";
       }
     }
   </script>

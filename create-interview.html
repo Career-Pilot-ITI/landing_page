@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="cloud">
+<html lang="en" data-theme="midnight">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,313 +9,350 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    body {
-      background: var(--bg);
-      min-height: 100vh;
-      display: flex;
-    }
-    .dash-sidebar {
-      width: 260px;
-      background: var(--navy-dark);
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      border-right: 1px solid rgba(255,255,255,.08);
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      z-index: 100;
-    }
-    .dash-main {
-      flex: 1;
-      margin-left: 260px;
-      padding: 32px 40px;
-      min-height: 100vh;
-    }
-    .sidebar-brand {
-      padding: 24px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-    }
-    .sidebar-menu {
-      padding: 20px 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      flex: 1;
-    }
-    .sidebar-link {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 16px;
-      border-radius: 12px;
-      color: #94a3b8;
-      font-size: 13px;
-      font-weight: 700;
-      text-decoration: none;
-      transition: .2s ease;
-    }
-    .sidebar-link:hover, .sidebar-link.active {
-      background: rgba(255,122,69,.15);
-      color: #fff;
-    }
-    .sidebar-link.active {
-      color: var(--primary-2);
-      font-weight: 800;
-    }
-    .form-card {
-      background: var(--surface-solid);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-xl);
-      padding: 32px;
-      box-shadow: var(--shadow-soft);
-      max-width: 860px;
-    }
-    .form-group {
-      margin-bottom: 20px;
-    }
-    .form-group label {
-      display: block;
-      font-size: 12px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .06em;
-      color: var(--text);
-      margin-bottom: 8px;
-    }
-    .form-control {
-      width: 100%;
-      padding: 12px 16px;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      font-size: 14px;
-      background: var(--bg);
-      color: var(--text);
-      transition: .2s ease;
-    }
-    .form-control:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(255,122,69,.15);
-    }
-    .question-block {
-      background: var(--bg);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      padding: 24px;
-      margin-bottom: 20px;
-      position: relative;
-    }
-  </style>
 </head>
-<body>
+<body class="dash-dark">
+  <!-- THREE.JS 3D BACKGROUND -->
+  <canvas id="three-bg" class="three-canvas-bg"></canvas>
+
   <!-- SIDEBAR -->
   <aside class="dash-sidebar">
     <div class="sidebar-brand">
-      <div id="companyAvatar" style="width: 38px; height: 38px; border-radius: 10px; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 16px;">
+      <div id="companyAvatar" style="width: 42px; height: 42px; border-radius: 14px; background: linear-gradient(135deg, #FF7A45, #F05B24); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 16px; box-shadow: 0 4px 16px rgba(255,122,69,0.35);">
         CP
       </div>
       <div>
         <strong id="sidebarCompName" style="font-size: 14px; display: block; color: #fff;">Acme Corp</strong>
-        <small id="sidebarTierBadge" style="color: var(--teal); font-size: 11px; font-weight: 800;">Growth Tier</small>
+        <span id="sidebarTierBadge" class="kpi-badge" style="font-size: 10px; padding: 2px 8px; margin-top: 3px; display: inline-block;">Growth Tier</span>
       </div>
     </div>
 
     <nav class="sidebar-menu">
       <a href="dashboard.html" class="sidebar-link">
-        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-home"/></svg>
-        Overview & Positions
+        <svg style="width:16px;height:16px;"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        Overview & Pipeline
       </a>
       <a href="create-interview.html" class="sidebar-link active">
-        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-plus"/></svg>
-        Create Interview
+        <svg style="width:16px;height:16px;stroke:#FF7A45;"><path d="M12 5v14M5 12h14"/></svg>
+        Create Assessment
       </a>
       <a href="billing.html" class="sidebar-link">
-        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-spark"/></svg>
+        <svg style="width:16px;height:16px;"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
         Plans & Quota
       </a>
       <a href="team.html" class="sidebar-link">
-        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-users"/></svg>
-        Team Members
+        <svg style="width:16px;height:16px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Recruiter Seats
       </a>
       <a href="settings.html" class="sidebar-link">
-        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-palette"/></svg>
-        Branding & Logo
+        <svg style="width:16px;height:16px;"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Branding & Preview
       </a>
     </nav>
+
+    <div class="sidebar-footer">
+      <div>
+        <strong id="recruiterDisplayName" style="font-size: 13px; display: block; color: #fff;">Alex Morgan</strong>
+        <small style="color: #64748b; font-size: 11px;">Senior Talent Lead</small>
+      </div>
+      <button onclick="handleSignOut()" style="background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.25); color: #EF4444; padding: 6px 12px; border-radius: 10px; font-size: 11px; font-weight: 800; cursor: pointer;">
+        Sign Out
+      </button>
+    </div>
   </aside>
 
-  <!-- MAIN -->
+  <!-- MAIN ASSESSMENT BUILDER -->
   <main class="dash-main">
-    <div style="margin-bottom: 28px; display: flex; justify-content: space-between; align-items: center;">
+    <div class="command-header">
       <div>
-        <a href="dashboard.html" style="font-size: 13px; color: var(--muted); text-decoration: none; font-weight: 700;">&larr; Back to Dashboard</a>
-        <h1 style="font-size: 26px; margin: 6px 0 0;">Create New Assessment</h1>
+        <div style="display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 800; text-transform: uppercase; color: #FF7A45; letter-spacing: 0.08em; margin-bottom: 6px;">
+          <a href="dashboard.html" style="color: #94A3B8; text-decoration: none;">&larr; Back to Pipeline</a>
+        </div>
+        <h1>Create Interview Assessment</h1>
+        <p>Configure role context, timed spoken questions, and custom AI evaluation criteria.</p>
       </div>
     </div>
 
-    <form id="createForm" class="form-card" onsubmit="handleCreateSubmit(event)">
-      <h3 style="font-size: 18px; margin-bottom: 6px;">1. Position Details</h3>
-      <p style="color: var(--muted); font-size: 13px; margin-bottom: 20px;">Provide basic role context visible to candidates</p>
-
-      <div class="form-group">
-        <label>Position / Assessment Title *</label>
-        <input type="text" id="title" class="form-control" placeholder="e.g. Senior Mobile Engineer (Kotlin / Compose)" required />
+    <!-- QUICK INDUSTRY ROLE TEMPLATES -->
+    <div class="glass-panel" style="padding: 20px 24px; margin-bottom: 28px; background: rgba(255,122,69,0.06); border-color: rgba(255,122,69,0.2);">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+        <span style="font-size: 12px; font-weight: 800; text-transform: uppercase; color: #FF9E72; letter-spacing: 0.06em;">⚡ Quick Start Role Templates</span>
+        <small style="color: #94A3B8; font-size: 11px;">1-Click auto-fill proven rubrics</small>
       </div>
-
-      <div class="form-group">
-        <label>Candidate Welcome Message & Instructions</label>
-        <textarea id="description" class="form-control" rows="2" placeholder="Explain what the interview covers, recommended quiet room setting, and camera requirements..."></textarea>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <button onclick="applyTemplate('android')" class="btn-secondary-dark" style="font-size: 11px; padding: 8px 14px; border-radius: 12px;">
+          🤖 Senior Android (Kotlin & System Design)
+        </button>
+        <button onclick="applyTemplate('backend')" class="btn-secondary-dark" style="font-size: 11px; padding: 8px 14px; border-radius: 12px;">
+          ☁️ Cloud Backend (Spring Boot & Microservices)
+        </button>
+        <button onclick="applyTemplate('star')" class="btn-secondary-dark" style="font-size: 11px; padding: 8px 14px; border-radius: 12px;">
+          ⭐ Leadership & STAR Behavioral
+        </button>
       </div>
+    </div>
 
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px;">
-        <div class="form-group">
-          <label>Submission Deadline</label>
-          <input type="date" id="deadline" class="form-control" />
-        </div>
-        <div class="form-group" style="display: flex; align-items: center; gap: 10px; padding-top: 28px;">
-          <input type="checkbox" id="randomize" style="width: 18px; height: 18px;" />
-          <label for="randomize" style="margin: 0; text-transform: none; font-size: 13px; font-weight: 700;">Randomize question order for applicants</label>
-        </div>
-      </div>
+    <!-- 2-COLUMN BUILDER + LIVE PREVIEW -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 28px; align-items: start;">
+      <!-- LEFT: FORM CONFIGURATION -->
+      <form id="createInterviewForm" onsubmit="handleCreateAssessment(event)" class="glass-panel" style="padding: 32px; display: flex; flex-direction: column; gap: 24px;">
+        <h3 style="font-size: 16px; font-weight: 900; margin: 0; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 14px;">
+          1. Position Information
+        </h3>
 
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-top: 1px solid var(--line); padding-top: 24px;">
         <div>
-          <h3 style="font-size: 18px; margin: 0;">2. Spoken Questions & Custom AI Rubrics</h3>
-          <p style="color: var(--muted); font-size: 13px; margin: 4px 0 0;">Configure exact model answers and keywords for AI to evaluate</p>
+          <label class="dark-label">Assessment Title / Role Name *</label>
+          <input type="text" id="intTitle" required placeholder="e.g. Senior Android Engineer (Architecture & MVI)" class="dark-input" oninput="updateLivePreview()" />
         </div>
-        <button type="button" class="btn btn-secondary" onclick="addQuestion()">
-          + Add Question
-        </button>
-      </div>
 
-      <div id="questionsContainer">
-        <!-- Question 1 -->
-        <div class="question-block">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <span class="kicker" style="margin:0;">Question #1</span>
-            <div style="display: flex; gap: 10px;">
-              <select class="form-control q-time" style="width: auto; padding: 4px 10px; font-size: 12px;">
-                <option value="60">60s Spoken Limit</option>
-                <option value="90" selected>90s Spoken Limit</option>
-                <option value="120">120s Spoken Limit</option>
-                <option value="180">180s Spoken Limit</option>
-              </select>
-              <select class="form-control q-weight" style="width: auto; padding: 4px 10px; font-size: 12px;">
-                <option value="1">1x Weight</option>
-                <option value="2" selected>2x Weight</option>
-                <option value="3">3x Weight</option>
-              </select>
-            </div>
+        <div>
+          <label class="dark-label">Candidate Welcome Context & Instructions</label>
+          <textarea id="intDesc" rows="3" placeholder="Visible to candidates in invitation emails and pre-interview screen..." class="dark-textarea" oninput="updateLivePreview()"></textarea>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div>
+            <label class="dark-label">Submission Deadline *</label>
+            <input type="date" id="intDeadline" required class="dark-input" value="2026-09-15" />
           </div>
-
-          <div class="form-group">
-            <label>Spoken Question *</label>
-            <input type="text" class="form-control q-text" placeholder="e.g. How do you handle structured concurrency and exceptions in Kotlin Coroutines?" required />
-          </div>
-
-          <div class="form-group" style="margin-bottom: 0;">
-            <label style="color: var(--primary);">
-              <svg style="width:14px;height:14px;display:inline-block;vertical-align:-2px;"><use href="#i-spark"/></svg>
-              What You Want to Hear (Custom AI Evaluation Rubric) *
+          <div>
+            <label class="dark-label">Anti-Collusion</label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #94A3B8; margin-top: 10px; cursor: pointer;">
+              <input type="checkbox" id="intRandomize" checked style="accent-color: #FF7A45; width: 16px; height: 16px;" />
+              Randomize question sequence
             </label>
-            <textarea class="form-control q-rubric" rows="2" style="background: #fff;" placeholder="Describe required concepts, keywords, or architectural patterns the AI should reward..." required></textarea>
+          </div>
+        </div>
+
+        <h3 style="font-size: 16px; font-weight: 900; margin: 12px 0 0; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 14px; display: flex; align-items: center; justify-content: space-between;">
+          <span>2. Spoken Questions & Custom AI Rubrics</span>
+          <button type="button" onclick="addQuestionField()" class="btn-secondary-dark" style="font-size: 11px; padding: 6px 12px; border-radius: 10px;">
+            + Add Question
+          </button>
+        </h3>
+
+        <div id="questionsContainer" style="display: flex; flex-direction: column; gap: 18px;">
+          <!-- Questions rendered dynamically -->
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 20px;">
+          <a href="dashboard.html" class="btn-secondary-dark">Cancel</a>
+          <button type="submit" class="btn-primary-glow" id="btnSubmit">
+            Save & Generate Tokenized Links &rarr;
+          </button>
+        </div>
+      </form>
+
+      <!-- RIGHT: LIVE INTERACTIVE PREVIEW CARD -->
+      <div class="glass-panel" style="padding: 28px; position: sticky; top: 32px;" data-tilt>
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+          <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #2DD4BF; letter-spacing: 0.06em;">Candidate Assessment Preview</span>
+          <span class="status-pill published"><span class="dot"></span> Live Model</span>
+        </div>
+
+        <div style="background: rgba(14,20,40,0.8); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 22px; text-align: center; margin-bottom: 16px;">
+          <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(255,122,69,0.12); color: #FF7A45; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; font-weight: 900;">
+            AI
+          </div>
+          <h4 id="prevTitle" style="font-size: 16px; font-weight: 900; color: #fff; margin: 0 0 6px;">Senior Android Engineer</h4>
+          <p id="prevDesc" style="font-size: 12px; color: #94A3B8; margin: 0;">Evaluating structured concurrency, Coroutines, and MVI architecture.</p>
+        </div>
+
+        <div style="background: rgba(14,20,40,0.5); border: 1px solid rgba(255,255,255,0.06); border-radius: 18px; padding: 18px; font-size: 12px; color: #94A3B8; space-y: 8px;">
+          <div style="font-weight: 800; color: #fff; text-transform: uppercase; font-size: 10px; margin-bottom: 8px; letter-spacing: 0.06em;">On-Device Evaluation Modules:</div>
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span style="color: #2DD4BF;">●</span> MediaPipe Facial Landmark & Gaze Tracking
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span style="color: #FF7A45;">●</span> Whisper On-Device Speech Transcription & Pacing
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="color: #22C55E;">●</span> Strict Anti-Cheat Single-Attempt Verification
           </div>
         </div>
       </div>
-
-      <div style="margin-top: 32px; display: flex; gap: 14px; border-top: 1px solid var(--line); padding-top: 24px;">
-        <button type="submit" class="btn btn-primary btn-lg">
-          Save & Publish Assessment &rarr;
-        </button>
-        <a href="dashboard.html" class="btn btn-secondary btn-lg">Cancel</a>
-      </div>
-    </form>
+    </div>
   </main>
 
+  <script src="js/vendor/three.min.js"></script>
+  <script src="js/threeui.js"></script>
   <script src="js/company-api.js"></script>
+
   <script>
     const session = CompanyApi.requireAuth();
+
     if (session) {
-      document.getElementById("sidebarCompName").innerText = session.company?.name || "My Company";
-      document.getElementById("sidebarTierBadge").innerText = `${session.company?.subscriptionTier || "Starter"} Tier`;
+      document.getElementById("sidebarCompName").innerText = session.company?.name || "Acme Corp";
+      document.getElementById("sidebarTierBadge").innerText = `${session.company?.subscriptionTier || "Growth"} Tier`;
+      document.getElementById("recruiterDisplayName").innerText = session.user?.name || session.user?.email || "Alex Morgan";
       document.getElementById("companyAvatar").innerText = (session.company?.name || "CP").substring(0, 2).toUpperCase();
     }
 
-    function addQuestion() {
-      const container = document.getElementById("questionsContainer");
-      const num = container.children.length + 1;
-      const div = document.createElement("div");
-      div.className = "question-block";
-      div.innerHTML = `
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <span class="kicker" style="margin:0;">Question #${num}</span>
-          <div style="display: flex; gap: 10px;">
-            <select class="form-control q-time" style="width: auto; padding: 4px 10px; font-size: 12px;">
-              <option value="60">60s Spoken Limit</option>
-              <option value="90" selected>90s Spoken Limit</option>
-              <option value="120">120s Spoken Limit</option>
-              <option value="180">180s Spoken Limit</option>
-            </select>
-            <select class="form-control q-weight" style="width: auto; padding: 4px 10px; font-size: 12px;">
-              <option value="1">1x Weight</option>
-              <option value="2">2x Weight</option>
-              <option value="3">3x Weight</option>
-            </select>
-            <button type="button" onclick="this.closest('.question-block').remove()" style="border: 0; background: transparent; color: #ef4444; font-weight: 800; cursor: pointer; font-size: 12px;">Remove</button>
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Spoken Question *</label>
-          <input type="text" class="form-control q-text" placeholder="Type question for candidate to speak..." required />
-        </div>
-        <div class="form-group" style="margin-bottom: 0;">
-          <label style="color: var(--primary);">What You Want to Hear (Custom AI Evaluation Rubric) *</label>
-          <textarea class="form-control q-rubric" rows="2" style="background: #fff;" placeholder="Describe required concepts, keywords, or patterns..." required></textarea>
-        </div>
-      `;
-      container.appendChild(div);
+    let questions = [];
+
+    const TEMPLATES = {
+      android: {
+        title: "Senior Android Engineer (Architecture & MVI)",
+        desc: "Evaluating structured concurrency, Coroutines SupervisorJob, offline-first Room data sync, and Compose recomposition optimization.",
+        questions: [
+          {
+            text: "How do you manage structured concurrency and exception propagation in Kotlin Coroutines using SupervisorJob vs standard Job?",
+            criteria: "Candidate must explain CoroutineScope hierarchy, SupervisorJob exception containment, Dispatchers (IO vs Default), and cancellation propagation.",
+            time: 90,
+            weight: 2
+          },
+          {
+            text: "Walk through your strategy for building an offline-first Android app using Room, Ktor, and MVI state flows.",
+            criteria: "Must mention Single Source of Truth (SSOT), Room Flow observation, optimistic UI updates, and clear Intent-State-Effect separation.",
+            time: 120,
+            weight: 2
+          }
+        ]
+      },
+      backend: {
+        title: "Cloud Backend Architect (Spring Boot & Microservices)",
+        desc: "Assessing distributed consistency, Saga patterns, stateless JWT auth, and Kafka event streaming.",
+        questions: [
+          {
+            text: "How do you achieve eventual consistency and handle rollback across distributed microservices?",
+            criteria: "Must cover Saga orchestration vs choreography, Outbox pattern, idempotency keys, and dead-letter queues.",
+            time: 120,
+            weight: 2
+          },
+          {
+            text: "Explain your implementation of stateless JWT authentication with refresh token rotation in Spring Security.",
+            criteria: "Must cover SecurityFilterChain, OncePerRequestFilter, Redis token blacklisting, and CSRF/CORS safeguards.",
+            time: 90,
+            weight: 2
+          }
+        ]
+      },
+      star: {
+        title: "Leadership & Behavioral Assessment (STAR Rubric)",
+        desc: "Evaluating problem solving, high-pressure communication, and engineering team leadership.",
+        questions: [
+          {
+            text: "Describe a critical production outage you resolved under tight deadline pressure. How did you communicate with stakeholders?",
+            criteria: "Must follow STAR method. Look for calm root cause analysis, clear stakeholder updates, and blameless post-mortem prevention.",
+            time: 90,
+            weight: 1
+          }
+        ]
+      }
+    };
+
+    function applyTemplate(key) {
+      const tpl = TEMPLATES[key];
+      if (!tpl) return;
+
+      document.getElementById("intTitle").value = tpl.title;
+      document.getElementById("intDesc").value = tpl.desc;
+      questions = [...tpl.questions];
+      renderQuestions();
+      updateLivePreview();
     }
 
-    function handleCreateSubmit(e) {
-      e.preventDefault();
-      const title = document.getElementById("title").value;
-      const desc = document.getElementById("description").value;
-      const deadline = document.getElementById("deadline").value;
-      const randomize = document.getElementById("randomize").checked;
-
-      const questionBlocks = document.querySelectorAll(".question-block");
-      const questions = [];
-      questionBlocks.forEach((block, idx) => {
-        const text = block.querySelector(".q-text").value;
-        const rubric = block.querySelector(".q-rubric").value;
-        const time = parseInt(block.querySelector(".q-time").value) || 90;
-        const weight = parseInt(block.querySelector(".q-weight").value) || 1;
-        questions.push({
-          id: "q_" + (idx + 1),
-          questionText: text,
-          evaluationCriteria: rubric,
-          timeLimitSeconds: time,
-          weight: weight
-        });
+    function addQuestionField() {
+      questions.push({
+        text: "",
+        criteria: "",
+        time: 90,
+        weight: 1
       });
+      renderQuestions();
+    }
+
+    function removeQuestion(index) {
+      if (questions.length <= 1) return;
+      questions.splice(index, 1);
+      renderQuestions();
+    }
+
+    function renderQuestions() {
+      const container = document.getElementById("questionsContainer");
+      container.innerHTML = "";
+
+      questions.forEach((q, idx) => {
+        const div = document.createElement("div");
+        div.style.cssText = "background: rgba(14,20,40,0.6); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 14px;";
+        div.innerHTML = `
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <span style="font-size: 11px; font-weight: 800; color: #FF9E72; text-transform: uppercase; background: rgba(255,122,69,0.12); padding: 3px 10px; border-radius: 8px;">
+              Question #${idx + 1}
+            </span>
+            ${questions.length > 1 ? `<button type="button" onclick="removeQuestion(${idx})" style="background: transparent; border: 0; color: #EF4444; font-size: 12px; font-weight: 800; cursor: pointer;">Remove</button>` : ''}
+          </div>
+
+          <div>
+            <label class="dark-label">Spoken Question Text *</label>
+            <input type="text" required value="${q.text}" oninput="questions[${idx}].text = this.value" placeholder="e.g. How do you optimize Compose recomposition?" class="dark-input" />
+          </div>
+
+          <div style="background: rgba(255,122,69,0.06); border: 1px solid rgba(255,122,69,0.2); border-radius: 14px; padding: 14px;">
+            <label style="display: block; font-size: 10px; font-weight: 800; text-transform: uppercase; color: #FF9E72; margin-bottom: 6px; letter-spacing: 0.06em;">
+              ✨ What you want to hear (AI Scoring Rubric) *
+            </label>
+            <textarea rows="2" required oninput="questions[${idx}].criteria = this.value" placeholder="Specify key terms, architecture concepts, and trade-offs candidate must mention..." class="dark-textarea" style="background: rgba(14,20,40,0.8);">${q.criteria}</textarea>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div>
+              <label class="dark-label">Speaking Time Limit</label>
+              <select class="dark-select" onchange="questions[${idx}].time = parseInt(this.value)">
+                <option value="60" ${q.time === 60 ? 'selected' : ''}>60 seconds (1 min)</option>
+                <option value="90" ${q.time === 90 ? 'selected' : ''}>90 seconds (1.5 min)</option>
+                <option value="120" ${q.time === 120 ? 'selected' : ''}>120 seconds (2 min)</option>
+                <option value="180" ${q.time === 180 ? 'selected' : ''}>180 seconds (3 min)</option>
+              </select>
+            </div>
+            <div>
+              <label class="dark-label">Scoring Weight</label>
+              <select class="dark-select" onchange="questions[${idx}].weight = parseInt(this.value)">
+                <option value="1" ${q.weight === 1 ? 'selected' : ''}>Standard (1x)</option>
+                <option value="2" ${q.weight === 2 ? 'selected' : ''}>High Impact (2x)</option>
+                <option value="3" ${q.weight === 3 ? 'selected' : ''}>Critical Must-Have (3x)</option>
+              </select>
+            </div>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function updateLivePreview() {
+      const title = document.getElementById("intTitle").value || "Senior Android Engineer";
+      const desc = document.getElementById("intDesc").value || "Evaluating structured concurrency, Coroutines, and MVI architecture.";
+      document.getElementById("prevTitle").innerText = title;
+      document.getElementById("prevDesc").innerText = desc;
+    }
+
+    function handleCreateAssessment(e) {
+      e.preventDefault();
+      const title = document.getElementById("intTitle").value;
+      const desc = document.getElementById("intDesc").value;
+      const deadline = document.getElementById("intDeadline").value;
+      const randomize = document.getElementById("intRandomize").checked;
+
+      const formattedQuestions = questions.map((q, idx) => ({
+        id: "q_" + (idx + 1),
+        questionText: q.text,
+        evaluationCriteria: q.criteria,
+        timeLimitSeconds: q.time,
+        weight: q.weight
+      }));
 
       const newIntv = CompanyApi.saveInterview({
         title: title,
         description: desc,
         deadline: deadline ? deadline + "T23:59:59Z" : null,
         isRandomOrder: randomize,
-        questions: questions
+        questions: formattedQuestions
       });
 
-      alert(`Assessment "${title}" created and published! You can now add and invite candidates.`);
       window.location.href = `interview-detail.html?id=${newIntv.id}`;
     }
+
+    // Initialize with Android Template
+    applyTemplate('android');
   </script>
 </body>
 </html>

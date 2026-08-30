@@ -1,227 +1,207 @@
 <!doctype html>
-<html lang="en" data-theme="cloud">
+<html lang="en" data-theme="midnight">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Plans & Subscription — Career Pilot Enterprise</title>
+  <title>Plans & Quota Management — Career Pilot Enterprise</title>
   <link rel="icon" type="image/png" href="assets/career-pilot-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    body {
-      background: var(--bg);
-      min-height: 100vh;
-      display: flex;
-    }
-    .dash-sidebar {
-      width: 260px;
-      background: var(--navy-dark);
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      border-right: 1px solid rgba(255,255,255,.08);
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      z-index: 100;
-    }
-    .dash-main {
-      flex: 1;
-      margin-left: 260px;
-      padding: 32px 40px;
-      min-height: 100vh;
-    }
-    .sidebar-brand {
-      padding: 24px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-    }
-    .sidebar-menu {
-      padding: 20px 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      flex: 1;
-    }
-    .sidebar-link {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 16px;
-      border-radius: 12px;
-      color: #94a3b8;
-      font-size: 13px;
-      font-weight: 700;
-      text-decoration: none;
-      transition: .2s ease;
-    }
-    .sidebar-link:hover, .sidebar-link.active {
-      background: rgba(255,122,69,.15);
-      color: #fff;
-    }
-    .sidebar-link.active {
-      color: var(--primary-2);
-      font-weight: 800;
-    }
-    .usage-card {
-      background: var(--surface-solid);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-xl);
-      padding: 32px;
-      box-shadow: var(--shadow-soft);
-      margin-bottom: 36px;
-    }
-    .progress-bar-bg {
-      height: 12px;
-      background: var(--bg-2);
-      border-radius: 6px;
-      overflow: hidden;
-      margin: 12px 0 8px;
-    }
-    .progress-bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--primary), var(--primary-2));
-      border-radius: 6px;
-    }
-  </style>
 </head>
-<body>
+<body class="dash-dark">
+  <!-- THREE.JS 3D BACKGROUND -->
+  <canvas id="three-bg" class="three-canvas-bg"></canvas>
+
   <!-- SIDEBAR -->
   <aside class="dash-sidebar">
     <div class="sidebar-brand">
-      <div id="companyAvatar" style="width: 38px; height: 38px; border-radius: 10px; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 16px;">
+      <div id="companyAvatar" style="width: 42px; height: 42px; border-radius: 14px; background: linear-gradient(135deg, #FF7A45, #F05B24); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 16px; box-shadow: 0 4px 16px rgba(255,122,69,0.35);">
         CP
       </div>
       <div>
         <strong id="sidebarCompName" style="font-size: 14px; display: block; color: #fff;">Acme Corp</strong>
-        <small id="sidebarTierBadge" style="color: var(--teal); font-size: 11px; font-weight: 800;">Growth Tier</small>
+        <span id="sidebarTierBadge" class="kpi-badge" style="font-size: 10px; padding: 2px 8px; margin-top: 3px; display: inline-block;">Growth Tier</span>
       </div>
     </div>
 
     <nav class="sidebar-menu">
       <a href="dashboard.html" class="sidebar-link">
-        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-home"/></svg>
-        Overview & Positions
+        <svg style="width:16px;height:16px;"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        Overview & Pipeline
       </a>
       <a href="create-interview.html" class="sidebar-link">
-        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-plus"/></svg>
-        Create Interview
+        <svg style="width:16px;height:16px;"><path d="M12 5v14M5 12h14"/></svg>
+        Create Assessment
       </a>
       <a href="billing.html" class="sidebar-link active">
-        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-spark"/></svg>
+        <svg style="width:16px;height:16px;stroke:#FF7A45;"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
         Plans & Quota
       </a>
       <a href="team.html" class="sidebar-link">
-        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-users"/></svg>
-        Team Members
+        <svg style="width:16px;height:16px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Recruiter Seats
       </a>
       <a href="settings.html" class="sidebar-link">
-        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-palette"/></svg>
-        Branding & Logo
+        <svg style="width:16px;height:16px;"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Branding & Preview
       </a>
     </nav>
+
+    <div class="sidebar-footer">
+      <div>
+        <strong id="recruiterDisplayName" style="font-size: 13px; display: block; color: #fff;">Alex Morgan</strong>
+        <small style="color: #64748b; font-size: 11px;">Senior Talent Lead</small>
+      </div>
+      <button onclick="handleSignOut()" style="background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.25); color: #EF4444; padding: 6px 12px; border-radius: 10px; font-size: 11px; font-weight: 800; cursor: pointer;">
+        Sign Out
+      </button>
+    </div>
   </aside>
 
-  <!-- MAIN -->
+  <!-- MAIN BILLING -->
   <main class="dash-main">
-    <div style="margin-bottom: 28px;">
-      <h1 style="font-size: 26px; margin-bottom: 4px;">Subscription Plans & Candidate Quota</h1>
-      <p style="color: var(--muted); font-size: 14px; margin: 0;">Manage your active enterprise tier, candidate allowances, and billing invoices</p>
+    <div class="command-header">
+      <div>
+        <div style="display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 800; text-transform: uppercase; color: #FF7A45; letter-spacing: 0.08em; margin-bottom: 6px;">
+          Subscription & Allowance
+        </div>
+        <h1>Candidate Evaluation Allowance</h1>
+        <p>Manage enterprise quotas, top up coin balances, or upgrade subscription tier.</p>
+      </div>
     </div>
 
-    <!-- USAGE METER -->
-    <div class="usage-card">
-      <div style="display: flex; justify-content: space-between; align-items: center;">
+    <!-- USAGE & QUOTA METER -->
+    <div class="glass-panel" style="padding: 28px 32px; margin-bottom: 36px;" data-tilt>
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
         <div>
-          <span class="kicker" style="margin: 0;">Active Candidate Allowance</span>
-          <h2 style="font-size: 22px; margin: 6px 0 0;">Growth Plan (50 Included Candidates)</h2>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <h3 id="currentPlanTitle" style="font-size: 18px; font-weight: 900; margin: 0; color: #fff;">Growth Tier</h3>
+            <span class="status-pill published"><span class="dot"></span> Active Subscription</span>
+          </div>
+          <p style="font-size: 12px; color: #94A3B8; margin: 4px 0 0;">Billing cycle renews on September 28, 2026 via Paymob Auto-Billing.</p>
         </div>
         <div style="text-align: right;">
-          <strong style="font-size: 24px; color: var(--primary);">19 / 50</strong>
-          <span style="font-size: 13px; color: var(--muted); display: block;">Candidates evaluated this cycle</span>
+          <div style="font-size: 24px; font-weight: 900; color: #FF7A45;">
+            19 <span style="font-size: 14px; color: #94A3B8; font-weight: 600;">/ 50 Used</span>
+          </div>
+          <span style="font-size: 11px; color: #22C55E; font-weight: 800;">31 Evaluations Remaining</span>
         </div>
       </div>
 
-      <div class="progress-bar-bg">
-        <div class="progress-bar-fill" style="width: 38%;"></div>
+      <div style="width: 100%; height: 10px; background: rgba(255,255,255,0.08); border-radius: 99px; overflow: hidden; margin-bottom: 12px;">
+        <div style="width: 38%; height: 100%; background: linear-gradient(90deg, #FF7A45, #2DD4BF); border-radius: 99px;"></div>
       </div>
-      <div style="display: flex; justify-content: space-between; font-size: 12px; color: var(--muted);">
-        <span>31 Evaluations remaining</span>
-        <span>Renews Oct 01, 2026</span>
+
+      <div style="display: flex; justify-content: space-between; font-size: 11px; color: #94A3B8; font-weight: 700;">
+        <span>0 Candidates</span>
+        <span>Current Usage: 38%</span>
+        <span>50 Allowance</span>
       </div>
     </div>
 
-    <!-- TIER CARDS -->
-    <h3 style="font-size: 18px; margin-bottom: 16px;">Available Enterprise Subscription Tiers</h3>
-    <div class="pricing-grid">
-      <!-- Starter -->
-      <article class="price-card">
-        <div class="plan-row"><span>STARTER</span><small>Free Trial</small></div>
-        <div class="price"><strong>0</strong><span>USD<br/>/ 14 days</span></div>
-        <div class="coin-line">10 Candidate Evaluations</div>
-        <ul>
-          <li><svg><use href="#i-check"/></svg>1 Active interview position</li>
-          <li><svg><use href="#i-check"/></svg>Custom AI evaluation rubrics</li>
-          <li><svg><use href="#i-check"/></svg>MediaPipe on-device gaze tracking</li>
-          <li><svg><use href="#i-check"/></svg>2 Team recruiter seats</li>
-        </ul>
-        <button class="btn btn-secondary full" onclick="handleUpgrade('STARTER')">Current Tier</button>
-      </article>
+    <!-- 3 TIERED PLANS -->
+    <h2 style="font-size: 18px; font-weight: 900; margin-bottom: 20px; color: #fff;">Available Subscription Tiers</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 40px;">
+      <!-- STARTER -->
+      <div class="glass-panel" style="padding: 32px; display: flex; flex-direction: column; justify-content: space-between;" data-tilt>
+        <div>
+          <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #94A3B8; letter-spacing: 0.08em;">Starter</span>
+          <div style="font-size: 32px; font-weight: 900; color: #fff; margin: 12px 0 4px;">
+            $0 <span style="font-size: 14px; color: #94A3B8; font-weight: 600;">/ mo</span>
+          </div>
+          <p style="font-size: 12px; color: #94A3B8; margin-bottom: 24px;">For early-stage startups testing initial AI screening.</p>
 
-      <!-- Growth -->
-      <article class="price-card popular">
-        <div class="popular-ribbon">Active Plan</div>
-        <div class="plan-row"><span>GROWTH</span><small>Active Teams</small></div>
-        <div class="price"><strong>49</strong><span>USD<br/>/ month</span></div>
-        <div class="coin-line">50 Candidates ($2.00/extra)</div>
-        <ul>
-          <li><svg><use href="#i-check"/></svg>5 Active interview positions</li>
-          <li><svg><use href="#i-check"/></svg>Batch CSV invitations via Resend</li>
-          <li><svg><use href="#i-check"/></svg>Custom company logo & accent color</li>
-          <li><svg><use href="#i-check"/></svg>5 Recruiter & hiring manager seats</li>
-          <li><svg><use href="#i-check"/></svg>CSV & ATS export rankings</li>
-        </ul>
-        <button class="btn btn-primary full" onclick="alert('You are already subscribed to the Growth Plan!')">Active Plan</button>
-      </article>
+          <div style="display: flex; flex-direction: column; gap: 10px; font-size: 12px; color: #E2E8F0;">
+            <div>✓ 5 Candidate evaluations / mo</div>
+            <div>✓ Standard Question Rubrics</div>
+            <div>✓ 1 Recruiter Seat</div>
+            <div style="color: #64748B;">✗ MediaPipe Eye Gaze Tracking</div>
+            <div style="color: #64748B;">✗ Custom Company Branding</div>
+          </div>
+        </div>
+        <button onclick="alert('You are already on Growth tier.')" class="btn-secondary-dark" style="margin-top: 28px; width: 100%; justify-content: center;">
+          Downgrade
+        </button>
+      </div>
 
-      <!-- Business -->
-      <article class="price-card">
-        <div class="plan-row"><span>BUSINESS</span><small>High Volume</small></div>
-        <div class="price"><strong>199</strong><span>USD<br/>/ month</span></div>
-        <div class="coin-line">200 Candidates ($1.50/extra)</div>
-        <ul>
-          <li><svg><use href="#i-check"/></svg>Unlimited active positions</li>
-          <li><svg><use href="#i-check"/></svg>Priority AI transcription queue</li>
-          <li><svg><use href="#i-check"/></svg>20 Recruiter & interviewer seats</li>
-          <li><svg><use href="#i-check"/></svg>Webhook ATS integrations</li>
-        </ul>
-        <button class="btn btn-secondary full" onclick="handleUpgrade('BUSINESS')">Upgrade to Business &rarr;</button>
-      </article>
+      <!-- GROWTH (CURRENT) -->
+      <div class="glass-panel" style="padding: 32px; display: flex; flex-direction: column; justify-content: space-between; border-color: rgba(255,122,69,0.4); box-shadow: 0 20px 60px rgba(255,122,69,0.18);" data-tilt>
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #FF7A45; letter-spacing: 0.08em;">Growth</span>
+            <span class="status-pill published" style="font-size: 9px;"><span class="dot"></span> Current Plan</span>
+          </div>
+          <div style="font-size: 32px; font-weight: 900; color: #fff; margin: 12px 0 4px;">
+            $49 <span style="font-size: 14px; color: #94A3B8; font-weight: 600;">/ mo</span>
+          </div>
+          <p style="font-size: 12px; color: #94A3B8; margin-bottom: 24px;">For fast-growing engineering & product teams.</p>
+
+          <div style="display: flex; flex-direction: column; gap: 10px; font-size: 12px; color: #E2E8F0;">
+            <div><strong style="color: #FF7A45;">✓ 50 Candidate evaluations / mo</strong></div>
+            <div>✓ Custom AI Scoring Rubrics</div>
+            <div>✓ MediaPipe Anti-Cheat Eye & Camera Tracking</div>
+            <div>✓ 5 Recruiter Seats with RBAC</div>
+            <div>✓ Custom Logo & Brand Colors</div>
+          </div>
+        </div>
+        <button class="btn-primary-glow" style="margin-top: 28px; width: 100%; justify-content: center;">
+          Manage Billing (Paymob)
+        </button>
+      </div>
+
+      <!-- BUSINESS -->
+      <div class="glass-panel" style="padding: 32px; display: flex; flex-direction: column; justify-content: space-between;" data-tilt>
+        <div>
+          <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #2DD4BF; letter-spacing: 0.08em;">Business Scale</span>
+          <div style="font-size: 32px; font-weight: 900; color: #fff; margin: 12px 0 4px;">
+            $199 <span style="font-size: 14px; color: #94A3B8; font-weight: 600;">/ mo</span>
+          </div>
+          <p style="font-size: 12px; color: #94A3B8; margin-bottom: 24px;">For enterprise organizations with high-volume pipelines.</p>
+
+          <div style="display: flex; flex-direction: column; gap: 10px; font-size: 12px; color: #E2E8F0;">
+            <div><strong style="color: #2DD4BF;">✓ 250 Candidate evaluations / mo</strong></div>
+            <div>✓ Unlimited Recruiter Seats</div>
+            <div>✓ Greenhouse / Lever ATS Webhook Sync</div>
+            <div>✓ Dedicated Account Manager & SLA</div>
+            <div>✓ Custom Domain candidate portal</div>
+          </div>
+        </div>
+        <button onclick="handleUpgrade('Business')" class="btn-secondary-dark" style="margin-top: 28px; width: 100%; justify-content: center; border-color: rgba(45,212,191,0.3); color: #2DD4BF !important;">
+          Upgrade to Business &rarr;
+        </button>
+      </div>
     </div>
   </main>
 
+  <script src="js/vendor/three.min.js"></script>
+  <script src="js/threeui.js"></script>
   <script src="js/company-api.js"></script>
+
   <script>
     const session = CompanyApi.requireAuth();
+
     if (session) {
-      document.getElementById("sidebarCompName").innerText = session.company?.name || "My Company";
-      document.getElementById("sidebarTierBadge").innerText = `${session.company?.subscriptionTier || "Starter"} Tier`;
+      document.getElementById("sidebarCompName").innerText = session.company?.name || "Acme Corp";
+      document.getElementById("sidebarTierBadge").innerText = `${session.company?.subscriptionTier || "Growth"} Tier`;
+      document.getElementById("recruiterDisplayName").innerText = session.user?.name || session.user?.email || "Alex Morgan";
       document.getElementById("companyAvatar").innerText = (session.company?.name || "CP").substring(0, 2).toUpperCase();
+      document.getElementById("currentPlanTitle").innerText = `${session.company?.subscriptionTier || "Growth"} Tier`;
     }
 
     function handleUpgrade(tier) {
-      if (confirm(`Proceed to checkout to upgrade your organization to the ${tier} plan?`)) {
-        alert(`Thank you! Organization upgraded to ${tier}. Your candidate quota has been increased.`);
-        if (session && session.company) {
-          session.company.subscriptionTier = tier;
-          CompanyApi.setSession(session);
-          window.location.reload();
-        }
+      if (confirm(`Proceed to upgrade to ${tier} tier via Paymob?`)) {
+        CompanyApi.updateCompanyProfile({ subscriptionTier: tier });
+        alert(`Organization upgraded to ${tier} Tier! Candidate quota refreshed.`);
+        window.location.reload();
+      }
+    }
+
+    function handleSignOut() {
+      if (confirm("Are you sure you want to sign out?")) {
+        CompanyApi.clearSession();
+        window.location.href = "login.html";
       }
     }
   </script>

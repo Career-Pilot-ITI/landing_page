@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="cloud">
+<html lang="en" data-theme="midnight">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,186 +9,229 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    body {
-      background: var(--bg);
-      min-height: 100vh;
-      display: flex;
-    }
-    .dash-sidebar {
-      width: 260px;
-      background: var(--navy-dark);
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      border-right: 1px solid rgba(255,255,255,.08);
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      z-index: 100;
-    }
-    .dash-main {
-      flex: 1;
-      margin-left: 260px;
-      padding: 32px 40px;
-      min-height: 100vh;
-    }
-    .sidebar-brand {
-      padding: 24px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-    }
-    .sidebar-menu {
-      padding: 20px 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      flex: 1;
-    }
-    .sidebar-link {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 16px;
-      border-radius: 12px;
-      color: #94a3b8;
-      font-size: 13px;
-      font-weight: 700;
-      text-decoration: none;
-      transition: .2s ease;
-    }
-    .sidebar-link:hover, .sidebar-link.active {
-      background: rgba(255,122,69,.15);
-      color: #fff;
-    }
-    .sidebar-link.active {
-      color: var(--primary-2);
-      font-weight: 800;
-    }
-    .form-card {
-      background: var(--surface-solid);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-xl);
-      padding: 32px;
-      box-shadow: var(--shadow-soft);
-      max-width: 680px;
-    }
-    .form-group {
-      margin-bottom: 20px;
-    }
-    .form-group label {
-      display: block;
-      font-size: 12px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .06em;
-      color: var(--text);
-      margin-bottom: 8px;
-    }
-    .form-control {
-      width: 100%;
-      padding: 12px 16px;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      font-size: 14px;
-      background: var(--bg);
-      color: var(--text);
-      transition: .2s ease;
-    }
-  </style>
 </head>
-<body>
+<body class="dash-dark">
+  <!-- THREE.JS 3D BACKGROUND -->
+  <canvas id="three-bg" class="three-canvas-bg"></canvas>
+
   <!-- SIDEBAR -->
   <aside class="dash-sidebar">
     <div class="sidebar-brand">
-      <div id="companyAvatar" style="width: 38px; height: 38px; border-radius: 10px; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 16px;">
+      <div id="companyAvatar" style="width: 42px; height: 42px; border-radius: 14px; background: linear-gradient(135deg, #FF7A45, #F05B24); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 16px; box-shadow: 0 4px 16px rgba(255,122,69,0.35);">
         CP
       </div>
       <div>
         <strong id="sidebarCompName" style="font-size: 14px; display: block; color: #fff;">Acme Corp</strong>
-        <small id="sidebarTierBadge" style="color: var(--teal); font-size: 11px; font-weight: 800;">Growth Tier</small>
+        <span id="sidebarTierBadge" class="kpi-badge" style="font-size: 10px; padding: 2px 8px; margin-top: 3px; display: inline-block;">Growth Tier</span>
       </div>
     </div>
 
     <nav class="sidebar-menu">
       <a href="dashboard.html" class="sidebar-link">
-        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-home"/></svg>
-        Overview & Positions
+        <svg style="width:16px;height:16px;"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        Overview & Pipeline
       </a>
       <a href="create-interview.html" class="sidebar-link">
-        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-plus"/></svg>
-        Create Interview
+        <svg style="width:16px;height:16px;"><path d="M12 5v14M5 12h14"/></svg>
+        Create Assessment
       </a>
       <a href="billing.html" class="sidebar-link">
-        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-spark"/></svg>
+        <svg style="width:16px;height:16px;"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
         Plans & Quota
       </a>
       <a href="team.html" class="sidebar-link">
-        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-users"/></svg>
-        Team Members
+        <svg style="width:16px;height:16px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Recruiter Seats
       </a>
       <a href="settings.html" class="sidebar-link active">
-        <svg style="width:16px;height:16px;fill:currentColor;"><use href="#i-palette"/></svg>
-        Branding & Logo
+        <svg style="width:16px;height:16px;stroke:#FF7A45;"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Branding & Preview
       </a>
     </nav>
+
+    <div class="sidebar-footer">
+      <div>
+        <strong id="recruiterDisplayName" style="font-size: 13px; display: block; color: #fff;">Alex Morgan</strong>
+        <small style="color: #64748b; font-size: 11px;">Senior Talent Lead</small>
+      </div>
+      <button onclick="handleSignOut()" style="background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.25); color: #EF4444; padding: 6px 12px; border-radius: 10px; font-size: 11px; font-weight: 800; cursor: pointer;">
+        Sign Out
+      </button>
+    </div>
   </aside>
 
-  <!-- MAIN -->
+  <!-- MAIN BRANDING & SETTINGS -->
   <main class="dash-main">
-    <div style="margin-bottom: 28px;">
-      <h1 style="font-size: 26px; margin-bottom: 4px;">Company Profile & Branding</h1>
-      <p style="color: var(--muted); font-size: 14px; margin: 0;">Customize your organization logo, candidate invitation emails, and theme accents</p>
+    <div class="command-header">
+      <div>
+        <div style="display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 800; text-transform: uppercase; color: #FF7A45; letter-spacing: 0.08em; margin-bottom: 6px;">
+          Employer Branding
+        </div>
+        <h1>Company Profile & Candidate Portal Branding</h1>
+        <p>Customize candidate invitation branding, accent colors, and company logo.</p>
+      </div>
     </div>
 
-    <form class="form-card" onsubmit="handleSettingsSave(event)">
-      <div class="form-group">
-        <label>Company Legal Name</label>
-        <input type="text" id="compNameInput" class="form-control" value="Acme Technologies" required />
-      </div>
+    <!-- 2 COLUMN: FORM + LIVE CANDIDATE PHONE MOCKUP -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 32px; align-items: start;">
+      <!-- FORM -->
+      <form onsubmit="handleSaveSettings(event)" class="glass-panel" style="padding: 32px; display: flex; flex-direction: column; gap: 20px;">
+        <h3 style="font-size: 16px; font-weight: 900; margin: 0; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 12px;">
+          Organization Identity
+        </h3>
 
-      <div class="form-group">
-        <label>Website URL</label>
-        <input type="url" id="compWebInput" class="form-control" value="https://acme.tech" />
-      </div>
+        <div>
+          <label class="dark-label">Company / Entity Name *</label>
+          <input type="text" id="setCompName" required value="Acme Corp" class="dark-input" oninput="updateLiveMockup()" />
+        </div>
 
-      <div class="form-group">
-        <label>Candidate App Brand Color (Hex)</label>
-        <div style="display: flex; gap: 12px; align-items: center;">
-          <input type="color" id="compColorInput" value="#FF7A45" style="width: 50px; height: 44px; padding: 2px; border-radius: 8px; border: 1px solid var(--line); cursor: pointer;" />
-          <input type="text" id="compColorText" class="form-control" value="#FF7A45" style="max-width: 140px;" />
+        <div>
+          <label class="dark-label">Website Domain / Careers URL</label>
+          <input type="url" id="setCompWebsite" value="https://acme.tech" class="dark-input" oninput="updateLiveMockup()" />
+        </div>
+
+        <div>
+          <label class="dark-label">Custom Logo Image URL</label>
+          <input type="url" id="setCompLogo" placeholder="https://example.com/logo.png" class="dark-input" oninput="updateLiveMockup()" />
+          <small style="color: #64748B; font-size: 11px; margin-top: 4px; display: block;">Recommended size: 256x256 PNG or SVG</small>
+        </div>
+
+        <div>
+          <label class="dark-label">Brand Primary Accent Color</label>
+          <div style="display: flex; gap: 10px; align-items: center; margin-top: 6px;">
+            <input type="color" id="setColorPicker" value="#FF7A45" style="width: 44px; height: 44px; border: 0; border-radius: 12px; background: transparent; cursor: pointer;" onchange="syncColorInput(this.value)" />
+            <input type="text" id="setColorHex" value="#FF7A45" class="dark-input" style="width: 130px; font-family: monospace;" oninput="syncColorPicker(this.value)" />
+          </div>
+          <!-- Presets -->
+          <div style="display: flex; gap: 8px; margin-top: 10px;">
+            <button type="button" onclick="setPresetColor('#FF7A45')" style="width: 24px; height: 24px; border-radius: 50%; background: #FF7A45; border: 2px solid rgba(255,255,255,0.2); cursor: pointer;"></button>
+            <button type="button" onclick="setPresetColor('#2DD4BF')" style="width: 24px; height: 24px; border-radius: 50%; background: #2DD4BF; border: 2px solid rgba(255,255,255,0.2); cursor: pointer;"></button>
+            <button type="button" onclick="setPresetColor('#6366F1')" style="width: 24px; height: 24px; border-radius: 50%; background: #6366F1; border: 2px solid rgba(255,255,255,0.2); cursor: pointer;"></button>
+            <button type="button" onclick="setPresetColor('#10B981')" style="width: 24px; height: 24px; border-radius: 50%; background: #10B981; border: 2px solid rgba(255,255,255,0.2); cursor: pointer;"></button>
+            <button type="button" onclick="setPresetColor('#EC4899')" style="width: 24px; height: 24px; border-radius: 50%; background: #EC4899; border: 2px solid rgba(255,255,255,0.2); cursor: pointer;"></button>
+          </div>
+        </div>
+
+        <div style="border-top: 1px solid rgba(255,255,255,0.06); padding-top: 20px; display: flex; justify-content: flex-end;">
+          <button type="submit" class="btn-primary-glow">
+            Save Branding Changes &rarr;
+          </button>
+        </div>
+      </form>
+
+      <!-- LIVE CANDIDATE MOCKUP -->
+      <div class="glass-panel" style="padding: 28px; display: flex; flex-direction: column; align-items: center;" data-tilt>
+        <div style="width: 100%; display: flex; justify-content: space-between; margin-bottom: 18px;">
+          <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #2DD4BF; letter-spacing: 0.08em;">Live Mobile Preview</span>
+          <span class="status-pill published"><span class="dot"></span> Real-time</span>
+        </div>
+
+        <!-- Phone Frame -->
+        <div style="width: 280px; height: 500px; background: #0E1428; border: 6px solid #1E293B; border-radius: 36px; padding: 24px 18px; box-shadow: 0 24px 70px rgba(0,0,0,0.6); display: flex; flex-direction: column; justify-content: space-between; position: relative;">
+          <!-- Top Notch -->
+          <div style="width: 70px; height: 6px; background: #1E293B; border-radius: 99px; margin: 0 auto 16px;"></div>
+
+          <div style="text-align: center;">
+            <div id="mockAvatar" style="width: 52px; height: 52px; border-radius: 16px; background: #FF7A45; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 900; margin: 0 auto 12px; box-shadow: 0 8px 24px rgba(255,122,69,0.35);">
+              AC
+            </div>
+            <h4 id="mockTitle" style="font-size: 15px; font-weight: 900; color: #fff; margin: 0 0 4px;">Acme Corp</h4>
+            <span id="mockUrl" style="font-size: 10px; color: #94A3B8;">acme.tech</span>
+
+            <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 14px; margin-top: 18px; text-align: left;">
+              <span style="font-size: 9px; font-weight: 800; color: #2DD4BF; text-transform: uppercase;">Technical Assessment</span>
+              <strong style="display: block; font-size: 12px; color: #fff; margin-top: 2px;">Senior Android Engineer</strong>
+              <small style="color: #94A3B8; font-size: 10px; display: block; margin-top: 4px;">2 Spoken Questions (90s limit)</small>
+            </div>
+          </div>
+
+          <div>
+            <button id="mockBtn" style="width: 100%; background: #FF7A45; color: #fff; border: 0; border-radius: 12px; padding: 10px; font-size: 11px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 16px rgba(255,122,69,0.4);">
+              Launch Camera & Audio Test &rarr;
+            </button>
+            <div style="text-align: center; margin-top: 8px;">
+              <small style="font-size: 9px; color: #64748B;">Powered by Career Pilot AI</small>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div style="margin-top: 30px;">
-        <button type="submit" class="btn btn-primary btn-lg">
-          Save Organization Settings &rarr;
-        </button>
-      </div>
-    </form>
+    </div>
   </main>
 
+  <script src="js/vendor/three.min.js"></script>
+  <script src="js/threeui.js"></script>
   <script src="js/company-api.js"></script>
+
   <script>
     const session = CompanyApi.requireAuth();
+
     if (session) {
-      document.getElementById("sidebarCompName").innerText = session.company?.name || "My Company";
-      document.getElementById("sidebarTierBadge").innerText = `${session.company?.subscriptionTier || "Starter"} Tier`;
+      document.getElementById("sidebarCompName").innerText = session.company?.name || "Acme Corp";
+      document.getElementById("sidebarTierBadge").innerText = `${session.company?.subscriptionTier || "Growth"} Tier`;
+      document.getElementById("recruiterDisplayName").innerText = session.user?.name || session.user?.email || "Alex Morgan";
       document.getElementById("companyAvatar").innerText = (session.company?.name || "CP").substring(0, 2).toUpperCase();
-      document.getElementById("compNameInput").value = session.company?.name || "Acme Technologies";
+
+      if (session.company?.name) document.getElementById("setCompName").value = session.company.name;
+      if (session.company?.website) document.getElementById("setCompWebsite").value = session.company.website;
+      if (session.company?.logoUrl) document.getElementById("setCompLogo").value = session.company.logoUrl;
+      if (session.company?.primaryColor) {
+        setPresetColor(session.company.primaryColor);
+      }
+      updateLiveMockup();
     }
 
-    function handleSettingsSave(e) {
+    function syncColorInput(hex) {
+      document.getElementById("setColorHex").value = hex;
+      updateLiveMockup();
+    }
+
+    function syncColorPicker(hex) {
+      if (/^#[0-9A-F]{6}$/i.test(hex)) {
+        document.getElementById("setColorPicker").value = hex;
+        updateLiveMockup();
+      }
+    }
+
+    function setPresetColor(hex) {
+      document.getElementById("setColorPicker").value = hex;
+      document.getElementById("setColorHex").value = hex;
+      updateLiveMockup();
+    }
+
+    function updateLiveMockup() {
+      const name = document.getElementById("setCompName").value || "Acme Corp";
+      const web = document.getElementById("setCompWebsite").value || "acme.tech";
+      const color = document.getElementById("setColorHex").value || "#FF7A45";
+
+      document.getElementById("mockTitle").innerText = name;
+      document.getElementById("mockUrl").innerText = web.replace("https://", "").replace("http://", "");
+      document.getElementById("mockAvatar").innerText = name.substring(0, 2).toUpperCase();
+      document.getElementById("mockAvatar").style.background = color;
+      document.getElementById("mockBtn").style.background = color;
+    }
+
+    function handleSaveSettings(e) {
       e.preventDefault();
-      const newName = document.getElementById("compNameInput").value;
-      if (session && session.company) {
-        session.company.name = newName;
-        CompanyApi.setSession(session);
-        alert("Company profile updated successfully!");
-        window.location.reload();
+      const name = document.getElementById("setCompName").value;
+      const website = document.getElementById("setCompWebsite").value;
+      const logoUrl = document.getElementById("setCompLogo").value;
+      const primaryColor = document.getElementById("setColorHex").value;
+
+      CompanyApi.updateCompanyProfile({
+        name,
+        website,
+        logoUrl,
+        primaryColor
+      });
+
+      alert("Organization branding settings updated successfully!");
+      window.location.reload();
+    }
+
+    function handleSignOut() {
+      if (confirm("Are you sure you want to sign out?")) {
+        CompanyApi.clearSession();
+        window.location.href = "login.html";
       }
     }
   </script>
