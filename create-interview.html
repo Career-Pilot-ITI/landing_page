@@ -367,14 +367,6 @@
       window.location.href = `interview-detail.html?id=${newIntv.id}`;
     }
 
-    const session = CompanyApi.requireAuth();
-    if (session) {
-      document.getElementById("sidebarCompName").innerText = session.company?.name || "Acme Corp";
-      document.getElementById("sidebarTierBadge").innerText = `${session.company?.subscriptionTier || "Growth"} Tier`;
-      document.getElementById("recruiterDisplayName").innerText = session.user?.name || session.user?.email || "Alex Morgan";
-      document.getElementById("companyAvatar").innerText = (session.company?.name || "CP").substring(0, 2).toUpperCase();
-    }
-
     function handleSignOut() {
       if (confirm("Are you sure you want to sign out?")) {
         CompanyApi.clearSession();
