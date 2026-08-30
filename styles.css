@@ -2511,10 +2511,18 @@ body.dash-dark {
   cursor: pointer;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   text-decoration: none;
   box-shadow: 0 10px 28px rgba(255, 122, 69, 0.35);
   transition: all 0.25s ease;
+}
+
+.btn-primary-glow svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  stroke: currentColor;
 }
 
 .btn-primary-glow:hover {
@@ -2533,9 +2541,17 @@ body.dash-dark {
   cursor: pointer;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   text-decoration: none;
   transition: all 0.2s ease;
+}
+
+.btn-secondary-dark svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  stroke: currentColor;
 }
 
 .btn-secondary-dark:hover {
