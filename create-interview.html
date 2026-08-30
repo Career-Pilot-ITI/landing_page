@@ -111,7 +111,7 @@
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 28px; align-items: start;">
       <!-- LEFT: FORM CONFIGURATION -->
       <form id="createInterviewForm" onsubmit="handleCreateAssessment(event)" class="glass-panel" style="padding: 32px; display: flex; flex-direction: column; gap: 24px;">
-        <h3 style="font-size: 16px; font-weight: 900; margin: 0; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 14px;">
+        <h3 style="font-size: 16px; font-weight: 900; margin: 0; color: var(--dash-heading); border-bottom: 1px solid var(--dash-card-border); padding-bottom: 14px;">
           1. Position Information
         </h3>
 
@@ -132,14 +132,14 @@
           </div>
           <div>
             <label class="dark-label">Anti-Collusion</label>
-            <label style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #94A3B8; margin-top: 10px; cursor: pointer;">
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--dash-text-muted); margin-top: 10px; cursor: pointer;">
               <input type="checkbox" id="intRandomize" checked style="accent-color: #FF7A45; width: 16px; height: 16px;" />
               Randomize question sequence
             </label>
           </div>
         </div>
 
-        <h3 style="font-size: 16px; font-weight: 900; margin: 12px 0 0; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 14px; display: flex; align-items: center; justify-content: space-between;">
+        <h3 style="font-size: 16px; font-weight: 900; margin: 12px 0 0; color: var(--dash-heading); border-bottom: 1px solid var(--dash-card-border); padding-bottom: 14px; display: flex; align-items: center; justify-content: space-between;">
           <span>2. Spoken Questions & Custom AI Rubrics</span>
           <button type="button" onclick="addQuestionField()" class="btn-secondary-dark" style="font-size: 11px; padding: 6px 12px; border-radius: 10px;">
             + Add Question
@@ -150,7 +150,7 @@
           <!-- Questions rendered dynamically -->
         </div>
 
-        <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 20px;">
+        <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 12px; border-top: 1px solid var(--dash-card-border); padding-top: 20px;">
           <a href="dashboard.html" class="btn-secondary-dark">Cancel</a>
           <button type="submit" class="btn-primary-glow" id="btnSubmit">
             Save & Generate Tokenized Links &rarr;
@@ -165,16 +165,16 @@
           <span class="status-pill published"><span class="dot"></span> Live Model</span>
         </div>
 
-        <div style="background: rgba(14,20,40,0.8); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 22px; text-align: center; margin-bottom: 16px;">
+        <div style="background: var(--dash-feed-bg); border: 1px solid var(--dash-card-border); border-radius: 20px; padding: 22px; text-align: center; margin-bottom: 16px;">
           <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(255,122,69,0.12); color: #FF7A45; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; font-weight: 900;">
             AI
           </div>
-          <h4 id="prevTitle" style="font-size: 16px; font-weight: 900; color: #fff; margin: 0 0 6px;">Senior Android Engineer</h4>
-          <p id="prevDesc" style="font-size: 12px; color: #94A3B8; margin: 0;">Evaluating structured concurrency, Coroutines, and MVI architecture.</p>
+          <h4 id="prevTitle" style="font-size: 16px; font-weight: 900; color: var(--dash-heading); margin: 0 0 6px;">Senior Android Engineer</h4>
+          <p id="prevDesc" style="font-size: 12px; color: var(--dash-text-muted); margin: 0;">Evaluating structured concurrency, Coroutines, and MVI architecture.</p>
         </div>
 
-        <div style="background: rgba(14,20,40,0.5); border: 1px solid rgba(255,255,255,0.06); border-radius: 18px; padding: 18px; font-size: 12px; color: #94A3B8; space-y: 8px;">
-          <div style="font-weight: 800; color: #fff; text-transform: uppercase; font-size: 10px; margin-bottom: 8px; letter-spacing: 0.06em;">On-Device Evaluation Modules:</div>
+        <div style="background: var(--dash-feed-bg); border: 1px solid var(--dash-card-border); border-radius: 18px; padding: 18px; font-size: 12px; color: var(--dash-text-muted); space-y: 8px;">
+          <div style="font-weight: 800; color: var(--dash-heading); text-transform: uppercase; font-size: 10px; margin-bottom: 8px; letter-spacing: 0.06em;">On-Device Evaluation Modules:</div>
           <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
             <span style="color: #2DD4BF;">●</span> On-Device Facial Landmark & Gaze Tracking
           </div>

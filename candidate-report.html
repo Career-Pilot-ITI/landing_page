@@ -165,18 +165,18 @@
 
     /* Highlighted Transcripts */
     .transcript-box {
-      background: rgba(9, 13, 26, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: var(--dash-feed-bg);
+      border: 1px solid var(--dash-card-border);
       border-left: 4px solid #FF7A45;
       padding: 20px 24px;
       border-radius: 0 16px 16px 0;
-      color: #E2E8F0;
+      color: var(--dash-text);
       font-size: 14px;
       line-height: 1.7;
     }
     .filler-mark {
       background: rgba(251, 191, 36, 0.25);
-      color: #FDE68A;
+      color: #F59E0B;
       border-radius: 4px;
       padding: 2px 6px;
       font-weight: 700;
@@ -187,7 +187,7 @@
     .filler-chip {
       background: rgba(251, 191, 36, 0.12);
       border: 1px solid rgba(251, 191, 36, 0.3);
-      color: #FBBF24;
+      color: #D97706;
       font-size: 11px;
       font-weight: 700;
       padding: 4px 10px;
@@ -203,8 +203,8 @@
       gap: 10px;
       padding: 8px 0;
       font-size: 13px;
-      color: #E2E8F0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: var(--dash-text);
+      border-bottom: 1px solid var(--dash-card-border);
     }
     .criteria-item:last-child {
       border-bottom: none;
@@ -222,7 +222,7 @@
         CP
       </div>
       <div>
-        <strong id="sidebarCompName" style="font-size: 14px; display: block; color: #fff; letter-spacing: -0.02em;">Acme Corp</strong>
+        <strong id="sidebarCompName" style="font-size: 14px; display: block; color: var(--dash-heading); letter-spacing: -0.02em;">Acme Corp</strong>
         <span id="sidebarTierBadge" class="kpi-badge amber" style="font-size: 10px; padding: 2px 8px; margin-top: 3px; display: inline-block;">Growth Tier</span>
       </div>
     </div>
@@ -350,8 +350,8 @@
     <!-- INTERACTIVE QUESTION SELECTOR (Like Mobile App QuestionSelector.kt) -->
     <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 12px;">
       <div>
-        <h3 style="font-size: 17px; font-weight: 900; color: #fff; margin: 0;">Question-by-Question Deep Analysis</h3>
-        <p style="font-size: 12px; color: #94A3B8; margin: 4px 0 0;">Inspect spoken transcripts, highlighted filler words, and rubric concept mapping.</p>
+        <h3 style="font-size: 17px; font-weight: 900; color: var(--dash-heading); margin: 0;">Question-by-Question Deep Analysis</h3>
+        <p style="font-size: 12px; color: var(--dash-text-muted); margin: 4px 0 0;">Inspect spoken transcripts, highlighted filler words, and rubric concept mapping.</p>
       </div>
       <div style="display: flex; gap: 8px; flex-wrap: wrap;">
         <button class="q-tab-btn active" id="tab-all" onclick="selectQuestionTab('all')">
@@ -377,18 +377,18 @@
 
       <!-- ================= QUESTION 1 ================= -->
       <div class="glass-card question-item" id="qCard-q1" style="margin-bottom: 0;">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 18px; margin-bottom: 18px; flex-wrap: wrap; gap: 12px;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid var(--dash-card-border); padding-bottom: 18px; margin-bottom: 18px; flex-wrap: wrap; gap: 12px;">
           <div>
             <div style="display: inline-flex; align-items: center; gap: 8px; margin-bottom: 6px;">
               <span class="kpi-badge amber" style="font-size: 10px; padding: 2px 8px;">Question 1 · Kotlin Concurrency</span>
-              <span style="font-size: 12px; color: #94A3B8; font-weight: 600;">Spoken Duration: 1m 26s</span>
+              <span style="font-size: 12px; color: var(--dash-text-muted); font-weight: 600;">Spoken Duration: 1m 26s</span>
             </div>
-            <h2 style="font-size: 18px; font-weight: 900; color: #fff; margin: 0; letter-spacing: -0.02em;">
+            <h2 style="font-size: 18px; font-weight: 900; color: var(--dash-heading); margin: 0; letter-spacing: -0.02em;">
               "Can you explain how Kotlin Coroutines manage structured concurrency, and how you handle Dispatchers and exception propagation?"
             </h2>
           </div>
           <div style="text-align: right;">
-            <span style="font-size: 11px; font-weight: 800; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 2px;">Question Score</span>
+            <span style="font-size: 11px; font-weight: 800; color: var(--dash-text-muted); text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 2px;">Question Score</span>
             <span style="font-size: 22px; font-weight: 900; color: #22C55E; background: rgba(34,197,94,0.12); padding: 4px 12px; border-radius: 12px; border: 1px solid rgba(34,197,94,0.25); display: inline-block;">94%</span>
           </div>
         </div>
@@ -396,32 +396,32 @@
         <!-- 3 Mini Metric Cards (Like QuestionMetricsRow.kt in Mobile App) -->
         <div style="display: flex; gap: 14px; margin-bottom: 20px; flex-wrap: wrap;">
           <div class="mini-metric-box">
-            <span style="font-size: 11px; color: #94A3B8; font-weight: 700; text-transform: uppercase;">Rubric Match</span>
+            <span style="font-size: 11px; color: var(--dash-text-muted); font-weight: 700; text-transform: uppercase;">Rubric Match</span>
             <div style="font-size: 18px; font-weight: 900; color: #22C55E; margin-top: 4px;">94% Concepts</div>
-            <small style="color: #64748B; font-size: 11px;">4 of 4 critical criteria met</small>
+            <small style="color: var(--dash-text-muted); font-size: 11px;">4 of 4 critical criteria met</small>
           </div>
           <div class="mini-metric-box">
-            <span style="font-size: 11px; color: #94A3B8; font-weight: 700; text-transform: uppercase;">Filler Words</span>
+            <span style="font-size: 11px; color: var(--dash-text-muted); font-weight: 700; text-transform: uppercase;">Filler Words</span>
             <div style="font-size: 18px; font-weight: 900; color: #FBBF24; margin-top: 4px;">2 Detected</div>
-            <small style="color: #64748B; font-size: 11px;">1.4% of total words spoken</small>
+            <small style="color: var(--dash-text-muted); font-size: 11px;">1.4% of total words spoken</small>
           </div>
           <div class="mini-metric-box">
-            <span style="font-size: 11px; color: #94A3B8; font-weight: 700; text-transform: uppercase;">Speaking Pace</span>
+            <span style="font-size: 11px; color: var(--dash-text-muted); font-weight: 700; text-transform: uppercase;">Speaking Pace</span>
             <div style="font-size: 18px; font-weight: 900; color: #38BDF8; margin-top: 4px;">138 WPM</div>
-            <small style="color: #64748B; font-size: 11px;">Optimal natural delivery pace</small>
+            <small style="color: var(--dash-text-muted); font-size: 11px;">Optimal natural delivery pace</small>
           </div>
         </div>
 
         <!-- Spoken Transcript with Highlighted Words (Like TranscriptCard.kt in Mobile App) -->
         <div style="margin-bottom: 20px;">
-          <label style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #94A3B8; letter-spacing: 0.06em; margin-bottom: 8px; display: block;">
+          <label style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--dash-text-muted); letter-spacing: 0.06em; margin-bottom: 8px; display: block;">
             Spoken Voice Transcript (Speech-to-Text Engine)
           </label>
           <div class="transcript-box">
-            "Kotlin coroutines enforce structured concurrency through <strong style="color:#FF9E72;">CoroutineScope</strong> and Job parent-child hierarchies. When a child coroutine fails without a <strong style="color:#FF9E72;">SupervisorJob</strong>, <mark class="filler-mark">basically</mark> the cancellation propagates upwards to cancel all sibling jobs. I use <strong style="color:#2DD4BF;">Dispatchers.IO</strong> for background disk and network I/O operations, <mark class="filler-mark">um</mark>, and <strong style="color:#2DD4BF;">Dispatchers.Default</strong> for CPU heavy parsing, JSON serialization, and cryptographic hashing."
+            "Kotlin coroutines enforce structured concurrency through <strong style="color:#FF7A45;">CoroutineScope</strong> and Job parent-child hierarchies. When a child coroutine fails without a <strong style="color:#FF7A45;">SupervisorJob</strong>, <mark class="filler-mark">basically</mark> the cancellation propagates upwards to cancel all sibling jobs. I use <strong style="color:#2DD4BF;">Dispatchers.IO</strong> for background disk and network I/O operations, <mark class="filler-mark">um</mark>, and <strong style="color:#2DD4BF;">Dispatchers.Default</strong> for CPU heavy parsing, JSON serialization, and cryptographic hashing."
           </div>
           <div style="margin-top: 10px; display: flex; align-items: center; gap: 8px;">
-            <span style="font-size: 11px; color: #94A3B8; font-weight: 700;">Highlighted Filler Hesitations:</span>
+            <span style="font-size: 11px; color: var(--dash-text-muted); font-weight: 700;">Highlighted Filler Hesitations:</span>
             <span class="filler-chip">"basically" (1×)</span>
             <span class="filler-chip">"um" (1×)</span>
           </div>
@@ -430,8 +430,8 @@
         <!-- Rubric Concept Evaluation & Checklist -->
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 18px; margin-bottom: 18px;">
           <div style="background: rgba(34,197,94,0.06); border: 1px solid rgba(34,197,94,0.2); border-radius: 18px; padding: 20px;">
-            <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #4ADE80; letter-spacing: 0.08em; display: flex; align-items: center; gap: 6px; margin-bottom: 12px;">
-              <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="#4ADE80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Rubric Criteria Verified
+            <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #16A34A; letter-spacing: 0.08em; display: flex; align-items: center; gap: 6px; margin-bottom: 12px;">
+              <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Rubric Criteria Verified
             </span>
             <div class="criteria-item">
               <svg style="width:14px;height:14px;stroke:#22C55E;flex-shrink:0;margin-top:2px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
@@ -449,14 +449,14 @@
 
           <!-- Coach Feedback Card (Like CoachFeedbackCard.kt in Mobile App) -->
           <div style="background: rgba(255,122,69,0.06); border: 1px solid rgba(255,122,69,0.2); border-radius: 18px; padding: 20px;">
-            <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #FF9E72; letter-spacing: 0.08em; display: flex; align-items: center; gap: 6px; margin-bottom: 12px;">
-              <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="#FF9E72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> AI Coach Feedback & Suggestions
+            <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #EA580C; letter-spacing: 0.08em; display: flex; align-items: center; gap: 6px; margin-bottom: 12px;">
+              <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> AI Coach Feedback & Suggestions
             </span>
-            <p style="font-size: 13px; color: #E2E8F0; line-height: 1.5; margin: 0 0 10px;">
+            <p style="font-size: 13px; color: var(--dash-text); line-height: 1.5; margin: 0 0 10px;">
               <strong>Strengths:</strong> Answer demonstrated senior-level mastery of asynchronous Kotlin programming and exception scoping.
             </p>
-            <p style="font-size: 12px; color: #94A3B8; line-height: 1.5; margin: 0;">
-              <strong>Growth Tip:</strong> Mention how custom CoroutineExceptionHandler and CoroutineContext qualifiers (like <code style="color:#FF9E72;">@Dispatcher(IO)</code>) assist dependency injection in Hilt test suites.
+            <p style="font-size: 12px; color: var(--dash-text-muted); line-height: 1.5; margin: 0;">
+              <strong>Growth Tip:</strong> Mention how custom CoroutineExceptionHandler and CoroutineContext qualifiers (like <code style="color:#FF7A45;">@Dispatcher(IO)</code>) assist dependency injection in Hilt test suites.
             </p>
           </div>
         </div>
@@ -464,57 +464,57 @@
 
       <!-- ================= QUESTION 2 ================= -->
       <div class="glass-card question-item" id="qCard-q2" style="margin-bottom: 0;">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 18px; margin-bottom: 18px; flex-wrap: wrap; gap: 12px;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid var(--dash-card-border); padding-bottom: 18px; margin-bottom: 18px; flex-wrap: wrap; gap: 12px;">
           <div>
             <div style="display: inline-flex; align-items: center; gap: 8px; margin-bottom: 6px;">
               <span class="kpi-badge amber" style="font-size: 10px; padding: 2px 8px;">Question 2 · Jetpack Compose Performance</span>
-              <span style="font-size: 12px; color: #94A3B8; font-weight: 600;">Spoken Duration: 1m 08s</span>
+              <span style="font-size: 12px; color: var(--dash-text-muted); font-weight: 600;">Spoken Duration: 1m 08s</span>
             </div>
-            <h2 style="font-size: 18px; font-weight: 900; color: #fff; margin: 0; letter-spacing: -0.02em;">
+            <h2 style="font-size: 18px; font-weight: 900; color: var(--dash-heading); margin: 0; letter-spacing: -0.02em;">
               "How do you optimize Jetpack Compose recomposition performance and ensure stability for UI state holders?"
             </h2>
           </div>
           <div style="text-align: right;">
-            <span style="font-size: 11px; font-weight: 800; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 2px;">Question Score</span>
+            <span style="font-size: 11px; font-weight: 800; color: var(--dash-text-muted); text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 2px;">Question Score</span>
             <span style="font-size: 22px; font-weight: 900; color: #22C55E; background: rgba(34,197,94,0.12); padding: 4px 12px; border-radius: 12px; border: 1px solid rgba(34,197,94,0.25); display: inline-block;">90%</span>
           </div>
         </div>
 
         <div style="display: flex; gap: 14px; margin-bottom: 20px; flex-wrap: wrap;">
           <div class="mini-metric-box">
-            <span style="font-size: 11px; color: #94A3B8; font-weight: 700; text-transform: uppercase;">Rubric Match</span>
+            <span style="font-size: 11px; color: var(--dash-text-muted); font-weight: 700; text-transform: uppercase;">Rubric Match</span>
             <div style="font-size: 18px; font-weight: 900; color: #22C55E; margin-top: 4px;">90% Concepts</div>
-            <small style="color: #64748B; font-size: 11px;">Skippability & derived state</small>
+            <small style="color: var(--dash-text-muted); font-size: 11px;">Skippability & derived state</small>
           </div>
           <div class="mini-metric-box">
-            <span style="font-size: 11px; color: #94A3B8; font-weight: 700; text-transform: uppercase;">Filler Words</span>
+            <span style="font-size: 11px; color: var(--dash-text-muted); font-weight: 700; text-transform: uppercase;">Filler Words</span>
             <div style="font-size: 18px; font-weight: 900; color: #22C55E; margin-top: 4px;">1 Detected</div>
-            <small style="color: #64748B; font-size: 11px;">0.9% filler word ratio</small>
+            <small style="color: var(--dash-text-muted); font-size: 11px;">0.9% filler word ratio</small>
           </div>
           <div class="mini-metric-box">
-            <span style="font-size: 11px; color: #94A3B8; font-weight: 700; text-transform: uppercase;">Speaking Pace</span>
+            <span style="font-size: 11px; color: var(--dash-text-muted); font-weight: 700; text-transform: uppercase;">Speaking Pace</span>
             <div style="font-size: 18px; font-weight: 900; color: #38BDF8; margin-top: 4px;">142 WPM</div>
-            <small style="color: #64748B; font-size: 11px;">Steady and energetic</small>
+            <small style="color: var(--dash-text-muted); font-size: 11px;">Steady and energetic</small>
           </div>
         </div>
 
         <div style="margin-bottom: 20px;">
-          <label style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #94A3B8; letter-spacing: 0.06em; margin-bottom: 8px; display: block;">
+          <label style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--dash-text-muted); letter-spacing: 0.06em; margin-bottom: 8px; display: block;">
             Spoken Voice Transcript (Speech-to-Text Engine)
           </label>
           <div class="transcript-box">
-            "I ensure state stability by annotating immutable domain data models with <strong style="color:#FF9E72;">@Immutable</strong> or <strong style="color:#FF9E72;">@Stable</strong> so the Compose compiler marks parameters as skippable. <mark class="filler-mark">You know</mark>, I also use <strong style="color:#2DD4BF;">derivedStateOf</strong> to throttle high-frequency scroll or animation calculations and defer state reads into layout and draw lambda blocks to avoid recomposition loops."
+            "I ensure state stability by annotating immutable domain data models with <strong style="color:#FF7A45;">@Immutable</strong> or <strong style="color:#FF7A45;">@Stable</strong> so the Compose compiler marks parameters as skippable. <mark class="filler-mark">You know</mark>, I also use <strong style="color:#2DD4BF;">derivedStateOf</strong> to throttle high-frequency scroll or animation calculations and defer state reads into layout and draw lambda blocks to avoid recomposition loops."
           </div>
           <div style="margin-top: 10px; display: flex; align-items: center; gap: 8px;">
-            <span style="font-size: 11px; color: #94A3B8; font-weight: 700;">Highlighted Filler Hesitations:</span>
+            <span style="font-size: 11px; color: var(--dash-text-muted); font-weight: 700;">Highlighted Filler Hesitations:</span>
             <span class="filler-chip">"You know" (1×)</span>
           </div>
         </div>
 
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 18px; margin-bottom: 18px;">
           <div style="background: rgba(34,197,94,0.06); border: 1px solid rgba(34,197,94,0.2); border-radius: 18px; padding: 20px;">
-            <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #4ADE80; letter-spacing: 0.08em; display: flex; align-items: center; gap: 6px; margin-bottom: 12px;">
-              <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="#4ADE80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Rubric Criteria Verified
+            <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #16A34A; letter-spacing: 0.08em; display: flex; align-items: center; gap: 6px; margin-bottom: 12px;">
+              <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Rubric Criteria Verified
             </span>
             <div class="criteria-item">
               <svg style="width:14px;height:14px;stroke:#22C55E;flex-shrink:0;margin-top:2px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
@@ -531,14 +531,14 @@
           </div>
 
           <div style="background: rgba(255,122,69,0.06); border: 1px solid rgba(255,122,69,0.2); border-radius: 18px; padding: 20px;">
-            <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #FF9E72; letter-spacing: 0.08em; display: flex; align-items: center; gap: 6px; margin-bottom: 12px;">
-              <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="#FF9E72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> AI Coach Feedback & Suggestions
+            <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #EA580C; letter-spacing: 0.08em; display: flex; align-items: center; gap: 6px; margin-bottom: 12px;">
+              <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> AI Coach Feedback & Suggestions
             </span>
-            <p style="font-size: 13px; color: #E2E8F0; line-height: 1.5; margin: 0 0 10px;">
+            <p style="font-size: 13px; color: var(--dash-text); line-height: 1.5; margin: 0 0 10px;">
               <strong>Strengths:</strong> Deep comprehension of Compose compiler metrics, skippability, and phase-split architecture.
             </p>
-            <p style="font-size: 12px; color: #94A3B8; line-height: 1.5; margin: 0;">
-              <strong>Growth Tip:</strong> Mention using Layout Inspector recomposition counters and Kotlinx Immutable Collections (<code style="color:#FF9E72;">PersistentList</code>).
+            <p style="font-size: 12px; color: var(--dash-text-muted); line-height: 1.5; margin: 0;">
+              <strong>Growth Tip:</strong> Mention using Layout Inspector recomposition counters and Kotlinx Immutable Collections (<code style="color:#FF7A45;">PersistentList</code>).
             </p>
           </div>
         </div>
@@ -546,57 +546,57 @@
 
       <!-- ================= QUESTION 3 ================= -->
       <div class="glass-card question-item" id="qCard-q3" style="margin-bottom: 0;">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 18px; margin-bottom: 18px; flex-wrap: wrap; gap: 12px;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid var(--dash-card-border); padding-bottom: 18px; margin-bottom: 18px; flex-wrap: gap; gap: 12px;">
           <div>
             <div style="display: inline-flex; align-items: center; gap: 8px; margin-bottom: 6px;">
               <span class="kpi-badge amber" style="font-size: 10px; padding: 2px 8px;">Question 3 · MVI Architecture</span>
-              <span style="font-size: 12px; color: #94A3B8; font-weight: 600;">Spoken Duration: 58s</span>
+              <span style="font-size: 12px; color: var(--dash-text-muted); font-weight: 600;">Spoken Duration: 58s</span>
             </div>
-            <h2 style="font-size: 18px; font-weight: 900; color: #fff; margin: 0; letter-spacing: -0.02em;">
+            <h2 style="font-size: 18px; font-weight: 900; color: var(--dash-heading); margin: 0; letter-spacing: -0.02em;">
               "Describe how you structure unidirectional data flow with UiState, UiIntent, and one-off side effects in ViewModel."
             </h2>
           </div>
           <div style="text-align: right;">
-            <span style="font-size: 11px; font-weight: 800; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 2px;">Question Score</span>
+            <span style="font-size: 11px; font-weight: 800; color: var(--dash-text-muted); text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 2px;">Question Score</span>
             <span style="font-size: 22px; font-weight: 900; color: #22C55E; background: rgba(34,197,94,0.12); padding: 4px 12px; border-radius: 12px; border: 1px solid rgba(34,197,94,0.25); display: inline-block;">88%</span>
           </div>
         </div>
 
         <div style="display: flex; gap: 14px; margin-bottom: 20px; flex-wrap: wrap;">
           <div class="mini-metric-box">
-            <span style="font-size: 11px; color: #94A3B8; font-weight: 700; text-transform: uppercase;">Rubric Match</span>
+            <span style="font-size: 11px; color: var(--dash-text-muted); font-weight: 700; text-transform: uppercase;">Rubric Match</span>
             <div style="font-size: 18px; font-weight: 900; color: #22C55E; margin-top: 4px;">88% Concepts</div>
-            <small style="color: #64748B; font-size: 11px;">MVI StateFlow & Channel</small>
+            <small style="color: var(--dash-text-muted); font-size: 11px;">MVI StateFlow & Channel</small>
           </div>
           <div class="mini-metric-box">
-            <span style="font-size: 11px; color: #94A3B8; font-weight: 700; text-transform: uppercase;">Filler Words</span>
+            <span style="font-size: 11px; color: var(--dash-text-muted); font-weight: 700; text-transform: uppercase;">Filler Words</span>
             <div style="font-size: 18px; font-weight: 900; color: #FBBF24; margin-top: 4px;">2 Detected</div>
-            <small style="color: #64748B; font-size: 11px;">1.8% filler word ratio</small>
+            <small style="color: var(--dash-text-muted); font-size: 11px;">1.8% filler word ratio</small>
           </div>
           <div class="mini-metric-box">
-            <span style="font-size: 11px; color: #94A3B8; font-weight: 700; text-transform: uppercase;">Speaking Pace</span>
+            <span style="font-size: 11px; color: var(--dash-text-muted); font-weight: 700; text-transform: uppercase;">Speaking Pace</span>
             <div style="font-size: 18px; font-weight: 900; color: #38BDF8; margin-top: 4px;">135 WPM</div>
-            <small style="color: #64748B; font-size: 11px;">Clear and well articulated</small>
+            <small style="color: var(--dash-text-muted); font-size: 11px;">Clear and well articulated</small>
           </div>
         </div>
 
         <div style="margin-bottom: 20px;">
-          <label style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #94A3B8; letter-spacing: 0.06em; margin-bottom: 8px; display: block;">
+          <label style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--dash-text-muted); letter-spacing: 0.06em; margin-bottom: 8px; display: block;">
             Spoken Voice Transcript (Speech-to-Text Engine)
           </label>
           <div class="transcript-box">
-            "I manage UI state using a single immutable <strong style="color:#FF9E72;">StateFlow&lt;UiState&gt;</strong> exposed by the ViewModel. User interactions are dispatched as sealed <strong style="color:#2DD4BF;">UiIntent</strong> types to an onIntent handler. For one-off events like navigation and snackbars, <mark class="filler-mark">like</mark>, I use a Kotlin Coroutines <strong style="color:#38BDF8;">Channel&lt;UiEffect&gt;</strong> consumed as a flow inside LaunchedEffect to prevent repeated execution on screen rotation."
+            "I manage UI state using a single immutable <strong style="color:#FF7A45;">StateFlow&lt;UiState&gt;</strong> exposed by the ViewModel. User interactions are dispatched as sealed <strong style="color:#2DD4BF;">UiIntent</strong> types to an onIntent handler. For one-off events like navigation and snackbars, <mark class="filler-mark">like</mark>, I use a Kotlin Coroutines <strong style="color:#38BDF8;">Channel&lt;UiEffect&gt;</strong> consumed as a flow inside LaunchedEffect to prevent repeated execution on screen rotation."
           </div>
           <div style="margin-top: 10px; display: flex; align-items: center; gap: 8px;">
-            <span style="font-size: 11px; color: #94A3B8; font-weight: 700;">Highlighted Filler Hesitations:</span>
+            <span style="font-size: 11px; color: var(--dash-text-muted); font-weight: 700;">Highlighted Filler Hesitations:</span>
             <span class="filler-chip">"like" (1×)</span>
           </div>
         </div>
 
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 18px; margin-bottom: 18px;">
           <div style="background: rgba(34,197,94,0.06); border: 1px solid rgba(34,197,94,0.2); border-radius: 18px; padding: 20px;">
-            <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #4ADE80; letter-spacing: 0.08em; display: flex; align-items: center; gap: 6px; margin-bottom: 12px;">
-              <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="#4ADE80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Rubric Criteria Verified
+            <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #16A34A; letter-spacing: 0.08em; display: flex; align-items: center; gap: 6px; margin-bottom: 12px;">
+              <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Rubric Criteria Verified
             </span>
             <div class="criteria-item">
               <svg style="width:14px;height:14px;stroke:#22C55E;flex-shrink:0;margin-top:2px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
@@ -609,14 +609,14 @@
           </div>
 
           <div style="background: rgba(255,122,69,0.06); border: 1px solid rgba(255,122,69,0.2); border-radius: 18px; padding: 20px;">
-            <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #FF9E72; letter-spacing: 0.08em; display: flex; align-items: center; gap: 6px; margin-bottom: 12px;">
-              <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="#FF9E72" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> AI Coach Feedback & Suggestions
+            <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #EA580C; letter-spacing: 0.08em; display: flex; align-items: center; gap: 6px; margin-bottom: 12px;">
+              <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> AI Coach Feedback & Suggestions
             </span>
-            <p style="font-size: 13px; color: #E2E8F0; line-height: 1.5; margin: 0 0 10px;">
+            <p style="font-size: 13px; color: var(--dash-text); line-height: 1.5; margin: 0 0 10px;">
               <strong>Strengths:</strong> Concise and clean architectural structure mirroring production standards.
             </p>
-            <p style="font-size: 12px; color: #94A3B8; line-height: 1.5; margin: 0;">
-              <strong>Growth Tip:</strong> Mention <code style="color:#FF9E72;">collectAsStateWithLifecycle()</code> to automatically cease flow collection when composables enter background state.
+            <p style="font-size: 12px; color: var(--dash-text-muted); line-height: 1.5; margin: 0;">
+              <strong>Growth Tip:</strong> Mention <code style="color:#FF7A45;">collectAsStateWithLifecycle()</code> to automatically cease flow collection when composables enter background state.
             </p>
           </div>
         </div>
@@ -624,53 +624,53 @@
 
       <!-- ================= QUESTION 4 ================= -->
       <div class="glass-card question-item" id="qCard-q4" style="margin-bottom: 0;">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 18px; margin-bottom: 18px; flex-wrap: wrap; gap: 12px;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid var(--dash-card-border); padding-bottom: 18px; margin-bottom: 18px; flex-wrap: wrap; gap: 12px;">
           <div>
             <div style="display: inline-flex; align-items: center; gap: 8px; margin-bottom: 6px;">
               <span class="kpi-badge amber" style="font-size: 10px; padding: 2px 8px;">Question 4 · Production Troubleshooting</span>
-              <span style="font-size: 12px; color: #94A3B8; font-weight: 600;">Spoken Duration: 1m 40s</span>
+              <span style="font-size: 12px; color: var(--dash-text-muted); font-weight: 600;">Spoken Duration: 1m 40s</span>
             </div>
-            <h2 style="font-size: 18px; font-weight: 900; color: #fff; margin: 0; letter-spacing: -0.02em;">
+            <h2 style="font-size: 18px; font-weight: 900; color: var(--dash-heading); margin: 0; letter-spacing: -0.02em;">
               "How do you triage an ANR (Application Not Responding) or crash spike in production using telemetry, logs, and profiler traces?"
             </h2>
           </div>
           <div style="text-align: right;">
-            <span style="font-size: 11px; font-weight: 800; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 2px;">Question Score</span>
+            <span style="font-size: 11px; font-weight: 800; color: var(--dash-text-muted); text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 2px;">Question Score</span>
             <span style="font-size: 22px; font-weight: 900; color: #22C55E; background: rgba(34,197,94,0.12); padding: 4px 12px; border-radius: 12px; border: 1px solid rgba(34,197,94,0.25); display: inline-block;">96%</span>
           </div>
         </div>
 
         <div style="display: flex; gap: 14px; margin-bottom: 20px; flex-wrap: wrap;">
           <div class="mini-metric-box">
-            <span style="font-size: 11px; color: #94A3B8; font-weight: 700; text-transform: uppercase;">Rubric Match</span>
+            <span style="font-size: 11px; color: var(--dash-text-muted); font-weight: 700; text-transform: uppercase;">Rubric Match</span>
             <div style="font-size: 18px; font-weight: 900; color: #22C55E; margin-top: 4px;">96% Concepts</div>
-            <small style="color: #64748B; font-size: 11px;">ANR traces & Systrace</small>
+            <small style="color: var(--dash-text-muted); font-size: 11px;">ANR traces & Systrace</small>
           </div>
           <div class="mini-metric-box">
-            <span style="font-size: 11px; color: #94A3B8; font-weight: 700; text-transform: uppercase;">Filler Words</span>
+            <span style="font-size: 11px; color: var(--dash-text-muted); font-weight: 700; text-transform: uppercase;">Filler Words</span>
             <div style="font-size: 18px; font-weight: 900; color: #22C55E; margin-top: 4px;">0 Detected</div>
-            <small style="color: #64748B; font-size: 11px;">0% filler words — exceptionally crisp</small>
+            <small style="color: var(--dash-text-muted); font-size: 11px;">0% filler words — exceptionally crisp</small>
           </div>
           <div class="mini-metric-box">
-            <span style="font-size: 11px; color: #94A3B8; font-weight: 700; text-transform: uppercase;">Speaking Pace</span>
+            <span style="font-size: 11px; color: var(--dash-text-muted); font-weight: 700; text-transform: uppercase;">Speaking Pace</span>
             <div style="font-size: 18px; font-weight: 900; color: #38BDF8; margin-top: 4px;">140 WPM</div>
-            <small style="color: #64748B; font-size: 11px;">Confident senior delivery</small>
+            <small style="color: var(--dash-text-muted); font-size: 11px;">Confident senior delivery</small>
           </div>
         </div>
 
         <div style="margin-bottom: 20px;">
-          <label style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #94A3B8; letter-spacing: 0.06em; margin-bottom: 8px; display: block;">
+          <label style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--dash-text-muted); letter-spacing: 0.06em; margin-bottom: 8px; display: block;">
             Spoken Voice Transcript (Speech-to-Text Engine)
           </label>
           <div class="transcript-box">
-            "I first inspect Google Play Console and Crashlytics crash traces to isolate the offending thread and stack trace. For ANRs, I pull the <strong style="color:#FF9E72;">anr_traces.txt</strong> file to identify main thread lock contention, disk I/O, or binder IPC blocks. I reproduce the issue locally under Android Studio CPU and Memory Profiler with Systrace record tags, create a regression unit test, and roll out a canary hotfix."
+            "I first inspect Google Play Console and Crashlytics crash traces to isolate the offending thread and stack trace. For ANRs, I pull the <strong style="color:#FF7A45;">anr_traces.txt</strong> file to identify main thread lock contention, disk I/O, or binder IPC blocks. I reproduce the issue locally under Android Studio CPU and Memory Profiler with Systrace record tags, create a regression unit test, and roll out a canary hotfix."
           </div>
         </div>
 
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 18px;">
           <div style="background: rgba(34,197,94,0.06); border: 1px solid rgba(34,197,94,0.2); border-radius: 18px; padding: 20px;">
-            <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #4ADE80; letter-spacing: 0.08em; display: flex; align-items: center; gap: 6px; margin-bottom: 12px;">
-              <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="#4ADE80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Rubric Criteria Verified
+            <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #16A34A; letter-spacing: 0.08em; display: flex; align-items: center; gap: 6px; margin-bottom: 12px;">
+              <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Rubric Criteria Verified
             </span>
             <div class="criteria-item">
               <svg style="width:14px;height:14px;stroke:#22C55E;flex-shrink:0;margin-top:2px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
@@ -683,10 +683,10 @@
           </div>
 
           <div style="background: rgba(255,122,69,0.06); border: 1px solid rgba(255,122,69,0.2); border-radius: 18px; padding: 20px;">
-            <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #FF9E72; letter-spacing: 0.08em; display: flex; align-items: center; gap: 6px; margin-bottom: 12px;">
-              <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="#FF7A45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> AI Coach Feedback & Suggestions
+            <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #EA580C; letter-spacing: 0.08em; display: flex; align-items: center; gap: 6px; margin-bottom: 12px;">
+              <svg style="width:14px;height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> AI Coach Feedback & Suggestions
             </span>
-            <p style="font-size: 13px; color: #E2E8F0; line-height: 1.5; margin: 0;">
+            <p style="font-size: 13px; color: var(--dash-text); line-height: 1.5; margin: 0;">
               <strong>Strengths:</strong> Exemplary answer covering telemetry analysis, root-cause diagnosis, profiler instrumentation, and canary release protocol.
             </p>
           </div>
@@ -696,7 +696,7 @@
     </div>
 
     <!-- ACTIONABLE COACHING SUGGESTIONS & NEXT STEPS (Mirroring CoachingSuggestionCard.kt in Mobile App) -->
-    <h3 style="font-size: 17px; font-weight: 900; color: #fff; margin: 32px 0 16px;">AI Coaching Recommendations for Candidate</h3>
+    <h3 style="font-size: 17px; font-weight: 900; color: var(--dash-heading); margin: 32px 0 16px;">AI Coaching Recommendations for Candidate</h3>
     <div style="display: flex; flex-direction: column; gap: 14px;">
       <div class="glass-card" style="margin-bottom: 0; padding: 20px 24px; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;">
         <div style="display: flex; align-items: flex-start; gap: 14px;">
@@ -705,10 +705,10 @@
           </div>
           <div>
             <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
-              <strong style="color: #fff; font-size: 14px;">Lead with Concrete Metrics Before Implementation</strong>
-              <span class="kpi-badge" style="background: rgba(239,68,68,0.15); color: #F87171; border: 1px solid rgba(239,68,68,0.3); font-size: 10px; padding: 2px 8px;">High Impact</span>
+              <strong style="color: var(--dash-heading); font-size: 14px;">Lead with Concrete Metrics Before Implementation</strong>
+              <span class="kpi-badge" style="background: rgba(239,68,68,0.15); color: #DC2626; border: 1px solid rgba(239,68,68,0.3); font-size: 10px; padding: 2px 8px;">High Impact</span>
             </div>
-            <p style="color: #94A3B8; font-size: 12px; margin: 0; line-height: 1.5;">
+            <p style="color: var(--dash-text-muted); font-size: 12px; margin: 0; line-height: 1.5;">
               When explaining architecture and concurrency tradeoffs, open with measurable business or frame-rate results (e.g. "Reduced frame drop by 45%") before diving into CoroutineScope details.
             </p>
           </div>
@@ -717,15 +717,15 @@
 
       <div class="glass-card" style="margin-bottom: 0; padding: 20px 24px; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;">
         <div style="display: flex; align-items: flex-start; gap: 14px;">
-          <div style="width: 32px; height: 32px; border-radius: 10px; background: rgba(251,191,36,0.15); color: #FBBF24; font-weight: 900; font-size: 14px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(251,191,36,0.3); flex-shrink: 0;">
+          <div style="width: 32px; height: 32px; border-radius: 10px; background: rgba(251,191,36,0.15); color: #D97706; font-weight: 900; font-size: 14px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(251,191,36,0.3); flex-shrink: 0;">
             2
           </div>
           <div>
             <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
-              <strong style="color: #fff; font-size: 14px;">Replace Hesitation Fillers with Deliberate 1s Pauses</strong>
+              <strong style="color: var(--dash-heading); font-size: 14px;">Replace Hesitation Fillers with Deliberate 1s Pauses</strong>
               <span class="kpi-badge amber" style="font-size: 10px; padding: 2px 8px;">Medium Impact</span>
             </div>
-            <p style="color: #94A3B8; font-size: 12px; margin: 0; line-height: 1.5;">
+            <p style="color: var(--dash-text-muted); font-size: 12px; margin: 0; line-height: 1.5;">
               A brief 1-second pause before transitioning between technical topics conveys composure and eliminates verbal crutches ("um", "basically").
             </p>
           </div>

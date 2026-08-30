@@ -363,7 +363,7 @@
         CP
       </div>
       <div>
-        <strong id="sidebarCompName" style="font-size: 14px; display: block; color: #fff; letter-spacing: -0.02em;">Acme Corp</strong>
+        <strong id="sidebarCompName" style="font-size: 14px; display: block; color: var(--dash-heading); letter-spacing: -0.02em;">Acme Corp</strong>
         <span id="sidebarTierBadge" class="kpi-badge amber" style="font-size: 10px; padding: 2px 8px; margin-top: 3px; display: inline-block;">Growth Tier</span>
       </div>
     </div>
@@ -490,8 +490,8 @@
       <div class="glass-card">
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
           <div>
-            <h2 style="font-size: 16px; font-weight: 900; margin: 0; color: #fff;">Candidate Activity & AI Scoring Velocity</h2>
-            <p style="font-size: 12px; color: #94A3B8; margin: 4px 0 0;">Evaluation submission throughput and composite cohort benchmarks over the last 30 days.</p>
+            <h2 style="font-size: 16px; font-weight: 900; margin: 0; color: var(--dash-heading);">Candidate Activity & AI Scoring Velocity</h2>
+            <p style="font-size: 12px; color: var(--dash-text-muted); margin: 4px 0 0;">Evaluation submission throughput and composite cohort benchmarks over the last 30 days.</p>
           </div>
           <div class="time-toggle">
             <button class="time-btn active" onclick="updateChartRange('30d', this)">30 Days</button>
@@ -508,12 +508,12 @@
       <div class="glass-card">
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px;">
           <div>
-            <h2 style="font-size: 16px; font-weight: 900; margin: 0; color: #fff;">AI 3-Pillar Benchmark</h2>
-            <p style="font-size: 12px; color: #94A3B8; margin: 4px 0 0;">Composite cohort rating across our 3 AI modalities.</p>
+            <h2 style="font-size: 16px; font-weight: 900; margin: 0; color: var(--dash-heading);">AI 3-Pillar Benchmark</h2>
+            <p style="font-size: 12px; color: var(--dash-text-muted); margin: 4px 0 0;">Composite cohort rating across our 3 AI modalities.</p>
           </div>
           <div style="text-align: right;">
             <div style="font-size: 22px; font-weight: 900; color: #FF7A45; letter-spacing: -0.02em;">88.4%</div>
-            <div style="font-size: 10px; font-weight: 800; color: #94A3B8; text-transform: uppercase;">Cohort Avg</div>
+            <div style="font-size: 10px; font-weight: 800; color: var(--dash-text-muted); text-transform: uppercase;">Cohort Avg</div>
           </div>
         </div>
 
@@ -521,43 +521,43 @@
           <!-- Pillar 1 -->
           <div class="pillar-row">
             <div class="pillar-header">
-              <span style="color: #F8FAFC; display: flex; align-items: center; gap: 8px;">
+              <span style="color: var(--dash-text); display: flex; align-items: center; gap: 8px;">
                 <svg style="width:14px;height:14px;stroke:#FF7A45;stroke-width:2;fill:none;" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Rubric & Technical Concept Match
               </span>
-              <span style="color: #FF9E72; font-family: 'JetBrains Mono', monospace; font-weight: 800;">91.2% <small style="color: #64748B; font-weight: 600;">(60% wt)</small></span>
+              <span style="color: #FF9E72; font-family: 'JetBrains Mono', monospace; font-weight: 800;">91.2% <small style="color: var(--dash-text-muted); font-weight: 600;">(60% wt)</small></span>
             </div>
             <div class="pillar-bar-bg">
               <div class="pillar-bar-fill" style="width: 91.2%; background: linear-gradient(90deg, #FF7A45, #F05B24);"></div>
             </div>
-            <span style="font-size: 11px; color: #64748B;">Scored against customized role rubrics & required key terms</span>
+            <span style="font-size: 11px; color: var(--dash-text-muted);">Scored against customized role rubrics & required key terms</span>
           </div>
 
           <!-- Pillar 2 -->
           <div class="pillar-row">
             <div class="pillar-header">
-              <span style="color: #F8FAFC; display: flex; align-items: center; gap: 8px;">
+              <span style="color: var(--dash-text); display: flex; align-items: center; gap: 8px;">
                 <svg style="width:14px;height:14px;stroke:#2DD4BF;stroke-width:2;fill:none;" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg> On-Device Vision & Gaze Tracking
               </span>
-              <span style="color: #2DD4BF; font-family: 'JetBrains Mono', monospace; font-weight: 800;">86.5% <small style="color: #64748B; font-weight: 600;">(20% wt)</small></span>
+              <span style="color: #2DD4BF; font-family: 'JetBrains Mono', monospace; font-weight: 800;">86.5% <small style="color: var(--dash-text-muted); font-weight: 600;">(20% wt)</small></span>
             </div>
             <div class="pillar-bar-bg">
               <div class="pillar-bar-fill" style="width: 86.5%; background: linear-gradient(90deg, #2DD4BF, #0D9488);"></div>
             </div>
-            <span style="font-size: 11px; color: #64748B;">Eye-contact consistency & posture stability (GDPR zero-video-upload)</span>
+            <span style="font-size: 11px; color: var(--dash-text-muted);">Eye-contact consistency & posture stability (GDPR zero-video-upload)</span>
           </div>
 
           <!-- Pillar 3 -->
           <div class="pillar-row">
             <div class="pillar-header">
-              <span style="color: #F8FAFC; display: flex; align-items: center; gap: 8px;">
+              <span style="color: var(--dash-text); display: flex; align-items: center; gap: 8px;">
                 <svg style="width:14px;height:14px;stroke:#22C55E;stroke-width:2;fill:none;" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg> Voice Fluency & Speech Articulation
               </span>
-              <span style="color: #22C55E; font-family: 'JetBrains Mono', monospace; font-weight: 800;">89.8% <small style="color: #64748B; font-weight: 600;">(20% wt)</small></span>
+              <span style="color: #22C55E; font-family: 'JetBrains Mono', monospace; font-weight: 800;">89.8% <small style="color: var(--dash-text-muted); font-weight: 600;">(20% wt)</small></span>
             </div>
             <div class="pillar-bar-bg">
               <div class="pillar-bar-fill" style="width: 89.8%; background: linear-gradient(90deg, #22C55E, #16A34A);"></div>
             </div>
-            <span style="font-size: 11px; color: #64748B;">Pacing (132 WPM avg), silence ratio, and filler word frequency</span>
+            <span style="font-size: 11px; color: var(--dash-text-muted);">Pacing (132 WPM avg), silence ratio, and filler word frequency</span>
           </div>
         </div>
       </div>
@@ -568,10 +568,10 @@
     <div class="bottom-grid">
       <!-- Left (8 cols): Positions Pipeline Table -->
       <div class="glass-card">
-        <div style="padding-bottom: 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.06); flex-wrap: wrap; gap: 16px;">
+        <div style="padding-bottom: 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--dash-card-border); flex-wrap: wrap; gap: 16px;">
           <div>
-            <h3 style="font-size: 16px; font-weight: 900; margin: 0; color: #fff;">Assessment Positions Pipeline</h3>
-            <p style="font-size: 12px; color: #94A3B8; margin: 4px 0 0;">Manage applicants, customize AI rubrics, and inspect proctoring reports.</p>
+            <h3 style="font-size: 16px; font-weight: 900; margin: 0; color: var(--dash-heading);">Assessment Positions Pipeline</h3>
+            <p style="font-size: 12px; color: var(--dash-text-muted); margin: 4px 0 0;">Manage applicants, customize AI rubrics, and inspect proctoring reports.</p>
           </div>
 
           <div style="display: flex; align-items: center; gap: 12px;">
@@ -606,8 +606,8 @@
       <div class="glass-card">
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px;">
           <div>
-            <h3 style="font-size: 16px; font-weight: 900; margin: 0; color: #fff;">Live Applicant Stream</h3>
-            <p style="font-size: 12px; color: #94A3B8; margin: 4px 0 0;">Recent on-device AI submissions</p>
+            <h3 style="font-size: 16px; font-weight: 900; margin: 0; color: var(--dash-heading);">Live Applicant Stream</h3>
+            <p style="font-size: 12px; color: var(--dash-text-muted); margin: 4px 0 0;">Recent on-device AI submissions</p>
           </div>
           <span class="status-pill published" style="font-size: 9px; padding: 2px 8px;">
             <span class="dot"></span> Real-Time
@@ -621,8 +621,8 @@
                 SJ
               </div>
               <div>
-                <strong style="color: #FFFFFF; font-size: 13px; display: block;">Sarah Jenkins</strong>
-                <small style="color: #94A3B8; font-size: 11px;">Sr Android Kotlin · 12m ago</small>
+                <strong style="color: var(--dash-heading); font-size: 13px; display: block;">Sarah Jenkins</strong>
+                <small style="color: var(--dash-text-muted); font-size: 11px;">Sr Android Kotlin · 12m ago</small>
               </div>
             </div>
             <div style="text-align: right;">
@@ -638,8 +638,8 @@
                 AH
               </div>
               <div>
-                <strong style="color: #FFFFFF; font-size: 13px; display: block;">Ahmed Hassan</strong>
-                <small style="color: #94A3B8; font-size: 11px;">Backend Cloud Spring · 1h ago</small>
+                <strong style="color: var(--dash-heading); font-size: 13px; display: block;">Ahmed Hassan</strong>
+                <small style="color: var(--dash-text-muted); font-size: 11px;">Backend Cloud Spring · 1h ago</small>
               </div>
             </div>
             <div style="text-align: right;">
@@ -651,12 +651,12 @@
 
           <a href="candidate-report.html" class="feed-item">
             <div style="display: flex; align-items: center; gap: 10px;">
-              <div style="width: 36px; height: 36px; border-radius: 10px; background: rgba(148,163,184,0.15); color: #CBD5E1; font-weight: 800; font-size: 12px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.1);">
+              <div style="width: 36px; height: 36px; border-radius: 10px; background: rgba(148,163,184,0.15); color: var(--dash-text); font-weight: 800; font-size: 12px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--dash-card-border);">
                 ER
               </div>
               <div>
-                <strong style="color: #FFFFFF; font-size: 13px; display: block;">Elena Rostova</strong>
-                <small style="color: #94A3B8; font-size: 11px;">Lead Product Manager · 3h ago</small>
+                <strong style="color: var(--dash-heading); font-size: 13px; display: block;">Elena Rostova</strong>
+                <small style="color: var(--dash-text-muted); font-size: 11px;">Lead Product Manager · 3h ago</small>
               </div>
             </div>
             <div style="text-align: right;">
@@ -672,8 +672,8 @@
                 OT
               </div>
               <div>
-                <strong style="color: #FFFFFF; font-size: 13px; display: block;">Omar Tarek</strong>
-                <small style="color: #94A3B8; font-size: 11px;">Sr Android Kotlin · 5h ago</small>
+                <strong style="color: var(--dash-heading); font-size: 13px; display: block;">Omar Tarek</strong>
+                <small style="color: var(--dash-text-muted); font-size: 11px;">Sr Android Kotlin · 5h ago</small>
               </div>
             </div>
             <div style="text-align: right;">
@@ -742,7 +742,7 @@
               <span class="dot"></span> ${item.status || "Published"}
             </span>
           </td>
-          <td class="nowrap-cell"><strong style="color: #fff; font-size: 12.5px;">${(item.questions || []).length || 3} Questions</strong></td>
+          <td class="nowrap-cell"><strong style="color: var(--dash-heading); font-size: 12.5px;">${(item.questions || []).length || 3} Questions</strong></td>
           <td class="nowrap-cell">
             <div style="display: flex; align-items: center; gap: 8px;">
               <div style="width: 75px; height: 6px; background: rgba(255,255,255,0.08); border-radius: 99px; overflow: hidden; flex-shrink: 0;">

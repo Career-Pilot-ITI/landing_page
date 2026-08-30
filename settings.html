@@ -90,7 +90,7 @@
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 32px; align-items: start;">
       <!-- FORM -->
       <form onsubmit="handleSaveSettings(event)" class="glass-panel" style="padding: 32px; display: flex; flex-direction: column; gap: 20px;">
-        <h3 style="font-size: 16px; font-weight: 900; margin: 0; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 12px;">
+        <h3 style="font-size: 16px; font-weight: 900; margin: 0; color: var(--dash-heading); border-bottom: 1px solid var(--dash-card-border); padding-bottom: 12px;">
           Organization Identity
         </h3>
 
@@ -107,7 +107,7 @@
         <div>
           <label class="dark-label">Custom Logo Image URL</label>
           <input type="url" id="setCompLogo" placeholder="https://example.com/logo.png" class="dark-input" oninput="updateLiveMockup()" />
-          <small style="color: #64748B; font-size: 11px; margin-top: 4px; display: block;">Recommended size: 256x256 PNG or SVG</small>
+          <small style="color: var(--dash-text-muted); font-size: 11px; margin-top: 4px; display: block;">Recommended size: 256x256 PNG or SVG</small>
         </div>
 
         <div>
@@ -126,7 +126,7 @@
           </div>
         </div>
 
-        <div style="border-top: 1px solid rgba(255,255,255,0.06); padding-top: 20px; display: flex; justify-content: flex-end;">
+        <div style="border-top: 1px solid var(--dash-card-border); padding-top: 20px; display: flex; justify-content: flex-end;">
           <button type="submit" class="btn-primary-glow">
             Save Branding Changes &rarr;
           </button>
