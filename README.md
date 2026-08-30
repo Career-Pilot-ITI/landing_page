@@ -16,42 +16,7 @@
 
 ---
 
-## 🏛️ Ecosystem Overview & Project Directory Map
 
-The Career Pilot graduation platform is organized into synchronized core projects located under `d:/iti/`:
-
-```
-d:/iti/
-├── CareerPilot/                         # 📱 Native Android Mobile Client (Kotlin, Compose, Edge AI, Hilt)
-│   ├── app/                             # Top-level Navigation 3 root & Firebase setup
-│   ├── feature/                         # 15 isolated MVI feature modules (Interviews, ATS, Challenges, Quiz)
-│   └── core/                            # 12 infrastructure modules (Vision ML, Speech STT, Access, DesignSystem)
-│
-├── CareerPilot Backend/                 # ☁️ Authoritative Cloud Backend (Spring Boot 3, Java 21)
-│   └── career-pilot-backend/
-│       ├── src/main/java/.../controller # REST APIs (Auth, OTP, Profile, Interviews, ATS, Payment)
-│       ├── src/main/java/.../service    # AI Agents (InterviewAgent, CoverLetterAgent, X-Y-Z Optimizer)
-│       ├── src/main/java/.../security   # Stateless JWT, PII Redaction Aspect, Redis Bucket4j Rate Limiter
-│       └── src/main/java/.../entity     # PostgreSQL Entities, Coin Ledger, pgvector 768-dim Embeddings
-│
-├── Career Pilot Docs/                   # 📄 Official Technical Documentation & Specifications
-│   ├── Career_Pilot_Graduation_Project_Documentation.docx
-│   ├── Career_Pilot_Graduation_Project_Documentation.pdf
-│   └── srs_full_text.txt                # 5,900+ lines Software Requirements Specification (SRS)
-│
-└── CareerPilot_Website_v2_AppPalette/   # 🌐 Official Product Website & Interactive Documentation Portal
-    └── CareerPilot_Website_v2_Theme/
-        ├── index.html                   # High-level company & value proposition landing page
-        ├── product.html                 # 10 connected product pillars & interactive playground
-        ├── pricing.html                 # Tier economics (Free, Plus, Max) & ROI calculator
-        ├── about.html                   # ITI Intake 46 engineering team & tech stack
-        ├── docs.html                    # 8-chapter Interactive SRS Documentation (`Ctrl+K` search)
-        ├── emulator.html                # Live Android / iOS mobile experience emulator
-        ├── js/                          # App logic, config, search index, and theme controller
-        └── server.js                    # Node.js static asset and MP4 video streaming server
-```
-
----
 
 ## ⚙️ How Career Pilot & Its Backend Work
 
