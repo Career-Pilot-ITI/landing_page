@@ -7,6 +7,12 @@
   <meta name="theme-color" content="#f7f9ff" />
   <title>About & Team — Career Pilot</title>
   <link rel="icon" type="image/png" href="assets/career-pilot-icon.png" />
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem("careerPilotTheme") || localStorage.getItem("careerpilot_theme") || "cloud";
+      document.documentElement.setAttribute("data-theme", savedTheme);
+    })();
+  </script>
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -190,7 +196,7 @@
           <div class="tech-card reveal"><div class="tech-mark">SB</div><span>Framework</span><b>Spring Boot 3</b></div>
           <div class="tech-card reveal"><div class="tech-mark">PG</div><span>Database</span><b>PostgreSQL + pgvector</b></div>
           <div class="tech-card reveal"><div class="tech-mark">FB</div><span>Realtime</span><b>Firebase</b></div>
-          <div class="tech-card reveal"><div class="tech-mark">MP</div><span>Vision ML</span><b>Google MediaPipe</b></div>
+          <div class="tech-card reveal"><div class="tech-mark">V</div><span>Vision ML</span><b>On-Device Vision AI</b></div>
           <div class="tech-card reveal"><div class="tech-mark">AV</div><span>Vision ML</span><b>Apple Vision</b></div>
           <div class="tech-card reveal"><div class="tech-mark">AI</div><span>Intelligence</span><b>Gemini + RAG</b></div>
         </div>
@@ -249,6 +255,7 @@
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script src="js/config.js"></script>
+  <script src="js/theme.js"></script>
   <script src="js/vendor/three.min.js"></script>
   <script src="js/threeui.js"></script>
   <script src="js/app.js"></script>

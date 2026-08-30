@@ -7,6 +7,12 @@
   <meta name="theme-color" content="#f7f9ff" />
   <title>Live Mobile Emulator — Career Pilot</title>
   <link rel="icon" type="image/png" href="assets/career-pilot-icon.png" />
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem("careerPilotTheme") || localStorage.getItem("careerpilot_theme") || "cloud";
+      document.documentElement.setAttribute("data-theme", savedTheme);
+    })();
+  </script>
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -371,7 +377,7 @@
                   </div>
                   <div class="camera-badge">
                     <span class="camera-badge-dot"></span>
-                    <span>MediaPipe 30 FPS</span>
+                    <span>Vision Engine 30 FPS</span>
                   </div>
                 </div>
 
@@ -901,7 +907,7 @@ fun UserProfile(user: User) {
           <p class="kicker">Telemetry & Backend Contracts</p>
           <h3 style="margin:0 0 12px;">Architecture In Action</h3>
           <div style="font-size:12px;line-height:1.6;display:grid;gap:8px;">
-            <div><b>Edge ML Latency:</b> <span style="color:var(--teal);">22ms (Google MediaPipe 30 FPS)</span></div>
+            <div><b>Edge ML Latency:</b> <span style="color:var(--teal);">22ms (On-Device Vision 30 FPS)</span></div>
             <div><b>pgvector Cosine Search:</b> <span style="color:var(--primary);">p95 &lt; 78ms</span></div>
             <div><b>Entitlement Engine:</b> <code>core:access</code> (Checked on each session)</div>
             <div><b>Backend Runtime:</b> Spring Boot 3 + PostgreSQL 16</div>
@@ -967,6 +973,7 @@ fun UserProfile(user: User) {
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script src="js/config.js"></script>
+  <script src="js/theme.js"></script>
   <script src="js/emulator.js"></script>
   <script src="js/app.js"></script>
 </body>

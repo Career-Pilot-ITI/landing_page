@@ -7,6 +7,12 @@
   <meta name="theme-color" content="#f7f9ff" />
   <title>Product & Features — Career Pilot</title>
   <link rel="icon" type="image/png" href="assets/career-pilot-icon.png" />
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem("careerPilotTheme") || localStorage.getItem("careerpilot_theme") || "cloud";
+      document.documentElement.setAttribute("data-theme", savedTheme);
+    })();
+  </script>
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -121,7 +127,7 @@
         <div class="feature-grid">
           <article class="feature-card reveal"><div class="icon-chip"><svg><use href="#i-file"/></svg></div><h3>CV Knowledge Hub</h3><p>Upload, parse, and semantically vectorize active CVs across interview and ATS workflows.</p><span class="tag">Profile context</span></article>
           <article class="feature-card reveal"><div class="icon-chip"><svg><use href="#i-mic"/></svg></div><h3>Adaptive Interviews</h3><p>Track-specific mock interviews with dynamic follow-ups, speech processing, and AI scoring.</p><span class="tag">Voice AI</span></article>
-          <article class="feature-card reveal"><div class="icon-chip"><svg><use href="#i-video"/></svg></div><h3>Multimodal Coaching</h3><p>On-device MediaPipe & Apple Vision track gaze deviation, posture stability, and speech pacing at 30 FPS.</p><span class="tag">Edge ML</span></article>
+          <article class="feature-card reveal"><div class="icon-chip"><svg><use href="#i-video"/></svg></div><h3>Multimodal Coaching</h3><p>On-device computer vision & eye tracking evaluate gaze deviation, posture stability, and speech pacing at 30 FPS.</p><span class="tag">Edge ML</span></article>
           <article class="feature-card reveal"><div class="icon-chip"><svg><use href="#i-target"/></svg></div><h3>ATS Job Workspace</h3><p>Parse job postings, compute cosine fit against CV vectors, and extract missing keyword gaps.</p><span class="tag">Role matching</span></article>
           <article class="feature-card reveal"><div class="icon-chip"><svg><use href="#i-wand"/></svg></div><h3>CV AI Optimization</h3><p>Asynchronous queue-driven rewriting of bullet points into the Google X-Y-Z impact formula.</p><span class="tag">Async AI</span></article>
           <article class="feature-card reveal"><div class="icon-chip"><svg><use href="#i-mail"/></svg></div><h3>Cover Letter Generator</h3><p>Evidence-grounded personalized drafting from verified candidate achievements and job context.</p><span class="tag">Generative AI</span></article>
@@ -302,7 +308,7 @@
         </div>
         <div class="architecture-shell reveal">
           <div class="architecture-map">
-            <button class="arch-node active" data-arch="mobile"><span>01</span><svg><use href="#i-video"/></svg><b>Mobile Edge Intelligence</b><small>On-device MediaPipe & Vision</small></button>
+            <button class="arch-node active" data-arch="mobile"><span>01</span><svg><use href="#i-video"/></svg><b>Mobile Edge Intelligence</b><small>On-device Vision & Audio</small></button>
             <div class="arch-line"></div>
             <button class="arch-node" data-arch="backend"><span>02</span><svg><use href="#i-server"/></svg><b>Spring Boot Orchestration</b><small>Stateless JWT & Business Layer</small></button>
             <div class="arch-line"></div>
@@ -339,8 +345,8 @@
             <ul>
               <li>Clean Architecture + MVI Pattern</li>
               <li>Ktor Asynchronous Networking + DataStore</li>
-              <li>Google MediaPipe Face & Pose Landmarker</li>
-              <li>Local Whisper Speech Transcription</li>
+              <li>On-Device Face & Pose Landmark Pipeline</li>
+              <li>Local Speech-to-Text Transcription Engine</li>
               <li>Centralized <code>core:access</code> Entitlement Gating</li>
             </ul>
           </article>
@@ -564,6 +570,7 @@
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script src="js/config.js"></script>
+  <script src="js/theme.js"></script>
   <script src="js/vendor/three.min.js"></script>
   <script src="js/threeui.js"></script>
   <script src="js/emulator.js"></script>

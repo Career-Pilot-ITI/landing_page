@@ -6,7 +6,7 @@
 [![Android](https://img.shields.io/badge/Mobile-Android%20Compose-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://developer.android.com/jetpack/compose)
 [![pgvector](https://img.shields.io/badge/Vector%20Store-pgvector%20PostgreSQL%2016-336791?style=for-the-badge&logo=postgresql&logoColor=white)](https://github.com/pgvector/pgvector)
 [![Paymob](https://img.shields.io/badge/Payments-Paymob%20Gateway-0099FF?style=for-the-badge)](https://paymob.com/)
-[![Google MediaPipe](https://img.shields.io/badge/Vision%20AI-MediaPipe%20Tasks-00C853?style=for-the-badge&logo=google&logoColor=white)](https://developers.google.com/mediapipe)
+[![Vision AI](https://img.shields.io/badge/Vision%20AI-On--Device%20Vision-00C853?style=for-the-badge&logo=google&logoColor=white)](https://developers.google.com)
 
 **The AI-Powered Adaptive Interview Coach, Body Language Perception, and ATS Career Readiness Platform**
 
@@ -22,10 +22,10 @@ The Career Pilot graduation platform is organized into synchronized core project
 
 ```
 d:/iti/
-├── CareerPilot/                         # 📱 Native Android Mobile Client (Kotlin, Compose, MediaPipe, Hilt)
+├── CareerPilot/                         # 📱 Native Android Mobile Client (Kotlin, Compose, Edge AI, Hilt)
 │   ├── app/                             # Top-level Navigation 3 root & Firebase setup
 │   ├── feature/                         # 15 isolated MVI feature modules (Interviews, ATS, Challenges, Quiz)
-│   └── core/                            # 12 infrastructure modules (Vision ML, Whisper, Access, DesignSystem)
+│   └── core/                            # 12 infrastructure modules (Vision ML, Speech STT, Access, DesignSystem)
 │
 ├── CareerPilot Backend/                 # ☁️ Authoritative Cloud Backend (Spring Boot 3, Java 21)
 │   └── career-pilot-backend/
@@ -56,8 +56,8 @@ d:/iti/
 ## ⚙️ How Career Pilot & Its Backend Work
 
 ### 1. 🎯 Multimodal Edge Perception & Privacy Boundary
-- **On-Device Computer Vision**: Analyzed 100% locally via Google MediaPipe (`FaceLandmarker` & `PoseLandmarker`) at 30 FPS. Evaluates Gaze Deviation, Torso Slouching, Hand Pacifying Fidgets, and Facial Dynamism without streaming raw camera frames to the cloud.
-- **On-Device Speech Recognition**: Audio transcribed via Sherpa-ONNX / Whisper inference (`:core:whisper`), computing live words-per-minute (WPM) and hesitation patterns.
+- **On-Device Computer Vision**: Analyzed 100% locally via on-device Face & Pose landmark engines at 30 FPS. Evaluates Gaze Deviation, Torso Slouching, Hand Pacifying Fidgets, and Facial Dynamism without streaming raw camera frames to the cloud.
+- **On-Device Speech Recognition**: Audio transcribed via local speech-to-text inference engine, computing live words-per-minute (WPM) and hesitation patterns.
 
 ### 2. 🧠 Authoritative Cloud Gateway & AI Agent Pipeline (Spring Boot 3.4.1)
 - **RAG Question Grounding**: Uses PostgreSQL 16 + `pgvector` with HNSW cosine distance indexing (768-dim) to retrieve grounded interview questions tailored to the candidate's track and verified CV context.

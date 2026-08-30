@@ -3,10 +3,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Career Pilot for Employers & Enterprise — Asynchronous AI hiring assessments with custom question rubrics, on-device MediaPipe vision, and Whisper voice transcription." />
+  <meta name="description" content="Career Pilot for Employers & Enterprise — Asynchronous AI hiring assessments with custom question rubrics, on-device computer vision, and voice transcription AI." />
   <meta name="theme-color" content="#f7f9ff" />
   <title>Employers & Enterprise Portal — Career Pilot</title>
   <link rel="icon" type="image/png" href="assets/career-pilot-icon.png" />
+  <script>
+    (function() {
+      const saved = localStorage.getItem('careerPilotTheme') || localStorage.getItem('careerpilot_theme') || 'cloud';
+      document.documentElement.setAttribute('data-theme', saved);
+    })();
+  </script>
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,13 +29,13 @@
       margin-top: 30px;
     }
     .emp-header {
-      background: var(--navy-dark);
-      color: #fff;
+      background: var(--surface-2);
+      color: var(--text);
       padding: 24px 32px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid rgba(255,255,255,.08);
+      border-bottom: 1px solid var(--line);
     }
     .emp-nav-tabs {
       display: flex;
@@ -252,7 +258,7 @@
         <div class="eyebrow" style="margin-bottom: 16px;"><span class="live-dot"></span> CareerPilot Enterprise B2B Service</div>
         <h1>Screen with context.<br/><span class="gradient-text">Evaluate with precision.</span></h1>
         <p class="hero-lead" style="margin: 0 auto 28px;">
-          Create custom-rubric interviews, batch invite candidates via branded email deep links, and evaluate candidates asynchronously via the CareerPilot Android App powered by MediaPipe vision and Whisper voice AI.
+          Create custom-rubric interviews, batch invite candidates via branded email deep links, and evaluate candidates asynchronously via the CareerPilot Android App powered by on-device computer vision and voice AI.
         </p>
         <div class="hero-actions" style="justify-content: center;">
           <a class="btn btn-primary btn-lg" href="#recruiter-portal"><svg><use href="#i-spark"/></svg> Open Recruiter Portal</a>
@@ -284,7 +290,7 @@
           <div class="pillar-card">
             <div style="display: flex; justify-content: space-between; align-items: center;">
               <span class="kicker" style="margin:0; color: var(--teal);">Pillar 2 · 20% Weight</span>
-              <span style="font-weight: 900; color: var(--teal);">MediaPipe Vision</span>
+              <span style="font-weight: 900; color: var(--teal);">On-Device Vision</span>
             </div>
             <strong>Eye Contact & Posture</strong>
             <p style="font-size: 13px; color: var(--muted); margin:0;">
@@ -295,7 +301,7 @@
           <div class="pillar-card">
             <div style="display: flex; justify-content: space-between; align-items: center;">
               <span class="kicker" style="margin:0; color: var(--green);">Pillar 3 · 20% Weight</span>
-              <span style="font-weight: 900; color: var(--green);">Whisper Speech AI</span>
+              <span style="font-weight: 900; color: var(--green);">Voice AI Engine</span>
             </div>
             <strong>Fluency & Articulation</strong>
             <p style="font-size: 13px; color: var(--muted); margin:0;">
@@ -354,6 +360,11 @@
                 </div>
               </div>
               <div style="display: flex; align-items: center; gap: 10px;">
+                <button onclick="toggleTheme()" class="theme-toggle-btn" title="Toggle Light / Dark Mode" aria-label="Toggle Theme">
+                  <span class="theme-icon-sun" style="display:none;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span>
+                  <span class="theme-icon-moon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+                  <span class="theme-toggle-label">Dark Mode</span>
+                </button>
                 <button class="btn btn-primary" style="min-height: 38px; padding: 0 16px; font-size: 12px;" onclick="switchTab('new-interview')">
                   <svg><use href="#i-plus"/></svg> Create Interview
                 </button>
@@ -580,7 +591,7 @@
                 <span style="font-size: 12px; color: var(--muted);">Covered Coroutines, Scope, and Job trees</span>
               </div>
               <div class="stat-box" style="border-top: 3px solid var(--teal);">
-                <small>2. MediaPipe Vision (20%)</small>
+                <small>2. On-Device Vision (20%)</small>
                 <strong style="color: var(--teal);">88%</strong>
                 <span style="font-size: 12px; color: var(--muted);">88% Eye contact, 0 slouch alerts</span>
               </div>
@@ -732,7 +743,7 @@
             <ul>
               <li><svg><use href="#i-check"/></svg>1 Active interview position</li>
               <li><svg><use href="#i-check"/></svg>Custom AI evaluation rubrics</li>
-              <li><svg><use href="#i-check"/></svg>MediaPipe on-device gaze tracking</li>
+              <li><svg><use href="#i-check"/></svg>On-device eye & gaze tracking</li>
               <li><svg><use href="#i-check"/></svg>2 Team recruiter seats</li>
             </ul>
             <a class="btn btn-secondary full" href="#recruiter-portal" onclick="switchTab('new-interview')">Start Free Trial</a>
@@ -802,6 +813,7 @@
   </footer>
 
   <script src="js/config.js"></script>
+  <script src="js/theme.js"></script>
   <script src="js/app.js"></script>
   <script src="js/employer.js"></script>
 </body>

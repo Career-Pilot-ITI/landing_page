@@ -7,6 +7,12 @@
   <meta name="theme-color" content="#f7f9ff" />
   <title>Documentation — Career Pilot Platform</title>
   <link rel="icon" type="image/png" href="assets/career-pilot-icon.png" />
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem("careerPilotTheme") || localStorage.getItem("careerpilot_theme") || "cloud";
+      document.documentElement.setAttribute("data-theme", savedTheme);
+    })();
+  </script>
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -309,7 +315,7 @@
           <h3 id="project-objectives">1.4 Project Objectives <a class="header-anchor" href="#project-objectives">#</a></h3>
           <ul>
             <li><strong>Grounded Intelligence:</strong> Eliminate hallucination by constraining AI responses with PostgreSQL <code>pgvector</code> similarity search over verified curriculum data.</li>
-            <li><strong>Multimodal On-Device Perception:</strong> Process camera gaze, posture, and speech pacing locally on device (MediaPipe & Whisper / Apple Vision) to guarantee low latency and user privacy.</li>
+            <li><strong>Multimodal On-Device Perception:</strong> Process camera gaze, posture, and speech pacing locally on device (on-device computer vision & speech recognition) to guarantee low latency and user privacy.</li>
             <li><strong>Centralized Access Control:</strong> Enforce plan quotas, feature entitlement, and coin deductibility deterministically in <code>core:access</code>.</li>
             <li><strong>Cross-Platform Parity:</strong> Deliver native high-performance mobile clients for Android (Jetpack Compose) and iOS (SwiftUI) communicating with a robust Spring Boot 3 cloud backend.</li>
           </ul>
@@ -330,7 +336,7 @@
                 <span class="flow-step-num">01</span>
                 <div class="flow-step-info">
                   <h5>Client Edge Perception (Android Jetpack Compose / iOS SwiftUI)</h5>
-                  <p>Local media capture via CameraX, on-device Google MediaPipe (Face & Pose Landmarker), Sherpa-ONNX / Whisper speech-to-text inference, and reactive MVI state management.</p>
+                  <p>Local media capture via CameraX, on-device computer vision (Face & Pose Landmarker), speech-to-text inference, and reactive MVI state management.</p>
                 </div>
               </div>
               <div class="flow-step">
@@ -384,8 +390,8 @@
                 </tr>
                 <tr>
                   <td><strong>Core Intelligence</strong></td>
-                  <td><code>:core:bodylanguage</code>, <code>:core:ai</code>, <code>:core:whisper</code>, <code>:core:challengefirestore</code></td>
-                  <td>MediaPipe Face/Pose signal extractors, Firebase Gemini Flash AI client, Sherpa-ONNX speech recognition, and Firestore realtime matchmaking.</td>
+                  <td><code>:core:bodylanguage</code>, <code>:core:ai</code>, <code>:core:audio</code>, <code>:core:challengefirestore</code></td>
+                  <td>On-device Face/Pose signal extractors, Firebase Gemini Flash AI client, speech recognition, and Firestore realtime matchmaking.</td>
                 </tr>
                 <tr>
                   <td><strong>Core Infrastructure</strong></td>
@@ -465,15 +471,15 @@
                 </tr>
                 <tr>
                   <td><strong>Computer Vision</strong></td>
-                  <td>Google MediaPipe Face & Pose Tasks</td>
+                  <td>On-Device Face & Pose Vision Engine</td>
                   <td>Apple Vision Framework</td>
                   <td>— (Zero Video Uploads, Privacy First)</td>
                 </tr>
                 <tr>
                   <td><strong>Speech-to-Text</strong></td>
-                  <td>Sherpa-ONNX / Whisper (On-Device)</td>
+                  <td>On-Device Speech-to-Text Engine</td>
                   <td>Apple SFSpeechRecognizer</td>
-                  <td>Whisper Cloud Transcription Service</td>
+                  <td>Cloud Speech Transcription Service</td>
                 </tr>
                 <tr>
                   <td><strong>Data Storage</strong></td>
@@ -512,7 +518,7 @@
           <p>The vision subsystem computed in <code>:core:bodylanguage</code> measures 4 key behavioral dimensions during live interview practice:</p>
           <ul>
             <li><strong>1. Gaze Stability & Eye Contact:</strong> Measures pupil-to-iris deviation relative to head pose normal vectors to ensure candidate maintains camera eye contact.</li>
-            <li><strong>2. Torso Posture & Alignment:</strong> Tracks shoulder landmarks (MediaPipe pose points 11 & 12) to detect spinal slumping, leaning, or leaving the frame.</li>
+            <li><strong>2. Torso Posture & Alignment:</strong> Tracks shoulder landmarks (torso landmarks 11 & 12) to detect spinal slumping, leaning, or leaving the frame.</li>
             <li><strong>3. Hand Pacifying Gestures:</strong> Detects nervous hand-to-face touches (chin, hair, neck) and excessive fidgeting.</li>
             <li><strong>4. Facial Expressiveness & Energy:</strong> Evaluates smile probability, brow movement, and conversational engagement.</li>
           </ul>
@@ -596,13 +602,13 @@
               <tbody>
                 <tr>
                   <td>Body Language & Posture</td>
-                  <td>Google MediaPipe Face & Pose Tasks</td>
+                  <td>On-Device Face & Pose Vision Engine</td>
                   <td>On-Device Edge (CameraX)</td>
                   <td>&lt; 33ms (30 FPS)</td>
                 </tr>
                 <tr>
                   <td>Voice Transcription (STT)</td>
-                  <td>Sherpa-ONNX / Whisper Inference</td>
+                  <td>On-Device Speech-to-Text Engine</td>
                   <td>On-Device Edge</td>
                   <td>&lt; 250ms</td>
                 </tr>
@@ -900,7 +906,7 @@
                 <pre><code>{
   <span class="token-str">"cvDocumentId"</span>: <span class="token-num">501</span>,
   <span class="token-str">"detectedTrack"</span>: <span class="token-str">"Android Native"</span>,
-  <span class="token-str">"extractedSkills"</span>: [<span class="token-str">"Kotlin"</span>, <span class="token-str">"Jetpack Compose"</span>, <span class="token-str">"Coroutines"</span>, <span class="token-str">"Dagger Hilt"</span>, <span class="token-str">"MVI"</span>, <span class="token-str">"MediaPipe"</span>],
+  <span class="token-str">"extractedSkills"</span>: [<span class="token-str">"Kotlin"</span>, <span class="token-str">"Jetpack Compose"</span>, <span class="token-str">"Coroutines"</span>, <span class="token-str">"Dagger Hilt"</span>, <span class="token-str">"MVI"</span>, <span class="token-str">"Computer Vision"</span>],
   <span class="token-str">"yearsOfExperience"</span>: <span class="token-num">2.5</span>,
   <span class="token-str">"embeddingVectorLength"</span>: <span class="token-num">768</span>
 }</code></pre>
@@ -984,7 +990,7 @@
                 </div>
                 <pre><code>{
   <span class="token-str">"matchScore"</span>: <span class="token-num">86.5</span>,
-  <span class="token-str">"matchedKeywords"</span>: [<span class="token-str">"Kotlin"</span>, <span class="token-str">"Jetpack Compose"</span>, <span class="token-str">"Coroutines"</span>, <span class="token-str">"MVI"</span>, <span class="token-str">"MediaPipe"</span>],
+  <span class="token-str">"matchedKeywords"</span>: [<span class="token-str">"Kotlin"</span>, <span class="token-str">"Jetpack Compose"</span>, <span class="token-str">"Coroutines"</span>, <span class="token-str">"MVI"</span>, <span class="token-str">"Computer Vision"</span>],
   <span class="token-str">"missingKeywords"</span>: [<span class="token-str">"Ktor"</span>, <span class="token-str">"Baseline Profiles"</span>],
   <span class="token-str">"recommendations"</span>: [
     <span class="token-str">"Explicitly mention asynchronous HTTP networking with Ktor 3.5 in your recent project highlights."</span>
@@ -1082,7 +1088,7 @@
                 <tr>
                   <td><code>FR-04</code></td>
                   <td>Vision ML</td>
-                  <td>Mobile client tracks gaze deviation, smile probability, and posture stability in real time at 30 FPS via MediaPipe.</td>
+                  <td>Mobile client tracks gaze deviation, smile probability, and posture stability in real time at 30 FPS via on-device computer vision.</td>
                   <td>High</td>
                 </tr>
                 <tr>
@@ -1307,6 +1313,7 @@ node server.js
   <div class="doc-toast" id="docToast" role="status" aria-live="polite"></div>
 
   <script src="js/config.js"></script>
+  <script src="js/theme.js"></script>
   <script src="js/docs.js"></script>
 </body>
 </html>

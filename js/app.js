@@ -141,7 +141,7 @@ if (typeof window !== 'undefined') {
     mobile: {
       icon: 'i-video',
       title: 'Mobile intelligence',
-      description: 'Latency-sensitive media processing stays close to the user. Android uses MediaPipe and Whisper integration; iOS uses Apple Vision and Apple Speech.',
+      description: 'Latency-sensitive media processing stays close to the user. Android uses on-device computer vision and speech recognition engines; iOS uses Apple Vision and Apple Speech.',
       points: ['Fast perception and transcription', 'Privacy-friendly local processing', 'Android can use a direct Firebase AI interpretation path']
     },
     backend: {

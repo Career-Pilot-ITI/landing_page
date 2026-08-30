@@ -7,6 +7,12 @@
   <meta name="theme-color" content="#f7f9ff" />
   <title>Career Pilot — AI Career Preparation Platform</title>
   <link rel="icon" type="image/png" href="assets/career-pilot-icon.png" />
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem("careerPilotTheme") || localStorage.getItem("careerpilot_theme") || "cloud";
+      document.documentElement.setAttribute("data-theme", savedTheme);
+    })();
+  </script>
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -284,7 +290,7 @@
           <div>
             <p class="kicker">For Employers & Enterprise Hiring Teams</p>
             <h2>Asynchronous AI assessments evaluated on your terms.</h2>
-            <p>Define custom question rubrics, batch invite candidates via branded deep links, and receive automated 3-pillar rankings scored by Whisper speech AI and on-device MediaPipe vision.</p>
+            <p>Define custom question rubrics, batch invite candidates via branded deep links, and receive automated 3-pillar rankings scored by voice AI and on-device computer vision.</p>
           </div>
         </div>
 
@@ -313,7 +319,7 @@
           <article class="card reveal reveal-delay-2" data-threeui-tilt style="min-height: auto;">
             <div class="icon-chip"><svg><use href="#i-shield"/></svg></div>
             <h3>3-Pillar Score Breakdowns</h3>
-            <p>Inspect ranked candidate reports combining 60% Rubric Accuracy, 20% MediaPipe on-device gaze/posture tracking, and 20% Whisper voice fluency with full word-for-word transcripts.</p>
+            <p>Inspect ranked candidate reports combining 60% Rubric Accuracy, 20% on-device gaze/posture tracking, and 20% voice delivery fluency with full word-for-word transcripts.</p>
             <div style="margin-top: 20px;">
               <a class="btn btn-secondary" href="candidate-report.html">Inspect Sample Report <svg style="width:12px;height:12px;fill:currentColor;"><use href="#i-arrow"/></svg></a>
             </div>
@@ -416,7 +422,7 @@
           </details>
           <details>
             <summary>What native mobile platforms are supported?<span>+</span></summary>
-            <p>We built two fully native clients: Kotlin + Jetpack Compose on Android (with MediaPipe ML), and Swift + SwiftUI on iOS (with Apple Vision ML).</p>
+            <p>We built two fully native clients: Kotlin + Jetpack Compose on Android (with on-device computer vision ML), and Swift + SwiftUI on iOS (with Apple Vision ML).</p>
           </details>
         </div>
       </div>
@@ -509,6 +515,7 @@
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script src="js/config.js"></script>
+  <script src="js/theme.js"></script>
   <script src="js/vendor/three.min.js"></script>
   <script src="js/threeui.js"></script>
   <script src="js/emulator.js"></script>
