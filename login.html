@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="assets/career-pilot-icon.png" />
   <script>
     (function() {
-      const savedTheme = localStorage.getItem("careerpilot_theme") || "midnight";
+      const savedTheme = localStorage.getItem("careerPilotTheme") || localStorage.getItem("careerpilot_theme") || "cloud";
       document.documentElement.setAttribute("data-theme", savedTheme);
     })();
   </script>
